@@ -1,13 +1,26 @@
 import React from 'react';
 import ReportQaqcFilter from '../../../../components/reportQaqcFilter/ReportQaqcFilter';
 import { createExcelFile, drawBorder, drawDottedBorder, saveExcelFile } from '../../../../utils/excel';
+import { useDispatch, useSelector } from 'react-redux';
 import convention from '../../../../assets/JsonData/report_qaqc_forced-endurance.json';
-import forcedEnduranceData from '../../../../assets/JsonData/mock_forced-endurance_report.json';
 import { format } from 'date-fns';
 import ReportQaqcTable from '../../../../components/reportQaqcTable/ReportQaqcTable';
 import { FORCED_ENDURANCE_COLUMNS } from '../../../../utils/utils';
+import { qaQcApi } from '../../../../api/axios/qaqcReport';
+import {
+	setForcedEnduranceReportData,
+	setForcedEnduranceReportDataDate,
+} from '../../../../redux/slice/QaQcReportSlice';
+import EmptyPlaceholder from '../../../../components/emptyPlaceholder/EmptyPlaceholder';
+import LoadingComponent from '../../../../components/loadingComponent/LoadingComponent';
 
-function ReportDeformation() {
+function ReportForcedEndurance() {
+	const [loading, setLoading] = React.useState(false);
+	const [error, setError] = React.useState(null);
+	const dispatch = useDispatch();
+	const forcedEnduranceReportReducer = useSelector((state) => state.qaQcReportData);
+	const forcedEnduranceReportData = forcedEnduranceReportReducer.forcedEnduranceReportData;
+	const forcedEnduranceReportDataDate = forcedEnduranceReportReducer.forcedEnduranceReportDataDate;
 	const exportReport = (productName, dateStart, dateEnd, purpose, note) => {
 		const workbook = createExcelFile(convention, 11);
 		const sheet1 = workbook.getWorksheet('sheet1');
@@ -67,15 +80,15 @@ function ReportDeformation() {
 
 		sheet1.getCell('A9').value = assignPurpose;
 		sheet1.getCell('A9').alignment = { vertical: 'middle', horizontal: 'left' };
-		sheet1.getCell('D8').value = dateStart;
-		sheet1.getCell('K8').value = dateEnd;
+		sheet1.getCell('D8').value = forcedEnduranceReportDataDate.startTime;
+		sheet1.getCell('K8').value = forcedEnduranceReportDataDate.stopTime;
 		[...Array(6).keys()].forEach((item, index) => {
 			const row = sheet1.getRow(index + 16);
 			row.values = [(index + 1) * 5000];
 			row.font = { name: 'Times New Roman', size: 11 };
 			row.height = 20;
 		});
-		forcedEnduranceData.forEach((item, index) => {
+		forcedEnduranceReportData.forEach((item, index) => {
 			const row = sheet1.getRow(index + 16);
 			row.values = [
 				item.sample,
@@ -127,14 +140,57 @@ function ReportDeformation() {
 		saveExcelFile(workbook, `Phiếu kiểm tra đóng cưỡng bức ${productName} ${format(new Date(), 'dd-MM-yyyy')}`);
 	};
 	const onSubmit = (values) => {
-		console.log(values);
+		setLoading(true);
+		qaQcApi
+			.getForcedEnduranceReport(values.dateStart, values.dateEnd)
+			.then((res) => {
+				setLoading(false);
+				if (res) {
+					res[0].deformationTestSheets?.forEach((item) => {
+						dispatch(
+							setForcedEnduranceReportData({
+								sample: item.numberTesting,
+								time: item.timeSmoothClosingLid,
+								toilet_bumper: item.statusLidNotBreak,
+								no_oil_spill: item.statusLidNotLeak,
+								first_result: item.statusLidResult,
+								closing_time: item.timeSmoothClosingPlinth,
+								no_drop_bumper: item.statusPlinthNotBreak,
+								no_spill: item.statusPlinthNotLeak,
+								second_result: item.statusPlinthResult,
+								total: item.totalError,
+								note: item.note,
+								employee: item.employee,
+							})
+						);
+						dispatch(
+							setForcedEnduranceReportDataDate({
+								startTime: format(new Date(res[0].startTime), 'dd/MM/yyyy'),
+								stopTime: format(new Date(res[0].stopTime), 'dd/MM/yyyy'),
+							})
+						);
+					});
+				}
+			})
+			.catch((err) => {
+				setLoading(false);
+				setError(err);
+			});
 	};
 	return (
 		<>
-			<ReportQaqcFilter onSubmit={onSubmit} exportReport={exportReport} />
-			<ReportQaqcTable reportData={forcedEnduranceData} reportHeaders={FORCED_ENDURANCE_COLUMNS} />
+			<ReportQaqcFilter dataDisplay={forcedEnduranceReportData} onSubmit={onSubmit} exportReport={exportReport} />
+			{loading ? (
+				<LoadingComponent />
+			) : error ? (
+				<EmptyPlaceholder isError={true} msg={error} />
+			) : forcedEnduranceReportData.length <= 0 ? (
+				<EmptyPlaceholder msg="Nhấn nút tìm kiếm để xem báo cáo" />
+			) : (
+				<ReportQaqcTable reportData={forcedEnduranceReportData} reportHeaders={FORCED_ENDURANCE_COLUMNS} />
+			)}
 		</>
 	);
 }
 
-export default ReportDeformation;
+export default ReportForcedEndurance;

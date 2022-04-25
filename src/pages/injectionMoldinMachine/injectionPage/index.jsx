@@ -440,7 +440,7 @@ function InjectionMoldingMachinePage() {
 			<div className="row mb-10">
 				<div className="col-12 flex-center">
 					<ReportNavigationButton history={history} path="/injection/map">
-						Xem dưới dạng bản đồ
+						DẠNG BẢN ĐỒ
 					</ReportNavigationButton>
 				</div>
 			</div>

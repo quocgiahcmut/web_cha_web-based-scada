@@ -15,7 +15,6 @@ function DropdownInput(props) {
 							id={name}
 							options={options}
 							onChange={(value) => {
-								console.log(value.value);
 								field.onChange(value.value);
 								onChange(value.value);
 							}}

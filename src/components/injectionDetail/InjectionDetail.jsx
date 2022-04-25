@@ -250,7 +250,7 @@ function InjectionDetail({ injectionMoldingMachineData }) {
 					<ReportNavigationButton history={history} path="/report/main/injection" />
 					<div className="mr-40"></div>
 					<ReportNavigationButton history={history} path="/report/oee">
-						Đánh giá OEE
+						CHỈ SỐ OEE
 					</ReportNavigationButton>
 				</div>
 			</div>

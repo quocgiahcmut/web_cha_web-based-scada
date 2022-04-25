@@ -1,7 +1,15 @@
 import {
-	createTheme, Paper, styled, Table, TableBody, TableCell,
-	tableCellClasses, TableContainer, TableHead,
-	TableRow, ThemeProvider
+	createTheme,
+	Paper,
+	styled,
+	Table,
+	TableBody,
+	TableCell,
+	tableCellClasses,
+	TableContainer,
+	TableHead,
+	TableRow,
+	ThemeProvider,
 } from '@mui/material';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -93,7 +101,7 @@ function ForcedEndurance() {
 										<TableHead>
 											<TableRow>
 												<StyledTableCell align="left">Thông số của máy</StyledTableCell>
-												<StyledTableCell align="left">Xi lanh 3</StyledTableCell>
+												<StyledTableCell align="left">Giá trị</StyledTableCell>
 											</TableRow>
 										</TableHead>
 										<TableBody
@@ -251,7 +259,7 @@ function ForcedEndurance() {
 			</div>
 			<div className="row">
 				<div className="col-12 flex-center">
-					<ReportNavigationButton history={history} path="/report/main/qaqc" />
+					<ReportNavigationButton history={history} path="/report/main/qaqc/forced-endurance" />
 				</div>
 			</div>
 		</>

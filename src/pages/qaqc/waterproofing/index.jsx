@@ -158,7 +158,7 @@ function WaterProofing() {
 										<TableHead>
 											<TableRow>
 												<StyledTableCell align="left">Thông số của máy</StyledTableCell>
-												<StyledTableCell align="left"> </StyledTableCell>
+												<StyledTableCell align="left">Giá trị</StyledTableCell>
 											</TableRow>
 										</TableHead>
 										<TableBody
@@ -261,7 +261,7 @@ function WaterProofing() {
 			</div>
 			<div className="row">
 				<div className="col-12 flex-center">
-					<ReportNavigationButton history={history} path="/report/main/qaqc" />
+					<ReportNavigationButton history={history} path="/report/main/qaqc/water-proof" />
 				</div>
 			</div>
 		</>

@@ -5,6 +5,10 @@ import './reportQaqcFilter.css';
 import * as Yup from 'yup';
 import FormControl from '../formControl/FormControl';
 import ReportQaqcTable from '../reportQaqcTable/ReportQaqcTable';
+import LoadingComponent from '../loadingComponent/LoadingComponent';
+import EmptyPlaceholder from '../emptyPlaceholder/EmptyPlaceholder';
+import { useDispatch } from 'react-redux';
+import { resetDeformationReportData } from '../../redux/slice/QaQcReportSlice';
 
 const validationSchema = Yup.object({
 	dateStart: Yup.date(),
@@ -20,7 +24,17 @@ const validationSchema = Yup.object({
 // component = { ReportQaqcTable };
 // reportData = { enduranceData };
 // reportHeaders = { ENDURANCE_COLUMNS };
-function ReportQaqcFilter({ reportData, reportHeaders, deformation, exportReport, onSubmit }) {
+function ReportQaqcFilter({
+	reportData,
+	reportHeaders,
+	deformation,
+	exportReport,
+	onSubmit,
+	dataDisplay,
+	loading,
+	error,
+}) {
+	const dispatch = useDispatch();
 	const initialDateStart = () => {
 		const today = new Date();
 		const numberOfDaysToSubtract = 7;
@@ -60,6 +74,9 @@ function ReportQaqcFilter({ reportData, reportHeaders, deformation, exportReport
 		{ value: 'bending', key: 'Lực uốn' },
 		{ value: 'static-load', key: 'Chịu tải tĩnh' },
 	];
+	const handleResetChange = () => {
+		dispatch(resetDeformationReportData());
+	};
 	return (
 		<>
 			<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
@@ -69,7 +86,7 @@ function ReportQaqcFilter({ reportData, reportHeaders, deformation, exportReport
 							<div className="qaqc-report__container mb-20">
 								<div className="row">
 									<div className="col-12">
-										<Form id="qaqc-report__filter">
+										<Form onChange={handleResetChange} id="qaqc-report__filter">
 											{deformation ? (
 												<FormControl
 													label="Bài kiểm tra"
@@ -116,13 +133,15 @@ function ReportQaqcFilter({ reportData, reportHeaders, deformation, exportReport
 												type="button"
 												className={`btn btn-primary ${
 													formik.values.productName === '' ||
-													(formik.values.purpose === 'other' && formik.values.note === '')
+													(formik.values.purpose === 'other' && formik.values.note === '') ||
+													dataDisplay.length === 0
 														? 'btn-disabled'
 														: ''
 												}`}
 												disabled={
 													formik.values.productName === '' ||
-													(formik.values.purpose === 'other' && formik.values.note === '')
+													(formik.values.purpose === 'other' && formik.values.note === '') ||
+													dataDisplay.length === 0
 														? true
 														: false
 												}
@@ -146,16 +165,24 @@ function ReportQaqcFilter({ reportData, reportHeaders, deformation, exportReport
 							{deformation ? (
 								<div className="row">
 									<div className="col-12">
-										<ReportQaqcTable
-											reportData={reportData}
-											reportHeaders={
-												formik.values.testType === 'rock-test'
-													? reportHeaders.rockTest
-													: formik.values.testType === 'bending'
-													? reportHeaders.bending
-													: reportHeaders.staticLoad
-											}
-										/>
+										{loading ? (
+											<LoadingComponent />
+										) : error ? (
+											<EmptyPlaceholder isError={true} msg={error} />
+										) : reportData.length <= 0 ? (
+											<EmptyPlaceholder msg="Nhấn nút tìm kiếm để xem báo cáo" />
+										) : (
+											<ReportQaqcTable
+												reportData={reportData}
+												reportHeaders={
+													formik.values.testType === 'rock-test'
+														? reportHeaders.rockTest
+														: formik.values.testType === 'bending'
+														? reportHeaders.bending
+														: reportHeaders.staticLoad
+												}
+											/>
+										)}
 									</div>
 								</div>
 							) : null}

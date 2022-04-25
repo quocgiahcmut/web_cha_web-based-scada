@@ -5,7 +5,10 @@ const axiosClient = axios.create({
 	baseURL: `${process.env.REACT_APP_BASE_URL}`,
 	headers: {
 		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': 'http://localhost:3000/',
+		// 'Access-Control-Request-Headers': 'Content-Type',
 	},
+	withCredentials: false,
 	paramsSerializer: (params) => queryString.stringify(params),
 });
 

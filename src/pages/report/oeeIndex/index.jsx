@@ -39,9 +39,9 @@ const quantityData = {
 };
 
 function OeeIndex() {
-	const [lastTimeUpdated, setLastTimeUpdated] = React.useState('7');
-	const [oeeOverallData, setOeeOverallData] = React.useState([55, 67, 83]);
-	const [downtimeData, setDowntimeData] = React.useState([
+	const [lastTimeUpdated] = React.useState('7');
+	const [oeeOverallData] = React.useState([55, 67, 83]);
+	const [downtimeData] = React.useState([
 		{
 			detail: 'Thời gian nghỉ',
 			percent: 80,
@@ -64,7 +64,7 @@ function OeeIndex() {
 		},
 	]);
 
-	const [oeeData, setOeeData] = React.useState({
+	const [oeeData] = React.useState({
 		target: {
 			value: '50',
 			trend: 'down',

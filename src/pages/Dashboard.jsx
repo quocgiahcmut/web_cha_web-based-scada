@@ -241,8 +241,7 @@ const Dashboard = () => {
 		progress: 10,
 		progressSetPoint: 500,
 		workingHours: 7212,
-		errorProducts: 5,
-		fixedProducts: 5,
+		productId: 'EE20202102',
 	});
 	const [qaqcToggleButtonsIndex, setQaqcToggleButtonsIndex] = React.useState(0);
 	const [isDeformation, setIsDeformation] = React.useState(false);
@@ -407,10 +406,10 @@ const Dashboard = () => {
 												<td>{convertHMS(packingData.workingHours)}</td>
 											</tr>
 											<tr>
-												<td>Tổng lỗi</td>
+												<td>Mã Sản phẩm</td>
 												<td></td>
 												<td>
-													lỗi: {packingData.errorProducts}; sửa: {packingData.fixedProducts}
+													<span className="text-bold">{packingData.productId}</span>
 												</td>
 											</tr>
 										</tbody>

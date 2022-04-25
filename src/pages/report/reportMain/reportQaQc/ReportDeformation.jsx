@@ -1,18 +1,27 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ReportQaqcFilter from '../../../../components/reportQaqcFilter/ReportQaqcFilter';
 import { createExcelFile, drawBorder, drawDottedBorder, saveExcelFile } from '../../../../utils/excel';
 import staticLoadConvention from '../../../../assets/JsonData/report_qaqc_static-load.json';
 import bendingConvention from '../../../../assets/JsonData/report_qaqc_bending.json';
 import rockTestConvention from '../../../../assets/JsonData/report_qaqc_rock-test.json';
-import deformationData from '../../../../assets/JsonData/mock_deformation_report.json';
 import { format } from 'date-fns';
 import {
 	STATIC_LOAD_DEFORMATION_COLUMNS,
 	ROCK_TEST_DEFORMATION_COLUMNS,
 	BENDING_DEFORMATION_COLUMNS,
 } from '../../../../utils/utils';
+import { qaQcApi } from '../../../../api/axios/qaqcReport';
+import { setDeformationReportData, setDeformationReportDataDate } from '../../../../redux/slice/QaQcReportSlice';
 
 function ReportDeformation() {
+	const [loading, setLoading] = React.useState(false);
+	const [error, setError] = React.useState(null);
+	const dispatch = useDispatch();
+	const qaQcReportReducer = useSelector((state) => state.qaQcReportData);
+	const deformationReportData = qaQcReportReducer.deformationReportData;
+	const dateAssigned = qaQcReportReducer.deformationReportDataDate;
+
 	const exportReport = (productName, dateStart, dateEnd, purpose, note, testType) => {
 		const workbook = createExcelFile(
 			testType === 'static-load'
@@ -96,11 +105,11 @@ function ReportDeformation() {
 
 		sheet1.getCell('A9').value = assignPurpose;
 		sheet1.getCell('A9').alignment = { vertical: 'middle', horizontal: 'left' };
-		sheet1.getCell('D8').value = dateStart;
-		sheet1.getCell('K8').value = dateEnd;
+		sheet1.getCell('D8').value = dateAssigned.dateStart;
+		sheet1.getCell('K8').value = dateAssigned.dateEnd;
 		switch (testType) {
 			case 'static-load':
-				deformationData?.forEach((item, index) => {
+				deformationReportData?.forEach((item, index) => {
 					const row = sheet1.getRow(index + 14);
 					row.height = 30;
 					row.alignment = { vertical: 'middle', horizontal: 'center' };
@@ -109,7 +118,7 @@ function ReportDeformation() {
 				});
 				break;
 			case 'bending':
-				deformationData?.forEach((item, index) => {
+				deformationReportData?.forEach((item, index) => {
 					const row = sheet1.getRow(index + 14);
 					row.height = 30;
 					row.alignment = { vertical: 'middle', horizontal: 'center' };
@@ -133,7 +142,7 @@ function ReportDeformation() {
 				});
 				break;
 			case 'rock-test':
-				deformationData?.forEach((item, index) => {
+				deformationReportData?.forEach((item, index) => {
 					const row = sheet1.getRow(index + 14);
 					row.height = 30;
 					row.alignment = { vertical: 'middle', horizontal: 'center' };
@@ -230,7 +239,94 @@ function ReportDeformation() {
 		);
 	};
 	const onSubmit = (values) => {
-		console.log(values);
+		setLoading(true);
+		switch (values.testType) {
+			case 'static-load':
+				qaQcApi
+					.getStaticLoadReport(values.dateStart, values.dateEnd)
+					.then((res) => {
+						setLoading(false);
+						res[0].staticLoadTestSheets?.forEach((item, index) => {
+							dispatch(
+								setDeformationReportData({
+									id: item.staticLoadReportId,
+									result: item.testResult,
+									total: item.totalError,
+									note: item.note,
+									employee: item.employee,
+								})
+							);
+							dispatch(
+								setDeformationReportDataDate({
+									dateStart: format(new Date(res[0].startTime), 'dd/MM/yyyy'),
+									dateEnd: format(new Date(res[0].stopTime), 'dd/MM/yyyy'),
+								})
+							);
+						});
+					})
+					.catch((err) => {
+						setLoading(false);
+						setError(err.message);
+					});
+				break;
+			case 'bending':
+				qaQcApi
+					.getCurlingForceReport(values.dateStart, values.dateEnd)
+					.then((res) => {
+						setLoading(false);
+						res[0].curlingForceTestSheets?.forEach((item, index) => {
+							dispatch(
+								setDeformationReportData({
+									id: item.curlingForceReportId,
+									weight: item.mass,
+									number_of_test: item.timeSpan,
+									result: item.warping,
+									total: item.totalError,
+									note: item.remark,
+									employee: item.employee,
+								})
+							);
+						});
+					})
+					.catch((err) => {
+						setLoading(false);
+						setError(err.message);
+					});
+
+				break;
+			case 'rock-test':
+				qaQcApi
+					.getRockTestReport(values.dateStart, values.dateEnd)
+					.then((res) => {
+						setLoading(false);
+						res[0].rockTestSheets?.forEach((item, index) => {
+							dispatch(
+								setDeformationReportData({
+									id: item.rockTestReportId,
+									weight: item.mass,
+									number_of_test: item.numberOfTest,
+									result: item.testResult,
+									total: item.totalError,
+									note: item.note,
+									employee: item.employee,
+								})
+							);
+							dispatch(
+								setDeformationReportDataDate({
+									dateStart: format(new Date(res[0].startTime), 'dd/MM/yyyy'),
+									dateEnd: format(new Date(res[0].stopTime), 'dd/MM/yyyy'),
+								})
+							);
+						});
+					})
+					.catch((err) => {
+						setLoading(false);
+						setError(err.message);
+					});
+				break;
+			default:
+				break;
+		}
 	};
 	return (
 		<>
@@ -238,12 +334,15 @@ function ReportDeformation() {
 				deformation={true}
 				onSubmit={onSubmit}
 				exportReport={exportReport}
-				reportData={deformationData}
+				reportData={deformationReportData}
 				reportHeaders={{
 					staticLoad: STATIC_LOAD_DEFORMATION_COLUMNS,
 					rockTest: ROCK_TEST_DEFORMATION_COLUMNS,
 					bending: BENDING_DEFORMATION_COLUMNS,
 				}}
+				loading={loading}
+				error={error}
+				dataDisplay={deformationReportData}
 			/>
 		</>
 	);

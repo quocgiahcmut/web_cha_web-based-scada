@@ -15,7 +15,7 @@ function ReportNavigationButton({ children, history, path }) {
 				onClick={onClick}
 				variant="contained"
 			>
-				{children ? children : 'Đi đến trang báo cáo'}
+				{children ? children : 'BÁO CÁO'}
 			</Button>
 		</>
 	);

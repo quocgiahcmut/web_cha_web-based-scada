@@ -18,6 +18,9 @@ import { ReactComponent as Stop } from '../../../../assets/images/qaqc/stop.svg'
 import ProgressBar from '../../../../components/progressBar/ProgressBar';
 import ReportNavigationButton from '../../../../components/reportNavigationButton/ReportNavigationButton';
 import { useHistory } from 'react-router-dom';
+import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
+import { ToastContainer, toast } from 'react-toastify';
+import { getTagsData } from '../../../../utils/utils';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -89,27 +92,215 @@ function StyledPaper({ children }) {
 
 function SecondSystem() {
 	let history = useHistory();
-
+	const [connection, setConnection] = React.useState(null);
+	const [state, setState] = React.useState('disconnected');
+	const [error, setError] = React.useState(null);
+	const [errorPriority, setErrorPriority] = React.useState(null);
 	const [machineState, setMachineState] = React.useState('stop');
 	const [settings, setSettings] = React.useState({
 		force: 0,
 		numbs: 0,
 		time: 0,
-		testNumber: 0,
 	});
 	const [params, setParams] = React.useState({
 		force: 0,
 		numbs: 0,
 		time: 0,
-		testNumber: 0,
 	});
 	const rows = [
 		createData('Lực nhấn', settings.force),
 		createData('Số lần nhấn', settings.numbs),
 		createData('Thời gian giữ', settings.time),
-		createData('Bài test', settings.testNumber),
 	];
-
+	React.useEffect(() => {
+		const connect = new HubConnectionBuilder()
+			.withUrl(`http://192.168.1.80:8085/websockethub`, {
+				skipNegotiation: true,
+				transport: HttpTransportType.WebSockets,
+			})
+			.withAutomaticReconnect()
+			.build();
+		connect
+			.start()
+			.then(() => {
+				setConnection(connect);
+				setState('connected');
+				connect.on('ReceiveData', (data) => {
+					console.log('data 2', data);
+				});
+			})
+			.catch((err) => {
+				alert(err);
+			});
+		setConnection(connect);
+		return () => {
+			connect.stop();
+		};
+	}, []);
+	const notify = (error, errorPriority) => {
+		switch (errorPriority) {
+			case 'low':
+				return toast.success(error, {
+					position: 'bottom-right',
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					draggable: true,
+					progress: undefined,
+				});
+			case 'middle':
+				return toast.warn(error, {
+					position: 'bottom-right',
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					draggable: true,
+					progress: undefined,
+				});
+			case 'high':
+				return toast.error(error, {
+					position: 'bottom-right',
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					draggable: true,
+					progress: undefined,
+				});
+			default:
+				return;
+		}
+	};
+	React.useEffect(() => {
+		let id;
+		if (connection && state === 'connected') {
+			id = setInterval(async () => {
+				const rawData = await getTagsData(
+					connection,
+					'qaqclab',
+					['plc'],
+					[
+						'Sp Force Cyliner 3',
+						'Sp No Press 3',
+						'Sp Time Hold 3',
+						'Pv Force Cylinder 3',
+						'Pv No Press 3',
+						'Pv Time Hold 3',
+						'Mode App',
+						'Green App',
+						'Red App',
+						'Error App',
+						'Error Code',
+					]
+				);
+				setSettings({
+					numbs: rawData.deviceQueryResults[0].tagQueryResults[1].value,
+					force: rawData.deviceQueryResults[0].tagQueryResults[0].value,
+					time: rawData.deviceQueryResults[0].tagQueryResults[2].value,
+				});
+				console.log(rawData.deviceQueryResults[0]);
+				setParams({
+					numbs: rawData.deviceQueryResults[0].tagQueryResults[4].value,
+					force: rawData.deviceQueryResults[0].tagQueryResults[3].value,
+					time: rawData.deviceQueryResults[0].tagQueryResults[5].value,
+				});
+				setMachineState(
+					rawData.deviceQueryResults[0].tagQueryResults[7].value &&
+						rawData.deviceQueryResults[0].tagQueryResults[6].value
+						? 'manual'
+						: rawData.deviceQueryResults[0].tagQueryResults[7].value &&
+						  rawData.deviceQueryResults[0].tagQueryResults[6].value === false
+						? 'auto'
+						: 'stop'
+				);
+				switch (rawData.deviceQueryResults[0].tagQueryResults[10].value) {
+					case 0:
+						break;
+					case 100:
+						setError('Hoàn thành chương trình');
+						setErrorPriority('low');
+						break;
+					case 500:
+						setError('Cài đặt lực, thời gian giữ, số lần nhấn và sai số');
+						setErrorPriority('high');
+						break;
+					case 501:
+						setError('Lực cài đặt hệ 1 quá lớn (>2000)');
+						setErrorPriority('high');
+						break;
+					case 502:
+						setError('Lực cài đặt hệ 2 quá lớn (>2000)');
+						setErrorPriority('high');
+						break;
+					case 503:
+						setError('Hệ thống chưa sẵn sàng');
+						setErrorPriority('high');
+						break;
+					case 504:
+						setError('Lỗi xi lanh 1 chưa tới vị trí đặt lực');
+						setErrorPriority('high');
+						break;
+					case 505:
+						setError('Lỗi xi lanh 1 chưa về vị trí ban đầu');
+						setErrorPriority('high');
+						break;
+					case 506:
+						setError('Lỗi xi lanh 2 chưa tới vị trí đặt lực');
+						setErrorPriority('high');
+						break;
+					case 507:
+						setError('Lỗi xi lanh 2 chưa về vị trí ban đầu');
+						setErrorPriority('high');
+						break;
+					case 508:
+						setError('Lỗi xi lanh 3 chưa tới vị trí đặt lực');
+						setErrorPriority('high');
+						break;
+					case 509:
+						setError('Lỗi xi lanh 3 chưa về vị trí ban đầu');
+						setErrorPriority('high');
+						break;
+					case 510:
+						setError('Dừng hệ thống khẩn cấp');
+						setErrorPriority('high');
+						break;
+					case 600:
+						setError('Xi lanh 1 quá lực');
+						setErrorPriority('middle');
+						break;
+					case 601:
+						setError('Xi lanh 2 quá lực');
+						setErrorPriority('middle');
+						break;
+					case 602:
+						setError('Xi lanh 3 quá lực');
+						setErrorPriority('middle');
+						break;
+					case 603:
+						setError('Xi lanh 1 không đủ lực');
+						setErrorPriority('middle');
+						break;
+					case 604:
+						setError('Xi lanh 2 không đủ lực');
+						setErrorPriority('middle');
+						break;
+					case 605:
+						setError('Xi lanh 3 không đủ lực');
+						setErrorPriority('middle');
+						break;
+					default:
+						setError('Đang test');
+						setErrorPriority('low');
+						break;
+				}
+			}, 1000);
+		}
+		return () => clearInterval(id);
+	}, [connection, state]);
+	React.useEffect(() => {
+		if (error && errorPriority) {
+			notify(error, errorPriority);
+		}
+	}, [error, errorPriority]);
 	return (
 		<>
 			<div className="row">
@@ -250,7 +441,7 @@ function SecondSystem() {
 							<div className="row flex-center">
 								<div className="col-8">
 									<span className="packingParamsTitle">Tiến độ thực hiện: {params.numbs}</span>
-									<ProgressBar height="20px" percent={50} />
+									<ProgressBar height="20px" percent={Math.floor((params.numbs / settings.numbs) * 100)} />
 								</div>
 							</div>
 						</div>
@@ -333,26 +524,28 @@ function SecondSystem() {
 									width="100%"
 									height="300px"
 									minimumValue={0}
-									maximumValue={100}
+									maximumValue={settings.force}
 									scaleBrush="#c6c6c6"
 									scaleStartExtent={0.3}
 									scaleEndExtent={0.575}
-									value={70}
+									value={params.force}
 									interval={10}
 									tickStartExtent={0.45}
 									tickEndExtent={0.575}
 									tickStrokeThickness={2}
 									tickBrush="Black"
-									minorTickCount={4}
+									labelInterval={Math.floor(settings.force / 6)}
+									interval={Math.floor(settings.force / 6)}
+									minorTickCount={10}
 									minorTickEndExtent={0.5}
 									minorTickStartExtent={0.575}
 									fontBrush="Black"
 									backingShape="Fitted"
 									backingBrush="#ededed"
 								>
-									<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
-									<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />
-									<IgrRadialGaugeRange name="range3" startValue={60} endValue={100} brush="green" />
+									<IgrRadialGaugeRange name="range1" startValue={0} endValue={Math.floor(settings.force/3)} brush="red" />
+									<IgrRadialGaugeRange name="range2" startValue={Math.floor(settings.force/3)} endValue={Math.floor((settings.force/3)*2)} brush="yellow" />
+									<IgrRadialGaugeRange name="range3" startValue={Math.floor((settings.force/3)*2)} endValue={settings.force} brush="green" />
 								</IgrRadialGauge> */}
 								<h4>Lực nhấn</h4>
 							</div>
@@ -367,26 +560,28 @@ function SecondSystem() {
 									width="100%"
 									height="300px"
 									minimumValue={0}
-									maximumValue={100}
+									maximumValue={settings.time}
 									scaleBrush="#c6c6c6"
 									scaleStartExtent={0.3}
 									scaleEndExtent={0.575}
-									value={70}
+									value={params.time}
 									interval={10}
 									tickStartExtent={0.45}
 									tickEndExtent={0.575}
 									tickStrokeThickness={2}
 									tickBrush="Black"
-									minorTickCount={4}
+									labelInterval={Math.floor(settings.time / 6)}
+									interval={Math.floor(settings.time / 6)}
+									minorTickCount={10}
 									minorTickEndExtent={0.5}
 									minorTickStartExtent={0.575}
 									fontBrush="Black"
 									backingShape="Fitted"
 									backingBrush="#ededed"
 								>
-									<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
-									<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />
-									<IgrRadialGaugeRange name="range3" startValue={60} endValue={100} brush="green" />
+									<IgrRadialGaugeRange name="range1" startValue={0} endValue={Math.floor((settings.time/3))} brush="red" />
+									<IgrRadialGaugeRange name="range2" startValue={Math.floor((settings.time/3))} endValue={Math.floor((settings.time/3)*2)} brush="yellow" />
+									<IgrRadialGaugeRange name="range3" startValue={Math.floor((settings.time/3)*2)} endValue={settings.time} brush="green" />
 								</IgrRadialGauge> */}
 								<h4>Thời gian giữ</h4>
 							</div>
@@ -396,9 +591,20 @@ function SecondSystem() {
 			</div>
 			<div className="row">
 				<div className="col-12 flex-center">
-					<ReportNavigationButton history={history} path="/report/main/qaqc" />
+					<ReportNavigationButton history={history} path="/report/main/qaqc/deformation" />
 				</div>
 			</div>
+			<ToastContainer
+				position="bottom-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				theme="colored"
+				rtl={false}
+				draggable
+				pauseOnHover
+			/>
 		</>
 	);
 }

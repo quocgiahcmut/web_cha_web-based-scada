@@ -1,13 +1,24 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import convention from '../../../../assets/JsonData/report_qaqc_endurance.json';
 import ReportQaqcFilter from '../../../../components/reportQaqcFilter/ReportQaqcFilter';
 import ReportQaqcTable from '../../../../components/reportQaqcTable/ReportQaqcTable';
 import { createExcelFile, drawBorder, drawDottedBorder, saveExcelFile } from '../../../../utils/excel';
 import { ENDURANCE_COLUMNS } from '../../../../utils/utils';
-import enduranceData from '../../../../assets/JsonData/mock_endurance_report.json';
+import EmptyPlaceholder from '../../../../components/emptyPlaceholder/EmptyPlaceholder';
+import LoadingComponent from '../../../../components/loadingComponent/LoadingComponent';
+import { qaQcApi } from '../../../../api/axios/qaqcReport';
+import { setEnduranceReportData, setEnduranceReportDataDate } from '../../../../redux/slice/QaQcReportSlice';
 
-function QAQC() {
+function ReportEndurance() {
+	const qaQcReportReducer = useSelector((state) => state.qaQcReportData);
+	const enduranceReportData = qaQcReportReducer.enduranceReportData;
+	const dateAssigned = qaQcReportReducer.enduranceReportDataDate;
+	const dispatch = useDispatch();
+	// const [data, setData] = React.useState([]);
+	const [loading, setLoading] = React.useState(false);
+	const [error, setError] = React.useState(null);
 	const exportReport = (productName, dateStart, dateEnd, purpose, note) => {
 		const workbook = createExcelFile(convention, 11);
 		const sheet1 = workbook.getWorksheet('sheet1');
@@ -66,14 +77,14 @@ function QAQC() {
 
 		sheet1.getCell('A9').value = assignPurpose;
 		sheet1.getCell('A9').alignment = { vertical: 'middle', horizontal: 'left' };
-		sheet1.getCell('D8').value = dateStart;
-		sheet1.getCell('K8').value = dateEnd;
+		sheet1.getCell('D8').value = dateAssigned.startTime;
+		sheet1.getCell('K8').value = dateAssigned.stopTime;
 		[...Array(20).keys()].forEach((item, index) => {
 			const row = sheet1.getRow(index + 16);
 			row.values = [(index + 1) * 5000];
 			row.font = { name: 'Times New Roman', size: 11 };
 		});
-		enduranceData.forEach((item, index) => {
+		enduranceReportData.forEach((item, index) => {
 			const row = sheet1.getRow(index + 16);
 			row.alignment = { vertical: 'middle', horizontal: 'center' };
 			row.values = [
@@ -129,15 +140,58 @@ function QAQC() {
 	};
 
 	const onSubmit = (values) => {
-		console.log(values);
+		setLoading(true);
+		qaQcApi
+			.getEnduranceReport(values.dateStart, values.dateEnd)
+			.then((res) => {
+				setLoading(false);
+				if (res) {
+					res[0].reliabilityTestSheets?.forEach((item) => {
+						dispatch(
+							setEnduranceReportData({
+								sample: item.numberTesting,
+								time: item.timeSmoothClosingLid,
+								toilet_bumper: item.statusLidNotFall,
+								no_oil_spill: item.statusLidNotLeak,
+								first_result: item.statusLidResult,
+								closing_time: item.timeSmoothClosingPlinth,
+								no_drop_bumper: item.statusPlinthNotFall,
+								no_spill: item.statusPlinthNotLeak,
+								second_result: item.statusPlinthResult,
+								total: item.totalError,
+								note: item.note,
+								employee: item.employee,
+							})
+						);
+						dispatch(
+							setEnduranceReportDataDate({
+								startTime: format(new Date(res[0].startTime), 'dd/MM/yyyy'),
+								stopTime: format(new Date(res[0].stopTime), 'dd/MM/yyyy'),
+							})
+						);
+					});
+				}
+			})
+			.catch((err) => {
+				setLoading(false);
+				setError(err);
+			});
 	};
 
 	return (
 		<>
-			<ReportQaqcFilter onSubmit={onSubmit} exportReport={exportReport} />
-			<ReportQaqcTable reportData={enduranceData} reportHeaders={ENDURANCE_COLUMNS} />
+			<ReportQaqcFilter onSubmit={onSubmit} dataDisplay={enduranceReportData} exportReport={exportReport} />
+			{loading ? (
+				<LoadingComponent />
+			) : error ? (
+				<EmptyPlaceholder isError={true} msg={error} />
+			) : enduranceReportData.length <= 0 ? (
+				<EmptyPlaceholder msg="Nhấn nút tìm kiếm để xem báo cáo" />
+			) : (
+				<ReportQaqcTable reportData={enduranceReportData} reportHeaders={ENDURANCE_COLUMNS} />
+			)}
 		</>
 	);
 }
 
-export default QAQC;
+export default ReportEndurance;

@@ -157,11 +157,11 @@ const BENDING_DEFORMATION_COLUMNS = [
 		accessor: 'weight',
 	},
 	{
-		Header: 'Số lần thử nghiệm',
+		Header: 'Thời gian',
 		accessor: 'number_of_test',
 	},
 	{
-		Header: 'Kết quả đánh giá',
+		Header: 'Độ cong vênh',
 		accessor: 'result',
 	},
 	{
@@ -169,7 +169,7 @@ const BENDING_DEFORMATION_COLUMNS = [
 		accessor: 'total',
 	},
 	{
-		Header: 'Ghi chú',
+		Header: 'Nhận xét',
 		accessor: 'note',
 	},
 	{
@@ -971,12 +971,27 @@ function convertDate(value) {
 	return date.toLocaleDateString();
 }
 
+async function getTagsData(connection, eonNodeId, deviceQueries, tagNames) {
+	const nodeQuery = {
+		EonNodeId: eonNodeId,
+		DeviceQueries: deviceQueries.map((deviceQuery) => {
+			return {
+				DeviceId: deviceQuery,
+				TagNames: tagNames,
+			};
+		}),
+	};
+	var result = await connection.invoke('GetListTags', nodeQuery);
+	return result;
+}
+
 export {
 	packingState,
 	packingEmployees,
 	QA_QC_REPORT_MENU_LIST,
 	convertHMS,
 	COLUMNS,
+	getTagsData,
 	convertDate,
 	REPORT_MENU_LIST,
 	ENDURANCE_COLUMNS,

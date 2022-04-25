@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './sidebar.css';
 
-import logo from '../../assets/images/favicon.jpg';
+import logo from '../../assets/images/favicon.png';
 
 import sidebar_items from '../../assets/JsonData/sidebar_routes.json';
 

@@ -235,7 +235,7 @@ function InjectionMap() {
 							<div className="row mb-10">
 								<div className="col-12">
 									<ReportNavigationButton history={history} path="/injection/pages/1">
-										Xem dưới dạng bảng
+										DẠNG BẢNG
 									</ReportNavigationButton>
 								</div>
 							</div>
