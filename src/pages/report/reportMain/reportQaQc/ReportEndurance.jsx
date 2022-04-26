@@ -9,7 +9,11 @@ import { ENDURANCE_COLUMNS } from '../../../../utils/utils';
 import EmptyPlaceholder from '../../../../components/emptyPlaceholder/EmptyPlaceholder';
 import LoadingComponent from '../../../../components/loadingComponent/LoadingComponent';
 import { qaQcApi } from '../../../../api/axios/qaqcReport';
-import { setEnduranceReportData, setEnduranceReportDataDate } from '../../../../redux/slice/QaQcReportSlice';
+import {
+	resetEnduranceReportData,
+	setEnduranceReportData,
+	setEnduranceReportDataDate,
+} from '../../../../redux/slice/QaQcReportSlice';
 
 function ReportEndurance() {
 	const qaQcReportReducer = useSelector((state) => state.qaQcReportData);
@@ -140,6 +144,7 @@ function ReportEndurance() {
 	};
 
 	const onSubmit = (values) => {
+		dispatch(resetEnduranceReportData());
 		setLoading(true);
 		qaQcApi
 			.getEnduranceReport(values.dateStart, values.dateEnd)

@@ -8,6 +8,7 @@ import ReportQaqcTable from '../../../../components/reportQaqcTable/ReportQaqcTa
 import { FORCED_ENDURANCE_COLUMNS } from '../../../../utils/utils';
 import { qaQcApi } from '../../../../api/axios/qaqcReport';
 import {
+	resetForcedEnduranceReportData,
 	setForcedEnduranceReportData,
 	setForcedEnduranceReportDataDate,
 } from '../../../../redux/slice/QaQcReportSlice';
@@ -140,6 +141,7 @@ function ReportForcedEndurance() {
 		saveExcelFile(workbook, `Phiếu kiểm tra đóng cưỡng bức ${productName} ${format(new Date(), 'dd-MM-yyyy')}`);
 	};
 	const onSubmit = (values) => {
+		dispatch(resetForcedEnduranceReportData());
 		setLoading(true);
 		qaQcApi
 			.getForcedEnduranceReport(values.dateStart, values.dateEnd)

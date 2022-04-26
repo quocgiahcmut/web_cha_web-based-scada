@@ -12,6 +12,8 @@ import {
 	ThemeProvider,
 } from '@mui/material';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeformationMonitorData } from '../../../../redux/slice/QaQcMonitorSlice';
 import { ReactComponent as Auto } from '../../../../assets/images/qaqc/auto.svg';
 import { ReactComponent as Manual } from '../../../../assets/images/qaqc/manual.svg';
 import { ReactComponent as Stop } from '../../../../assets/images/qaqc/stop.svg';
@@ -21,6 +23,7 @@ import { useHistory } from 'react-router-dom';
 import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { ToastContainer, toast } from 'react-toastify';
 import { getTagsData } from '../../../../utils/utils';
+import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -96,21 +99,23 @@ function SecondSystem() {
 	const [state, setState] = React.useState('disconnected');
 	const [error, setError] = React.useState(null);
 	const [errorPriority, setErrorPriority] = React.useState(null);
-	const [machineState, setMachineState] = React.useState('stop');
-	const [settings, setSettings] = React.useState({
-		force: 0,
-		numbs: 0,
-		time: 0,
-	});
-	const [params, setParams] = React.useState({
-		force: 0,
-		numbs: 0,
-		time: 0,
-	});
+
+	const dispatch = useDispatch();
+	const qaqcMonitorReducer = useSelector((state) => state.qaQcMonitorData);
+	const deformationMonitorData = qaqcMonitorReducer.deformationMonitorData;
+
+	const [machineState, setMachineState] = React.useState(
+		deformationMonitorData.isRunning && deformationMonitorData.mode === true
+			? 'manual'
+			: deformationMonitorData.isRunning && deformationMonitorData.mode === false
+			? 'auto'
+			: 'stop'
+	);
+
 	const rows = [
-		createData('Lực nhấn', settings.force),
-		createData('Số lần nhấn', settings.numbs),
-		createData('Thời gian giữ', settings.time),
+		createData('Lực nhấn', deformationMonitorData.force2),
+		createData('Số lần nhấn', deformationMonitorData.numb2),
+		createData('Thời gian giữ', deformationMonitorData.time2),
 	];
 	React.useEffect(() => {
 		const connect = new HubConnectionBuilder()
@@ -192,23 +197,24 @@ function SecondSystem() {
 						'Error Code',
 					]
 				);
-				setSettings({
-					numbs: rawData.deviceQueryResults[0].tagQueryResults[1].value,
-					force: rawData.deviceQueryResults[0].tagQueryResults[0].value,
-					time: rawData.deviceQueryResults[0].tagQueryResults[2].value,
-				});
+				dispatch(
+					setDeformationMonitorData({
+						numb2: rawData.deviceQueryResults[0].tagQueryResults[1].value,
+						force2: rawData.deviceQueryResults[0].tagQueryResults[0].value,
+						time2: rawData.deviceQueryResults[0].tagQueryResults[2].value,
+						isRunning: rawData.deviceQueryResults[0].tagQueryResults[7].value,
+						isAlarm: rawData.deviceQueryResults[0].tagQueryResults[8].value,
+						mode: rawData.deviceQueryResults[0].tagQueryResults[6].value,
+						pvForceCylinder3: rawData.deviceQueryResults[0].tagQueryResults[3].value,
+						pvTimeHold3: rawData.deviceQueryResults[0].tagQueryResults[5].value,
+						pvNoPress2: rawData.deviceQueryResults[0].tagQueryResults[4].value,
+					})
+				);
 				console.log(rawData.deviceQueryResults[0]);
-				setParams({
-					numbs: rawData.deviceQueryResults[0].tagQueryResults[4].value,
-					force: rawData.deviceQueryResults[0].tagQueryResults[3].value,
-					time: rawData.deviceQueryResults[0].tagQueryResults[5].value,
-				});
 				setMachineState(
-					rawData.deviceQueryResults[0].tagQueryResults[7].value &&
-						rawData.deviceQueryResults[0].tagQueryResults[6].value
+					deformationMonitorData.isRunning && deformationMonitorData.mode === true
 						? 'manual'
-						: rawData.deviceQueryResults[0].tagQueryResults[7].value &&
-						  rawData.deviceQueryResults[0].tagQueryResults[6].value === false
+						: deformationMonitorData.isRunning && deformationMonitorData.mode === false
 						? 'auto'
 						: 'stop'
 				);
@@ -295,7 +301,7 @@ function SecondSystem() {
 			}, 1000);
 		}
 		return () => clearInterval(id);
-	}, [connection, state]);
+	}, [connection, state, deformationMonitorData.isRunning, deformationMonitorData.mode, dispatch]);
 	React.useEffect(() => {
 		if (error && errorPriority) {
 			notify(error, errorPriority);
@@ -440,8 +446,11 @@ function SecondSystem() {
 							</div>
 							<div className="row flex-center">
 								<div className="col-8">
-									<span className="packingParamsTitle">Tiến độ thực hiện: {params.numbs}</span>
-									<ProgressBar height="20px" percent={Math.floor((params.numbs / settings.numbs) * 100)} />
+									<span className="packingParamsTitle">Tiến độ thực hiện: {deformationMonitorData.pvNoPress2}</span>
+									<ProgressBar
+										height="20px"
+										percent={Math.floor((deformationMonitorData.pvNoPress2 / deformationMonitorData.numb2) * 100)}
+									/>
 								</div>
 							</div>
 						</div>
@@ -520,22 +529,21 @@ function SecondSystem() {
 									flexBasis: '300px',
 								}}
 							>
-								{/* <IgrRadialGauge
+								<IgrRadialGauge
 									width="100%"
 									height="300px"
 									minimumValue={0}
-									maximumValue={settings.force}
+									maximumValue={deformationMonitorData.force2}
 									scaleBrush="#c6c6c6"
 									scaleStartExtent={0.3}
 									scaleEndExtent={0.575}
-									value={params.force}
-									interval={10}
+									value={deformationMonitorData.pvForceCylinder3}
+									interval={Math.floor(deformationMonitorData.force2 / 6)}
 									tickStartExtent={0.45}
 									tickEndExtent={0.575}
 									tickStrokeThickness={2}
 									tickBrush="Black"
-									labelInterval={Math.floor(settings.force / 6)}
-									interval={Math.floor(settings.force / 6)}
+									labelInterval={Math.floor(deformationMonitorData.force2 / 6)}
 									minorTickCount={10}
 									minorTickEndExtent={0.5}
 									minorTickStartExtent={0.575}
@@ -543,10 +551,25 @@ function SecondSystem() {
 									backingShape="Fitted"
 									backingBrush="#ededed"
 								>
-									<IgrRadialGaugeRange name="range1" startValue={0} endValue={Math.floor(settings.force/3)} brush="red" />
-									<IgrRadialGaugeRange name="range2" startValue={Math.floor(settings.force/3)} endValue={Math.floor((settings.force/3)*2)} brush="yellow" />
-									<IgrRadialGaugeRange name="range3" startValue={Math.floor((settings.force/3)*2)} endValue={settings.force} brush="green" />
-								</IgrRadialGauge> */}
+									<IgrRadialGaugeRange
+										name="range1"
+										startValue={0}
+										endValue={Math.floor(deformationMonitorData.force2 / 3)}
+										brush="red"
+									/>
+									<IgrRadialGaugeRange
+										name="range2"
+										startValue={Math.floor(deformationMonitorData.force2 / 3)}
+										endValue={Math.floor((deformationMonitorData.force2 / 3) * 2)}
+										brush="yellow"
+									/>
+									<IgrRadialGaugeRange
+										name="range3"
+										startValue={Math.floor((deformationMonitorData.force2 / 3) * 2)}
+										endValue={deformationMonitorData.force2}
+										brush="green"
+									/>
+								</IgrRadialGauge>
 								<h4>Lực nhấn</h4>
 							</div>
 							<div
@@ -556,22 +579,21 @@ function SecondSystem() {
 									flexBasis: '300px',
 								}}
 							>
-								{/* <IgrRadialGauge
+								<IgrRadialGauge
 									width="100%"
 									height="300px"
 									minimumValue={0}
-									maximumValue={settings.time}
+									maximumValue={deformationMonitorData.time2}
 									scaleBrush="#c6c6c6"
 									scaleStartExtent={0.3}
 									scaleEndExtent={0.575}
-									value={params.time}
-									interval={10}
+									value={deformationMonitorData.pvTimeHold2}
 									tickStartExtent={0.45}
 									tickEndExtent={0.575}
 									tickStrokeThickness={2}
 									tickBrush="Black"
-									labelInterval={Math.floor(settings.time / 6)}
-									interval={Math.floor(settings.time / 6)}
+									labelInterval={Math.floor(deformationMonitorData.time2 / 6)}
+									interval={Math.floor(deformationMonitorData.time2 / 6)}
 									minorTickCount={10}
 									minorTickEndExtent={0.5}
 									minorTickStartExtent={0.575}
@@ -579,10 +601,25 @@ function SecondSystem() {
 									backingShape="Fitted"
 									backingBrush="#ededed"
 								>
-									<IgrRadialGaugeRange name="range1" startValue={0} endValue={Math.floor((settings.time/3))} brush="red" />
-									<IgrRadialGaugeRange name="range2" startValue={Math.floor((settings.time/3))} endValue={Math.floor((settings.time/3)*2)} brush="yellow" />
-									<IgrRadialGaugeRange name="range3" startValue={Math.floor((settings.time/3)*2)} endValue={settings.time} brush="green" />
-								</IgrRadialGauge> */}
+									<IgrRadialGaugeRange
+										name="range1"
+										startValue={0}
+										endValue={Math.floor(deformationMonitorData.time2 / 3)}
+										brush="red"
+									/>
+									<IgrRadialGaugeRange
+										name="range2"
+										startValue={Math.floor(deformationMonitorData.time2 / 3)}
+										endValue={Math.floor((deformationMonitorData.time2 / 3) * 2)}
+										brush="yellow"
+									/>
+									<IgrRadialGaugeRange
+										name="range3"
+										startValue={Math.floor((deformationMonitorData.time2 / 3) * 2)}
+										endValue={deformationMonitorData.time2}
+										brush="green"
+									/>
+								</IgrRadialGauge>
 								<h4>Thời gian giữ</h4>
 							</div>
 						</div>

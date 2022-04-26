@@ -12,7 +12,11 @@ import {
 	BENDING_DEFORMATION_COLUMNS,
 } from '../../../../utils/utils';
 import { qaQcApi } from '../../../../api/axios/qaqcReport';
-import { setDeformationReportData, setDeformationReportDataDate } from '../../../../redux/slice/QaQcReportSlice';
+import {
+	resetDeformationReportData,
+	setDeformationReportData,
+	setDeformationReportDataDate,
+} from '../../../../redux/slice/QaQcReportSlice';
 
 function ReportDeformation() {
 	const [loading, setLoading] = React.useState(false);
@@ -239,6 +243,7 @@ function ReportDeformation() {
 		);
 	};
 	const onSubmit = (values) => {
+		dispatch(resetDeformationReportData());
 		setLoading(true);
 		switch (values.testType) {
 			case 'static-load':

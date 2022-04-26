@@ -46,7 +46,7 @@ function QaqcMonitor(props) {
 									</div>
 								</>
 							)}
-							{params.map((item, index) => (
+							{params[0].map((item, index) => (
 								<div
 									style={{
 										flexGrow: 1,
@@ -68,7 +68,7 @@ function QaqcMonitor(props) {
 											</div>
 										</>
 									)}
-									{params.map((item, index) => (
+									{params[1].map((item, index) => (
 										<div
 											style={{
 												flexGrow: 1,
@@ -93,7 +93,12 @@ function QaqcMonitor(props) {
 											style={{
 												width: '30px',
 												height: '30px',
-												backgroundColor: ledState.mode === '1' ? '#0d00ff' : '#a5a5a5',
+												backgroundColor:
+													ledState.mode === true
+														? '#6e3300'
+														: ledState.mode !== false && ledState.mode !== true
+														? '#a5a5a5'
+														: '#0d00ff',
 											}}
 											className="body__led"
 										></div>
@@ -113,7 +118,7 @@ function QaqcMonitor(props) {
 											style={{
 												width: '30px',
 												height: '30px',
-												backgroundColor: ledState.isRunning === 'true' ? '#00ff00' : '#a5a5a5',
+												backgroundColor: ledState.isRunning === true ? '#02692e' : '#a5a5a5',
 											}}
 											className="body__led"
 										></div>
@@ -133,7 +138,7 @@ function QaqcMonitor(props) {
 											style={{
 												width: '30px',
 												height: '30px',
-												backgroundColor: ledState.isAlarm === 'true' ? 'red' : '#a5a5a5',
+												backgroundColor: ledState.isAlarm === true ? 'red' : '#a5a5a5',
 											}}
 											className="body__led"
 										></div>
@@ -154,7 +159,7 @@ function QaqcMonitor(props) {
 									<div className="body__led-box">
 										<div
 											style={{
-												backgroundColor: ledState.isRunning === 'true' ? '#00ff00' : '#a5a5a5',
+												backgroundColor: ledState.isRunning === true ? '#02692e' : '#a5a5a5',
 											}}
 											className="body__led"
 										></div>
@@ -165,7 +170,7 @@ function QaqcMonitor(props) {
 									<div className="body__led-box">
 										<div
 											style={{
-												backgroundColor: ledState.isAlarm === 'true' ? 'red' : '#a5a5a5',
+												backgroundColor: ledState.isAlarm === true ? 'red' : '#a5a5a5',
 											}}
 											className="body__led"
 										></div>
