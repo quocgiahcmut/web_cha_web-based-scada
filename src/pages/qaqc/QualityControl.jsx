@@ -18,6 +18,7 @@ import QaqcMonitor from '../../components/qaqcmonitor/QaqcMonitor';
 import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { toast, ToastContainer } from 'react-toastify';
 import { getTagsData } from '../../utils/utils';
+import CustomizedBreadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
 
 function QualityControl() {
 	const [forcedEndurance] = React.useState('forcedEndurance__stop');
@@ -125,6 +126,7 @@ function QualityControl() {
 						isAlarm: rawData.deviceQueryResults[0].tagQueryResults[8].value,
 					})
 				);
+				console.log(deformationMonitorData);
 				setDeformation(deformationMonitorData.isRunning ? 'deformation__run' : 'deformation__stop');
 				switch (rawData.deviceQueryResults[0].tagQueryResults[10].value) {
 					case 0:
@@ -211,7 +213,7 @@ function QualityControl() {
 		return () => {
 			clearInterval(id);
 		};
-	}, [connection, connectionState, dispatch, deformationMonitorData.isRunning]);
+	}, [connection, connectionState, dispatch, deformationMonitorData]);
 	React.useEffect(() => {
 		if (error && errorPriority) {
 			notify(error, errorPriority);
@@ -219,7 +221,7 @@ function QualityControl() {
 	}, [error, errorPriority]);
 	return (
 		<>
-			<h2 className="page-header">PHÒNG QA/QC THIẾT BỊ</h2>
+			<CustomizedBreadcrumbs id="PHÒNG QA/QC THIẾT BỊ" />
 			<div className="row">
 				<div className="col-5 col-md-12">
 					<div className="card full-height">

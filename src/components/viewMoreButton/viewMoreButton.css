@@ -13,3 +13,7 @@
 .view-more-button__text{
   font-weight: 600;
 }
+
+.view-more-button__text:hover {
+  text-decoration: underline;
+}

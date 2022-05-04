@@ -23,7 +23,7 @@ import { useHistory } from 'react-router-dom';
 import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { ToastContainer, toast } from 'react-toastify';
 import { getTagsData } from '../../../../utils/utils';
-import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
+// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -210,7 +210,7 @@ function SecondSystem() {
 						pvNoPress2: rawData.deviceQueryResults[0].tagQueryResults[4].value,
 					})
 				);
-				console.log(rawData.deviceQueryResults[0]);
+				console.log(deformationMonitorData);
 				setMachineState(
 					deformationMonitorData.isRunning && deformationMonitorData.mode === true
 						? 'manual'
@@ -301,7 +301,7 @@ function SecondSystem() {
 			}, 1000);
 		}
 		return () => clearInterval(id);
-	}, [connection, state, deformationMonitorData.isRunning, deformationMonitorData.mode, dispatch]);
+	}, [connection, state, deformationMonitorData, dispatch]);
 	React.useEffect(() => {
 		if (error && errorPriority) {
 			notify(error, errorPriority);
@@ -529,47 +529,52 @@ function SecondSystem() {
 									flexBasis: '300px',
 								}}
 							>
-								<IgrRadialGauge
+								{/* <IgrRadialGauge
 									width="100%"
 									height="300px"
 									minimumValue={0}
-									maximumValue={deformationMonitorData.force2}
+									maximumValue={Math.floor(deformationMonitorData.force2 + deformationMonitorData.force2 / 10)}
 									scaleBrush="#c6c6c6"
 									scaleStartExtent={0.3}
 									scaleEndExtent={0.575}
 									value={deformationMonitorData.pvForceCylinder3}
-									interval={Math.floor(deformationMonitorData.force2 / 6)}
+									interval={Math.floor((deformationMonitorData.force2 + deformationMonitorData.force2 / 10) / 6)}
 									tickStartExtent={0.45}
 									tickEndExtent={0.575}
 									tickStrokeThickness={2}
 									tickBrush="Black"
-									labelInterval={Math.floor(deformationMonitorData.force2 / 6)}
+									labelInterval={Math.floor((deformationMonitorData.force2 + deformationMonitorData.force2 / 10) / 6)}
 									minorTickCount={10}
 									minorTickEndExtent={0.5}
 									minorTickStartExtent={0.575}
 									fontBrush="Black"
 									backingShape="Fitted"
 									backingBrush="#ededed"
+									transitionDuration={500}
 								>
 									<IgrRadialGaugeRange
 										name="range1"
 										startValue={0}
-										endValue={Math.floor(deformationMonitorData.force2 / 3)}
+										endValue={Math.floor((deformationMonitorData.force2 + deformationMonitorData.force2 / 10) / 3)}
 										brush="red"
 									/>
 									<IgrRadialGaugeRange
 										name="range2"
-										startValue={Math.floor(deformationMonitorData.force2 / 3)}
-										endValue={Math.floor((deformationMonitorData.force2 / 3) * 2)}
+										startValue={Math.floor((deformationMonitorData.force2 + deformationMonitorData.force2 / 10) / 3)}
+										endValue={Math.floor(
+											((deformationMonitorData.force2 + deformationMonitorData.force2 / 10) / 3) * 2
+										)}
 										brush="yellow"
 									/>
 									<IgrRadialGaugeRange
 										name="range3"
-										startValue={Math.floor((deformationMonitorData.force2 / 3) * 2)}
-										endValue={deformationMonitorData.force2}
+										startValue={Math.floor(
+											((deformationMonitorData.force2 + deformationMonitorData.force2 / 10) / 3) * 2
+										)}
+										endValue={Math.floor(deformationMonitorData.force2 + deformationMonitorData.force2 / 10)}
 										brush="green"
 									/>
-								</IgrRadialGauge>
+								</IgrRadialGauge> */}
 								<h4>Lực nhấn</h4>
 							</div>
 							<div
@@ -579,47 +584,50 @@ function SecondSystem() {
 									flexBasis: '300px',
 								}}
 							>
-								<IgrRadialGauge
+								{/* <IgrRadialGauge
 									width="100%"
 									height="300px"
 									minimumValue={0}
-									maximumValue={deformationMonitorData.time2}
+									maximumValue={Math.floor(deformationMonitorData.time2 + deformationMonitorData.time2 / 10)}
 									scaleBrush="#c6c6c6"
 									scaleStartExtent={0.3}
 									scaleEndExtent={0.575}
-									value={deformationMonitorData.pvTimeHold2}
+									value={deformationMonitorData.pvTimeHold3}
 									tickStartExtent={0.45}
 									tickEndExtent={0.575}
 									tickStrokeThickness={2}
 									tickBrush="Black"
-									labelInterval={Math.floor(deformationMonitorData.time2 / 6)}
-									interval={Math.floor(deformationMonitorData.time2 / 6)}
+									labelInterval={Math.floor((deformationMonitorData.time2 + deformationMonitorData.time2 / 10) / 6)}
+									interval={Math.floor((deformationMonitorData.time2 + deformationMonitorData.time2 / 10) / 6)}
 									minorTickCount={10}
 									minorTickEndExtent={0.5}
 									minorTickStartExtent={0.575}
 									fontBrush="Black"
 									backingShape="Fitted"
 									backingBrush="#ededed"
+									transitionDuration={500}
 								>
 									<IgrRadialGaugeRange
 										name="range1"
 										startValue={0}
-										endValue={Math.floor(deformationMonitorData.time2 / 3)}
+										endValue={Math.floor((deformationMonitorData.time2 + deformationMonitorData.time2 / 10) / 3)}
 										brush="red"
 									/>
 									<IgrRadialGaugeRange
 										name="range2"
-										startValue={Math.floor(deformationMonitorData.time2 / 3)}
-										endValue={Math.floor((deformationMonitorData.time2 / 3) * 2)}
+										startValue={Math.floor((deformationMonitorData.time2 + deformationMonitorData.time2 / 10) / 3)}
+										endValue={Math.floor(((deformationMonitorData.time2 + deformationMonitorData.time2 / 10) / 3) * 2)}
 										brush="yellow"
 									/>
 									<IgrRadialGaugeRange
 										name="range3"
-										startValue={Math.floor((deformationMonitorData.time2 / 3) * 2)}
-										endValue={deformationMonitorData.time2}
+										startValue={Math.floor(
+											((deformationMonitorData.time2 + deformationMonitorData.time2 / 10) / 3) * 2
+										)}
+										endValue={Math.floor(deformationMonitorData.time2 + deformationMonitorData.time2 / 10)}
 										brush="green"
 									/>
-								</IgrRadialGauge>
+								</IgrRadialGauge> */}
 								<h4>Thời gian giữ</h4>
 							</div>
 						</div>

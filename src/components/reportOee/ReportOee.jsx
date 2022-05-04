@@ -8,11 +8,13 @@ import OeeBarChart from '../oeeBarChart/OeeBarChart';
 
 function ReportOee({
 	availabilityData,
+	targetData,
+	trend,
+	discrepancy,
 	scrapData,
 	quantityData,
 	downtimeData,
 	oeeOverallData,
-	oeeData,
 	lastTimeUpdated,
 }) {
 	return (
@@ -52,7 +54,12 @@ function ReportOee({
 									<OeeOverall oeeOverallData={oeeOverallData} />
 								</div>
 								<div className="col-12 flex-center">
-									<OeeDisplay oeeData={oeeData} />
+									<OeeDisplay
+										trend={trend}
+										discrepancy={discrepancy}
+										oeeOverallData={oeeOverallData}
+										targetData={targetData}
+									/>
 								</div>
 							</div>
 						</div>

@@ -14,17 +14,7 @@ function Deformation() {
 			history.push(`${match.url}/${newAlignment}`);
 		}
 	};
-	// function ScrollToBottom() {
-	// 	const { pathname } = useLocation();
-	// 	React.useEffect(() => {
-	// 		window.scrollTo({
-	// 			top: 100,
-	// 			behavior: 'smooth',
-	// 		});
-	// 	}, [pathname]);
 
-	// 	return null;
-	// }
 	return (
 		<>
 			<CustomizedBreadcrumbs href="/qaqc" sector="PHÒNG QA/QC THIẾT BỊ" id="MÁY KIẾM TRA ĐỘ BIẾN DẠNG" />

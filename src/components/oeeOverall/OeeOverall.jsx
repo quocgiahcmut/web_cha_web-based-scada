@@ -25,7 +25,7 @@ const oeeOptions = {
 						label: 'Total',
 						formatter: function (w) {
 							const oee = w.globals.seriesTotals.reduce((acc, curr) => acc * curr) / (100 * 100);
-							// By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+							// By default this function returns the average of all series.dd The below is just an example to show the use of custom formatter function
 							return oee.toFixed(1) + '%';
 						},
 					},

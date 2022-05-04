@@ -5,7 +5,11 @@ function DatePicker(props) {
 	return (
 		<div className="form-control">
 			<label htmlFor={name}>{label}</label>
-			<Field type="date" id={name} name={name} {...rest} />
+			<Field name={name}>
+				{({ field, form }) => {
+					return <input type="date" id={name} name={name} {...field} {...rest} />;
+				}}
+			</Field>
 		</div>
 	);
 }

@@ -1,9 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import InjectionDetailComponent from '../../../components/injectionDetail/InjectionDetail';
-import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 
 function InjectionDetail() {
+	const { state } = useLocation();
+	const [map, setMap] = useState(false);
+	useEffect(() => {
+		if (state !== undefined) {
+			state.map === true ? setMap(true) : setMap(false);
+		} else {
+			setMap(false);
+		}
+	}, [state]);
 	const [injectionMoldingMachineData] = useState({
 		number: 'M1',
 		name: 'axB12',
@@ -25,7 +34,7 @@ function InjectionDetail() {
 
 	return (
 		<>
-			<CustomizedBreadcrumbs href="/injection/pages/1" sector="KHU MÁY ÉP" id={id} />
+			<Breadcrumbs href={`${!map ? '/injection/pages/1' : '/injection/map'}`} sector="KHU MÁY ÉP" id={id} />
 			{value && <InjectionDetailComponent injectionMoldingMachineData={value} />}
 		</>
 	);

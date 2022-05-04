@@ -2,6 +2,8 @@ import React from 'react';
 
 import Dropdown from '../dropdown/DropDown';
 
+import { NavLink } from 'react-router-dom';
+
 import './topnav.css';
 
 import notifications from '../../assets/JsonData/notification.json';
@@ -9,6 +11,8 @@ import notifications from '../../assets/JsonData/notification.json';
 import { Link } from 'react-router-dom';
 
 import user_image from '../../assets/images/user.jpg';
+
+import data_results from '../../assets/JsonData/sidebar_routes.json';
 
 import user_menu from '../../assets/JsonData/user_menus.json';
 
@@ -47,14 +51,52 @@ const renderUserMenu = (item, i) => {
 };
 
 const Topnav = () => {
+	const [filteredData, setFilteredData] = React.useState([]);
+	const [wordEntered, setWordEntered] = React.useState('');
 	const sideBarReducer = useSelector((state) => state.sidebar);
 	const activeMenu = sideBarReducer.active === undefined ? '' : sideBarReducer.active;
+	const handleChange = (e) => {
+		const searchWord = e.target.value;
+		setWordEntered(searchWord);
+		const newFilter = data_results.filter((value) => {
+			return value.display_name.toLowerCase().includes(searchWord.toLowerCase());
+		});
 
+		if (searchWord === '') {
+			setFilteredData([]);
+		} else {
+			setFilteredData(newFilter);
+		}
+	};
+
+	const clearInput = () => {
+		setFilteredData([]);
+		setWordEntered('');
+	};
 	return (
 		<div className={`topnav ${activeMenu === '' ? '' : 'active'}`}>
 			<div className="topnav__search">
-				<input type="text" placeholder="Tìm kiếm ở đây" />
-				<i className="bx bx-search"></i>
+				<div className="topnav__search-input">
+					<input value={wordEntered} type="text" placeholder="Tìm kiếm ở đây" onChange={handleChange} />
+					<i className="bx bx-search"></i>
+				</div>
+				{filteredData.length > 0 && (
+					<div className="topnav__search-result">
+						<div className="topnav__search-result-header">
+							<span>Kết quả tìm kiếm</span>
+						</div>
+						{filteredData.map((item, i) => {
+							return (
+								<NavLink onClick={clearInput} to={item.route} className="search-result__container">
+									<div className="search-result__item">
+										<i className={item.icon}></i>
+										<span>{item.display_name}</span>
+									</div>
+								</NavLink>
+							);
+						})}
+					</div>
+				)}
 			</div>
 			<div className="topnav__right">
 				<div className="topnav__right-item">

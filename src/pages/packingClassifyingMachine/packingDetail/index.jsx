@@ -7,7 +7,7 @@ function PackingDetail() {
 	const { id } = useParams();
 	return (
 		<>
-			<CustomizedBreadcrumbs href="/packing" sector="KHU ĐÓNG GÓI" id={`CỤM MÁY ${id.split('module')[1]}`} />
+			<CustomizedBreadcrumbs href="/packing" sector="KHU KIỂM TRA ĐÓNG GÓI" id={`CỤM MÁY ${id.split('module')[1]}`} />
 			<PackingDetailComponent />
 		</>
 	);

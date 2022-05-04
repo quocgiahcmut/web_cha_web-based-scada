@@ -2,10 +2,10 @@ import React from 'react';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react';
 
-function LoadingComponent() {
+function LoadingComponent({ className }) {
 	return (
 		<>
-			<div className="row full-width flex-center">
+			<div className={`row full-width flex-center ${className}`}>
 				<div className="col-3">
 					<div
 						style={{

@@ -71,6 +71,9 @@ function AlarmFilter({ onSubmit }) {
 					error_sector: ['qaqc'],
 					priority: ['high', 'middle', 'low'],
 				}}
+				initialTouched={{
+					dateEnd: true,
+				}}
 				onSubmit={handleSubmit}
 				validationSchema={validationSchema}
 			>

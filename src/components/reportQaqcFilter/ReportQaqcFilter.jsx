@@ -79,7 +79,14 @@ function ReportQaqcFilter({
 	};
 	return (
 		<>
-			<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+			<Formik
+				initialTouched={{
+					dateEnd: true,
+				}}
+				initialValues={initialValues}
+				onSubmit={handleSubmit}
+				validationSchema={validationSchema}
+			>
 				{(formik) => {
 					return (
 						<>

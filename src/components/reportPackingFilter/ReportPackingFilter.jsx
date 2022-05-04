@@ -25,7 +25,15 @@ function ReportPackingFilter({ exportReport, onSubmit }) {
 
 	return (
 		<>
-			<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+			<Formik
+				initialTouched={{
+					dateStart: true,
+					fileName: true,
+				}}
+				initialValues={initialValues}
+				onSubmit={handleSubmit}
+				validationSchema={validationSchema}
+			>
 				{(formik) => {
 					return (
 						<>

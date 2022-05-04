@@ -6,6 +6,23 @@
 		"subNav": []
 	},
 	{
+		"display_name": "Tiến độ kế hoạch",
+		"route": "/plan-tracking",
+		"icon": "bx bx-cube-alt",
+		"subNav": [
+			{
+				"display_name": "Theo ngày",
+				"route": "/plan-tracking/daily",
+				"icon": "bx bxs-calendar"
+			},
+			{
+				"display_name": "Tiến độ theo tháng",
+				"route": "/plan-tracking/monthly",
+				"icon": "bx bxs-calendar"
+			}
+		]
+	},
+	{
 		"display_name": "Kho vận",
 		"route": "/warehouse",
 		"icon": "bx bxs-truck",

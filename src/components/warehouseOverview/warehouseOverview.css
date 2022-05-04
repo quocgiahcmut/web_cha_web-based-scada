@@ -1,6 +1,40 @@
-.warehouseOverview__result tbody tr:hover {
-	cursor: pointer;
-	background-color: var(--main-color-gray);
-	color: var(--txt-white);
-	font-size: 500;
+.warehouseOverview .heading-1 {
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+.warehouseOverview .heading-1 td {
+	border-top: 1px solid var(--main-bg-dark);
+}
+
+.warehouseOverview .heading-2 td {
+	border-bottom: 1px solid var(--main-bg-dark);
+}
+
+.warehouseOverview tr td:nth-child(2),
+.warehouseOverview tr td:nth-child(5) {
+	border-right: 1px solid var(--main-bg-dark);
+}
+
+.warehouseOverview tr td:nth-child(1) {
+	border-left: 1px solid var(--main-bg-dark);
+}
+
+.warehouseOverview tbody tr:last-child td {
+	border-bottom: 1px solid var(--main-bg-dark);
+}
+
+.btn-deleteAll {
+	padding: 10px 21px;
+	margin-left: 0px;
+	border-radius: 6px;
+	font-size: 1rem;
+	color: var(--txt-color);
+	background-color: var(--main-bg);
+	border: 1px solid var(--txt-color);
+}
+
+.btn-deleteAll:hover {
+	background-color: var(--txt-color);
+	color: var(--main-bg);
 }

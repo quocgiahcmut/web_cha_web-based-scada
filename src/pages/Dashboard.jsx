@@ -10,6 +10,10 @@ import QaQcTable from '../components/qaqcDashboardTable/QaqcDashboardTable';
 import ProgressBar from '../components/progressBar/ProgressBar';
 import ViewMoreButton from '../components/viewMoreButton/ViewMoreButton';
 import { convertHMS } from '../utils/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { injectionApi } from '../api/axios/injectionReport';
+import { setOeeOverall } from '../redux/slice/OeeReportSlice';
+import { format } from 'date-fns';
 // import { IgrRadialGauge, IgrRadialGaugeRange, IgrRadialGaugeModule } from 'igniteui-react-gauges';
 
 // IgrRadialGaugeModule.register();
@@ -250,7 +254,6 @@ const Dashboard = () => {
 		'Thời gian chờ nắp mở',
 		'Số lần thực hiện',
 	]);
-	// const [isWaterProof, setIsWaterProof] = React.useState(false);
 	const [qaqcTableBody, setQaqcTableBody] = React.useState(['1', '2', '3']);
 	const [packingToggleButtonsIndex, setPackingToggleButtonsIndex] = React.useState(0);
 	const onQaqcToggleButtonsIndexChange = (index) => {
@@ -259,6 +262,42 @@ const Dashboard = () => {
 	const onPackingToggleButtonsIndexChange = (index) => {
 		setPackingToggleButtonsIndex(index);
 	};
+	const dispatch = useDispatch();
+	const { oeeOverall, initialOeeDateStart } = useSelector((state) => state.oeeReportData);
+	const onSubmit = React.useCallback(
+		(value) => {
+			injectionApi
+				.getTemporaryOeeStatistics(value)
+				.then((res) => {
+					let totalWorkTime = 0;
+					let totalPartsProducedTime = 0;
+					let totalQualifiedProducedParts = 0;
+					let totalProducedParts = 0;
+					let availability = 0;
+					let performance = 0;
+					let quality = 0;
+					res.data.items.forEach((item, index) => {
+						totalWorkTime += item.workTime;
+						totalPartsProducedTime += item.totalQuantity * item.standardInjectionCycle;
+						totalQualifiedProducedParts += item.totalQuantity;
+						totalProducedParts += item.numberOfShots * item.productsPerShot;
+					});
+					availability = (totalWorkTime / (res.data.items.length * 12 * 60 * 60 * 1000)) * 100;
+					performance =
+						(totalPartsProducedTime / totalWorkTime) * 100 > 100 ? 100 : (totalPartsProducedTime / totalWorkTime) * 100;
+					quality = (totalQualifiedProducedParts / totalProducedParts) * 100;
+					dispatch(setOeeOverall([availability.toFixed(2), performance.toFixed(2), quality.toFixed(2)]));
+				})
+				.catch((err) => {
+					alert(err);
+					console.log(err);
+				});
+		},
+		[dispatch]
+	);
+	React.useEffect(() => {
+		onSubmit(format(new Date(Date.now() - initialOeeDateStart * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'));
+	}, [onSubmit, initialOeeDateStart]);
 	React.useEffect(() => {
 		switch (qaqcToggleButtonsIndex) {
 			case 0:
@@ -294,7 +333,7 @@ const Dashboard = () => {
 	}, [qaqcToggleButtonsIndex]);
 	return (
 		<div>
-			<h2 className="page-header">Dashboard</h2>
+			<h2 className="page-header">DASHBOARD</h2>
 			<div className="row">
 				<div className="col-5">
 					<div className="card full-height">
@@ -502,7 +541,20 @@ const Dashboard = () => {
 				<div className="col-4">
 					<div className="card full-height">
 						<div className="card__header">
-							<h3>CHỈ TIÊU OEE</h3>
+							<h3>
+								CHỈ TIÊU OEE
+								<span
+									style={{
+										fontSize: '0.9rem',
+										fontWeight: 'normal',
+										fontStyle: 'italic',
+										marginLeft: '5px',
+										textTransform: 'none',
+									}}
+								>
+									30 ngày qua
+								</span>
+							</h3>
 						</div>
 						<div className="card__body">
 							<div className="row">
@@ -514,7 +566,7 @@ const Dashboard = () => {
 											color="#3ace3a"
 											icon="bx bx-timer"
 											title="Mức độ hữu dụng"
-											count="50%"
+											count={`${Math.floor(oeeOverall[0])}%`}
 										/>
 									</Link>
 								</div>
@@ -526,7 +578,7 @@ const Dashboard = () => {
 											color="#7c5eb8"
 											icon="bx bx-cog"
 											title="Hiệu suất"
-											count="50%"
+											count={`${Math.floor(oeeOverall[1])}%`}
 										/>
 									</Link>
 								</div>
@@ -540,7 +592,7 @@ const Dashboard = () => {
 											color="#ffa82e"
 											icon="bx bx-search-alt"
 											title="Chất lượng"
-											count="50%"
+											count={`${Math.floor(oeeOverall[2])}%`}
 										/>
 									</Link>
 								</div>
@@ -552,7 +604,11 @@ const Dashboard = () => {
 											color="#ff4e4e "
 											icon="bx bx-target-lock"
 											title="Chỉ số OEE"
-											count="50%"
+											count={`${(
+												oeeOverall.reduce((acc, cur) => {
+													return acc * cur;
+												}, 1) / 10000
+											).toFixed(0)}%`}
 										/>
 									</Link>
 								</div>

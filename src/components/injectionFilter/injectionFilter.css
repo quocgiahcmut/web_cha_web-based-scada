@@ -47,14 +47,14 @@
 .show {
 	visibility: visible;
 	transform-origin: top right;
-	transition: transform 0.3s ease 0s;
-	animation: zoomIn ease-in-out 0.2s;
+	transition: transform 0.1s ease 0s;
+	animation: zoomIn ease-in-out 0.1s;
 }
 
 .hide {
 	transform-origin: top right;
-	transition: transform 0.3s ease 0s;
-	animation: zoomOut ease-in-out 0.2s;
+	transition: transform 0.1s ease 0s;
+	animation: zoomOut ease-in-out 0.1s;
 }
 
 @keyframes zoomIn {

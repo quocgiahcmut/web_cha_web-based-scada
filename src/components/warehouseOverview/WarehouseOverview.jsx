@@ -1,61 +1,67 @@
-import { useHistory } from 'react-router-dom';
-import WarehouseFilterForm from '../warehouseFilterForm/WarehouseFilterForm';
-import WarehouseTable from '../warehouseTable/WarehouseTable';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeAll } from '../../redux/slice/warehouseSlice';
+import WarehouseFilterRow from '../warehouseFilterRow/WarehouseFilterRow';
 import './warehouseOverview.css';
 
 function WarehouseOverview() {
-	const history = useHistory();
+	const dispatch = useDispatch();
+	const [rows, setRows] = useState([0]);
+	const [filledRows, setFilledRows] = useState([]);
 
-	const showDetail = (id) => {
-		history.push('/warehouse/' + id);
+	const mapData = {
+		discharger: ['D1', 'D2', 'D3', 'D4'],
+		lid: ['L1', 'L2', 'L3'],
 	};
+
+	const handleDeleteAllRow = () => {
+		setRows([0]);
+		setFilledRows(['deleted']);
+		dispatch(removeAll());
+	};
+
+	useEffect(() => {
+		if (filledRows.length === rows.length && filledRows[0] !== 'deleted') {
+			setRows((prev) => [...prev, rows[rows.length - 1] + 1]);
+		}
+	}, [filledRows, rows]);
 
 	return (
 		<>
-			<WarehouseFilterForm />
+			<table className="warehouseOverview">
+				<thead>
+					<tr className="heading-1">
+						<td>Tìm kiếm</td>
+						<td></td>
+						<td>Kết quả</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr className="heading-2">
+						<td>Loại sản phẩm</td>
+						<td>Mã sản phẩm</td>
+						<td>Tên sản phẩm</td>
+						<td>Số lượng</td>
+						<td>
+							<button onClick={handleDeleteAllRow} className="btn-deleteAll">
+								Xóa tất cả
+							</button>
+						</td>
+					</tr>
+				</thead>
 
-			<div className="warehouseOverview__result">
-				<div className="row">
-					<div className="col-12">
-						<div className="card">
-							<div className="card__body">
-								<WarehouseTable
-									headers={[
-										{ text: 'Loại sản phẩm', key: 'type' },
-										{ text: 'Mã sản phẩm', key: 'id' },
-										{ text: 'Số lượng', key: 'quantity' },
-										{ text: 'Ghi chú', key: 'note' },
-									]}
-									body={[
-										{
-											type: 'nắp',
-											id: 'm1',
-											name: 'nắp 1',
-											quantity: '300',
-											note: 'không',
-										},
-										{
-											type: 'nắp',
-											id: 'm1',
-											name: 'nắp 1',
-											quantity: '300',
-											note: 'không',
-										},
-										{
-											type: 'nắp',
-											id: 'm1',
-											name: 'nắp 1',
-											quantity: '300',
-											note: 'không',
-										},
-									]}
-									onRowClick={showDetail}
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+				<tbody>
+					{rows.map((rows) => (
+						<WarehouseFilterRow
+							key={rows}
+							filterId={rows}
+							mapData={mapData}
+							filledRows={filledRows}
+							setFilledRows={setFilledRows}
+						/>
+					))}
+				</tbody>
+			</table>
 		</>
 	);
 }

@@ -13,11 +13,11 @@ function CheckboxGroup({ label, name, options, ...rest }) {
 							<React.Fragment key={option.key}>
 								<Input
 									type="checkbox"
+									value={option.value}
 									id={option.value}
+									checked={field.value.includes(option.value)}
 									{...rest}
 									{...field}
-									value={option.value}
-									checked={field.value.includes(option.value)}
 								/>
 								<Label for={option.value}>{option.key}</Label>
 							</React.Fragment>

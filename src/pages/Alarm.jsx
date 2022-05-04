@@ -4,6 +4,7 @@ import alarm_mocking from '../assets/JsonData/alarm-mocking.json';
 import { format } from 'date-fns';
 import AlarmFilter from '../components/alarmFilter/AlarmFilter';
 import CsvDownloadButton from '../components/csvDownloadButton/CsvDownloadButton';
+import CustomizedBreadcrumbs from '../components/breadcrumbs/Breadcrumbs';
 
 function Alarm() {
 	const headers = React.useMemo(
@@ -24,7 +25,7 @@ function Alarm() {
 	const [dataToDownload] = React.useState(alarm_mocking);
 	return (
 		<>
-			<h2 className="page-header">CẢNH BÁO</h2>
+			<CustomizedBreadcrumbs id="CẢNH BÁO" />
 			<div className="row">
 				<div className="col-12">
 					<div className="card">

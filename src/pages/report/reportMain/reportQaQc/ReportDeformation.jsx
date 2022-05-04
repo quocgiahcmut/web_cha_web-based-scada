@@ -271,7 +271,7 @@ function ReportDeformation() {
 					})
 					.catch((err) => {
 						setLoading(false);
-						setError(err.message);
+						setError(`Có lỗi xảy ra, vui lòng thử lại: \n ${err}`);
 					});
 				break;
 			case 'bending':
@@ -295,7 +295,7 @@ function ReportDeformation() {
 					})
 					.catch((err) => {
 						setLoading(false);
-						setError(err.message);
+						setError(`Có lỗi xảy ra, vui lòng thử lại: \n ${err}`);
 					});
 
 				break;
@@ -326,7 +326,7 @@ function ReportDeformation() {
 					})
 					.catch((err) => {
 						setLoading(false);
-						setError(err.message);
+						setError(`Có lỗi xảy ra, vui lòng thử lại: \n ${err}`);
 					});
 				break;
 			default:

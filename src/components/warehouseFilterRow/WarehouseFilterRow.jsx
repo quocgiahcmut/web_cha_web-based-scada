@@ -1,66 +1,122 @@
-import { ErrorMessage, useFormikContext } from 'formik';
-import { useEffect, useState } from 'react';
+import { FormikProvider, useFormik } from 'formik';
+import { useEffect, useMemo, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import FormikControl from '../formControl/FormControl';
+import { setData } from '../../redux/slice/warehouseSlice';
 import './warehouseFilterRow.css';
 
-function WarehouseFilter({ filterId, deleteFilterRow, filterValues, setFilterValue, data, setSearchDisabled }) {
+function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
+	//-------------fake api-------
+	const fakeData = useMemo(() => {
+		return [
+			{ id: 'L1', name: 'Nắp bàn cầu đóng êm H2', quantity: 200, note: 'Không' },
+			{ id: 'L2', name: 'Nắp bàn cầu đóng êm H30', quantity: 300, note: 'Không' },
+			{ id: 'L3', name: 'Nắp bàn cầu đóng êm M2', quantity: 100, note: 'Không' },
+			{ id: 'D1', name: 'Bộ xả D1', quantity: 250, note: 'Không' },
+			{ id: 'D2', name: 'Bộ xả D2', quantity: 134, note: 'Không' },
+			{ id: 'D3', name: 'Bộ xả D3', quantity: 200, note: 'Không' },
+			{ id: 'D4', name: 'Bộ xả D4', quantity: 16, note: 'Không' },
+		];
+	}, []);
+	//--------------------------------
+	const history = useHistory();
+	const dispatch = useDispatch();
 	const [ids, setIds] = useState();
-	const [rowValues, setRowValues] = useState({});
-
-	const { values, handleChange, setFieldValue, isValid } = useFormikContext();
-
-	const { type, id, name, fromDate, toDate } = values;
-
-	useEffect(() => {
-		if (type.length > 0) {
-			setIds(data[type].map((item) => item.id));
-		}
-	}, [type, data]);
-
-	useEffect(() => {
-		let filterName;
-		if (type && id) {
-			filterName = data[type].filter((item) => item.id === id && item.name)[0]?.name;
-		}
-		if (filterName) {
-			setFieldValue('name', filterName);
+	const [canClick, setCanClick] = useState(false);
+	const warehouseData = useSelector((state) => state.warehouse);
+	const restoreData = useMemo(() => {
+		const rowData = warehouseData[filterId];
+		if (rowData) {
+			return rowData;
 		} else {
+			return {};
+		}
+	}, [filterId, warehouseData]);
+
+	const formik = useFormik({
+		initialValues: {
+			type: restoreData.type ?? 'discharger',
+			id: restoreData.id ?? '',
+			name: restoreData.name ?? '',
+			quantity: restoreData.quantity ?? '',
+		},
+	});
+	const { values, handleChange, setFieldValue } = formik;
+	const { type, id, name, quantity } = values;
+	useEffect(() => {
+		if (type === 'discharger' || type === 'lid') {
+			setIds(mapData[type].map((id) => id));
+		}
+	}, [type, mapData]);
+
+	const showDetail = () => {
+		history.push('/warehouse/' + id);
+	};
+
+	useEffect(() => {
+		if (filledRows[0] === 'deleted') {
+			setFieldValue('id', '');
 			setFieldValue('name', '');
-		}
-	}, [id, type, data, setFieldValue]);
+			setFieldValue('quantity', '');
+			setFilledRows([]);
+		} else if (mapData[type].includes(id) && filledRows[0] !== 'deleted') {
+			const fielData = fakeData.filter((item) => item.id === id)[0];
+			setFieldValue('name', fielData.name);
+			setFieldValue('quantity', fielData.quantity);
+			if (!filledRows.includes(filterId)) {
+				setFilledRows([...filledRows, filterId]);
+			}
 
-	useEffect(() => {
-		setRowValues({ type, id, name, fromDate, toDate });
-	}, [type, id, name, fromDate, toDate]);
+			dispatch(
+				setData({
+					index: filterId,
+					type,
+					id,
+					name,
+					quantity,
+				})
+			);
 
-	useEffect(() => {
-		if (isValid) {
-			setFilterValue({
-				...filterValues,
-				['row' + filterId]: rowValues,
-			});
+			setCanClick(true);
+		} else if (id) {
+			setFieldValue('name', 'Sản phẩm không tồn tại');
+			setFieldValue('quantity', 'Không xác định');
+			if (filledRows.includes(filterId)) {
+				setFilledRows(filledRows.filter((rowId) => rowId !== filterId));
+			}
+			setCanClick(false);
 		} else {
-			setSearchDisabled(true);
+			setCanClick(false);
 		}
-	}, [isValid, filterId, filterValues, rowValues, setFilterValue, setSearchDisabled]);
+	}, [id, type, filledRows, dispatch, fakeData, filterId, mapData, name, quantity, setFieldValue, setFilledRows]);
 
 	return (
-		<div className="row warehouseFilterRow__container">
-			<>
-				<div className="col-2">
+		<FormikProvider value={formik}>
+			<tr className="warehouseFilterRow__container">
+				<td>
 					<FormikControl
 						control="select"
 						name="type"
+						value={type}
 						onChange={handleChange}
 						options={[
 							{ key: 'Bộ xả', value: 'discharger' },
 							{ key: 'Nắp bàn cầu', value: 'lid' },
 						]}
+						onClick={(e) => e.stopPropagation()}
 					/>
-				</div>
+				</td>
 
-				<div className="col-2">
-					<FormikControl control="input" list={`list${filterId}`} name="id" onChange={handleChange} />
+				<td>
+					<FormikControl
+						control="input"
+						list={`list${filterId}`}
+						name="id"
+						value={id}
+						onChange={handleChange}
+						onClick={(e) => e.stopPropagation()}
+					/>
 
 					{ids && (
 						<datalist id={`list${filterId}`}>
@@ -71,37 +127,22 @@ function WarehouseFilter({ filterId, deleteFilterRow, filterValues, setFilterVal
 							))}
 						</datalist>
 					)}
-				</div>
+				</td>
 
-				<div className="col-3">
-					<FormikControl name="name" control="input" />
-				</div>
+				<td>
+					<FormikControl name="name" control="input" value={name} disable />
+				</td>
 
-				<div className="col-2">
-					<FormikControl control="date" name="fromDate" onChange={handleChange} />
-				</div>
-
-				<div className="col-2">
-					<FormikControl control="date" name="toDate" onChange={handleChange} />
-				</div>
-
-				{deleteFilterRow && (
-					<div className="col-1 flex-center">
-						<div className="deleteBtn" onClick={() => deleteFilterRow(filterId)}>
-							<i className="bx bxs-x-circle"></i>
-						</div>
-					</div>
-				)}
-				<div className="row" style={{ width: '100%', marginTop: '6px', marginLeft: '4px' }}>
-					<div className="col-12">
-						<ErrorMessage name="id" component="div" className="error-message" />
-						<ErrorMessage name="fromDate" component="div" className="error-message" />
-						<ErrorMessage name="toDate" component="div" className="error-message" />
-						<ErrorMessage name="name" component="div" className="error-message" />
-					</div>
-				</div>
-			</>
-		</div>
+				<td>
+					<FormikControl name="quantity" control="input" value={quantity} disable />
+				</td>
+				<td>
+					<button onClick={showDetail} disabled={!canClick} className="btn">
+						Xem chi tiết
+					</button>
+				</td>
+			</tr>
+		</FormikProvider>
 	);
 }
 

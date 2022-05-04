@@ -179,7 +179,7 @@ function ReportEndurance() {
 			})
 			.catch((err) => {
 				setLoading(false);
-				setError(err);
+				setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
 			});
 	};
 

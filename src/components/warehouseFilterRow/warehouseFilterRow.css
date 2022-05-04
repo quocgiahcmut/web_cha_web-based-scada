@@ -1,29 +1,36 @@
-.warehouseFilterRow__container {
-	width: 100%;
-}
-
-.warehouseFilterRow__container > div {
-	display: flex;
-	margin-top: 0;
-}
-
 .warehouseFilterRow__container select,
 .warehouseFilterRow__container input {
 	margin: 0 auto;
 	border-radius: 6px;
-	height: 40px;
 	padding-left: 10px;
 	font-size: 1.2rem;
 }
 
-.warehouseFilterRow__container .deleteBtn {
-	display: flex;
-	font-size: 1.5rem;
-	justify-content: center;
-	width: 30px;
-	align-items: center;
+.warehouseFilterRow__container div[class='form-control'] {
+	border: none;
+	min-height: 0;
 }
 
-.warehouseFilterRow__container .deleteBtn:hover {
-	opacity: 0.6;
+.warehouseFilterRow__container input:disabled {
+	background-color: var(--main-bg);
+	border: none;
+}
+
+.warehouseFilterRow__container button:disabled {
+	cursor: not-allowed;
+	text-decoration: none;
+	opacity: 0.5;
+}
+
+.warehouseFilterRow__container .btn {
+	border: none;
+	font-size: 1rem;
+	background-color: var(--main-bg);
+	color: var(--txt-color);
+	text-decoration: underline;
+}
+
+.warehouseFilterRow__container .btn:hover {
+	color: var(--second-color-blue);
+	opacity: 0.7;
 }

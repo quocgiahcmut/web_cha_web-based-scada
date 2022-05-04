@@ -50,6 +50,7 @@ function ReportPackingTable({ reportHeaders, reportData }) {
 			defaultColumn,
 			initialState: {
 				hiddenColumns: ['color'],
+				pageSize: 20,
 			},
 		},
 		useFilters,

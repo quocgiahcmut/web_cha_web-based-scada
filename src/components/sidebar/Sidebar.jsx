@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import { useHistory } from 'react-router-dom';
+
 import './sidebar.css';
 
 import logo from '../../assets/images/favicon.png';
@@ -17,10 +19,12 @@ const SidebarItem = (props) => {
 	return (
 		<div className="sidebar__item">
 			<div className="sidebar__item-flex">
-				<div className={` sidebar__item-inner ${active}`}>
-					<i className={props.icon}></i>
-					<span>{props.title}</span>
-				</div>
+				<Link to={props.route}>
+					<div className={` sidebar__item-inner ${active}`}>
+						<i className={props.icon}></i>
+						<span>{props.title}</span>
+					</div>
+				</Link>
 				{props.subNav.length > 0 && (
 					<div className={`sidebar__item--inner-sub`}>
 						{props.subNav.map((item, index) => (
@@ -63,17 +67,15 @@ function Sidebar(props) {
 				</div>
 				{sidebar_items.map((item, index) => {
 					const subItem = (
-						<React.Fragment key={index}>
-							<Link to={item.route}>
-								<SidebarItem
-									location={props.location.pathname}
-									subNav={item.subNav}
-									title={item.display_name}
-									icon={item.icon}
-									active={index === activeItem}
-								/>
-							</Link>
-						</React.Fragment>
+						<SidebarItem
+							key={index}
+							route={item.route}
+							location={props.location.pathname}
+							subNav={item.subNav}
+							title={item.display_name}
+							icon={item.icon}
+							active={index === activeItem}
+						/>
 					);
 					return subItem;
 				})}

@@ -8,6 +8,7 @@ import './injectionMoldingMachinePage.css';
 // import { MONITOR_INJECTION_LIST } from '../../../utils/utils';
 // import Navbar from '../../../components/navBar/NavBar';
 import ReportNavigationButton from '../../../components/reportNavigationButton/ReportNavigationButton';
+import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 const rawData = [
 	{
 		name: 'AXb15',
@@ -399,8 +400,7 @@ function InjectionMoldingMachinePage() {
 	}, [page, filterData, pageSize]);
 	return (
 		<div className="injectionMoldingMachinePage__container">
-			<h2 className="page-header">KHU MÁY ÉP</h2>
-
+			<CustomizedBreadcrumbs id="KHU MÁY ÉP" />
 			<div className="row injectionMoldingMachinePage__control">
 				<>
 					<div className="col-8 col-md-8 col-sm-2"></div>

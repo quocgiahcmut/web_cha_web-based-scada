@@ -32,9 +32,14 @@ function CustomizedBreadcrumbs({ id, sector, href }) {
 				}}
 				aria-label="breadcrumb"
 			>
-				<Link className="customized-breadcrumbs__link" to={href}>
-					{sector}
+				<Link className="customized-breadcrumbs__link" to="/">
+					TRANG CHỦ
 				</Link>
+				{sector && href ? (
+					<Link className="customized-breadcrumbs__link" to={href}>
+						{sector}
+					</Link>
+				) : null}
 				<Typography color="text.primary">{id}</Typography>
 			</Breadcrumbs>
 		</>

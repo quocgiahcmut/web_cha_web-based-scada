@@ -47,7 +47,16 @@ function ReportInjectionFilter({ onSubmit }) {
 
 	return (
 		<>
-			<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+			<Formik
+				initialTouched={{
+					dateStart: true,
+					dateEnd: true,
+					moldingMachineId: true,
+				}}
+				initialValues={initialValues}
+				onSubmit={handleSubmit}
+				validationSchema={validationSchema}
+			>
 				{(formik) => {
 					return (
 						<>

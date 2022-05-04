@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import PackingMachine from '../../../components/packingMachine/PackingMachine';
 
 function PackingPage() {
@@ -71,6 +72,7 @@ function PackingPage() {
 	return (
 		<>
 			<h2 className="page-header">KHU KIỂM TRA ĐÓNG GÓI</h2>
+			<CustomizedBreadcrumbs id="KHU KIỂM TRA ĐÓNG GÓI" />
 			<div className="row">
 				{mockingData.map((item, index) => (
 					<div key={index} className="col-4 col-md-6 col-sm-12">
