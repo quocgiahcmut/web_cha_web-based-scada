@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FormikControl from '../formControl/FormControl';
-import { setData } from '../../redux/slice/warehouseSlice';
+import { setData } from '../../redux/slice/WarehouseSlice';
 import './warehouseFilterRow.css';
 
 function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {

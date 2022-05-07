@@ -2,8 +2,6 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { useHistory } from 'react-router-dom';
-
 import './sidebar.css';
 
 import logo from '../../assets/images/favicon.png';

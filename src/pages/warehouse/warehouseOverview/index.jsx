@@ -5,7 +5,15 @@ function WarehouseOverviewPage() {
 	return (
 		<>
 			<CustomizedBreadcrumbs id="KHO VẬN" />
-			<WarehouseOverview />
+			<div className="roww">
+				<div className="col-12">
+					<div className="card">
+						<div className="card__body">
+							<WarehouseOverview />
+						</div>
+					</div>
+				</div>
+			</div>
 		</>
 	);
 }

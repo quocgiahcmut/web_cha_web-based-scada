@@ -143,7 +143,7 @@ function ReportWaterProof() {
 	};
 	return (
 		<>
-			<ReportQaqcFilter onSubmit={onSubmit} exportReport={exportReport} />
+			<ReportQaqcFilter dataDisplay={[]} onSubmit={onSubmit} exportReport={exportReport} />
 			<ReportQaqcTable reportData={waterProofData} reportHeaders={WATER_PROOF_COLUMNS} />
 		</>
 	);

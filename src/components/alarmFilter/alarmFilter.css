@@ -25,6 +25,7 @@
 
 #alarm__filter input[type='text'],
 input[type='date'],
+input[type='month'],
 select {
   display: block;
   width: 100%;

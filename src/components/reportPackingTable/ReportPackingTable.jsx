@@ -31,7 +31,7 @@ const ColumnFilter = ({ column }) => {
 	);
 };
 
-function ReportPackingTable({ reportHeaders, reportData }) {
+function ReportPackingTable({ reportHeaders, reportData, ...rest }) {
 	const columns = React.useMemo(() => reportHeaders, [reportHeaders]);
 	const data = React.useMemo(() => reportData, [reportData]);
 
@@ -78,7 +78,7 @@ function ReportPackingTable({ reportHeaders, reportData }) {
 
 	return (
 		<>
-			<div className="row">
+			<div className="row" {...rest}>
 				<div className="col-12">
 					<div className="card">
 						<div className="card__header">

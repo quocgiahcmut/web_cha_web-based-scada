@@ -1,14 +1,26 @@
 import React from 'react';
 import { useFlexLayout, useTable } from 'react-table';
-import './dailyInjectionProgressTable.css';
-import { INJECTION_PLAN_TRACKING_COLUMNS, PACKING_PLAN_TRACKING_COLUMNS } from '../../utils/utils';
+import './progressTable.css';
+import {
+	INJECTION_PLAN_TRACKING_COLUMNS,
+	PACKING_PLAN_TRACKING_COLUMNS,
+	INJECTION_MONTHLY_PLAN_TRACKING_COLUMNS,
+	PACKING_MONTHLY_PLAN_TRACKING_COLUMNS,
+} from '../../utils/utils';
 
-function DailyProgressTable({ rawData, isPacking }) {
+function ProgressTable({ rawData, isPacking, isMonthly }) {
 	const data = React.useMemo(() => rawData, [rawData]);
-	const columns = React.useMemo(
-		() => (isPacking ? PACKING_PLAN_TRACKING_COLUMNS : INJECTION_PLAN_TRACKING_COLUMNS),
-		[isPacking]
-	);
+	const columns = React.useMemo(() => {
+		if (isPacking && !isMonthly) {
+			return PACKING_PLAN_TRACKING_COLUMNS;
+		} else if (!isPacking && isMonthly) {
+			return INJECTION_MONTHLY_PLAN_TRACKING_COLUMNS;
+		} else if (!isPacking && !isMonthly) {
+			return INJECTION_PLAN_TRACKING_COLUMNS;
+		} else {
+			return PACKING_MONTHLY_PLAN_TRACKING_COLUMNS;
+		}
+	}, [isPacking, isMonthly]);
 	const defaultColumn = React.useMemo(() => {
 		return {
 			minWidth: 30, // minWidth is only used as a limit for resizing
@@ -43,7 +55,6 @@ function DailyProgressTable({ rawData, isPacking }) {
 				<tbody {...getTableBodyProps()}>
 					{rows.map((row) => {
 						prepareRow(row);
-						console.log('row.values', row.values.priority);
 
 						return (
 							<tr className={row.values.priority} {...row.getRowProps()}>
@@ -59,4 +70,4 @@ function DailyProgressTable({ rawData, isPacking }) {
 	);
 }
 
-export default DailyProgressTable;
+export default ProgressTable;

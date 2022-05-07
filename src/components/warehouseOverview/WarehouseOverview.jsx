@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeAll } from '../../redux/slice/warehouseSlice';
+import { removeAll } from '../../redux/slice/WarehouseSlice';
 import WarehouseFilterRow from '../warehouseFilterRow/WarehouseFilterRow';
 import './warehouseOverview.css';
 

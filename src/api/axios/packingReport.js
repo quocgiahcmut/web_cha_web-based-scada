@@ -6,7 +6,7 @@ const packingApi = {
 		return axiosClient.get('/packing', {
 			params: {
 				startTime,
-				stopTime,
+				stopTime: format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd'),
 			},
 		});
 	},
@@ -20,7 +20,9 @@ const packingApi = {
 			},
 			params: {
 				startTime,
-				stopTime: stopTime ? stopTime : format(Date.now(), 'yyyy-MM-dd'),
+				stopTime: stopTime
+					? format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd')
+					: format(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
 			},
 		});
 	},

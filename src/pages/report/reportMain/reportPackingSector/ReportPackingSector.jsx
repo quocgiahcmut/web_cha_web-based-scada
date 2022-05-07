@@ -270,7 +270,13 @@ function ReportPackingSector() {
 	return (
 		<>
 			<ReportPackingFilter exportReport={exportReport} onSubmit={onSubmit} />
-			<ReportPackingTable reportData={packingEmployeeReportData} reportHeaders={PACKING_EMPLOYEE_COLUMNS} />
+			<ReportPackingTable
+				style={{
+					display: 'none',
+				}}
+				reportData={packingEmployeeReportData}
+				reportHeaders={PACKING_EMPLOYEE_COLUMNS}
+			/>
 			<ReportPackingTable reportData={packingReportData} reportHeaders={PACKING_COLUMNS} />
 		</>
 	);

@@ -9,17 +9,12 @@ import LoadingComponent from '../loadingComponent/LoadingComponent';
 import EmptyPlaceholder from '../emptyPlaceholder/EmptyPlaceholder';
 import { useDispatch } from 'react-redux';
 import { resetDeformationReportData } from '../../redux/slice/QaQcReportSlice';
-
+import QaqcOverviewReportTable from '../qaqcOverviewReportTable/QaqcOverviewReportTable';
 const validationSchema = Yup.object({
 	dateStart: Yup.date(),
 	dateEnd: Yup.date().when('dateStart', (dateStart, schema) => {
 		return dateStart ? schema.min(dateStart, 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc') : schema;
 	}),
-	purpose: Yup.string(),
-	note: Yup.string().when('purpose', (purpose, schema) => {
-		return purpose === 'other' ? schema.required('Ghi chú không được bỏ trống') : schema;
-	}),
-	productName: Yup.string(),
 });
 // component = { ReportQaqcTable };
 // reportData = { enduranceData };
@@ -33,6 +28,7 @@ function ReportQaqcFilter({
 	dataDisplay,
 	loading,
 	error,
+	overviewData,
 }) {
 	const dispatch = useDispatch();
 	const initialDateStart = () => {
@@ -56,19 +52,9 @@ function ReportQaqcFilter({
 		? {
 				dateStart: initialDateStart(),
 				dateEnd: initialDateEnd(),
-				purpose: 'period',
-				note: '',
-				productName: '',
 				testType: 'rock-test',
 		  }
-		: { dateStart: initialDateStart(), dateEnd: initialDateEnd(), purpose: 'period', note: '', productName: '' };
-
-	const PURPOSE_OPTIONS = [
-		{ value: 'period', key: 'Định kỳ' },
-		{ value: 'anomaly', key: 'Bất thường' },
-		{ value: 'newProduct', key: 'Sản phẩm mới' },
-		{ value: 'other', key: 'Khác' },
-	];
+		: { dateStart: initialDateStart(), dateEnd: initialDateEnd() };
 	const TEST_TYPE_OPTIONS = [
 		{ value: 'rock-test', key: 'Rock test' },
 		{ value: 'bending', key: 'Lực uốn' },
@@ -115,57 +101,25 @@ function ReportQaqcFilter({
 									<div className="col-12">
 										<div className="error-msg__container">
 											<ErrorMessage name="dateEnd" component="div" className="error-message" />
-											<ErrorMessage name="purpose" component="div" className="error-message" />
-											<ErrorMessage name="note" component="div" className="error-message" />
 										</div>
 									</div>
 								</div>
 								<div className="row">
 									<div className="col-12">
 										<Form id="qaqc-report__filter">
-											<FormControl
-												placeholder="Đặt tên sản phẩm trước khi xuất excel"
-												label="Tên sản phẩm"
-												name="productName"
-												control="input"
-											/>
-											<FormControl label="Mục đích" name="purpose" control="select" options={PURPOSE_OPTIONS} />
-											<FormControl
-												label="Ghi chú"
-												name="note"
-												control="input"
-												disable={formik.values.purpose === 'other' ? false : true}
-											/>
 											<button
 												type="button"
-												className={`btn btn-primary ${
-													formik.values.productName === '' ||
-													(formik.values.purpose === 'other' && formik.values.note === '') ||
-													dataDisplay.length === 0
-														? 'btn-disabled'
-														: ''
-												}`}
-												disabled={
-													formik.values.productName === '' ||
-													(formik.values.purpose === 'other' && formik.values.note === '') ||
-													dataDisplay.length === 0
-														? true
-														: false
-												}
-												onClick={() =>
-													exportReport(
-														formik.values.productName,
-														format(new Date(formik.values.dateStart), 'dd/MM/yyyy'),
-														format(new Date(formik.values.dateEnd), 'dd/MM/yyyy'),
-														formik.values.purpose,
-														formik.values.note,
-														formik.values.testType
-													)
-												}
+												className={`btn btn-primary ${dataDisplay.length === 0 ? 'btn-disabled' : ''}`}
+												disabled={dataDisplay.length === 0 ? true : false}
+												onClick={() => exportReport(formik.values.testType)}
 											>
 												Xuất excel
 											</button>
 										</Form>
+									</div>
+									<div className="col-12">
+										<ErrorMessage name="purpose" component="div" className="error-message" />
+										<ErrorMessage name="note" component="div" className="error-message" />
 									</div>
 								</div>
 							</div>
@@ -179,16 +133,20 @@ function ReportQaqcFilter({
 										) : reportData.length <= 0 ? (
 											<EmptyPlaceholder msg="Nhấn nút tìm kiếm để xem báo cáo" />
 										) : (
-											<ReportQaqcTable
-												reportData={reportData}
-												reportHeaders={
-													formik.values.testType === 'rock-test'
-														? reportHeaders.rockTest
-														: formik.values.testType === 'bending'
-														? reportHeaders.bending
-														: reportHeaders.staticLoad
-												}
-											/>
+											<>
+												<QaqcOverviewReportTable overviewData={overviewData} />
+
+												<ReportQaqcTable
+													reportData={reportData}
+													reportHeaders={
+														formik.values.testType === 'rock-test'
+															? reportHeaders.rockTest
+															: formik.values.testType === 'bending'
+															? reportHeaders.bending
+															: reportHeaders.staticLoad
+													}
+												/>
+											</>
 										)}
 									</div>
 								</div>

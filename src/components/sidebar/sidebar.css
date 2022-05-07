@@ -16,7 +16,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-color:var(--main-bg);
+  background-color:var(--main-color);
   box-shadow: var(--box-shadow);
   transition: all 0.1s linear 0s;
 }
@@ -27,7 +27,7 @@
   right: 0;
   width: 50px;
   height: 50px;
-  background-color: var(--main-bg);
+  background-color: var(--main-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,6 +63,7 @@
   font-size: 1.3rem;
   font-weight: 600;
   transition: color .3s ease 0s;
+  color: var(--txt-white);
 }
 
 .sidebar__item-inner > i {
@@ -94,16 +95,16 @@ i>span>i{
 }
 
 .sidebar__item-inner:hover{
-  color: var(--main-color);
+  color: var(--main-bg);
 }
 .sidebar__item-inner.active{
   border-radius: var(--border-radius);
   background-image: linear-gradient(
     to right,
-    var(--main-color),
-    var(--second-color)
+    var(--main-bg),
+    var(--second-bg)
   );
-  color: var(--txt-white);
+  color: var(--main-color);
 }
 
 .sidebar.active{
@@ -140,6 +141,7 @@ i>span>i{
 }
 .sidebar__item--inner-sub > a {
   padding-bottom: 10px;
+  color: var(--txt-white);
 }
 .sidebar__item--inner-sub > a > span {
   font-size: 1.2rem;
@@ -176,10 +178,10 @@ i>span>i{
   border-radius: var(--border-radius);
   background-image: linear-gradient(
     to right,
-    var(--main-color),
-    var(--second-color)
+    var(--main-bg),
+    var(--second-bg)
   );
-  color: var(--txt-white);
+  color: var(--main-color);
 }
 .sidebar__item--sub-container{
   padding: 10px 35px;

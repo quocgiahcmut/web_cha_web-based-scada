@@ -1,0 +1,11 @@
+#qaqcOverviewReportTable tr > td:first-child {
+  width: 30%;
+  background-color: var(--main-color);
+  color: var(--txt-white);
+  font-weight: bold;
+  text-align: right;
+}
+
+#qaqcOverviewReportTable tr > td:last-child {
+  text-align: center;
+}

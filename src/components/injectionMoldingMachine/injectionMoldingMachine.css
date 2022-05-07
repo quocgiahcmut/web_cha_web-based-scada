@@ -112,11 +112,10 @@
 	padding: 0 8px;
 }
 
-.injectionMoldingMachine__value tr:nth-child(1),
-.injectionMoldingMachine__value tr:nth-child(3) {
+.injectionMoldingMachine__value tr:nth-child(odd){
 	background-color: var(--second-color-gray);
 }
 
-.injectionMoldingMachine__value tr:nth-child(2) {
+.injectionMoldingMachine__value tr:nth-child(even) {
 	background-color: var(--main-color-gray);
 }

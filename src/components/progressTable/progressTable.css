@@ -3,16 +3,16 @@
   min-width: 200px;
   border-spacing: 0;
 }
-#daily-injection-plan-tracking-table table thead {
+#daily-injection-plan-tracking-table > table > thead {
   background-color: #f5f5f5;
 }
-#daily-injection-plan-tracking-table table thead th {
+#daily-injection-plan-tracking-table > table > thead > th {
   padding: 10px;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
 }
-#daily-injection-plan-tracking-table table tbody tr {
+#daily-injection-plan-tracking-table table >  tbody > tr {
   padding: 10px;
   font-size: 14px;
   text-align: center;

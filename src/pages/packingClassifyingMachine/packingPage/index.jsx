@@ -71,7 +71,6 @@ function PackingPage() {
 	const handleShowDetail = (item) => history.push(`/packing/${item}`);
 	return (
 		<>
-			<h2 className="page-header">KHU KIỂM TRA ĐÓNG GÓI</h2>
 			<CustomizedBreadcrumbs id="KHU KIỂM TRA ĐÓNG GÓI" />
 			<div className="row">
 				{mockingData.map((item, index) => (

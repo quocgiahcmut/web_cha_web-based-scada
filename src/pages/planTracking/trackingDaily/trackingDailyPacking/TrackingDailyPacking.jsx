@@ -1,68 +1,75 @@
 import { format } from 'date-fns';
 import React from 'react';
 import { packingApi } from '../../../../api/axios/packingReport';
-import DailyProgressTable from '../../../../components/dailyInjectionProgressTable/DailyInjectionProgressTable';
+import DailyProgressTable from '../../../../components/progressTable/ProgressTable';
 import DailyProgressFilter from '../../../../components/dailyProgressFilter/DailyProgressFilter';
 import EmptyPlaceholder from '../../../../components/emptyPlaceholder/EmptyPlaceholder';
 import LoadingComponent from '../../../../components/loadingComponent/LoadingComponent';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setDailyPackingPlanTrackingData } from '../../../../redux/slice/PlanTrackingSlice';
 function TrackingDailyPacking() {
+	const dispatch = useDispatch();
+	const { dailyPackingPlanTrackingData } = useSelector((state) => state.planTracking);
 	const [loading, setLoading] = React.useState(false);
 	const [error, setError] = React.useState(null);
-	const [data, setData] = React.useState([]);
-	const requestData = React.useCallback(async (startTime, stopTime) => {
-		setLoading(true);
-		packingApi
-			.getTemporaryPackingPlanTracking(startTime, stopTime)
-			.then((res) => {
-				setLoading(false);
-				setError(null);
-				console.log(res.data);
-				res.data.forEach((shift) => {
-					shift.items.forEach((item) => {
-						setData((prev) => [
-							...prev,
-							{
+	const requestData = React.useCallback(
+		async (startTime, stopTime) => {
+			setLoading(true);
+			packingApi
+				.getTemporaryPackingPlanTracking(startTime, stopTime)
+				.then((res) => {
+					setLoading(false);
+					setError(null);
+					console.log(res.data);
+					const filteredData = res.data
+						.reduce((acc, shift) => {
+							acc.push({
 								date: shift.date,
-								productId: item.item[0].id,
-								productName: item.item[0].name,
-								plannedQuantity: item.plannedQuantity,
-								actualQuantity: item.actualQuantity,
-								note: item.note,
-								employee: shift.employee[0].firstName + ' ' + shift.employee[0].lastName,
-								employeeId: shift.employee[0].id,
-								packingUnit: `Cụm máy ${shift.packingUnit[0].id}`,
-								priority:
-									Math.floor((item.actualQuantity / item.plannedQuantity) * 100) >= 67
-										? 'lightgreen'
-										: Math.floor((item.actualQuantity / item.plannedQuantity) * 100) < 67 &&
-										  Math.floor((item.actualQuantity / item.plannedQuantity) * 100) >= 33
-										? 'lightyellow'
-										: 'lightred',
-							},
-						]);
-					});
+								employee: shift.employee.firstName + ' ' + shift.employee.lastName,
+								employeeId: shift.employee.id,
+								packingUnit: `Cụm máy ${shift.packingUnit.id}`,
+								items: shift.items.map((item) => ({
+									...item,
+								})),
+							});
+							return acc;
+						}, [])
+						.reduce((acc, cur) => {
+							cur.items.forEach((item) => {
+								acc = [
+									...acc,
+									{
+										date: cur.date,
+										employee: cur.employee,
+										employeeId: cur.employeeId,
+										packingUnit: cur.packingUnit,
+										productId: item.item.id,
+										productName: item.item.name,
+										plannedQuantity: item.plannedQuantity,
+										actualQuantity: item.actualQuantity,
+										note: item.note,
+										priority:
+											Math.floor((item.actualQuantity / item.plannedQuantity) * 100) >= 67
+												? 'lightgreen'
+												: Math.floor((item.actualQuantity / item.plannedQuantity) * 100) < 67 &&
+												  Math.floor((item.actualQuantity / item.plannedQuantity) * 100) >= 33
+												? 'lightyellow'
+												: 'lightred',
+									},
+								];
+							});
+							return acc;
+						}, []);
+					dispatch(setDailyPackingPlanTrackingData(filteredData));
+
+				})
+				.catch((err) => {
+					setLoading(false);
+					setError(`Có lỗi xảy ra, vui lòng thử lại.\nLỗi: ${err}`);
 				});
-				// setData(
-				// 	res.data.map((item) => {
-				// 		return {
-				// 			...item,
-				// 			priority:
-				// 				Math.floor((item.actualQuantity / item.plannedQuantity) * 100) >= 67
-				// 					? 'lightgreen'
-				// 					: Math.floor((item.actualQuantity / item.plannedQuantity) * 100) < 67 &&
-				// 					  Math.floor((item.actualQuantity / item.plannedQuantity) * 100) >= 33
-				// 					? 'lightyellow'
-				// 					: 'lightred',
-				// 		};
-				// 	})
-				// );
-			})
-			.catch((err) => {
-				setLoading(false);
-				setError(`Có lỗi xảy ra, vui lòng thử lại.\nLỗi: ${err}`);
-			});
-	}, []);
+		},
+		[dispatch]
+	);
 	const onSubmit = (e) => {
 		requestData(e.date, e.date);
 	};
@@ -91,13 +98,13 @@ function TrackingDailyPacking() {
 				<LoadingComponent className="" />
 			) : error ? (
 				<EmptyPlaceholder isError={true} msg={error} />
-			) : data ? (
+			) : dailyPackingPlanTrackingData ? (
 				<div className="card">
 					<div className="card__header">
 						<h3>Kết quả tìm kiếm</h3>
 					</div>
 					<div className="card__body">
-						<DailyProgressTable isPacking={true} rawData={data} />
+						<DailyProgressTable isPacking={true} rawData={dailyPackingPlanTrackingData} />
 					</div>
 				</div>
 			) : null}

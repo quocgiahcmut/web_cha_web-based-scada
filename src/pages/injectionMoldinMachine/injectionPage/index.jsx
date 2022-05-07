@@ -9,6 +9,7 @@ import './injectionMoldingMachinePage.css';
 // import Navbar from '../../../components/navBar/NavBar';
 import ReportNavigationButton from '../../../components/reportNavigationButton/ReportNavigationButton';
 import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
+import { injectionApi } from '../../../api/axios/injectionReport';
 const rawData = [
 	{
 		name: 'AXb15',
@@ -338,7 +339,27 @@ function InjectionMoldingMachinePage() {
 			}
 		}
 	};
+	// {
+	// 	name: 'AXb12',
+	// 	number: 'M4',
+	// 	percent: 15,
+	// 	state: 'M',
+	// 	cycle: '30 giây',
+	// 	openDoorTime: '7 giây',
+	// 	productId: 'EE2003',
+	// 	wattage: 'small',
+	// }
 	useEffect(() => {
+		const fetchData = async () => {
+			const res = await injectionApi.getTemporaryAllPreShifts();
+			console.log(res.data.items);
+			return res.data.items.map((item) => {
+				return {
+					name: item,
+				};
+			});
+		};
+		fetchData();
 		setResData(rawData);
 	}, []);
 

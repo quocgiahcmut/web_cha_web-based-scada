@@ -13,7 +13,7 @@ function TrackingDaily() {
 	const match = useRouteMatch();
 	return (
 		<>
-			<CustomizedBreadcrumbs id="BÁO CÁO TIẾN ĐỘ" />
+			<CustomizedBreadcrumbs id="BÁO CÁO TIẾN ĐỘ THEO NGÀY" />
 			<Navbar menuList={PLAN_TRACKING_MENU_LIST} />
 			<Switch>
 				<Redirect exact from={match.url} to={`${match.url}/packing`} />

@@ -2,6 +2,7 @@
 import ProgressBar from '../progressBar/ProgressBar';
 import Badge from '../badge/Badge';
 import './injectionDetail.css';
+import { INJECTION_MACHINE_ID } from '../../utils/utils';
 import {
 	Chart,
 	ArcElement,
@@ -34,42 +35,14 @@ Chart.register(
 	PointElement
 );
 
-// const injectionOptions = {
-// 	// responsive: true,
-// 	plugins: {
-// 		labels: {
-// 			render: (args) => {
-// 				return args.label;
-// 			},
-// 		},
-// 		datalabels: {
-// 			font: {
-// 				weight: 'bold',
-// 				size: 16,
-// 			},
-// 		},
-// 		legend: {
-// 			display: true,
-// 			position: 'top',
-// 		},
-// 	},
-// };
-
-// const injectionData = {
-// 	labels: ['Thời gian sản xuất', 'Thời gian nghỉ', 'Thời gian tắt', 'Thời gian lỗi'],
-// 	datasets: [
-// 		{
-// 			label: 'dataset1',
-// 			data: [25, 50, 100, 75],
-// 			backgroundColor: ['red', 'green', 'orange', 'blue'],
-// 		},
-// 	],
-// };
-
-function InjectionDetail({ injectionMoldingMachineData }) {
+function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, progress }) {
 	const history = useHistory();
+	const subTitle = INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.number)
+		?.subTitle
+		? INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.number)?.subTitle
+		: 'HaiTian';
 	const symbolColor =
-		injectionMoldingMachineData?.state === 'R'
+		realTimeData?.state === 'R'
 			? {
 					whiteArea: 'white',
 					blueArea: '#4237C1',
@@ -84,31 +57,16 @@ function InjectionDetail({ injectionMoldingMachineData }) {
 					shadow: '#C4C4C4',
 					text: '#C4C4C4',
 			  };
-	const state =
-		injectionMoldingMachineData?.state === 'R'
-			? 'Đang chạy'
-			: injectionMoldingMachineData?.state === 'S'
-			? 'Tạm dừng'
-			: 'Bảo trì';
-	const stateClass =
-		injectionMoldingMachineData?.state === 'R'
-			? 'stateR'
-			: injectionMoldingMachineData?.state === 'S'
-			? 'stateS'
-			: 'stateM';
-	const badgeType =
-		injectionMoldingMachineData?.state === 'R'
-			? 'success'
-			: injectionMoldingMachineData?.state === 'S'
-			? 'danger'
-			: 'primary';
+	const state = realTimeData?.state === 'R' ? 'Đang chạy' : realTimeData?.state === 'S' ? 'Tạm dừng' : 'Bảo trì';
+	const stateClass = realTimeData?.state === 'R' ? 'stateR' : realTimeData?.state === 'S' ? 'stateS' : 'stateM';
+	const badgeType = realTimeData?.state === 'R' ? 'success' : realTimeData?.state === 'S' ? 'danger' : 'primary';
 
 	return (
 		<div className={`injectionDetail__container ${stateClass}`}>
 			<div className="row">
 				<div className="col-1 col-md-2 col-sm-12">
-					<div className="injectionDetail__number">{injectionMoldingMachineData.number}</div>
-					<div className="injectionDetail__name">{injectionMoldingMachineData.name}</div>
+					<div className="injectionDetail__number">{injectionMoldingMachineConfiguration.number}</div>
+					<div className="injectionDetail__name">{subTitle}</div>
 				</div>
 				<div className="col-6 col-md-10 col-sm-12">
 					<div className="injectionDetail__symbol">
@@ -156,10 +114,10 @@ function InjectionDetail({ injectionMoldingMachineData }) {
 					<div className="row" style={{ alignItems: 'center' }}>
 						<div className="injectionDetail__progress">
 							<div>
-								<ProgressBar percent={injectionMoldingMachineData.percent} />
+								<ProgressBar percent={progress} />
 							</div>
 							<span>
-								Tiến độ: <span>{injectionMoldingMachineData.percent + ' sản phẩm'}</span>
+								Tiến độ: <span>{progress + ' sản phẩm'}</span>
 							</span>
 						</div>
 					</div>
@@ -175,16 +133,24 @@ function InjectionDetail({ injectionMoldingMachineData }) {
 								</td>
 							</tr>
 							<tr>
-								<td>mã chi tiết ép</td>
-								<td>M12ax</td>
+								<td>Mã khuôn</td>
+								<td>{injectionMoldingMachineConfiguration.moldId}</td>
 							</tr>
 							<tr>
-								<td>tên chi tiết ép</td>
-								<td>Thùng to</td>
+								<td>Mã chi tiết ép</td>
+								<td>{injectionMoldingMachineConfiguration.productId}</td>
 							</tr>
 							<tr>
-								<td>số lượng cần ép</td>
-								<td>187</td>
+								<td>Tên chi tiết ép</td>
+								<td>{injectionMoldingMachineConfiguration.productName}</td>
+							</tr>
+							<tr>
+								<td>Số lượng cần ép</td>
+								<td>{injectionMoldingMachineConfiguration.plannedQuantity}</td>
+							</tr>
+							<tr>
+								<td>Chu kỳ ép cài đặt (giây)</td>
+								<td>{injectionMoldingMachineConfiguration.cycle}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -199,9 +165,9 @@ function InjectionDetail({ injectionMoldingMachineData }) {
 									width="300px"
 									height="300px"
 									minimumValue={0}
-									maximumValue={40}
-									interval={5}
-									value={7}
+									maximumValue={Math.floor(injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle/10)}
+									interval={Math.floor((injectionMoldingMachineConfiguration.cycle+ injectionMoldingMachineConfiguration.cycle / 10)/6)}
+									value={realTimeData.cycleTime}
 									backingOutline="#c4c4c4"
 									scaleEndExtent={0.825}
 									scaleStartExtent={0.775}
@@ -213,6 +179,7 @@ function InjectionDetail({ injectionMoldingMachineData }) {
 									labelInterval={10}
 									font="15px Verdana,Arial"
 									backingOuterExtent={0.9}
+									transitionDuration={500}
 								/> */}
 						<span>Chu kì ép</span>
 					</div>
@@ -222,9 +189,9 @@ function InjectionDetail({ injectionMoldingMachineData }) {
 									width="300px"
 									height="300px"
 									minimumValue={0}
-									maximumValue={15}
-									interval={3}
-									value={12}
+									maximumValue={Math.floor(injectionMoldingMachineConfiguration.standardOpenTime + injectionMoldingMachineConfiguration.standardOpenTime/10)}
+									interval={Math.floor((injectionMoldingMachineConfiguration.standardOpenTime+ injectionMoldingMachineConfiguration.standardOpenTime / 10)/6)}
+									value={realTimeData.openTime}
 									backingOutline="#c4c4c4"
 									scaleEndExtent={0.825}
 									scaleStartExtent={0.775}
@@ -236,13 +203,10 @@ function InjectionDetail({ injectionMoldingMachineData }) {
 									labelInterval={10}
 									font="15px Verdana,Arial"
 									backingOuterExtent={0.9}
+									transitionDuration={500}
 								/> */}
 						<span>Thời gian mở cửa</span>
 					</div>
-					{/* <div>
-								<Pie options={injectionOptions} plugins={[ChartDataLabels]} data={injectionData} />
-								<span>Tổng thời gian hoạt động trên ngày</span>
-							</div> */}
 				</div>
 			</div>
 			<div className="row">

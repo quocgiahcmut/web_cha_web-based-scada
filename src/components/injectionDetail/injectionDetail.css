@@ -21,6 +21,7 @@
 	color: var(--txt-color);
 	text-align: center;
 	padding-top: 30px;
+	text-transform: uppercase;
 }
 
 .injectionDetail__name {

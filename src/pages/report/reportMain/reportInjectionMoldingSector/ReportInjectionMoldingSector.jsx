@@ -23,6 +23,7 @@ function ReportInjectionMoldingSector() {
 			.getTemporaryInjectionReport(value.moldingMachineId, value.dateStart, value.dateEnd)
 			.then((res) => {
 				setIsLoading(false);
+				console.log(res);
 				if (res.data.items.length === 0) {
 					setHasNothing(true);
 				} else {

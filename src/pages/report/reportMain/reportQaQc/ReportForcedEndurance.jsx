@@ -11,18 +11,20 @@ import {
 	resetForcedEnduranceReportData,
 	setForcedEnduranceReportData,
 	setForcedEnduranceReportDataDate,
+	setForcedEnduranceOverviewData,
 } from '../../../../redux/slice/QaQcReportSlice';
 import EmptyPlaceholder from '../../../../components/emptyPlaceholder/EmptyPlaceholder';
 import LoadingComponent from '../../../../components/loadingComponent/LoadingComponent';
+import QaqcOverviewReportTable from '../../../../components/qaqcOverviewReportTable/QaqcOverviewReportTable';
 
 function ReportForcedEndurance() {
 	const [loading, setLoading] = React.useState(false);
 	const [error, setError] = React.useState(null);
 	const dispatch = useDispatch();
-	const forcedEnduranceReportReducer = useSelector((state) => state.qaQcReportData);
-	const forcedEnduranceReportData = forcedEnduranceReportReducer.forcedEnduranceReportData;
-	const forcedEnduranceReportDataDate = forcedEnduranceReportReducer.forcedEnduranceReportDataDate;
-	const exportReport = (productName, dateStart, dateEnd, purpose, note) => {
+	const { forcedEnduranceOverviewData, forcedEnduranceReportData, forcedEnduranceReportDataDate } = useSelector(
+		(state) => state.qaQcReportData
+	);
+	const exportReport = () => {
 		const workbook = createExcelFile(convention, 11);
 		const sheet1 = workbook.getWorksheet('sheet1');
 
@@ -59,7 +61,7 @@ function ReportForcedEndurance() {
 			],
 		};
 
-		switch (purpose) {
+		switch (forcedEnduranceOverviewData.purpose) {
 			case 'period':
 				assignPurpose.richText[1].text =
 					'Định kỳ ☑                           Bất thường □                           SP mới □                            Khác □';
@@ -73,7 +75,7 @@ function ReportForcedEndurance() {
 					'Định kỳ □                           Bất thường □                           SP mới ☑                            Khác □';
 				break;
 			case 'other':
-				assignPurpose.richText[1].text = `Định kỳ □                           Bất thường □                           SP mới □                            Khác ☑      ${note}`;
+				assignPurpose.richText[1].text = `Định kỳ □                           Bất thường □                           SP mới □                            Khác ☑      ${forcedEnduranceOverviewData.testNote}`;
 				break;
 			default:
 				break;
@@ -138,7 +140,10 @@ function ReportForcedEndurance() {
 		drawBorder(sheet1, 24, 14, 'top', 'right');
 
 		//save file to pc
-		saveExcelFile(workbook, `Phiếu kiểm tra đóng cưỡng bức ${productName} ${format(new Date(), 'dd-MM-yyyy')}`);
+		saveExcelFile(
+			workbook,
+			`Phiếu kiểm tra đóng cưỡng bức ${forcedEnduranceOverviewData.productName} ${format(new Date(), 'dd-MM-yyyy')}`
+		);
 	};
 	const onSubmit = (values) => {
 		dispatch(resetForcedEnduranceReportData());
@@ -147,31 +152,50 @@ function ReportForcedEndurance() {
 			.getForcedEnduranceReport(values.dateStart, values.dateEnd)
 			.then((res) => {
 				setLoading(false);
-				if (res) {
-					res[0].deformationTestSheets?.forEach((item) => {
-						dispatch(
-							setForcedEnduranceReportData({
-								sample: item.numberTesting,
-								time: item.timeSmoothClosingLid,
-								toilet_bumper: item.statusLidNotBreak,
-								no_oil_spill: item.statusLidNotLeak,
-								first_result: item.statusLidResult,
-								closing_time: item.timeSmoothClosingPlinth,
-								no_drop_bumper: item.statusPlinthNotBreak,
-								no_spill: item.statusPlinthNotLeak,
-								second_result: item.statusPlinthResult,
-								total: item.totalError,
-								note: item.note,
-								employee: item.employee,
-							})
-						);
-						dispatch(
-							setForcedEnduranceReportDataDate({
-								startTime: format(new Date(res[0].startTime), 'dd/MM/yyyy'),
-								stopTime: format(new Date(res[0].stopTime), 'dd/MM/yyyy'),
-							})
-						);
+				console.log(res.data.items[0]);
+				const filteredData = [];
+				if (res.data.items.length > 0) {
+					res.data.items[0].samples?.forEach((item) => {
+						filteredData.push({
+							sample: item.sampleNumber,
+							time: (item.result.fallTime / 1000).toFixed(2),
+							toilet_bumper: item.result.isIntact === true ? 'Oke' : 'Lỗi',
+							no_oil_spill: item.result.isUnleaked === true ? 'Oke' : 'Lỗi',
+							first_result: item.result.passed === true ? 'Oke' : 'Lỗi',
+							closing_time: (item.result.fallTime / 1000).toFixed(2),
+							no_drop_bumper: item.result.isIntact === true ? 'Oke' : 'Lỗi',
+							no_spill: item.result.isUnleaked === true ? 'Oke' : 'Lỗi',
+							second_result: item.result.passed === true ? 'Oke' : 'Lỗi',
+							total: item.sampleNumber,
+							note: item.note,
+							employee: res.data.items[0].tester.lastName + ' ' + res.data.items[0].tester.firstName,
+						});
 					});
+					dispatch(setForcedEnduranceReportData(filteredData));
+					dispatch(
+						setForcedEnduranceOverviewData({
+							purpose:
+								res.data.items[0].testPurpose === 0
+									? 'period'
+									: res.data.items[0].testPurpose === 1
+									? 'anomaly'
+									: res.data.items[0].testPurpose === 2
+									? 'newProduct'
+									: 'other',
+							testNote: res.data.items[0].note,
+							productId: res.data.items[0].product.id,
+							productName: res.data.items[0].product.name,
+						})
+					);
+					dispatch(
+						setForcedEnduranceReportDataDate({
+							startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
+							stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
+						})
+					);
+				} else {
+					setLoading(false);
+					setError(`Không có dữ liệu trong ngày, vui lòng chọn ngày khác`);
 				}
 			})
 			.catch((err) => {
@@ -189,7 +213,10 @@ function ReportForcedEndurance() {
 			) : forcedEnduranceReportData.length <= 0 ? (
 				<EmptyPlaceholder msg="Nhấn nút tìm kiếm để xem báo cáo" />
 			) : (
-				<ReportQaqcTable reportData={forcedEnduranceReportData} reportHeaders={FORCED_ENDURANCE_COLUMNS} />
+				<>
+					<QaqcOverviewReportTable overviewData={forcedEnduranceOverviewData} />
+					<ReportQaqcTable reportData={forcedEnduranceReportData} reportHeaders={FORCED_ENDURANCE_COLUMNS} />
+				</>
 			)}
 		</>
 	);

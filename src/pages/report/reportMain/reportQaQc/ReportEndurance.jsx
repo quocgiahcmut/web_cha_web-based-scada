@@ -12,18 +12,20 @@ import { qaQcApi } from '../../../../api/axios/qaqcReport';
 import {
 	resetEnduranceReportData,
 	setEnduranceReportData,
+	setEnduranceOverviewData,
 	setEnduranceReportDataDate,
 } from '../../../../redux/slice/QaQcReportSlice';
+import QaqcOverviewReportTable from '../../../../components/qaqcOverviewReportTable/QaqcOverviewReportTable';
 
 function ReportEndurance() {
-	const qaQcReportReducer = useSelector((state) => state.qaQcReportData);
-	const enduranceReportData = qaQcReportReducer.enduranceReportData;
-	const dateAssigned = qaQcReportReducer.enduranceReportDataDate;
+	const { enduranceOverviewData, enduranceReportData, enduranceReportDataDate } = useSelector(
+		(state) => state.qaQcReportData
+	);
 	const dispatch = useDispatch();
 	// const [data, setData] = React.useState([]);
 	const [loading, setLoading] = React.useState(false);
 	const [error, setError] = React.useState(null);
-	const exportReport = (productName, dateStart, dateEnd, purpose, note) => {
+	const exportReport = () => {
 		const workbook = createExcelFile(convention, 11);
 		const sheet1 = workbook.getWorksheet('sheet1');
 
@@ -58,8 +60,7 @@ function ReportEndurance() {
 				},
 			],
 		};
-
-		switch (purpose) {
+		switch (enduranceOverviewData.purpose) {
 			case 'period':
 				assignPurpose.richText[1].text =
 					'Định kỳ ☑                           Bất thường □                           SP mới □                            Khác □';
@@ -73,16 +74,17 @@ function ReportEndurance() {
 					'Định kỳ □                           Bất thường □                           SP mới ☑                            Khác □';
 				break;
 			case 'other':
-				assignPurpose.richText[1].text = `Định kỳ □                           Bất thường □                           SP mới □                            Khác ☑      ${note}`;
+				assignPurpose.richText[1].text = `Định kỳ □                           Bất thường □                           SP mới □                            Khác ☑      ${enduranceOverviewData.testNote}`;
 				break;
 			default:
 				break;
 		}
-
+		sheet1.getCell('D6').value = enduranceOverviewData.productName;
+		sheet1.getCell('M6').value = enduranceOverviewData.productId;
 		sheet1.getCell('A9').value = assignPurpose;
 		sheet1.getCell('A9').alignment = { vertical: 'middle', horizontal: 'left' };
-		sheet1.getCell('D8').value = dateAssigned.startTime;
-		sheet1.getCell('K8').value = dateAssigned.stopTime;
+		sheet1.getCell('D8').value = enduranceReportDataDate.startTime;
+		sheet1.getCell('K8').value = enduranceReportDataDate.stopTime;
 		[...Array(20).keys()].forEach((item, index) => {
 			const row = sheet1.getRow(index + 16);
 			row.values = [(index + 1) * 5000];
@@ -140,7 +142,10 @@ function ReportEndurance() {
 		drawBorder(sheet1, 37, 14, 'top', 'right');
 
 		//save file to pc
-		saveExcelFile(workbook, `Phiếu kiểm tra đóng êm ${productName} ${format(new Date(), 'dd-MM-yyyy')}`);
+		saveExcelFile(
+			workbook,
+			`Phiếu kiểm tra đóng êm ${enduranceOverviewData.productName} ${format(new Date(), 'dd-MM-yyyy')}`
+		);
 	};
 
 	const onSubmit = (values) => {
@@ -149,32 +154,51 @@ function ReportEndurance() {
 		qaQcApi
 			.getEnduranceReport(values.dateStart, values.dateEnd)
 			.then((res) => {
+				console.log(res.data.items);
+				const filteredData = [];
 				setLoading(false);
-				if (res) {
-					res[0].reliabilityTestSheets?.forEach((item) => {
-						dispatch(
-							setEnduranceReportData({
-								sample: item.numberTesting,
-								time: item.timeSmoothClosingLid,
-								toilet_bumper: item.statusLidNotFall,
-								no_oil_spill: item.statusLidNotLeak,
-								first_result: item.statusLidResult,
-								closing_time: item.timeSmoothClosingPlinth,
-								no_drop_bumper: item.statusPlinthNotFall,
-								no_spill: item.statusPlinthNotLeak,
-								second_result: item.statusPlinthResult,
-								total: item.totalError,
-								note: item.note,
-								employee: item.employee,
-							})
-						);
-						dispatch(
-							setEnduranceReportDataDate({
-								startTime: format(new Date(res[0].startTime), 'dd/MM/yyyy'),
-								stopTime: format(new Date(res[0].stopTime), 'dd/MM/yyyy'),
-							})
-						);
+				if (res.data.items.length > 0) {
+					res.data.items[0].samples.forEach((item) => {
+						filteredData.push({
+							sample: item.sampleNumber,
+							time: (item.seatLidResult.fallTime / 1000).toFixed(2),
+							toilet_bumper: item.seatLidResult.isBumperIntact === true ? 'oke' : 'lỗi',
+							no_oil_spill: item.seatLidResult.isUnleaked === true ? 'oke' : 'lỗi',
+							first_result: item.seatLidResult.passed === true ? 'oke' : 'lỗi',
+							closing_time: (item.seatRingResult.fallTime / 1000).toFixed(2),
+							no_drop_bumper: item.seatRingResult.isBumperIntact === true ? 'oke' : 'lỗi',
+							no_spill: item.seatRingResult.isUnleaked === true ? 'oke' : 'lỗi',
+							second_result: item.seatRingResult.passed === true ? 'oke' : 'lỗi',
+							total: item.sampleNumber,
+							note: item.note,
+							employee: res.data.items[0].tester.lastName + ' ' + res.data.items[0].tester.firstName,
+						});
 					});
+					dispatch(setEnduranceReportData(filteredData));
+					dispatch(
+						setEnduranceOverviewData({
+							purpose:
+								res.data.items[0].testPurpose === 0
+									? 'period'
+									: res.data.items[0].testPurpose === 1
+									? 'anomaly'
+									: res.data.items[0].testPurpose === 2
+									? 'newProduct'
+									: 'other',
+							testNote: res.data.items[0].note,
+							productId: res.data.items[0].product.id,
+							productName: res.data.items[0].product.name,
+						})
+					);
+					dispatch(
+						setEnduranceReportDataDate({
+							startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
+							stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
+						})
+					);
+				} else {
+					setLoading(false);
+					setError(`Không có dữ liệu trong ngày, vui lòng chọn ngày khác`);
 				}
 			})
 			.catch((err) => {
@@ -193,7 +217,12 @@ function ReportEndurance() {
 			) : enduranceReportData.length <= 0 ? (
 				<EmptyPlaceholder msg="Nhấn nút tìm kiếm để xem báo cáo" />
 			) : (
-				<ReportQaqcTable reportData={enduranceReportData} reportHeaders={ENDURANCE_COLUMNS} />
+				<>
+					<QaqcOverviewReportTable overviewData={enduranceOverviewData} />
+					<ReportQaqcTable reportData={enduranceReportData} reportHeaders={ENDURANCE_COLUMNS} />
+					{/* <ReportEndurance reportData={enduranceOverviewData} reportHeaders={QAQC_OVERVIEW_COLUMNS} /> */}
+					{/* <code>{JSON.stringify(enduranceReportData, null, 2)}</code> */}
+				</>
 			)}
 		</>
 	);

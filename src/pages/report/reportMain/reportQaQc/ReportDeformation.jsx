@@ -16,17 +16,17 @@ import {
 	resetDeformationReportData,
 	setDeformationReportData,
 	setDeformationReportDataDate,
+	setDeformationOverviewData,
 } from '../../../../redux/slice/QaQcReportSlice';
 
 function ReportDeformation() {
 	const [loading, setLoading] = React.useState(false);
 	const [error, setError] = React.useState(null);
 	const dispatch = useDispatch();
-	const qaQcReportReducer = useSelector((state) => state.qaQcReportData);
-	const deformationReportData = qaQcReportReducer.deformationReportData;
-	const dateAssigned = qaQcReportReducer.deformationReportDataDate;
-
-	const exportReport = (productName, dateStart, dateEnd, purpose, note, testType) => {
+	const { deformationOverviewData, deformationReportData, deformationReportDataDate } = useSelector(
+		(state) => state.qaQcReportData
+	);
+	const exportReport = (testType) => {
 		const workbook = createExcelFile(
 			testType === 'static-load'
 				? staticLoadConvention
@@ -87,7 +87,7 @@ function ReportDeformation() {
 			],
 		};
 
-		switch (purpose) {
+		switch (deformationOverviewData.purpose) {
 			case 'period':
 				assignPurpose.richText[1].text =
 					'Định kỳ ☑                           Bất thường □                           SP mới □                            Khác □';
@@ -101,16 +101,17 @@ function ReportDeformation() {
 					'Định kỳ □                           Bất thường □                           SP mới ☑                            Khác □';
 				break;
 			case 'other':
-				assignPurpose.richText[1].text = `Định kỳ □                           Bất thường □                           SP mới □                            Khác ☑      ${note}`;
+				assignPurpose.richText[1].text = `Định kỳ □                           Bất thường □                           SP mới □                            Khác ☑      ${deformationOverviewData.testNote}`;
 				break;
 			default:
 				break;
 		}
-
+		sheet1.getCell('D6').value = deformationOverviewData.productName;
+		sheet1.getCell('M6').value = deformationOverviewData.productId;
 		sheet1.getCell('A9').value = assignPurpose;
 		sheet1.getCell('A9').alignment = { vertical: 'middle', horizontal: 'left' };
-		sheet1.getCell('D8').value = dateAssigned.dateStart;
-		sheet1.getCell('K8').value = dateAssigned.dateEnd;
+		sheet1.getCell('D8').value = deformationReportDataDate.startTime;
+		sheet1.getCell('K8').value = deformationReportDataDate.stopTime;
 		switch (testType) {
 			case 'static-load':
 				deformationReportData?.forEach((item, index) => {
@@ -239,35 +240,56 @@ function ReportDeformation() {
 					: testType === 'bending'
 					? 'Phiếu kiểm tra lực uốn'
 					: 'Phiếu kiểm tra chịu tải tĩnh'
-			} ${productName} ${format(new Date(), 'dd-MM-yyyy')}`
+			} ${deformationOverviewData.productName} ${format(new Date(), 'dd-MM-yyyy')}`
 		);
 	};
 	const onSubmit = (values) => {
 		dispatch(resetDeformationReportData());
 		setLoading(true);
+		const filteredData = [];
+
 		switch (values.testType) {
 			case 'static-load':
 				qaQcApi
-					.getStaticLoadReport(values.dateStart, values.dateEnd)
+					.getStaticLoadReport('2020-01-01', '2023-01-01')
 					.then((res) => {
+						console.log(res.data.items[0]);
 						setLoading(false);
-						res[0].staticLoadTestSheets?.forEach((item, index) => {
-							dispatch(
-								setDeformationReportData({
-									id: item.staticLoadReportId,
-									result: item.testResult,
-									total: item.totalError,
+						if (res.data.items.length > 0) {
+							res.data.items[0].samples?.forEach((item, index) => {
+								filteredData.push({
+									id: index + 1,
+									result: item.status,
+									total: item.numberOfErrors,
 									note: item.note,
-									employee: item.employee,
-								})
-							);
+									employee: res.data.items[0].tester.lastName + ' ' + res.data.items[0].tester.firstName,
+								});
+							});
 							dispatch(
 								setDeformationReportDataDate({
-									dateStart: format(new Date(res[0].startTime), 'dd/MM/yyyy'),
-									dateEnd: format(new Date(res[0].stopTime), 'dd/MM/yyyy'),
+									startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
+									stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
 								})
 							);
-						});
+							dispatch(
+								setDeformationOverviewData({
+									purpose:
+										res.data.items[0].testPurpose === 0
+											? 'period'
+											: res.data.items[0].testPurpose === 1
+											? 'anomaly'
+											: res.data.items[0].testPurpose === 2
+											? 'newProduct'
+											: 'other',
+									testNote: res.data.items[0].note,
+									productId: res.data.items[0].product.id,
+									productName: res.data.items[0].product.name,
+								})
+							);
+							dispatch(setDeformationReportData(filteredData));
+						} else {
+							setError('Không có dữ liệu trong ngày, vui lòng thử lại');
+						}
 					})
 					.catch((err) => {
 						setLoading(false);
@@ -276,22 +298,47 @@ function ReportDeformation() {
 				break;
 			case 'bending':
 				qaQcApi
-					.getCurlingForceReport(values.dateStart, values.dateEnd)
+					.getCurlingForceReport('2020-01-01', '2023-01-01')
 					.then((res) => {
+						console.log(res.data.items[0]);
 						setLoading(false);
-						res[0].curlingForceTestSheets?.forEach((item, index) => {
+						if (res.data.items.length > 0) {
+							res.data.items[0].samples?.forEach((item, index) => {
+								filteredData.push({
+									id: index + 1,
+									weight: (item.load / 1000).toFixed(2),
+									number_of_test: (item.duration / 1000).toFixed(2),
+									result: item.deformationDegree,
+									total: item.numberOfError,
+									note: item.note,
+									employee: res.data.items[0].tester.lastName + ' ' + res.data.items[0].tester.firstName,
+								});
+							});
+							dispatch(setDeformationReportData(filteredData));
 							dispatch(
-								setDeformationReportData({
-									id: item.curlingForceReportId,
-									weight: item.mass,
-									number_of_test: item.timeSpan,
-									result: item.warping,
-									total: item.totalError,
-									note: item.remark,
-									employee: item.employee,
+								setDeformationOverviewData({
+									purpose:
+										res.data.items[0].testPurpose === 0
+											? 'period'
+											: res.data.items[0].testPurpose === 1
+											? 'anomaly'
+											: res.data.items[0].testPurpose === 2
+											? 'newProduct'
+											: 'other',
+									testNote: res.data.items[0].note,
+									productId: res.data.items[0].product.id,
+									productName: res.data.items[0].product.name,
 								})
 							);
-						});
+							dispatch(
+								setDeformationReportDataDate({
+									startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
+									stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
+								})
+							);
+						} else {
+							setError('Không có dữ liệu trong ngày, vui lòng thử lại');
+						}
 					})
 					.catch((err) => {
 						setLoading(false);
@@ -301,28 +348,46 @@ function ReportDeformation() {
 				break;
 			case 'rock-test':
 				qaQcApi
-					.getRockTestReport(values.dateStart, values.dateEnd)
+					.getRockTestReport('2020-01-01', '2023-01-01')
 					.then((res) => {
 						setLoading(false);
-						res[0].rockTestSheets?.forEach((item, index) => {
-							dispatch(
-								setDeformationReportData({
-									id: item.rockTestReportId,
-									weight: item.mass,
-									number_of_test: item.numberOfTest,
-									result: item.testResult,
-									total: item.totalError,
+						if (res.data.items.length > 0) {
+							res.data.items[0].samples?.forEach((item, index) => {
+								filteredData.push({
+									id: index + 1,
+									weight: (item.load / 1000).toFixed(2),
+									number_of_test: item.testedTimes,
+									result: item.passed === true ? 'Oke' : 'Lỗi',
+									total: item.numberOfErrors,
 									note: item.note,
-									employee: item.employee,
+									employee: res.data.items[0].tester.lastName + ' ' + res.data.items[0].tester.firstName,
+								});
+							});
+							dispatch(setDeformationReportData(filteredData));
+							dispatch(
+								setDeformationOverviewData({
+									purpose:
+										res.data.items[0].testPurpose === 0
+											? 'period'
+											: res.data.items[0].testPurpose === 1
+											? 'anomaly'
+											: res.data.items[0].testPurpose === 2
+											? 'newProduct'
+											: 'other',
+									testNote: res.data.items[0].note,
+									productId: res.data.items[0].product.id,
+									productName: res.data.items[0].product.name,
 								})
 							);
 							dispatch(
 								setDeformationReportDataDate({
-									dateStart: format(new Date(res[0].startTime), 'dd/MM/yyyy'),
-									dateEnd: format(new Date(res[0].stopTime), 'dd/MM/yyyy'),
+									startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
+									stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
 								})
 							);
-						});
+						} else {
+							setError('Không có dữ liệu trong ngày, vui lòng thử lại');
+						}
 					})
 					.catch((err) => {
 						setLoading(false);
@@ -339,6 +404,7 @@ function ReportDeformation() {
 				deformation={true}
 				onSubmit={onSubmit}
 				exportReport={exportReport}
+				overviewData={deformationOverviewData}
 				reportData={deformationReportData}
 				reportHeaders={{
 					staticLoad: STATIC_LOAD_DEFORMATION_COLUMNS,

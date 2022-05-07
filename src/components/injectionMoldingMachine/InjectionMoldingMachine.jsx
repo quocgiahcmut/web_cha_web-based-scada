@@ -100,7 +100,15 @@ function InjectionMoldingMachine({ injectionMoldingMachineData }) {
 									<td>{injectionMoldingMachineData.openDoorTime}</td>
 								</tr>
 								<tr>
+									<td>Mã khuôn</td>
+									<td>{injectionMoldingMachineData.productId}</td>
+								</tr>
+								<tr>
 									<td>Mã sản phẩm ép</td>
+									<td>{injectionMoldingMachineData.productId}</td>
+								</tr>
+								<tr>
+									<td>Tên sản phẩm</td>
 									<td>{injectionMoldingMachineData.productId}</td>
 								</tr>
 							</tbody>
