@@ -184,7 +184,7 @@ function SecondSystem() {
 					'qaqclab',
 					['plc'],
 					[
-						'Sp Force Cyliner 3',
+						'Sp Force Cylinder 3',
 						'Sp No Press 3',
 						'Sp Time Hold 3',
 						'Pv Force Cylinder 3',
