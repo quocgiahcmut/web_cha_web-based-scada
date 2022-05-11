@@ -154,4 +154,4 @@ function ReportPackingTable({ reportHeaders, reportData, ...rest }) {
 	);
 }
 
-export default ReportPackingTable;
+export default React.memo(ReportPackingTable);

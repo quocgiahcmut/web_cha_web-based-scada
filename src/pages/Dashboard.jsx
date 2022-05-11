@@ -4,197 +4,22 @@ import Badge from '../components/badge/Badge';
 import Table from '../components/table/Table';
 import ToggleButtons from '../components/toggleButtons/ToggleButtons';
 import StatusCard from '../components/statusCard/StatusCard';
+import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as InjectionMoldingMachine } from '../assets/images/injectionMoldingMachine/injectionFullDetail.svg';
 import { ReactComponent as PackingMachine } from '../assets/images/packingClassification/packingClassification.svg';
 import QaQcTable from '../components/qaqcDashboardTable/QaqcDashboardTable';
 import ProgressBar from '../components/progressBar/ProgressBar';
 import ViewMoreButton from '../components/viewMoreButton/ViewMoreButton';
 import { convertHMS } from '../utils/utils';
-import { useDispatch, useSelector } from 'react-redux';
 import { injectionApi } from '../api/axios/injectionReport';
 import { setOeeOverall } from '../redux/slice/OeeReportSlice';
 import { format } from 'date-fns';
+
 // import { IgrRadialGauge, IgrRadialGaugeRange, IgrRadialGaugeModule } from 'igniteui-react-gauges';
 
 // IgrRadialGaugeModule.register();
-//------------------------------------------
-// const injectionOptions = {
-// 	// responsive: true,
-// 	plugins: {
-// 		labels: {
-// 			render: (args) => {
-// 				return args.label;
-// 			},
-// 		},
-// 		datalabels: {
-// 			font: {
-// 				weight: 'bold',
-// 				size: 16,
-// 			},
-// 		},
-// 		legend: {
-// 			display: true,
-// 			position: 'bottom',
-// 		},
-// 	},
-// };
-
-// const injectionData = {
-// 	labels: ['Máy ép nhỏ đang chạy', 'Máy ép nhỏ đang dừng', 'Máy ép lớn đang chạy', 'Máy ép lớn đang dừng'],
-// 	datasets: [
-// 		{
-// 			label: 'dataset1',
-// 			data: [25, 50, 100, 75],
-// 			backgroundColor: ['red', 'green', 'orange', 'blue'],
-// 		},
-// 	],
-// };
-//----------------------------------------------------
 const qaqcButtonList = ['Độ bền', 'Độ bền CB', 'Chống thấm', 'Độ biến dạng'];
-// const qaqcOptions = {
-// 	responsive: true,
-// 	maintainAspectRatio: false,
-// 	plugins: {
-// 		legend: {
-// 			display: true,
-// 			position: 'top',
-// 		},
-// 	},
-// 	scales: {
-// 		x: {
-// 			grid: {
-// 				display: false,
-// 			},
-// 		},
-// 		y: {
-// 			grid: {
-// 				display: false,
-// 			},
-// 		},
-// 	},
-// };
-
-// const qaqcData = {
-// 	labels: ['17:51', '18:00', '18:30', '19:00'],
-// 	datasets: [
-// 		{
-// 			label: 'Độ biến dạng',
-// 			data: [10, 25, 50, 100],
-// 			// fill: false,
-// 			borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
-// 			backgroundColor: [
-// 				'rgba(255, 99, 132, 0.2)',
-// 				'rgba(54, 162, 235, 0.2)',
-// 				'rgba(255, 206, 86, 0.2)',
-// 				'rgba(75, 192, 192, 0.2)',
-// 			],
-// 			tension: 0.1,
-// 		},
-// 		{
-// 			label: 'Độ bền',
-// 			data: [0, 25, 70, 80],
-// 			// fill: false,
-// 			borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
-// 			backgroundColor: [
-// 				'rgba(255, 99, 132, 0.2)',
-// 				'rgba(54, 162, 235, 0.2)',
-// 				'rgba(255, 206, 86, 0.2)',
-// 				'rgba(75, 192, 192, 0.2)',
-// 			],
-// 			tension: 0.1,
-// 		},
-// 		{
-// 			label: 'Độ bền CB',
-// 			data: [50, 100, 120, 140],
-// 			// fill: false,
-// 			borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
-// 			backgroundColor: [
-// 				'rgba(255, 99, 132, 0.2)',
-// 				'rgba(54, 162, 235, 0.2)',
-// 				'rgba(255, 206, 86, 0.2)',
-// 				'rgba(75, 192, 192, 0.2)',
-// 			],
-// 			tension: 0.1,
-// 		},
-// 		{
-// 			label: 'Chống thấm',
-// 			data: [5, 7, 8, 9],
-// 			// fill: false,
-// 			borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
-// 			backgroundColor: [
-// 				'rgba(255, 99, 132, 0.2)',
-// 				'rgba(54, 162, 235, 0.2)',
-// 				'rgba(255, 206, 86, 0.2)',
-// 				'rgba(75, 192, 192, 0.2)',
-// 			],
-// 			tension: 0.1,
-// 		},
-// 	],
-// };
-//----------------------------------
 const packingButtonList = ['Cụm 1', 'Cụm 2', 'Cụm 3', 'Cụm 4', 'Cụm 5', 'Cụm 6'];
-// const packingOptions = {
-// 	responsive: true,
-// 	maintainAspectRatio: false,
-// 	plugins: {
-// 		legend: {
-// 			display: true,
-// 			position: 'top',
-// 		},
-// 	},
-// 	scales: {
-// 		x: {
-// 			grid: {
-// 				display: false,
-// 			},
-// 		},
-// 		y: {
-// 			grid: {
-// 				display: false,
-// 			},
-// 		},
-// 	},
-// };
-
-// const packingData = {
-// 	labels: ['Cụm máy 1', 'Cụm máy 2', 'Cụm máy 3', 'Cụm máy 4', 'Cụm máy 5', 'Cụm máy 6'],
-// 	datasets: [
-// 		{
-// 			label: 'Sản phẩm thực hiện',
-// 			backgroundColor: 'blue',
-// 			data: [3, 7, 1, 5, 1, 2],
-// 		},
-// 		{
-// 			label: 'Giờ công',
-// 			backgroundColor: 'red',
-// 			data: [4, 3, 8, 1, 5, 6],
-// 		},
-// 	],
-// };
-// //-------------------------------------
-// const warehouseOptions = {
-// 	responsive: true,
-// 	maintainAspectRatio: false,
-// 	plugins: {
-// 		legend: {
-// 			display: false,
-// 		},
-// 	},
-// 	scales: {
-// 		x: {
-// 			grid: {
-// 				display: false,
-// 			},
-// 		},
-// 		y: {
-// 			grid: {
-// 				display: false,
-// 			},
-// 		},
-// 	},
-// 	indexAxis: 'y',
-// };
-//-------------------------------------
 const latestAlarmData = {
 	body: [
 		{
@@ -238,6 +63,7 @@ const renderAlarmBody = (item, index) => {
 
 //-------------------------------------
 const workingHoursSetPoint = 28800;
+
 const Dashboard = () => {
 	// const themeReducer = useSelector((state) => state.theme.mode);
 	const [packingData] = React.useState({
@@ -289,12 +115,12 @@ const Dashboard = () => {
 					dispatch(setOeeOverall([availability.toFixed(2), performance.toFixed(2), quality.toFixed(2)]));
 				})
 				.catch((err) => {
-					alert(err);
-					console.log(err);
+					console.error(err);
 				});
 		},
 		[dispatch]
 	);
+
 	React.useEffect(() => {
 		onSubmit(format(new Date(Date.now() - initialOeeDateStart * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'));
 	}, [onSubmit, initialOeeDateStart]);

@@ -66,7 +66,11 @@ function ForcedEndurance() {
 	];
 	return (
 		<>
-			<CustomizedBreadcrumbs href="/qaqc" sector="PHÒNG QA/QC THIẾT BỊ" id="MÁY KIẾM TRA ĐỘ BỀN ĐÓNG CƯỠNG BỨC" />
+			<CustomizedBreadcrumbs
+				href="/layout/qaqc"
+				sector="PHÒNG QA/QC THIẾT BỊ"
+				id="MÁY KIẾM TRA ĐỘ BỀN ĐÓNG CƯỠNG BỨC"
+			/>
 			<div className="row">
 				<div className="col-3">
 					<div className="card">

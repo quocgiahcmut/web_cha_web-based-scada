@@ -12,12 +12,27 @@ import { Link, NavLink } from 'react-router-dom';
 
 import { setActiveMenu } from '../../redux/slice/SideBarSlice';
 
+import { useHistory } from 'react-router-dom';
+
+import { useAuth } from 'oidc-react';
+
 const SidebarItem = (props) => {
+	const { signOut } = useAuth();
+	const history = useHistory();
 	const active = props.active ? 'active' : '';
+	const onClick = async () => {
+		await signOut();
+		history.push('/login');
+	};
 	return (
 		<div className="sidebar__item">
 			<div className="sidebar__item-flex">
-				<Link to={props.route}>
+				<Link
+					onClick={async () => {
+						await onClick();
+					}}
+					to={props.route}
+				>
 					<div className={` sidebar__item-inner ${active}`}>
 						<i className={props.icon}></i>
 						<span>{props.title}</span>
@@ -88,4 +103,4 @@ function Sidebar(props) {
 	);
 }
 
-export default Sidebar;
+export default React.memo(Sidebar);

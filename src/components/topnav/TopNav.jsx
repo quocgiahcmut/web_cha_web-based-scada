@@ -51,6 +51,7 @@ import { useSelector } from 'react-redux';
 // };
 
 const Topnav = () => {
+	const { isLoggedIn } = useSelector((state) => state.login);
 	const [filteredData, setFilteredData] = React.useState([]);
 	const [wordEntered, setWordEntered] = React.useState('');
 	const sideBarReducer = useSelector((state) => state.sidebar);
@@ -117,12 +118,10 @@ const Topnav = () => {
 						renderFooter={() => <Link to="/">View All</Link>}
 					/> */}
 				</div>
-				{/* <div className="topnav__right-item">
-					<ThemeMenu />
-				</div> */}
+				<div className="topnav__right-item">{isLoggedIn ? <NavLink to="/logout" /> : <NavLink to="/login" />}</div>
 			</div>
 		</div>
 	);
 };
 
-export default Topnav;
+export default React.memo(Topnav);

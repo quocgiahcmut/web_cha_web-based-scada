@@ -52,7 +52,6 @@ function TrackingMonthlyInjection() {
 									: 'lightred',
 						};
 					});
-				console.log('filteredData', filteredData);
 				dispatch(setMonthlyInjectionPlanTrackingData(filteredData));
 				setLoading(false);
 				setError(null);

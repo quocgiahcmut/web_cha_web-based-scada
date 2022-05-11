@@ -87,7 +87,7 @@ function FirstSystem() {
 				});
 			})
 			.catch((err) => {
-				alert(err);
+				console.error(err);
 			});
 		setConnection(connect);
 		return () => {

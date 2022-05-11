@@ -7,103 +7,103 @@
 	},
 	{
 		"display_name": "Tiến độ kế hoạch",
-		"route": "/plan-tracking",
+		"route": "/layout/plan-tracking",
 		"icon": "bx bx-cube-alt",
 		"subNav": [
 			{
 				"display_name": "Theo ngày",
-				"route": "/plan-tracking/daily",
+				"route": "/layout/plan-tracking/daily",
 				"icon": "bx bxs-calendar"
 			},
 			{
 				"display_name": "Tiến độ theo tháng",
-				"route": "/plan-tracking/monthly",
+				"route": "/layout/plan-tracking/monthly",
 				"icon": "bx bxs-calendar"
 			}
 		]
 	},
 	{
 		"display_name": "Kho vận",
-		"route": "/warehouse",
+		"route": "/layout/warehouse",
 		"icon": "bx bxs-truck",
 		"subNav": []
 	},
 	{
 		"display_name": "Phòng QA/QC thiết bị",
-		"route": "/qaqc",
+		"route": "/layout/qaqc",
 		"icon": "bx bx-list-check",
 		"subNav": [
 			{
 				"display_name": "Độ bền biến dạng",
-				"route": "/qaqc/m1",
+				"route": "/layout/qaqc/m1",
 				"icon": "bx bx-desktop"
 			},
 			{
 				"display_name": "Độ bền",
-				"route": "/qaqc/m2",
+				"route": "/layout/qaqc/m2",
 				"icon": "bx bx-desktop"
 			},
 			{
 				"display_name": "Độ bền cưỡng bức",
-				"route": "/qaqc/m3",
+				"route": "/layout/qaqc/m3",
 				"icon": "bx bx-desktop"
 			},
 			{
 				"display_name": "Chống thấm",
-				"route": "/qaqc/m4",
+				"route": "/layout/qaqc/m4",
 				"icon": "bx bx-desktop"
 			}
 		]
 	},
 	{
 		"display_name": "Máy ép",
-		"route": "/injection",
+		"route": "/layout/injection",
 		"icon": "bx bx-layer",
 		"subNav": [
 			{
 				"display_name": "Dạng bảng",
-				"route": "/injection/pages/1",
+				"route": "/layout/injection/pages/1",
 				"icon": "bx bx-table"
 			},
 			{
 				"display_name": "Dạng bản đồ",
-				"route": "/injection/map",
+				"route": "/layout/injection/map",
 				"icon": "bx bxs-map-pin"
 			}
 		]
 	},
 	{
 		"display_name": "Khu vực đóng gói",
-		"route": "/packing",
+		"route": "/layout/packing",
 		"icon": "bx bxs-package",
 		"subNav": []
 	},
 	{
 		"display_name": "báo cáo",
-		"route": "/report",
+		"route": "/layout/report",
 		"icon": "bx bx-file",
 		"subNav": [
 			{
 				"display_name": "Báo cáo các khu vực",
-				"route": "/report/main",
+				"route": "/layout/report/main",
 				"icon": "bx bx-desktop"
 			},
 			{
 				"display_name": "Đánh giá chỉ số OEE",
-				"route": "/report/oee",
+				"route": "/layout/report/oee",
 				"icon": "bx bx-desktop"
 			}
 		]
 	},
 	{
 		"display_name": "cảnh báo",
-		"route": "/warning",
+		"route": "/layout/warning",
 		"icon": "bx bx-alarm-exclamation",
 		"subNav": []
 	},
 	{
 		"display_name": "cài đặt",
-		"route": "/settings",
+		"route": "/layout/settings",
 		"icon": "bx bx-cog",
 		"subNav": []
 	},

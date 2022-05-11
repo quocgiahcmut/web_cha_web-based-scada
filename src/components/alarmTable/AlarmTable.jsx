@@ -128,4 +128,4 @@ function AlarmTable({ alarmData }) {
 	);
 }
 
-export default AlarmTable;
+export default React.memo(AlarmTable);

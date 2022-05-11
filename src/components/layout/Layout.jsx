@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './layout.css';
 
@@ -6,45 +6,53 @@ import Sidebar from '../sidebar/Sidebar';
 import Routes from '../Routes';
 import TopNav from '../topnav/TopNav';
 
-import { BrowserRouter, Route } from 'react-router-dom';
+import { accessToken } from '../../utils/utils';
+import { setLogin } from '../../redux/slice/LoginSlice';
+
+import { Route } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-
-// import ThemeAction from '../../redux/actions/ThemeAction';
-
-import { setMode, setColor } from '../../redux/slice/ThemeSlice';
-
+import { useAuth } from 'oidc-react';
 const Layout = () => {
+	const { userData } = useAuth();
+	const [token, setToken] = React.useState('');
 	const themeReducer = useSelector((state) => state.theme);
 
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		const themeClass = localStorage.getItem('themeMode', 'theme-mode-light');
-
-		const colorClass = localStorage.getItem('colorMode', 'theme-mode-light');
-
-		dispatch(setMode(themeClass));
-
-		dispatch(setColor(colorClass));
-	}, [dispatch]);
+	React.useEffect(() => {
+		setToken(accessToken);
+	}, []);
+	React.useEffect(() => {
+		token
+			? dispatch(
+					setLogin({
+						user: null,
+						isLoggedIn: true,
+					})
+			  )
+			: dispatch(setLogin({ user: null, isLoggedIn: false }));
+	}, [token, dispatch]);
 	return (
-		<BrowserRouter>
-			<Route
-				render={(props) => (
-					<div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
-						<Sidebar {...props} />
-						{/* <div className={`layout__content ${activeMenu === '' ? '' : 'active'}`}> */}
-						<div className={`layout__content`}>
-							<TopNav />
-							<div className="layout__content-main">
-								<Routes />
-							</div>
+		<Route
+			render={(props) => (
+				<div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
+					<Sidebar {...props} />
+					<div className={`layout__content`}>
+						<pre
+							style={{
+								display: 'none',
+							}}
+						>
+							<code>{JSON.stringify(userData, null, 2)}</code>
+						</pre>
+						<TopNav />
+						<div className="layout__content-main">
+							<Routes />
 						</div>
 					</div>
-				)}
-			/>
-		</BrowserRouter>
+				</div>
+			)}
+		/>
 	);
 };
 export default Layout;

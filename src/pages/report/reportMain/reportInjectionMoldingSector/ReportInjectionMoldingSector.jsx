@@ -15,21 +15,20 @@ function ReportInjectionMoldingSector() {
 	const [hasNothing, setHasNothing] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [error, setError] = React.useState(null);
-	console.log(injectionReportData);
-	const onSubmit = (value) => {
-		dispatch(resetInjectionReportData());
-		setIsLoading(true);
-		injectionApi
-			.getTemporaryInjectionReport(value.moldingMachineId, value.dateStart, value.dateEnd)
-			.then((res) => {
-				setIsLoading(false);
-				console.log(res);
-				if (res.data.items.length === 0) {
-					setHasNothing(true);
-				} else {
-					res.data.items.forEach((item, index) => {
-						dispatch(
-							setInjectionReportData({
+	const onSubmit = React.useCallback(
+		(value) => {
+			dispatch(resetInjectionReportData());
+			setIsLoading(true);
+			injectionApi
+				.getTemporaryInjectionReport(value.moldingMachineId, value.dateStart, value.dateEnd)
+				.then((res) => {
+					setIsLoading(false);
+					const filteredData = [];
+					if (res.data.items.length === 0) {
+						setHasNothing(true);
+					} else {
+						res.data.items.forEach((item, index) => {
+							filteredData.push({
 								MachineID: item.machine.id,
 								Shift:
 									item.shiftNumber === 0
@@ -47,16 +46,18 @@ function ReportInjectionMoldingSector() {
 									TotalQuantity: item.totalQuantity,
 									Employee: item.employee.lastName + ' ' + item.employee.firstName,
 								})),
-							})
-						);
-					});
-				}
-			})
-			.catch((err) => {
-				setIsLoading(false);
-				setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
-			});
-	};
+							});
+						});
+						dispatch(setInjectionReportData(filteredData));
+					}
+				})
+				.catch((err) => {
+					setIsLoading(false);
+					setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
+				});
+		},
+		[dispatch]
+	);
 	return (
 		<>
 			<ReportInjectionFilter onSubmit={onSubmit} />

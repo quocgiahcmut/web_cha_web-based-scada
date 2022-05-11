@@ -119,7 +119,7 @@ function Endurance() {
 	// Số lần đóng nắp SP
 	return (
 		<>
-			<CustomizedBreadcrumbs href="/qaqc" sector="PHÒNG QA/QC THIẾT BỊ" id="MÁY KIẾM TRA ĐỘ BỀN ĐÓNG ÊM" />
+			<CustomizedBreadcrumbs href="/layout/qaqc" sector="PHÒNG QA/QC THIẾT BỊ" id="MÁY KIẾM TRA ĐỘ BỀN ĐÓNG ÊM" />
 			<div className="row">
 				<div className="col-3">
 					<div className="card">

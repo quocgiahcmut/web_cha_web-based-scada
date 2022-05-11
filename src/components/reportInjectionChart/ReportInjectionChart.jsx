@@ -156,4 +156,4 @@ function ReportInjectionChart({ shift, series, categories, moldId }) {
 	);
 }
 
-export default ReportInjectionChart;
+export default React.memo(ReportInjectionChart);

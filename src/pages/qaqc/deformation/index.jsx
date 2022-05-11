@@ -17,7 +17,7 @@ function Deformation() {
 
 	return (
 		<>
-			<CustomizedBreadcrumbs href="/qaqc" sector="PHÒNG QA/QC THIẾT BỊ" id="MÁY KIẾM TRA ĐỘ BIẾN DẠNG" />
+			<CustomizedBreadcrumbs href="/layout/qaqc" sector="PHÒNG QA/QC THIẾT BỊ" id="MÁY KIẾM TRA ĐỘ BIẾN DẠNG" />
 			<ToggleButtonGroup
 				fullWidth={true}
 				value={alignment}
@@ -47,7 +47,7 @@ function Deformation() {
 			</ToggleButtonGroup>
 			{/* <ScrollToBottom /> */}
 			<Switch>
-				<Redirect exact from="/qaqc/m1" to={`${match.url}/system1`} />
+				<Redirect exact from={match.url} to={`${match.url}/system1`} />
 				<Route path={`${match.url}/system1`} component={FirstSystem} />
 				<Route path={`${match.url}/system2`} component={SecondSystem} />
 			</Switch>

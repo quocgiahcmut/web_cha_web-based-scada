@@ -28,6 +28,7 @@ const injectionApi = {
 	},
 	getTemporaryOeeStatistics(startTime, stopTime) {
 		//yyyy-MM-dd
+
 		return axios.get(`${this.REQUEST_URL}/oeestatistics`, {
 			headers: {
 				'Content-Type': 'application/json',

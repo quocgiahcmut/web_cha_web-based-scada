@@ -123,7 +123,7 @@ function WaterProofing() {
 	];
 	return (
 		<>
-			<CustomizedBreadcrumbs href="/qaqc" sector="PHÒNG QA/QC THIẾT BỊ" id="MÁY KIẾM TRA CHỐNG THẤM NƯỚC" />
+			<CustomizedBreadcrumbs href="/layout/qaqc" sector="PHÒNG QA/QC THIẾT BỊ" id="MÁY KIẾM TRA CHỐNG THẤM NƯỚC" />
 			<div className="row">
 				<div className="col-3">
 					<div className="card">

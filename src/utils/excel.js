@@ -74,8 +74,8 @@ const saveExcelFile = async (workbook, fileName = 'excel-file') => {
 		const fileExtension = '.xlsx';
 		const blob = new Blob([buffer], { type: fileType });
 		saveAs(blob, fileName + fileExtension);
-	} catch (error) {
-		alert(error);
+	} catch (err) {
+		console.error(err);
 	}
 };
 

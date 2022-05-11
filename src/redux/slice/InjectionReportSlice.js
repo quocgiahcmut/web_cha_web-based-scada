@@ -7,7 +7,8 @@ const reportData = createSlice({
 	},
 	reducers: {
 		setInjectionReportData: (state, action) => {
-			state.injectionReportData.push(action.payload);
+			// state.injectionReportData.push(action.payload);
+			state.injectionReportData = action.payload;
 		},
 		resetInjectionReportData: (state) => {
 			state.injectionReportData = [];

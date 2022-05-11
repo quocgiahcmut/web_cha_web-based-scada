@@ -98,4 +98,4 @@ function AlarmFilter({ onSubmit }) {
 	);
 }
 
-export default AlarmFilter;
+export default React.memo(AlarmFilter);

@@ -159,4 +159,4 @@ function ReportQaqcFilter({
 	);
 }
 
-export default ReportQaqcFilter;
+export default React.memo(ReportQaqcFilter);

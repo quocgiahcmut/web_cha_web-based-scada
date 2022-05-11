@@ -44,7 +44,7 @@ function InjectionDetail() {
 	// 			});
 	// 		})
 	// 		.catch((err) => {
-	// 			alert(err);
+	// 			console.error(err);
 	// 		});
 	// 	setConnection(connect);
 	// 	return () => {
@@ -99,7 +99,11 @@ function InjectionDetail() {
 
 	return (
 		<>
-			<Breadcrumbs href={`${!map ? '/injection/pages/1' : '/injection/map'}`} sector="KHU MÁY ÉP" id={id} />
+			<Breadcrumbs
+				href={`${!map ? '/layout/injection/pages/1' : '/layout/injection/map'}`}
+				sector="KHU MÁY ÉP"
+				id={id}
+			/>
 			{injectionMoldingMachineConfiguration && (
 				<InjectionDetailComponent
 					injectionMoldingMachineConfiguration={injectionMoldingMachineConfiguration}

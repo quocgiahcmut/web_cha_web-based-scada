@@ -6,14 +6,14 @@ const axiosClient = axios.create({
 	headers: {
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Origin': 'http://localhost:3000/',
-		// 'Access-Control-Request-Headers': 'Content-Type',
+		'Access-Control-Request-Headers': 'Content-Type',
 	},
 	withCredentials: false,
 	paramsSerializer: (params) => queryString.stringify(params),
 });
 
-axiosClient.interceptors.request.use(async (config) => {
-	const token = await localStorage.getItem('token');
+axiosClient.interceptors.request.use((config) => {
+	const token = localStorage.getItem('access_token');
 	if (token) {
 		config.headers.Authorization = `Bearer ${token}`;
 	}

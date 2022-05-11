@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
-import Dashboard from '../pages/Dashboard';
 import Error from '../pages/Error';
 import QualityControlRoutes from '../pages/qaqc';
 import InjectionMoldingMachinePage from '../pages/injectionMoldinMachine/injectionPage';
@@ -20,28 +19,30 @@ import Settings from '../pages/Settings';
 import PlanTracking from '../pages/planTracking/PlanTracking';
 import TrackingMonthly from '../pages/planTracking/trackingMonthly/TrackingMonthly';
 import TrackingDaily from '../pages/planTracking/trackingDaily/TrackingDaily';
-
+import PrivateRoute from '../utils/protectedRoute';
+import Dashboard from '../pages/Dashboard';
 const Routes = () => {
+	const { url } = useRouteMatch();
 	return (
 		<Switch>
-			<Route path="/" exact component={Dashboard} />
-			<Route path="/plan-tracking" exact component={PlanTracking} />
-			<Route path="/plan-tracking/monthly" component={TrackingMonthly} />
-			<Route path="/plan-tracking/daily" component={TrackingDaily} />
-			<Route path="/warehouse/:id" component={WarehouseDetail} />
-			<Route path="/warehouse" component={WarehouseOverview} />
-			<Route path="/qaqc" component={QualityControlRoutes} />
-			<Route path="/packing" exact component={PackingPage} />
-			<Route path="/packing/:id" component={PackingDetail} />
-			<Route path="/injection" exact component={InjectionMoldingMainPage} />
-			<Route exact path="/injection/map" component={InjectionMap} />
-			<Route path="/injection/pages/:page" component={InjectionMoldingMachinePage} />
-			<Route path="/injection/:id" component={InjectionDetail} />
-			<Route path="/warning" component={Alarm} />
-			<Route path="/report" component={Report} />
-			<Route path="/settings" component={Settings} />
-			<Route path="/test" component={Test} />
-			<Route path="*" component={Error} />
+			<PrivateRoute exact path={`${url}/dashboard`} component={Dashboard} />
+			<Route path={`${url}/plan-tracking`} exact component={PlanTracking} />
+			<Route path={`${url}/plan-tracking/monthly`} component={TrackingMonthly} />
+			<Route path={`${url}/plan-tracking/daily`} component={TrackingDaily} />
+			<Route path={`${url}/warehouse/:id`} component={WarehouseDetail} />
+			<Route path={`${url}/warehouse/`} component={WarehouseOverview} />
+			<Route path={`${url}/qaqc`} component={QualityControlRoutes} />
+			<Route path={`${url}/packing`} exact component={PackingPage} />
+			<Route path={`${url}/packing/:id`} component={PackingDetail} />
+			<Route path={`${url}/injection`} exact component={InjectionMoldingMainPage} />
+			<Route exact path={`${url}/injection/map`} component={InjectionMap} />
+			<Route path={`${url}/injection/pages/:page`} component={InjectionMoldingMachinePage} />
+			<Route path={`${url}/injection/:id`} component={InjectionDetail} />
+			<Route path={`${url}/warning`} component={Alarm} />
+			<Route path={`${url}/report`} component={Report} />
+			<Route path={`${url}/settings`} component={Settings} />
+			<Route path={`${url}/test`} component={Test} />
+			<Route component={Error} />
 		</Switch>
 	);
 };

@@ -100,4 +100,4 @@ function ReportInjectionFilter({ onSubmit }) {
 	);
 }
 
-export default ReportInjectionFilter;
+export default React.memo(ReportInjectionFilter);

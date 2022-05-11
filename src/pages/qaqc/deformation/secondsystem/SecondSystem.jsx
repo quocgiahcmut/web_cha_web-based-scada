@@ -135,7 +135,7 @@ function SecondSystem() {
 				});
 			})
 			.catch((err) => {
-				alert(err);
+				console.error(err);
 			});
 		setConnection(connect);
 		return () => {

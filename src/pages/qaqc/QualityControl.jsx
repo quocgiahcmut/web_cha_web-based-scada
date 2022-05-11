@@ -51,7 +51,7 @@ function QualityControl() {
 				setConnectionState('connected');
 			})
 			.catch((err) => {
-				alert(err);
+				console.error(err);
 			});
 		return () => {
 			connect.stop();

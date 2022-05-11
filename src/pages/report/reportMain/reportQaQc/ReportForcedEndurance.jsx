@@ -24,7 +24,7 @@ function ReportForcedEndurance() {
 	const { forcedEnduranceOverviewData, forcedEnduranceReportData, forcedEnduranceReportDataDate } = useSelector(
 		(state) => state.qaQcReportData
 	);
-	const exportReport = () => {
+	const exportReport = React.useCallback(() => {
 		const workbook = createExcelFile(convention, 11);
 		const sheet1 = workbook.getWorksheet('sheet1');
 
@@ -144,65 +144,68 @@ function ReportForcedEndurance() {
 			workbook,
 			`Phiếu kiểm tra đóng cưỡng bức ${forcedEnduranceOverviewData.productName} ${format(new Date(), 'dd-MM-yyyy')}`
 		);
-	};
-	const onSubmit = (values) => {
-		dispatch(resetForcedEnduranceReportData());
-		setLoading(true);
-		qaQcApi
-			.getForcedEnduranceReport(values.dateStart, values.dateEnd)
-			.then((res) => {
-				setLoading(false);
-				console.log(res.data.items[0]);
-				const filteredData = [];
-				if (res.data.items.length > 0) {
-					res.data.items[0].samples?.forEach((item) => {
-						filteredData.push({
-							sample: item.sampleNumber,
-							time: (item.result.fallTime / 1000).toFixed(2),
-							toilet_bumper: item.result.isIntact === true ? 'Oke' : 'Lỗi',
-							no_oil_spill: item.result.isUnleaked === true ? 'Oke' : 'Lỗi',
-							first_result: item.result.passed === true ? 'Oke' : 'Lỗi',
-							closing_time: (item.result.fallTime / 1000).toFixed(2),
-							no_drop_bumper: item.result.isIntact === true ? 'Oke' : 'Lỗi',
-							no_spill: item.result.isUnleaked === true ? 'Oke' : 'Lỗi',
-							second_result: item.result.passed === true ? 'Oke' : 'Lỗi',
-							total: item.sampleNumber,
-							note: item.note,
-							employee: res.data.items[0].tester.lastName + ' ' + res.data.items[0].tester.firstName,
-						});
-					});
-					dispatch(setForcedEnduranceReportData(filteredData));
-					dispatch(
-						setForcedEnduranceOverviewData({
-							purpose:
-								res.data.items[0].testPurpose === 0
-									? 'period'
-									: res.data.items[0].testPurpose === 1
-									? 'anomaly'
-									: res.data.items[0].testPurpose === 2
-									? 'newProduct'
-									: 'other',
-							testNote: res.data.items[0].note,
-							productId: res.data.items[0].product.id,
-							productName: res.data.items[0].product.name,
-						})
-					);
-					dispatch(
-						setForcedEnduranceReportDataDate({
-							startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
-							stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
-						})
-					);
-				} else {
+	}, [forcedEnduranceOverviewData, forcedEnduranceReportData, forcedEnduranceReportDataDate]);
+	const onSubmit = React.useCallback(
+		(values) => {
+			dispatch(resetForcedEnduranceReportData());
+			setLoading(true);
+			qaQcApi
+				.getForcedEnduranceReport(values.dateStart, values.dateEnd)
+				.then((res) => {
 					setLoading(false);
-					setError(`Không có dữ liệu trong ngày, vui lòng chọn ngày khác`);
-				}
-			})
-			.catch((err) => {
-				setLoading(false);
-				setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
-			});
-	};
+					console.log(res.data.items[0]);
+					const filteredData = [];
+					if (res.data.items.length > 0) {
+						res.data.items[0].samples?.forEach((item) => {
+							filteredData.push({
+								sample: item.sampleNumber,
+								time: (item.result.fallTime / 1000).toFixed(2),
+								toilet_bumper: item.result.isIntact === true ? 'Oke' : 'Lỗi',
+								no_oil_spill: item.result.isUnleaked === true ? 'Oke' : 'Lỗi',
+								first_result: item.result.passed === true ? 'Oke' : 'Lỗi',
+								closing_time: (item.result.fallTime / 1000).toFixed(2),
+								no_drop_bumper: item.result.isIntact === true ? 'Oke' : 'Lỗi',
+								no_spill: item.result.isUnleaked === true ? 'Oke' : 'Lỗi',
+								second_result: item.result.passed === true ? 'Oke' : 'Lỗi',
+								total: item.sampleNumber,
+								note: item.note,
+								employee: item.tester.lastName + ' ' + item.tester.firstName,
+							});
+						});
+						dispatch(setForcedEnduranceReportData(filteredData));
+						dispatch(
+							setForcedEnduranceOverviewData({
+								purpose:
+									res.data.items[0].testPurpose === 0
+										? 'period'
+										: res.data.items[0].testPurpose === 1
+										? 'anomaly'
+										: res.data.items[0].testPurpose === 2
+										? 'newProduct'
+										: 'other',
+								testNote: res.data.items[0].note,
+								productId: res.data.items[0].product.id,
+								productName: res.data.items[0].product.name,
+							})
+						);
+						dispatch(
+							setForcedEnduranceReportDataDate({
+								startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
+								stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
+							})
+						);
+					} else {
+						setLoading(false);
+						setError(`Không có dữ liệu trong ngày, vui lòng chọn ngày khác`);
+					}
+				})
+				.catch((err) => {
+					setLoading(false);
+					setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
+				});
+		},
+		[dispatch]
+	);
 	return (
 		<>
 			<ReportQaqcFilter dataDisplay={forcedEnduranceReportData} onSubmit={onSubmit} exportReport={exportReport} />

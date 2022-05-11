@@ -17,11 +17,11 @@ function Alarm() {
 		],
 		[]
 	);
-	const onSubmit = (value) => {
+	const onSubmit = React.useCallback((value) => {
 		value.dateStart = format(new Date(value.dateStart), 'yyyy-MM-dd');
 		value.dateEnd = format(new Date(value.dateEnd), 'yyyy-MM-dd');
 		console.log(value);
-	};
+	}, []);
 	const [dataToDownload] = React.useState(alarm_mocking);
 	return (
 		<>

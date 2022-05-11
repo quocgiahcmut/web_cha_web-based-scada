@@ -53,4 +53,4 @@ function QaqcOverviewReportTable({ overviewData }) {
 	);
 }
 
-export default QaqcOverviewReportTable;
+export default React.memo(QaqcOverviewReportTable);

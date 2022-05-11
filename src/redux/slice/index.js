@@ -13,6 +13,7 @@ import QaQcMonitorReducer from './QaQcMonitorSlice';
 import OeeReportReducer from './OeeReportSlice';
 import WarehouseReducer from './WarehouseSlice';
 import PlanTrackingReducer from './PlanTrackingSlice';
+import LoginReducer from './LoginSlice';
 const rootReducer = {
 	theme: ThemeReducer,
 	sidebar: SideBarReducer,
@@ -22,6 +23,7 @@ const rootReducer = {
 	oeeReportData: OeeReportReducer,
 	warehouse: WarehouseReducer,
 	planTracking: PlanTrackingReducer,
+	login: LoginReducer,
 };
 
 export default rootReducer;

@@ -94,4 +94,4 @@ function ReportOee({
 	);
 }
 
-export default ReportOee;
+export default React.memo(ReportOee);

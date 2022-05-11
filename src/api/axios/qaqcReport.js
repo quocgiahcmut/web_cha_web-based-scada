@@ -45,7 +45,7 @@ const qaQcApi = {
 		});
 	},
 	getWaterProofReport(startTime, stopTime) {
-		return axios.get('/qaqc/waterproof', {
+		return axios.get('https://localhost:7116/api/WaterProofingTests', {
 			params: {
 				startTime,
 				stopTime: format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd'),

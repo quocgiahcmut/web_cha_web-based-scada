@@ -25,7 +25,7 @@ function ReportEndurance() {
 	// const [data, setData] = React.useState([]);
 	const [loading, setLoading] = React.useState(false);
 	const [error, setError] = React.useState(null);
-	const exportReport = () => {
+	const exportReport = React.useCallback(() => {
 		const workbook = createExcelFile(convention, 11);
 		const sheet1 = workbook.getWorksheet('sheet1');
 
@@ -146,66 +146,69 @@ function ReportEndurance() {
 			workbook,
 			`Phiếu kiểm tra đóng êm ${enduranceOverviewData.productName} ${format(new Date(), 'dd-MM-yyyy')}`
 		);
-	};
+	}, [enduranceOverviewData, enduranceReportData, enduranceReportDataDate]);
 
-	const onSubmit = (values) => {
-		dispatch(resetEnduranceReportData());
-		setLoading(true);
-		qaQcApi
-			.getEnduranceReport(values.dateStart, values.dateEnd)
-			.then((res) => {
-				console.log(res.data.items);
-				const filteredData = [];
-				setLoading(false);
-				if (res.data.items.length > 0) {
-					res.data.items[0].samples.forEach((item) => {
-						filteredData.push({
-							sample: item.sampleNumber,
-							time: (item.seatLidResult.fallTime / 1000).toFixed(2),
-							toilet_bumper: item.seatLidResult.isBumperIntact === true ? 'oke' : 'lỗi',
-							no_oil_spill: item.seatLidResult.isUnleaked === true ? 'oke' : 'lỗi',
-							first_result: item.seatLidResult.passed === true ? 'oke' : 'lỗi',
-							closing_time: (item.seatRingResult.fallTime / 1000).toFixed(2),
-							no_drop_bumper: item.seatRingResult.isBumperIntact === true ? 'oke' : 'lỗi',
-							no_spill: item.seatRingResult.isUnleaked === true ? 'oke' : 'lỗi',
-							second_result: item.seatRingResult.passed === true ? 'oke' : 'lỗi',
-							total: item.sampleNumber,
-							note: item.note,
-							employee: res.data.items[0].tester.lastName + ' ' + res.data.items[0].tester.firstName,
-						});
-					});
-					dispatch(setEnduranceReportData(filteredData));
-					dispatch(
-						setEnduranceOverviewData({
-							purpose:
-								res.data.items[0].testPurpose === 0
-									? 'period'
-									: res.data.items[0].testPurpose === 1
-									? 'anomaly'
-									: res.data.items[0].testPurpose === 2
-									? 'newProduct'
-									: 'other',
-							testNote: res.data.items[0].note,
-							productId: res.data.items[0].product.id,
-							productName: res.data.items[0].product.name,
-						})
-					);
-					dispatch(
-						setEnduranceReportDataDate({
-							startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
-							stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
-						})
-					);
-				} else {
+	const onSubmit = React.useCallback(
+		(values) => {
+			dispatch(resetEnduranceReportData());
+			setLoading(true);
+			qaQcApi
+				.getEnduranceReport(values.dateStart, values.dateEnd)
+				.then((res) => {
+					console.log(res.data.items);
+					const filteredData = [];
 					setLoading(false);
-					setError(`Không có dữ liệu trong ngày, vui lòng chọn ngày khác`);
-				}
-			})
-			.catch((err) => {
-				setLoading(false);
-				setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
-			});
-	};
+					if (res.data.items.length > 0) {
+						res.data.items[0].samples.forEach((item) => {
+							filteredData.push({
+								sample: item.sampleNumber,
+								time: (item.seatLidResult.fallTime / 1000).toFixed(2),
+								toilet_bumper: item.seatLidResult.isBumperIntact === true ? 'oke' : 'lỗi',
+								no_oil_spill: item.seatLidResult.isUnleaked === true ? 'oke' : 'lỗi',
+								first_result: item.seatLidResult.passed === true ? 'oke' : 'lỗi',
+								closing_time: (item.seatRingResult.fallTime / 1000).toFixed(2),
+								no_drop_bumper: item.seatRingResult.isBumperIntact === true ? 'oke' : 'lỗi',
+								no_spill: item.seatRingResult.isUnleaked === true ? 'oke' : 'lỗi',
+								second_result: item.seatRingResult.passed === true ? 'oke' : 'lỗi',
+								total: item.sampleNumber,
+								note: item.note,
+								employee: item.tester.lastName + ' ' + item.tester.firstName,
+							});
+						});
+						dispatch(setEnduranceReportData(filteredData));
+						dispatch(
+							setEnduranceOverviewData({
+								purpose:
+									res.data.items[0].testPurpose === 0
+										? 'period'
+										: res.data.items[0].testPurpose === 1
+										? 'anomaly'
+										: res.data.items[0].testPurpose === 2
+										? 'newProduct'
+										: 'other',
+								testNote: res.data.items[0].note,
+								productId: res.data.items[0].product.id,
+								productName: res.data.items[0].product.name,
+							})
+						);
+						dispatch(
+							setEnduranceReportDataDate({
+								startTime: format(new Date(res.data.items[0].startDate), 'dd/MM/yyyy'),
+								stopTime: format(new Date(res.data.items[0].endDate), 'dd/MM/yyyy'),
+							})
+						);
+					} else {
+						setLoading(false);
+						setError(`Không có dữ liệu trong ngày, vui lòng chọn ngày khác`);
+					}
+				})
+				.catch((err) => {
+					setLoading(false);
+					setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
+				});
+		},
+		[dispatch]
+	);
 
 	return (
 		<>
@@ -220,8 +223,6 @@ function ReportEndurance() {
 				<>
 					<QaqcOverviewReportTable overviewData={enduranceOverviewData} />
 					<ReportQaqcTable reportData={enduranceReportData} reportHeaders={ENDURANCE_COLUMNS} />
-					{/* <ReportEndurance reportData={enduranceOverviewData} reportHeaders={QAQC_OVERVIEW_COLUMNS} /> */}
-					{/* <code>{JSON.stringify(enduranceReportData, null, 2)}</code> */}
 				</>
 			)}
 		</>

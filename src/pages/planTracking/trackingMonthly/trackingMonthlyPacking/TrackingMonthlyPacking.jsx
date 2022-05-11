@@ -67,7 +67,6 @@ function TrackingMonthlyPacking() {
 						}
 						return acc;
 					}, []);
-				console.log('filteredData', filteredData);
 				setLoading(false);
 				setError(null);
 				dispatch(setMonthlyPackingPlanTrackingData(filteredData));

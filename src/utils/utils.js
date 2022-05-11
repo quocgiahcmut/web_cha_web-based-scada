@@ -1249,6 +1249,42 @@ const INJECTION_PLAN_TRACKING_COLUMNS = [
 	},
 ];
 
+// Map for localStorage keys
+const LOCALSTORAGE_KEYS = {
+	accessToken: 'access_token',
+};
+const LOCALSTORAGE_VALUES = {
+	accessToken: window.localStorage.getItem(LOCALSTORAGE_KEYS.accessToken),
+};
+const getAccessToken = () => {
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const queryParams = {
+		[LOCALSTORAGE_KEYS.accessToken]: urlParams.get('access_token'),
+	};
+	// const hasError = urlParams.get('error');
+	// If there is a valid access token in localStorage, use that
+	if (LOCALSTORAGE_VALUES.accessToken && LOCALSTORAGE_VALUES.accessToken !== 'undefined') {
+		return LOCALSTORAGE_VALUES.accessToken;
+	}
+	// If there is a token in the URL query params, user is logging in for the first time
+	if (queryParams[LOCALSTORAGE_KEYS.accessToken]) {
+		// Store the query params in localStorage
+		for (const property in queryParams) {
+			window.localStorage.setItem(property, queryParams[property]);
+		}
+		// Set timestamp
+		window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
+		// Return access token from query params
+		return queryParams[LOCALSTORAGE_KEYS.accessToken];
+	}
+
+	// We should never get here!
+	return false;
+};
+
+export const accessToken = getAccessToken();
+
 export {
 	packingState,
 	ScrollToBottom,

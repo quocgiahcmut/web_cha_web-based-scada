@@ -129,43 +129,6 @@
 	border: 8px solid rgb(240, 240, 240);
 }
 
-.injection-map__map-item-modal {
-	display: none;
-	width: 500px;
-	position: absolute;
-	z-index: 99;
-}
-
-@keyframes appear {
-	from {
-		opacity: 0.3;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
 .injection-map__map-item-modal .injectionMoldingMachine__container {
 	width: 420px;
-}
-
-.injection-map__map-item-inner:hover .injection-map__map-item-modal {
-	display: block;
-	animation: appear 0.3s ease-out;
-}
-
-.injection-map__map-item-inner .left {
-	right: 60%;
-}
-
-.injection-map__map-item-inner .right {
-	left: 60%;
-}
-
-.injection-map__map-item-inner .top {
-	bottom: 60%;
-}
-
-.injection-map__map-item-inner .bottom {
-	top: 60%;
 }

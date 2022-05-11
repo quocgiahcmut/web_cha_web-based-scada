@@ -6,7 +6,7 @@ function WarehouseDetailPage() {
 	const { id } = useParams();
 	return (
 		<>
-			<CustomizedBreadcrumbs href="/warehouse" sector="KHO VẬN" id={`MÃ CHI TIẾT ${id}`} />
+			<CustomizedBreadcrumbs href="/layout/warehouse" sector="KHO VẬN" id={`MÃ CHI TIẾT ${id}`} />
 			<WarehouseDetail />;
 		</>
 	);

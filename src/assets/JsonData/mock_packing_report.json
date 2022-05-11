@@ -1,4 +1,36 @@
-[{"date":"16/01/2022","list-report":[{"id":1,"productCode":"51346-064","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":557,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"2:26 AM","note":"ok"},{"id":2,"productCode":"33261-748","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":717,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:52 AM","note":"ok"},{"id":3,"productCode":"16590-015","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":633,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"11:38 PM","note":"ok"},{"id":4,"productCode":"21695-332","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":973,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"11:50 PM","note":"ok"},{"id":5,"productCode":"54340-814","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":620,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"6:13 PM","note":"ok"},{"id":6,"productCode":"50563-119","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":885,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:33 PM","note":"ok"}]},
+[{"date":"16/01/2022",
+  "list-report":
+  [
+    {
+      "id":1,
+      "productCode":"51346-064",
+      "productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1",
+      "unit":"cái",
+      "quantity":557,
+      "result":"ok",
+      "equipment":"ok",
+      "maintenanceResult":"ok",
+      "employee":"văn",
+      "time":"2:26 AM",
+      "note":"ok"
+    },
+    {
+      "id":2,"productCode":"33261-748","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":717,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:52 AM","note":"ok"
+    },
+    {
+      "id":3,"productCode":"16590-015","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":633,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"11:38 PM","note":"ok"
+    },
+    {
+      "id":4,"productCode":"21695-332","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":973,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"11:50 PM","note":"ok"
+    },
+    {
+      "id":5,"productCode":"54340-814","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":620,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"6:13 PM","note":"ok"
+    },
+    {
+      "id":6,"productCode":"50563-119","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":885,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:33 PM","note":"ok"
+    }
+  ]
+},
 {"date":"13/09/2021","list-report":[{"id":1,"productCode":"0268-6625","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":756,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"5:04 PM","note":"ok"},{"id":2,"productCode":"58177-681","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":872,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"2:04 PM","note":"ok"},{"id":3,"productCode":"65044-2018","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":554,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"10:27 PM","note":"ok"},{"id":4,"productCode":"24090-497","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":574,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:18 PM","note":"ok"},{"id":5,"productCode":"64125-904","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":611,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"11:34 AM","note":"ok"}]},
 {"date":"18/09/2021","list-report":[{"id":1,"productCode":"0169-6439","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":624,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"2:33 PM","note":"ok"},{"id":2,"productCode":"34954-010","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":564,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"7:15 PM","note":"ok"},{"id":3,"productCode":"51079-547","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":981,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"10:05 PM","note":"ok"},{"id":4,"productCode":"30142-096","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":894,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"9:57 AM","note":"ok"},{"id":5,"productCode":"63868-060","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":986,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"7:27 PM","note":"ok"}]},
 {"date":"07/11/2021","list-report":[{"id":1,"productCode":"43353-393","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":524,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"11:43 PM","note":"ok"},{"id":2,"productCode":"45963-634","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":596,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"3:56 PM","note":"ok"},{"id":3,"productCode":"65954-002","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":751,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"11:34 PM","note":"ok"},{"id":4,"productCode":"45802-237","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":525,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"10:37 PM","note":"ok"},{"id":5,"productCode":"49999-378","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":850,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"12:38 PM","note":"ok"},{"id":6,"productCode":"49035-276","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":644,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"1:38 PM","note":"ok"},{"id":7,"productCode":"16714-383","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":532,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"6:49 AM","note":"ok"}]},
