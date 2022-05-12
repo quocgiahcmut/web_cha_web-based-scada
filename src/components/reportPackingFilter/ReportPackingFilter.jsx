@@ -42,7 +42,7 @@ function ReportPackingFilter({ exportReport, onSubmit }) {
 									<div className="col-12">
 										<Form id="packing-report__filter">
 											<FormControl label="Ngày bắt đầu" name="dateStart" control="date" />
-											<button type="submit" className="btn btn-primary">
+											<button type="submit" className="customized-btn btn-primary">
 												Tìm kiếm
 											</button>
 										</Form>

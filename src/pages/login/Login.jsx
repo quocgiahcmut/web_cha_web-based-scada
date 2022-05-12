@@ -33,7 +33,7 @@ function Login() {
 						Đăng nhập
 					</button>
 					<span className="login-copyrights">© all copyrights reserved</span>
-					<span className="login-copyrights">Tri Hoang Minh</span>
+					{/* <span className="login-copyrights">Tri Hoang Minh</span> */}
 				</div>
 			</div>
 		</>

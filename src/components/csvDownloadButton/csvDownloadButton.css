@@ -19,3 +19,8 @@
   letter-spacing: 1px;
   box-shadow: 1px 2px 2px 0 #ddd;
 }
+
+.csv-download-button:hover {
+  background-color: #283a4a;
+  color: #fff;
+}

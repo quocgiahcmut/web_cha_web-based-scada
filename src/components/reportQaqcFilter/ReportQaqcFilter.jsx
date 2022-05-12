@@ -90,7 +90,7 @@ function ReportQaqcFilter({
 											) : null}
 											<FormControl label="Ngày bắt đầu" name="dateStart" control="date" />
 											<FormControl label="Ngày kết thúc" name="dateEnd" control="date" />
-											<button type="submit" className="btn btn-primary">
+											<button type="submit" className="customized-btn btn-primary">
 												Tìm kiếm
 											</button>
 										</Form>
