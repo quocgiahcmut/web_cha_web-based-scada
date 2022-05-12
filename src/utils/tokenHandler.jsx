@@ -14,8 +14,7 @@ function TokenHandler({ children }) {
 				userApi
 					.getInfoUserByToken()
 					.then((res) => {
-						console.log('res', res);
-						// dispatch(setUserInfo(res));
+						dispatch(setUserInfo(res));
 					})
 					.catch((err) => {
 						console.error(err);

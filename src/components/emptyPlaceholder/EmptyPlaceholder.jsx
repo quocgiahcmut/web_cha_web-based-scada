@@ -3,7 +3,7 @@ import { ReactComponent as EmptyPlaceholderImg } from '../../assets/images/empty
 import { ReactComponent as ErrorPlaceHolderImage } from '../../assets/images/error-placeholder.svg';
 
 function EmptyPlaceholder({ isError, msg }) {
-	console.log('msg', msg);
+	// console.log('msg', msg);
 	return (
 		<>
 			<div

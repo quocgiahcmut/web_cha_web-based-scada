@@ -83,6 +83,25 @@ function Sidebar(props) {
 				<div className="sidebar__logo">
 					<img src={logo} alt="logo cong ty" />
 				</div>
+				<div className="sidebar__user">
+					<span className="sidebar__user-name">{user.lastName + ' ' + user.firstName}</span>
+					<span
+						style={{
+							fontStyle: 'italic',
+						}}
+						className="sidebar__user-role"
+					>
+						{user.roles}
+					</span>
+					<span
+						style={{
+							fontStyle: 'italic',
+						}}
+						className="sidebar__user-id"
+					>
+						{user.id}
+					</span>
+				</div>
 				{sidebar_items.map((item, index) => {
 					const subItem = (
 						<SidebarItem
