@@ -51,7 +51,7 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 	}, [type, mapData]);
 
 	const showDetail = () => {
-		history.push('/warehouse/' + id);
+		history.push('/layout/warehouse/' + id);
 	};
 
 	useEffect(() => {
@@ -137,7 +137,7 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 					<FormikControl name="quantity" control="input" value={quantity} disable />
 				</td>
 				<td>
-					<button onClick={showDetail} disabled={!canClick} className="btn">
+					<button onClick={showDetail} disabled={!canClick} className="customized-btn">
 						Xem chi tiết
 					</button>
 				</td>

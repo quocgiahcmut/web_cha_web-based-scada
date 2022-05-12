@@ -36,6 +36,7 @@ import SignInOidc from './pages/signInOidc/SignInOidc';
 import SignOutOidc from './pages/signOutOidc/SignOutOidc';
 import { Redirect } from 'react-router-dom';
 import ErrorPage from './pages/Error';
+import TokenHandler from './utils/tokenHandler';
 Chart.defaults.set('plugins.datalabels', {
 	color: 'black',
 	labels: {
@@ -69,12 +70,11 @@ const queryClient = new QueryClient();
 const oidcConfig = {
 	onSignIn: () => {
 		// Redirect?
-		console.log('onSignIn');
 	},
 	authority: 'https://authenticationserver20220111094343.azurewebsites.net',
 	clientId: 'react-client',
 	redirectUri: 'http://localhost:3000/signin-oidc',
-	scope: 'openid profile native-client-scope',
+	scope: 'openid profile native-client-scope IdentityServerApi',
 	responseType: 'id_token token',
 	postLogoutRedirectUri: 'http://localhost:3000/signout-oidc',
 };
@@ -83,16 +83,18 @@ ReactDOM.render(
 		<AuthProvider {...oidcConfig}>
 			<QueryClientProvider client={queryClient}>
 				<Provider store={store}>
-					<BrowserRouter>
-						<Switch>
-							<Redirect exact from="/" to="/layout/dashboard" />
-							<Route path="/login" exact component={Login} />
-							<Route path="/signin-oidc" exact component={SignInOidc} />
-							<Route path="/signout-oidc" exact component={SignOutOidc} />
-							<Route path="/layout" component={Layout} />
-							<Route component={ErrorPage} />
-						</Switch>
-					</BrowserRouter>
+					<TokenHandler>
+						<BrowserRouter>
+							<Switch>
+								<Redirect exact from="/" to="/layout/dashboard" />
+								<Route path="/login" exact component={Login} />
+								<Route path="/signin-oidc" exact component={SignInOidc} />
+								<Route path="/signout-oidc" exact component={SignOutOidc} />
+								<Route path="/layout" component={Layout} />
+								<Route component={ErrorPage} />
+							</Switch>
+						</BrowserRouter>
+					</TokenHandler>
 				</Provider>
 				<ReactQueryDevtools position="bottom-right" initialIsOpen={false} />
 			</QueryClientProvider>

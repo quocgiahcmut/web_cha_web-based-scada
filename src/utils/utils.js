@@ -32,65 +32,65 @@ const packingState = {
 const REPORT_MENU_LIST = [
 	{
 		title: 'Phòng QA/QC thiết bị',
-		url: '/report/main/qaqc',
+		url: '/layout/report/main/qaqc',
 	},
 	{
 		title: 'Khu vực đóng gói',
-		url: '/report/main/packing',
+		url: '/layout/report/main/packing',
 	},
 	{
 		title: 'Khu vực máy ép',
-		url: '/report/main/injection',
+		url: '/layout/report/main/injection',
 	},
 ];
 
 const MONITOR_INJECTION_LIST = [
 	{
 		title: 'BẢNG',
-		url: '/report/injection/pages/1',
+		url: '/layout/report/injection/pages/1',
 	},
 	{
 		title: 'BẢN ĐỒ',
-		url: '/report/injection/map',
+		url: '/layout/report/injection/map',
 	},
 ];
 
 const QA_QC_REPORT_MENU_LIST = [
 	{
 		title: 'MKT Độ bền NBC',
-		url: '/report/main/qaqc/endurance',
+		url: '/layout/report/main/qaqc/endurance',
 	},
 	{
 		title: 'MKT Độ bền cưỡng bức NBC',
-		url: '/report/main/qaqc/forced-endurance',
+		url: '/layout/report/main/qaqc/forced-endurance',
 	},
 	{
 		title: 'MKT Độ biến dạng NBC',
-		url: '/report/main/qaqc/deformation',
+		url: '/layout/report/main/qaqc/deformation',
 	},
 	{
 		title: 'MKT Chống thấm NBC',
-		url: '/report/main/qaqc/water-proof',
+		url: '/layout/report/main/qaqc/water-proof',
 	},
 ];
 const PLAN_TRACKING_MENU_LIST = [
 	{
 		title: 'LỊCH TRÌNH ĐÓNG GÓI',
-		url: '/plan-tracking/daily/packing',
+		url: '/layout/plan-tracking/daily/packing',
 	},
 	{
 		title: 'LỊCH TRÌNH MÁY ÉP',
-		url: '/plan-tracking/daily/injection',
+		url: '/layout/plan-tracking/daily/injection',
 	},
 ];
 const MONTHLY_PLAN_TRACKING_MENU_LIST = [
 	{
 		title: 'LỊCH TRÌNH ĐÓNG GÓI',
-		url: '/plan-tracking/monthly/packing',
+		url: '/layout/plan-tracking/monthly/packing',
 	},
 	{
 		title: 'LỊCH TRÌNH MÁY ÉP',
-		url: '/plan-tracking/monthly/injection',
+		url: '/layout/plan-tracking/monthly/injection',
 	},
 ];
 

@@ -57,7 +57,7 @@ function WarehouseDetailFilter({ onSubmit }) {
 											<Form className="flex-right">
 												<FormikControl control="date" name="startTime" label="Từ ngày" />
 												<FormikControl control="date" name="stopTime" label="Đến ngày" />
-												<button type="submit" className="btn btn-primary">
+												<button type="submit" className="customized-btn btn-primary">
 													Tìm kiếm
 												</button>
 											</Form>

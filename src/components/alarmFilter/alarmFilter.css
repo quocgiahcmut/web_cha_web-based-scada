@@ -70,7 +70,16 @@ select:focus {
   transition: border-color ease-in-out .15s;
 }
 
-.btn {
+.btn{
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 0 10px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.customized-btn {
   height: 40px;
   border-radius: 5px;
   border: 1px solid var(--main-color-gray);
@@ -82,7 +91,10 @@ select:focus {
   margin: 10px 0 0 0;
   cursor: pointer;
 }
-.btn .btn-primary {
+.customized-btn:hover {
+  background-color: rgb(47, 187, 47);
+}
+.btn-primary {
   background-color: var(--main-color-green);
   color: var(--txt-white);
 }

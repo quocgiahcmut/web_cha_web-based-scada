@@ -30,7 +30,7 @@ function MonthlyProgressFilter({ onSubmit }) {
 										<FormikControl control="month" name="date" label="Tháng truy xuất" placeholder="Tháng truy xuất" />
 									</div>
 									<div className="col-1 flex-horizontal-center">
-										<button className="btn btn-primary" type="submit">
+										<button className="customized-btn btn-primary" type="submit">
 											Truy xuất
 										</button>
 									</div>

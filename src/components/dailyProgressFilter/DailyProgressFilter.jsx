@@ -30,7 +30,7 @@ function DailyProgressFilter({ onSubmit }) {
 										<FormikControl control="date" name="date" label="Ngày truy xuất" placeholder="Ngày truy xuất" />
 									</div>
 									<div className="col-1 flex-horizontal-center">
-										<button className="btn btn-primary" type="submit">
+										<button className="customized-btn btn-primary" type="submit">
 											Truy xuất
 										</button>
 									</div>

@@ -15,6 +15,8 @@ import { setActiveMenu } from '../../redux/slice/SideBarSlice';
 import { useHistory } from 'react-router-dom';
 
 import { useAuth } from 'oidc-react';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { Button } from 'reactstrap';
 
 const SidebarItem = (props) => {
 	const active = props.active ? 'active' : '';
@@ -44,11 +46,18 @@ const SidebarItem = (props) => {
 };
 
 function Sidebar(props) {
+	const [open, setOpen] = React.useState(false);
+	const { user } = useSelector((state) => state.login);
+	console.log('user', user);
 	const { signOut } = useAuth();
 	const history = useHistory();
 	const onClick = async () => {
 		await signOut();
+		setOpen(false);
 		history.push('/login');
+	};
+	const handleClose = () => {
+		setOpen((prev) => !prev);
 	};
 	const sideBarReducer = useSelector((state) => state.sidebar);
 	const activeMenu = sideBarReducer.active;
@@ -88,12 +97,7 @@ function Sidebar(props) {
 					);
 					return subItem;
 				})}
-				<div
-					onClick={async () => {
-						await onClick();
-					}}
-					className="sidebar__item sidebar__item--logout"
-				>
+				<div onClick={handleClose} className="sidebar__item sidebar__item--logout">
 					<div className="sidebar__item-flex">
 						<div className={` sidebar__item-inner`}>
 							<i className="bx bx-log-out"></i>
@@ -108,6 +112,31 @@ function Sidebar(props) {
 					<i className="bx bx-menu"></i>
 				</button>
 			) : null}
+			<Dialog
+				open={open}
+				onClose={handleClose}
+				aria-labelledby="alert-dialog-title"
+				aria-describedby="alert-dialog-description"
+			>
+				<DialogTitle id="alert-dialog-title">{'Thông báo'}</DialogTitle>
+				<DialogContent>
+					<DialogContentText id="alert-dialog-description">Bạn có chắc muốn đăng xuất?</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button
+						onClick={async () => {
+							await onClick();
+						}}
+						autoFocus
+						color="error"
+					>
+						Đồng ý
+					</Button>
+					<Button onClick={handleClose} color="primary" autoFocus>
+						Quay lại
+					</Button>
+				</DialogActions>
+			</Dialog>
 		</>
 	);
 }

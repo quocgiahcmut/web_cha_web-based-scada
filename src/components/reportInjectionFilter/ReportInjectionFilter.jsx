@@ -76,7 +76,7 @@ function ReportInjectionFilter({ onSubmit }) {
 														return ('' + b.attr).localeCompare(a.attr);
 													})}
 											/>
-											<button type="submit" className="btn btn-primary">
+											<button type="submit" className="customized-btn btn-primary">
 												Tìm kiếm
 											</button>
 										</Form>
