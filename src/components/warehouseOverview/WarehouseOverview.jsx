@@ -32,13 +32,11 @@ function WarehouseOverview() {
 				<thead>
 					<tr className="heading-1">
 						<td>Tìm kiếm</td>
-						<td></td>
 						<td>Kết quả</td>
 						<td></td>
 						<td></td>
 					</tr>
 					<tr className="heading-2">
-						<td>Loại sản phẩm</td>
 						<td>Mã sản phẩm</td>
 						<td>Tên sản phẩm</td>
 						<td>Số lượng</td>

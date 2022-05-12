@@ -36,22 +36,21 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 
 	const formik = useFormik({
 		initialValues: {
-			type: restoreData.type ?? 'discharger',
 			id: restoreData.id ?? '',
 			name: restoreData.name ?? '',
 			quantity: restoreData.quantity ?? '',
 		},
 	});
 	const { values, handleChange, setFieldValue } = formik;
-	const { type, id, name, quantity } = values;
-	useEffect(() => {
-		if (type === 'discharger' || type === 'lid') {
-			setIds(mapData[type].map((id) => id));
-		}
-	}, [type, mapData]);
+	const { id, name, quantity } = values;
 
 	const showDetail = () => {
 		history.push('/warehouse/' + id);
+	};
+
+	const handleEnterKeyDown = (e) => {
+		if (e.keyCode === 13) {
+		}
 	};
 
 	useEffect(() => {
@@ -60,8 +59,9 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 			setFieldValue('name', '');
 			setFieldValue('quantity', '');
 			setFilledRows([]);
-		} else if (mapData[type].includes(id) && filledRows[0] !== 'deleted') {
+		} else if (filledRows[0] !== 'deleted' && id) {
 			const fielData = fakeData.filter((item) => item.id === id)[0];
+
 			setFieldValue('name', fielData.name);
 			setFieldValue('quantity', fielData.quantity);
 			if (!filledRows.includes(filterId)) {
@@ -71,7 +71,6 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 			dispatch(
 				setData({
 					index: filterId,
-					type,
 					id,
 					name,
 					quantity,
@@ -89,44 +88,13 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 		} else {
 			setCanClick(false);
 		}
-	}, [id, type, filledRows, dispatch, fakeData, filterId, mapData, name, quantity, setFieldValue, setFilledRows]);
+	}, [id, filledRows, dispatch, fakeData, filterId, mapData, name, quantity, setFieldValue, setFilledRows]);
 
 	return (
 		<FormikProvider value={formik}>
 			<tr className="warehouseFilterRow__container">
 				<td>
-					<FormikControl
-						control="select"
-						name="type"
-						value={type}
-						onChange={handleChange}
-						options={[
-							{ key: 'Bộ xả', value: 'discharger' },
-							{ key: 'Nắp bàn cầu', value: 'lid' },
-						]}
-						onClick={(e) => e.stopPropagation()}
-					/>
-				</td>
-
-				<td>
-					<FormikControl
-						control="input"
-						list={`list${filterId}`}
-						name="id"
-						value={id}
-						onChange={handleChange}
-						onClick={(e) => e.stopPropagation()}
-					/>
-
-					{ids && (
-						<datalist id={`list${filterId}`}>
-							{ids.map((id) => (
-								<option key={id} value={id}>
-									{id}
-								</option>
-							))}
-						</datalist>
-					)}
+					<FormikControl control="input" name="id" value={id} onChange={handleChange} onKeyDown={handleEnterKeyDown} />
 				</td>
 
 				<td>

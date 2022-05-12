@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@axa-fr/react-oidc": "^5.8.0-alpha0",
-    "@axa-fr/react-oidc-context": "^5.0.2",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@microsoft/signalr": "^6.0.2",
