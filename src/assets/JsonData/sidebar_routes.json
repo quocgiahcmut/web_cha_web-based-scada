@@ -73,6 +73,12 @@
 		]
 	},
 	{
+		"display_name": "Khu vực lắp ráp",
+		"route": "/layout/assembly",
+		"icon": "bx bxs-pie-chart-alt-2",
+		"subNav": []
+	},
+	{
 		"display_name": "Khu vực đóng gói",
 		"route": "/layout/packing",
 		"icon": "bx bxs-package",
