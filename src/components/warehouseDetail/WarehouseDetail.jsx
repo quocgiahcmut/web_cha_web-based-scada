@@ -1,32 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Chart from 'react-apexcharts';
+
+import { warehouseApi } from '../../api/warehouse/warehouseApi';
 import WarehouseTable from '../warehouseTable/WarehouseTable';
 import './warehouseDetail.css';
 import { Formik, Form, ErrorMessage } from 'formik';
 import FormikControl from '../formControl/FormControl';
 import { format } from 'date-fns';
 import * as Yup from 'yup';
+
 const validationSchema = Yup.object({
 	startTime: Yup.date().required('Ngày bắt đầu không được bỏ trống'),
-	stopTime: Yup.date().when('startTime', (startTime, schema) =>
+	endTime: Yup.date().when('startTime', (startTime, schema) =>
 		startTime ? schema.min(startTime, 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc') : schema
 	),
 });
-function WarehouseDetailFilter({ onSubmit }) {
-	const initialDateStart = React.useMemo(() => {
-		const today = new Date();
-		const numberOfDaysToSubtract = Number(7);
-		const date = today.setDate(today.getDate() - numberOfDaysToSubtract);
-		return format(date, 'yyyy-MM-dd');
-	}, []);
-
-	const initialDateEnd = React.useMemo(() => {
-		const today = new Date();
-		const numberOfDaysToAdd = 1;
-		const date = today.setDate(today.getDate() + numberOfDaysToAdd);
-		return format(date, 'yyyy-MM-dd');
-	}, []);
+function WarehouseDetailFilter({ onSubmit, initialDateStart, initialDateEnd }) {
 	const handleSubmit = (e) => {
 		onSubmit(e);
 	};
@@ -41,11 +31,11 @@ function WarehouseDetailFilter({ onSubmit }) {
 						<Formik
 							initialValues={{
 								startTime: initialDateStart,
-								stopTime: initialDateEnd,
+								endTime: initialDateEnd,
 							}}
 							initialTouched={{
 								startTime: false,
-								stopTime: true,
+								endTime: true,
 							}}
 							validationSchema={validationSchema}
 							onSubmit={handleSubmit}
@@ -56,7 +46,7 @@ function WarehouseDetailFilter({ onSubmit }) {
 										<div className="col-12">
 											<Form className="flex-right">
 												<FormikControl control="date" name="startTime" label="Từ ngày" />
-												<FormikControl control="date" name="stopTime" label="Đến ngày" />
+												<FormikControl control="date" name="endTime" label="Đến ngày" />
 												<button type="submit" className="customized-btn btn-primary">
 													Tìm kiếm
 												</button>
@@ -64,7 +54,7 @@ function WarehouseDetailFilter({ onSubmit }) {
 										</div>
 										<div className="col-12">
 											<ErrorMessage name="startTime" component="div" className="error-message" />
-											<ErrorMessage name="stopTime" component="div" className="error-message" />
+											<ErrorMessage name="endTime" component="div" className="error-message" />
 										</div>
 									</>
 								);
@@ -79,7 +69,21 @@ function WarehouseDetailFilter({ onSubmit }) {
 
 function WarehouseDetail() {
 	const { id } = useParams();
-	const labels = ['12/02/2022', '13/02/2022', '14/02/2022', '15/02/2022', '16/02/2022', '17/02/2022', '18/02/2022'];
+	const initialDateStart = React.useMemo(() => {
+		const today = new Date();
+		const numberOfDaysToSubtract = Number(7);
+		const date = today.setDate(today.getDate() - numberOfDaysToSubtract);
+		return format(date, 'yyyy-MM-dd');
+	}, []);
+
+	const initialDateEnd = React.useMemo(() => {
+		const today = new Date();
+		const numberOfDaysToAdd = 1;
+		const date = today.setDate(today.getDate() + numberOfDaysToAdd);
+		return format(date, 'yyyy-MM-dd');
+	}, []);
+	const [stockCardData, setStockCardData] = useState();
+	const [locationData, setLocationData] = useState();
 
 	const apexChartConfig = {
 		options: {
@@ -90,7 +94,7 @@ function WarehouseDetail() {
 				},
 			},
 			xaxis: {
-				categories: labels,
+				categories: stockCardData && stockCardData.dateList,
 			},
 			tooltip: {
 				enabled: false,
@@ -102,19 +106,72 @@ function WarehouseDetail() {
 		series: [
 			{
 				name: 'quantity',
-				data: labels.map(() => Math.floor(Math.random() * 300)),
+				data: stockCardData && stockCardData.quantityList,
 			},
 		],
 	};
-	const onSubmit = (e) => {
-		console.log(e);
+
+	const handleStockCardData = (data) => {
+		if (data.length > 0) {
+			const quantityList = [];
+			const dataList = [];
+
+			const dateList = data.map((item) => {
+				const date = format(new Date(item.date), 'dd/MM/yyyy hh:mm:ss');
+				quantityList.push(item.afterQuantity);
+				dataList.push({
+					date,
+					export: item.outputQuantity,
+					import: item.inputQuantity,
+					quantity: item.afterQuantity,
+				});
+				return date;
+			});
+
+			return { dateList, quantityList, dataList };
+		}
 	};
+
+	const handleLocationData = (data) => {
+		if (data.length > 0) {
+			return data.map((item) => {
+				const { shelfId, rowId, cellId, sliceId, levelId } = item.location;
+				const location = `${shelfId}.${rowId}.${cellId}.${sliceId}.${levelId}`;
+				return { location, quantity: item.actualQuantity };
+			});
+		}
+	};
+
+	const handleGetData = (id, dateStart, dateEnd) => {
+		Promise.all([warehouseApi.getStockCardById(id, dateStart, dateEnd), warehouseApi.getLocationById(id)]).then(
+			(response) => {
+				const stockCardData = handleStockCardData(response[0]);
+				const locationData = handleLocationData(response[1]);
+				setStockCardData(stockCardData);
+				setLocationData(locationData);
+			}
+		);
+	};
+
+	const onSubmit = async (dateQuery) => {
+		const { startTime, endTime } = dateQuery;
+		handleGetData(id, startTime, endTime);
+	};
+
+	useEffect(() => {
+		handleGetData(id, initialDateStart, initialDateEnd);
+	}, []);
+
 	return (
 		<>
 			<div className="warehouseDetail__container">
 				<div className="row">
 					<div className="col-12">
-						<WarehouseDetailFilter onSubmit={onSubmit} />
+						<WarehouseDetailFilter
+							onSubmit={onSubmit}
+							initialDateStart={initialDateStart}
+							initialDateEnd={initialDateEnd}
+						/>
 					</div>
 				</div>
 				<div className="row">
@@ -139,34 +196,17 @@ function WarehouseDetail() {
 						<div className="card">
 							<div className="card__body">
 								<div className="warehouseDetail__values-table">
-									<WarehouseTable
-										headers={[
-											{ text: 'Thời gian', key: 'time' },
-											{ text: 'Sự kiện', key: 'activity' },
-											{ text: 'SL/KL', key: 'quantity' },
-											{ text: 'Ghi chú', key: 'note' },
-										]}
-										body={[
-											{
-												time: '14/02/2022',
-												activity: 'Nhập kho',
-												quantity: '300',
-												note: 'Không',
-											},
-											{
-												time: '14/02/2022',
-												activity: 'xuất kho',
-												quantity: '200',
-												note: 'Không',
-											},
-											{
-												time: '14/02/2022',
-												activity: 'Nhập kho',
-												quantity: '500',
-												note: 'Không',
-											},
-										]}
-									/>
+									{stockCardData && (
+										<WarehouseTable
+											headers={[
+												{ text: 'Thời gian', key: 'date' },
+												{ text: 'Xuất kho', key: 'export' },
+												{ text: 'Nhập kho', key: 'import' },
+												{ text: 'Số lượng trong kho', key: 'quantity' },
+											]}
+											body={stockCardData.dataList}
+										/>
+									)}
 								</div>
 							</div>
 						</div>
@@ -176,21 +216,15 @@ function WarehouseDetail() {
 						<div className="card">
 							<div className="card__body">
 								<div className="warehouseDetail__values-table">
-									<WarehouseTable
-										headers={[
-											{ text: 'Vị trí', key: 'location' },
-											{ text: 'Số lượng', key: 'quantity' },
-										]}
-										body={[
-											{ location: '2.2.1', quantity: '300' },
-											{ location: '2.2.1', quantity: '300' },
-											{ location: '2.2.1', quantity: '300' },
-											{ location: '2.2.1', quantity: '300' },
-											{ location: '2.2.1', quantity: '300' },
-											{ location: '2.2.1', quantity: '300' },
-											{ location: '2.2.1', quantity: '300' },
-										]}
-									/>
+									{locationData && (
+										<WarehouseTable
+											headers={[
+												{ text: 'Vị trí', key: 'location' },
+												{ text: 'Số lượng', key: 'quantity' },
+											]}
+											body={locationData}
+										/>
+									)}
 								</div>
 							</div>
 						</div>
