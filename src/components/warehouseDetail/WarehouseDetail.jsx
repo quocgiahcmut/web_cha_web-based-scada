@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import Chart from 'react-apexcharts';
 
@@ -142,7 +142,7 @@ function WarehouseDetail() {
 		}
 	};
 
-	const handleGetData = (id, dateStart, dateEnd) => {
+	const handleGetData = useCallback((id, dateStart, dateEnd) => {
 		Promise.all([warehouseApi.getStockCardById(id, dateStart, dateEnd), warehouseApi.getLocationById(id)]).then(
 			(response) => {
 				const stockCardData = handleStockCardData(response[0]);
@@ -151,7 +151,7 @@ function WarehouseDetail() {
 				setLocationData(locationData);
 			}
 		);
-	};
+	}, []);
 
 	const onSubmit = async (dateQuery) => {
 		const { startTime, endTime } = dateQuery;
@@ -160,7 +160,7 @@ function WarehouseDetail() {
 
 	useEffect(() => {
 		handleGetData(id, initialDateStart, initialDateEnd);
-	}, []);
+	}, [handleGetData, id, initialDateEnd, initialDateStart]);
 
 	return (
 		<>
