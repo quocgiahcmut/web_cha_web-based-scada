@@ -23,7 +23,7 @@ function InjectionMoldingMachine({ injectionMoldingMachineData }) {
 	const typeClass =
 		injectionMoldingMachineData?.state === 'R' ? 'R' : injectionMoldingMachineData?.state === 'S' ? 'S' : 'M';
 	const history = useHistory();
-	const handleShowDetail = () => history.push(`/injection/${injectionMoldingMachineData?.number}`);
+	const handleShowDetail = () => history.push(`/layout/injection/${injectionMoldingMachineData?.number}`);
 
 	return (
 		<div className="col-sm-12 col-md-6 col-3" onClick={handleShowDetail}>

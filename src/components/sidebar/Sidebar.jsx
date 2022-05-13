@@ -147,11 +147,11 @@ function Sidebar(props) {
 							await onClick();
 						}}
 						autoFocus
-						color="error"
+						color="primary"
 					>
 						Đồng ý
 					</Button>
-					<Button onClick={handleClose} color="primary" autoFocus>
+					<Button onClick={handleClose} autoFocus>
 						Quay lại
 					</Button>
 				</DialogActions>
@@ -161,10 +161,3 @@ function Sidebar(props) {
 }
 
 export default React.memo(Sidebar);
-// ,
-// 	{
-// 		"display_name": "đăng xuất",
-// 		"route": "/",
-// 		"icon": "bx bx-log-out",
-// 		"subNav": []
-// 	}

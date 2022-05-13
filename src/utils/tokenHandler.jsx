@@ -9,12 +9,28 @@ function TokenHandler({ children }) {
 	const { userData } = useAuth();
 	React.useEffect(() => {
 		if (userData) {
+			console.log('userData', userData.access_token);
 			Cookies.set('token', userData.access_token);
 			(function () {
 				userApi
 					.getInfoUserByToken()
 					.then((res) => {
-						dispatch(setUserInfo(res));
+						if (res) {
+							dispatch(setUserInfo(res));
+						} else {
+							dispatch(
+								setUserInfo({
+									id: '',
+									userName: '',
+									email: '',
+									employeeId: '',
+									firstName: 'Không thể lấy dữ liệu',
+									lastName: '',
+									dateOfBirth: '',
+									roles: '',
+								})
+							);
+						}
 					})
 					.catch((err) => {
 						console.error(err);

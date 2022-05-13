@@ -68,7 +68,7 @@ function PackingPage() {
 	];
 	const history = useHistory();
 
-	const handleShowDetail = (item) => history.push(`/packing/${item}`);
+	const handleShowDetail = (item) => history.push(`/layout/packing/${item}`);
 	return (
 		<>
 			<CustomizedBreadcrumbs id="KHU KIỂM TRA ĐÓNG GÓI" />

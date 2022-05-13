@@ -4,6 +4,11 @@
 SISTRAIN's "magical eyes" application has the function of monitoring and collecting data related to the production status of the factory at C.H.A plastic joint stock company.
 
 ===========================================
+
+# env.local list
+REACT_APP_BASE_URL=https://cha-warehouse-management.azurewebsites.net
+REACT_APP_IDENTITY_SERVER=https://authenticationserver20220111094343.azurewebsites.net
+REACT_APP_WAREHOUSE_SERVER=https://cha-warehouse-management.azurewebsites.net
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
