@@ -1,52 +1,66 @@
-.login-page{
-  width: 100vw;
-  height: 100vh;
-  margin:0;
-  padding:0;
-  font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
+.login-page {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: linear-gradient(#141e30, #243b55);
 }
-.login-box{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  background: rgba(0,0,0,.5);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  border-radius: 10px;
+.login-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 450px;
+	padding: 40px;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+	border-radius: 10px;
 }
-.login-img{
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  height: auto;
+.login-header {
+	color: var(--txt-white);
+	text-align: center;
 }
-.login-button{
-  width: 100%;
-  height: 40px;
-  background: #2196F3;
-  color: #fff;
-  border: 0;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: bold;
-  outline: none;
+.login-img {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	height: auto;
 }
-.login-button:hover{
-  background: #0c7cd5;
+.login-button {
+	width: 100%;
+	height: 40px;
+	background: #2196f3;
+	color: #fff;
+	border: 0;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: bold;
+	outline: none;
 }
-.login-copyrights{
-  margin-top: 20px;
-  font-size: 12px;
-  color: #fff;
-  text-align: center;
-  text-transform: capitalize;
+.login-button:hover {
+	background: #0c7cd5;
+}
+.login-forgotPassword {
+	margin-top: 20px;
+	font-style: italic;
+	color: #fff;
+	font-size: 0.9rem;
+}
+.login-forgotPassword:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+.login-copyrights {
+	margin-top: 20px;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	text-transform: capitalize;
 }

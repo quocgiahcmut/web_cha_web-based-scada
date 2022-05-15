@@ -11,8 +11,9 @@ const validationSchema = Yup.object({
 });
 function ReportPackingFilter({ exportReport, onSubmit }) {
 	const initialDateStart = () => {
-		const today = new Date();
-		return format(today, 'yyyy-MM-dd');
+		var date = new Date();
+		var firstDay = format(new Date(date.getFullYear(), date.getMonth(), 1), 'yyyy-MM-dd');
+		return firstDay;
 	};
 
 	const handleSubmit = (event) => {

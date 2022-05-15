@@ -99,18 +99,20 @@ function QualityControl() {
 					'qaqclab',
 					['plc'],
 					[
-						'Sp Force Cyliner 3',
-						'Sp No Press 3',
-						'Sp Time Hold 3',
-						'Sp Force Cylinder 12',
-						'Sp No Press 12',
-						'Sp Time Hold 12',
-						'Mode App',
-						'Green App',
-						'Red App',
-						'Error App',
+						[
+							'Sp Force Cyliner 3',
+							'Sp No Press 3',
+							'Sp Time Hold 3',
+							'Sp Force Cylinder 12',
+							'Sp No Press 12',
+							'Sp Time Hold 12',
+							'Mode App',
+							'Green App',
+							'Red App',
+							'Error App',
 
-						'Error Code',
+							'Error Code',
+						],
 					]
 				);
 				dispatch(
@@ -126,7 +128,6 @@ function QualityControl() {
 						isAlarm: rawData.deviceQueryResults[0].tagQueryResults[8].value,
 					})
 				);
-				console.log(deformationMonitorData);
 				setDeformation(deformationMonitorData.isRunning ? 'deformation__run' : 'deformation__stop');
 				switch (rawData.deviceQueryResults[0].tagQueryResults[10].value) {
 					case 0:

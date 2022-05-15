@@ -13,15 +13,15 @@ function InjectionDetail() {
 		number: '',
 		name: '',
 		plannedQuantity: 1,
-		cycle: 12000,
-		standardOpenTime: 12000,
+		cycle: 12,
+		standardOpenTime: 12,
 		productId: '',
 		productName: '',
 		moldId: '',
 		wattage: 'Small',
 	});
 	const [realTimeData] = useState({
-		state: 'S',
+		state: 'R',
 		cycleTime: 12,
 		openTime: 12,
 		counterShot: 0,
@@ -67,32 +67,21 @@ function InjectionDetail() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await injectionApi.getTemporaryPreShiftsByMachine(id);
-			// 		{
-			// 	number: 'M1',
-			// 	name: 'axB12',
-			// 	percent: 30,
-			// 	state: 'R',
-			// 	cycle: '30 giây',
-			// 	openDoorTime: '7 giây',
-			// 	operatingTime: '1 tiếng 15 phút',
-			// 	wattage: 'small',
-			// }
 			return result.data.items.map((item) => {
 				return {
 					number: item.machine.id,
 					name: item.machine.model,
 					plannedQuantity: item.cavity * ((12 * 60 * 60 * 1000) / item.injectionCycle),
 					productId: item.product.id,
-					standardOpenTime: item.product.mold.standardOpenTime / 1000,
+					standardOpenTime: (item.product.mold.standardOpenTime / 1000).toFixed(0),
 					productName: item.product.name,
 					moldId: item.product.mold.id,
-					cycle: item.injectionCycle / 1000,
+					cycle: (item.injectionCycle / 1000).toFixed(0),
 					wattage: item.machine.machineType === 0 ? 'Large' : 'Small',
 				};
 			});
 		};
 		fetchData().then((data) => {
-			console.log(data);
 			setInjectionMoldingMachineConfiguration(data[0]);
 		});
 	}, [id]);

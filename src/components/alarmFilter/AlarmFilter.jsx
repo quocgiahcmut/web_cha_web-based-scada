@@ -41,7 +41,7 @@ function AlarmFilter({ onSubmit }) {
 			{ value: 'qaqc', key: 'Phòng QA/QC thiết bị' },
 			{ value: 'packing', key: 'Khu vực đóng gói' },
 			{ value: 'injection', key: 'Khu vực máy ép' },
-			{ value: 'warehouse', key: 'Kho vận' },
+			{ value: 'assembly', key: 'Khu vực lắp ráp' },
 		];
 	}, []);
 	const PRIORITY_OPTIONS = React.useMemo(() => {

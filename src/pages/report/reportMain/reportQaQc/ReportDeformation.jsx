@@ -272,7 +272,6 @@ function ReportDeformation() {
 					qaQcApi
 						.getStaticLoadReport('2020-01-01', '2023-01-01')
 						.then((res) => {
-							console.log(res.data.items[0]);
 							setLoading(false);
 							if (res.data.items.length > 0) {
 								res.data.items[0].samples?.forEach((item, index) => {
@@ -319,7 +318,6 @@ function ReportDeformation() {
 					qaQcApi
 						.getCurlingForceReport('2020-01-01', '2023-01-01')
 						.then((res) => {
-							console.log(res.data.items[0]);
 							setLoading(false);
 							if (res.data.items.length > 0) {
 								res.data.items[0].samples?.forEach((item, index) => {

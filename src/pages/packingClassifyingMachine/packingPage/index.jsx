@@ -13,6 +13,7 @@ function PackingPage() {
 			workingHours: 7212,
 			errorProducts: 5,
 			fixedProducts: 5,
+			productId: '3AJ2190DSA',
 			isRunning: true,
 		},
 		{
@@ -24,6 +25,7 @@ function PackingPage() {
 			errorProducts: 5,
 			fixedProducts: 1,
 			isRunning: false,
+			productId: '3AJ2190DSA',
 		},
 		{
 			id: 'module3',
@@ -34,6 +36,7 @@ function PackingPage() {
 			errorProducts: 5,
 			fixedProducts: 5,
 			isRunning: true,
+			productId: '3AJ2190DSA',
 		},
 		{
 			id: 'module4',
@@ -44,6 +47,7 @@ function PackingPage() {
 			errorProducts: 5,
 			fixedProducts: 1,
 			isRunning: false,
+			productId: '3AJ2190DSA',
 		},
 		{
 			id: 'module5',
@@ -54,6 +58,7 @@ function PackingPage() {
 			errorProducts: 5,
 			fixedProducts: 5,
 			isRunning: true,
+			productId: '3AJ2190DSA',
 		},
 		{
 			id: 'module6',
@@ -63,6 +68,7 @@ function PackingPage() {
 			workingHours: 7212,
 			errorProducts: 5,
 			fixedProducts: 5,
+			productId: '3AJ2190DSA',
 			isRunning: true,
 		},
 	];
@@ -81,6 +87,7 @@ function PackingPage() {
 							</div>
 							<div className="card__body">
 								<PackingMachine
+									productId={item.productId}
 									isRunning={item.isRunning}
 									progress={item.progress}
 									progressSetPoint={item.progressSetPoint}

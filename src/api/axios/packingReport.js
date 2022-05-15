@@ -26,6 +26,9 @@ const packingApi = {
 			},
 		});
 	},
+	getAllEmployees() {
+		return axiosClient.get('/api/employees/');
+	},
 };
 
 export { packingApi };

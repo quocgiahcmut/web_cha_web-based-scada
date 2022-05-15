@@ -5,8 +5,8 @@ function AssemblyMachinePage() {
 	return (
 		<>
 			<div className="row">
-				{Array.from({ length: 24 }, (item, index) => (
-					<AssemblyCluster key={index} index={index} />
+				{Array.from({ length: 5 }, (item, index) => (
+					<AssemblyCluster isRunning={false} key={index} index={index} />
 				))}
 			</div>
 		</>

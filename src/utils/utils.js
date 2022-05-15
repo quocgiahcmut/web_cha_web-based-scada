@@ -977,10 +977,10 @@ function convertDate(value) {
 async function getTagsData(connection, eonNodeId, deviceQueries, tagNames) {
 	const nodeQuery = {
 		EonNodeId: eonNodeId,
-		DeviceQueries: deviceQueries.map((deviceQuery) => {
+		DeviceQueries: deviceQueries.map((deviceQuery, index) => {
 			return {
 				DeviceId: deviceQuery,
-				TagNames: tagNames,
+				TagNames: tagNames[index],
 			};
 		}),
 	};

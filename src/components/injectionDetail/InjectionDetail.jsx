@@ -3,37 +3,8 @@ import ProgressBar from '../progressBar/ProgressBar';
 import Badge from '../badge/Badge';
 import './injectionDetail.css';
 import { INJECTION_MACHINE_ID } from '../../utils/utils';
-import {
-	Chart,
-	ArcElement,
-	Tooltip,
-	Legend,
-	CategoryScale,
-	BarElement,
-	LinearScale,
-	Title,
-	LineElement,
-	PointElement,
-} from 'chart.js';
-
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import ReportNavigationButton from '../reportNavigationButton/ReportNavigationButton';
 import { useHistory } from 'react-router-dom';
-Chart.defaults.set('plugins.datalabels', {
-	color: 'black',
-});
-Chart.register(
-	ArcElement,
-	Tooltip,
-	Legend,
-	ChartDataLabels,
-	CategoryScale,
-	BarElement,
-	LinearScale,
-	Title,
-	LineElement,
-	PointElement
-);
 
 function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, progress }) {
 	const history = useHistory();
@@ -161,50 +132,61 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 				<div className="card col-12 injectionDetail__value">
 					<div>
 						{/* <IgrRadialGauge
-									id="cycle"
-									width="300px"
-									height="300px"
-									minimumValue={0}
-									maximumValue={Math.floor(injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle/10)}
-									interval={Math.floor((injectionMoldingMachineConfiguration.cycle+ injectionMoldingMachineConfiguration.cycle / 10)/6)}
-									value={realTimeData.cycleTime}
-									backingOutline="#c4c4c4"
-									scaleEndExtent={0.825}
-									scaleStartExtent={0.775}
-									minorTickStartExtent={0.7}
-									minorTickEndExtent={0.75}
-									tickStartExtent={0.675}
-									tickEndExtent={0.75}
-									labelExtent={0.6}
-									labelInterval={10}
-									font="15px Verdana,Arial"
-									backingOuterExtent={0.9}
-									transitionDuration={500}
-								/> */}
+							id="cycle"
+							width="300px"
+							height="300px"
+							minimumValue={0}
+							maximumValue={Math.floor(
+								injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle / 10
+							)}
+							interval={Math.floor(
+								(injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle / 10) / 6
+							)}
+							value={realTimeData.cycleTime}
+							backingOutline="#c4c4c4"
+							scaleEndExtent={0.825}
+							scaleStartExtent={0.775}
+							minorTickStartExtent={0.7}
+							minorTickEndExtent={0.75}
+							tickStartExtent={0.675}
+							tickEndExtent={0.75}
+							labelExtent={0.6}
+							labelInterval={10}
+							font="15px Verdana,Arial"
+							backingOuterExtent={0.9}
+							transitionDuration={500}
+						/> */}
 						<span>Chu kì ép</span>
 					</div>
 					<div>
 						{/* <IgrRadialGauge
-									id="openTime"
-									width="300px"
-									height="300px"
-									minimumValue={0}
-									maximumValue={Math.floor(injectionMoldingMachineConfiguration.standardOpenTime + injectionMoldingMachineConfiguration.standardOpenTime/10)}
-									interval={Math.floor((injectionMoldingMachineConfiguration.standardOpenTime+ injectionMoldingMachineConfiguration.standardOpenTime / 10)/6)}
-									value={realTimeData.openTime}
-									backingOutline="#c4c4c4"
-									scaleEndExtent={0.825}
-									scaleStartExtent={0.775}
-									minorTickStartExtent={0.7}
-									minorTickEndExtent={0.75}
-									tickStartExtent={0.675}
-									tickEndExtent={0.75}
-									labelExtent={0.6}
-									labelInterval={10}
-									font="15px Verdana,Arial"
-									backingOuterExtent={0.9}
-									transitionDuration={500}
-								/> */}
+							id="openTime"
+							width="300px"
+							height="300px"
+							minimumValue={0}
+							maximumValue={Math.floor(
+								injectionMoldingMachineConfiguration.standardOpenTime +
+									injectionMoldingMachineConfiguration.standardOpenTime / 10
+							)}
+							interval={Math.floor(
+								(injectionMoldingMachineConfiguration.standardOpenTime +
+									injectionMoldingMachineConfiguration.standardOpenTime / 10) /
+									6
+							)}
+							value={realTimeData.openTime}
+							backingOutline="#c4c4c4"
+							scaleEndExtent={0.825}
+							scaleStartExtent={0.775}
+							minorTickStartExtent={0.7}
+							minorTickEndExtent={0.75}
+							tickStartExtent={0.675}
+							tickEndExtent={0.75}
+							labelExtent={0.6}
+							labelInterval={2}
+							font="15px Verdana,Arial"
+							backingOuterExtent={0.9}
+							transitionDuration={500}
+						/> */}
 						<span>Thời gian mở cửa</span>
 					</div>
 				</div>

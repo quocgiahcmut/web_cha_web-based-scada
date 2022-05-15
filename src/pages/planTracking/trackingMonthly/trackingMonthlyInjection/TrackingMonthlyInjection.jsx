@@ -18,7 +18,6 @@ function TrackingMonthlyInjection() {
 			setError(null);
 			try {
 				const res = await injectionApi.getTemporaryInjectionPlanTracking(startTime, format(Date.now(), 'yyyy-MM-dd'));
-				console.log(res.data);
 				const filteredData = res.data.items
 					.reduce((acc, cur) => {
 						acc.push({

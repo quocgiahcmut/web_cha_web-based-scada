@@ -48,7 +48,6 @@ const SidebarItem = (props) => {
 function Sidebar(props) {
 	const [open, setOpen] = React.useState(false);
 	const { user } = useSelector((state) => state.login);
-	console.log('user', user);
 	const { signOut } = useAuth();
 	const history = useHistory();
 	const onClick = async () => {

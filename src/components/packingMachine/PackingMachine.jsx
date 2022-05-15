@@ -2,7 +2,6 @@ import React from 'react';
 import './packingMachine.css';
 import ProgressBar from '../progressBar/ProgressBar';
 import PropTypes from 'prop-types';
-import { convertHMS } from '../../utils/utils';
 
 PackingMachine.propTypes = {
 	isRunning: PropTypes.bool,
@@ -14,6 +13,7 @@ PackingMachine.propTypes = {
 };
 
 function PackingMachine({
+	productId,
 	isRunning,
 	progress,
 	progressSetPoint,
@@ -21,7 +21,6 @@ function PackingMachine({
 	errorProducts,
 	fixedProducts,
 }) {
-	const workingHoursSetPoint = 28800;
 	return (
 		<>
 			<div className="row mb-20">
@@ -181,12 +180,9 @@ function PackingMachine({
 								<td>{progress} sản phẩm</td>
 							</tr>
 							<tr>
-								<td>Giờ làm việc</td>
-								<td>
-									<ProgressBar width="150px" height="15px" percent={(workingHours / workingHoursSetPoint) * 100} />
-								</td>
-
-								<td>{convertHMS(workingHours)}</td>
+								<td>Mã đơn hàng</td>
+								<td></td>
+								<td>{productId}</td>
 							</tr>
 							<tr>
 								<td>Tổng lỗi</td>

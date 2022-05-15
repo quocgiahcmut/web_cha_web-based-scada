@@ -130,9 +130,7 @@ function SecondSystem() {
 			.then(() => {
 				setConnection(connect);
 				setState('connected');
-				connect.on('ReceiveData', (data) => {
-					console.log('data 2', data);
-				});
+				connect.on('ReceiveData', (data) => {});
 			})
 			.catch((err) => {
 				console.error(err);
@@ -184,17 +182,19 @@ function SecondSystem() {
 					'qaqclab',
 					['plc'],
 					[
-						'Sp Force Cylinder 3',
-						'Sp No Press 3',
-						'Sp Time Hold 3',
-						'Pv Force Cylinder 3',
-						'Pv No Press 3',
-						'Pv Time Hold 3',
-						'Mode App',
-						'Green App',
-						'Red App',
-						'Error App',
-						'Error Code',
+						[
+							'Sp Force Cylinder 3',
+							'Sp No Press 3',
+							'Sp Time Hold 3',
+							'Pv Force Cylinder 3',
+							'Pv No Press 3',
+							'Pv Time Hold 3',
+							'Mode App',
+							'Green App',
+							'Red App',
+							'Error App',
+							'Error Code',
+						],
 					]
 				);
 				dispatch(
@@ -210,7 +210,6 @@ function SecondSystem() {
 						pvNoPress2: rawData.deviceQueryResults[0].tagQueryResults[4].value,
 					})
 				);
-				console.log(deformationMonitorData);
 				setMachineState(
 					deformationMonitorData.isRunning && deformationMonitorData.mode === true
 						? 'manual'

@@ -20,7 +20,6 @@ function TrackingDailyPacking() {
 				.then((res) => {
 					setLoading(false);
 					setError(null);
-					console.log(res.data);
 					const filteredData = res.data
 						.reduce((acc, shift) => {
 							acc.push({

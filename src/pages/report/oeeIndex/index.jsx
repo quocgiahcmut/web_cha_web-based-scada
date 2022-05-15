@@ -86,7 +86,6 @@ function OeeIndex() {
 				.then((res) => {
 					setIsLoading(false);
 					dispatch(setLastTimeUpdated(convertMiliseconds(Date.now() - new Date(value.dateStart), 'd')));
-					console.log(res.data);
 					if (res.data.totalItems !== 0) {
 						let totalWorkTime = 0;
 						let totalPartsProducedTime = 0;
@@ -191,7 +190,6 @@ function OeeIndex() {
 			datasets: [{ ...quantityData.datasets[0], data: totalQuantityDetailSeries }],
 		};
 	}, [detailLabels, availabilityDetailSeries, scrapDetailSeries, totalQuantityDetailSeries]);
-	console.log(error);
 	return (
 		<>
 			<h2 className="page-header">CHỈ SỐ OEE</h2>

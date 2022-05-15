@@ -231,6 +231,7 @@ function Endurance() {
 									fontBrush="Black"
 									backingShape="Fitted"
 									backingBrush="#ededed"
+									transitionDuration={500}
 								>
 									<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
 									<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />
@@ -265,6 +266,7 @@ function Endurance() {
 									fontBrush="Black"
 									backingShape="Fitted"
 									backingBrush="#ededed"
+									transitionDuration={500}
 								>
 									<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
 									<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />

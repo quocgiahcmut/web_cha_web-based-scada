@@ -153,7 +153,6 @@ function ReportForcedEndurance() {
 				.getForcedEnduranceReport(values.dateStart, values.dateEnd)
 				.then((res) => {
 					setLoading(false);
-					console.log(res.data.items[0]);
 					const filteredData = [];
 					if (res.data.items.length > 0) {
 						res.data.items[0].samples?.forEach((item) => {

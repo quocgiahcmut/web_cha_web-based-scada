@@ -155,7 +155,6 @@ function ReportEndurance() {
 			qaQcApi
 				.getEnduranceReport(values.dateStart, values.dateEnd)
 				.then((res) => {
-					console.log(res.data.items);
 					const filteredData = [];
 					setLoading(false);
 					if (res.data.items.length > 0) {

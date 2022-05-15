@@ -13,7 +13,7 @@ function WarehouseOverviewPage() {
 				const res = await warehouseApi.getAllItem();
 				setIdList(res.map((item) => item.itemId));
 			} catch (error) {
-				console.log(error);
+				console.error(error);
 			}
 		})();
 	}, []);

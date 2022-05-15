@@ -10,11 +10,10 @@ import { ReactComponent as PackingMachine } from '../assets/images/packingClassi
 import QaQcTable from '../components/qaqcDashboardTable/QaqcDashboardTable';
 import ProgressBar from '../components/progressBar/ProgressBar';
 import ViewMoreButton from '../components/viewMoreButton/ViewMoreButton';
-import { convertHMS } from '../utils/utils';
 import { injectionApi } from '../api/axios/injectionReport';
 import { setOeeOverall } from '../redux/slice/OeeReportSlice';
 import { format } from 'date-fns';
-
+// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 // import { IgrRadialGauge, IgrRadialGaugeRange, IgrRadialGaugeModule } from 'igniteui-react-gauges';
 
 // IgrRadialGaugeModule.register();
@@ -23,24 +22,23 @@ const packingButtonList = ['Cụm 1', 'Cụm 2', 'Cụm 3', 'Cụm 4', 'Cụm 5'
 const latestAlarmData = {
 	body: [
 		{
-			title: 'lorem ipsum',
+			title: 'Hoàn thành quy trình',
 			priority: 'low',
 		},
 
-		{ title: 'lorem ipsum', priority: 'high' },
-		{ title: 'lorem ipsum', priority: 'high' },
-		{ title: 'lorem ipsum', priority: 'high' },
-		{ title: 'lorem ipsum', priority: 'high' },
+		{ title: 'Lỗi kẹt xi lanh 2', priority: 'high' },
+		{ title: 'Mất kết nối trong ca', priority: 'high' },
+		{ title: 'Xi lanh không đủ lực', priority: 'high' },
 		{
-			title: 'lorem ipsum',
+			title: 'Hoàn thành quy trình',
 			priority: 'low',
 		},
-		{ title: 'lorem ipsum', priority: 'middle' },
+		{ title: 'Máy trong chế độ tạm dừng', priority: 'middle' },
 		{
-			title: 'lorem ipsum',
+			title: 'Hoàn thành quy trình',
 			priority: 'low',
 		},
-		{ title: 'lorem ipsum', priority: 'high' },
+		{ title: 'Lỗi kẹt xi lanh 2', priority: 'high' },
 	],
 };
 
@@ -62,10 +60,8 @@ const renderAlarmBody = (item, index) => {
 };
 
 //-------------------------------------
-const workingHoursSetPoint = 28800;
 
 const Dashboard = () => {
-	// const themeReducer = useSelector((state) => state.theme.mode);
 	const [packingData] = React.useState({
 		isRunning: false,
 		progress: 10,
@@ -80,7 +76,7 @@ const Dashboard = () => {
 		'Thời gian chờ nắp mở',
 		'Số lần thực hiện',
 	]);
-	const [qaqcTableBody, setQaqcTableBody] = React.useState(['1', '2', '3']);
+	const [qaqcTableBody, setQaqcTableBody] = React.useState(['10.12', '100', '300']);
 	const [packingToggleButtonsIndex, setPackingToggleButtonsIndex] = React.useState(0);
 	const onQaqcToggleButtonsIndexChange = (index) => {
 		setQaqcToggleButtonsIndex(index);
@@ -128,27 +124,27 @@ const Dashboard = () => {
 		switch (qaqcToggleButtonsIndex) {
 			case 0:
 				setQaqcTableHead(['Thời gian chờ nắp đóng', 'Thời gian chờ nắp mở', 'Số lần thực hiện']);
-				setQaqcTableBody(['1', '2', '3']);
+				setQaqcTableBody(['10.12', '100', '300']);
 				setIsDeformation(false);
 				// setIsWaterProof(false);
 				break;
 			case 1:
 				setQaqcTableHead(['Thời gian dừng lên', 'Thời gian dừng xuống', 'Số lần thực hiện']);
-				setQaqcTableBody(['1', '2', '3']);
+				setQaqcTableBody(['10.12', '100', '300']);
 				setIsDeformation(false);
 				// setIsWaterProof(false);
 				break;
 			case 2:
 				setQaqcTableHead(['Nhiệt độ cài đặt', 'Thời gian kiểm tra cài đặt']);
-				setQaqcTableBody(['1', '2']);
+				setQaqcTableBody(['10.12', '100']);
 				setIsDeformation(false);
 				// setIsWaterProof(true);
 				break;
 			case 3:
 				setQaqcTableHead([' ', 'Lực nén cài đặt', 'Thời gian giữ', 'Số lần cài đặt']);
 				setQaqcTableBody([
-					['Hệ 1', '1', '2', '3'],
-					['Hệ 2', '1', '2', '3'],
+					['Hệ 1', '10.12', '100', '300'],
+					['Hệ 2', '10.12', '100', '300'],
 				]);
 				setIsDeformation(true);
 				// setIsWaterProof(false);
@@ -209,12 +205,13 @@ const Dashboard = () => {
 										backingShape="Fitted"
 										backingBrush="#ededed"
 										backingStrokeThickness={5}
+										transitionDuration={500}
 									>
 										<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
 										<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />
 										<IgrRadialGaugeRange name="range3" startValue={60} endValue={100} brush="green" />
 									</IgrRadialGauge> */}
-									<span>Tiến trình: Data go here</span>
+									<span>Tiến trình: 80%</span>
 								</div>
 							</div>
 						</div>
@@ -248,6 +245,11 @@ const Dashboard = () => {
 									<table id="packing">
 										<tbody>
 											<tr>
+												<td>Mã đơn hàng</td>
+												<td></td>
+												<td>{packingData.productId}</td>
+											</tr>
+											<tr>
 												<td>Số lượng đóng gói</td>
 												<td>
 													<ProgressBar
@@ -257,18 +259,6 @@ const Dashboard = () => {
 													/>
 												</td>
 												<td>{packingData.progress} sản phẩm</td>
-											</tr>
-											<tr>
-												<td>Giờ làm việc</td>
-												<td>
-													<ProgressBar
-														width="150px"
-														height="15px"
-														percent={(packingData.workingHours / workingHoursSetPoint) * 100}
-													/>
-												</td>
-
-												<td>{convertHMS(packingData.workingHours)}</td>
 											</tr>
 											<tr>
 												<td>Mã Sản phẩm</td>
@@ -292,7 +282,7 @@ const Dashboard = () => {
 						<div className="card__body">
 							<div className="row">
 								<div className="col-12">
-									<Link to="/warning">
+									<Link to="/layout/warning">
 										<Table
 											headData={latestAlarmData.head}
 											bodyData={latestAlarmData.body.slice(0, 6)}

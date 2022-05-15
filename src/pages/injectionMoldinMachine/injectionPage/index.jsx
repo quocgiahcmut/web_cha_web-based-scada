@@ -322,7 +322,6 @@ function InjectionMoldingMachinePage() {
 	const [filterData, setFilterData] = useState();
 	// dữ liệu hiển thị theo trang lấy từ filterData
 	const [pageData, setPageData] = useState();
-
 	const handleCheckBtn = (e, state, payload) => {
 		e.stopPropagation();
 		if (state === 'wattage') {
@@ -352,7 +351,6 @@ function InjectionMoldingMachinePage() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const res = await injectionApi.getTemporaryAllPreShifts();
-			console.log(res.data.items);
 			return res.data.items.map((item) => {
 				return {
 					name: item,

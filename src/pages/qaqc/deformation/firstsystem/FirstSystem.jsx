@@ -82,9 +82,7 @@ function FirstSystem() {
 			.then(() => {
 				setConnection(connect);
 				setState('connected');
-				connect.on('ReceiveData', (data) => {
-					console.log('data 2', data);
-				});
+				connect.on('ReceiveData', (data) => {});
 			})
 			.catch((err) => {
 				console.error(err);
@@ -137,20 +135,22 @@ function FirstSystem() {
 					'qaqclab',
 					['plc'],
 					[
-						'Sp Force Cylinder 12',
-						'Sp No Press 12',
-						'Sp Time Hold 12',
-						'Pv Force Cylinder 1',
-						'Pv Force Cylinder 2',
-						'Pv No Press 1',
-						'Pv No Press 2',
-						'Pv Time Hold 1',
-						'Pv Time Hold 2',
-						'Mode App',
-						'Green App',
-						'Red App',
-						'Error App',
-						'Error Code',
+						[
+							'Sp Force Cylinder 12',
+							'Sp No Press 12',
+							'Sp Time Hold 12',
+							'Pv Force Cylinder 1',
+							'Pv Force Cylinder 2',
+							'Pv No Press 1',
+							'Pv No Press 2',
+							'Pv Time Hold 1',
+							'Pv Time Hold 2',
+							'Mode App',
+							'Green App',
+							'Red App',
+							'Error App',
+							'Error Code',
+						],
 					]
 				);
 				dispatch(
@@ -255,7 +255,6 @@ function FirstSystem() {
 						setErrorPriority('low');
 						break;
 				}
-				console.log(deformationMonitorData);
 			}, 1000);
 		}
 		return () => clearInterval(id);
