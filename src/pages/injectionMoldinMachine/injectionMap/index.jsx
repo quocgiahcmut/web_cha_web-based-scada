@@ -11,27 +11,79 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 function InjectionMachine({ item, direction }) {
+	const [hoverData, setHoverData] = React.useState(null);
+	const [monitorData, setMonitorData] = React.useState({
+		isRunning: true,
+		cycleTime: 10,
+		counterShot: 10,
+		openTime: 10,
+	});
+	const [configData, setConfigData] = React.useState({
+		id: hoverData,
+		plannedQuantity: 0,
+		cycle: 0,
+		standardOpenTime: 0,
+		product: {
+			id: '',
+			name: '',
+		},
+		moldId: '',
+		wattage: '',
+		isRunning: false,
+		cycleTime: 0,
+		counterShot: 0,
+		openTime: 0,
+	});
+	const [resData, setResData] = React.useState({
+		id: hoverData,
+		plannedQuantity: 200,
+		cycle: 12,
+		standardOpenTime: 5,
+		product: {
+			id: 'CS3004-TO1',
+			name: 'Nắp đế bàn cầu hơi HA-40 kem nhạt TO1 (SS124#UB1)',
+		},
+		moldId: 'NX35',
+		wattage: 'Small',
+	});
 	//fake data
-	const data = {
-		name: 'AXb15',
-		number: 'M1',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	};
-
+	React.useEffect(() => {
+		setConfigData({
+			id: hoverData,
+			plannedQuantity: 200,
+			cycle: 12,
+			standardOpenTime: 5,
+			product: {
+				id: 'CS3004-TO1',
+				name: 'Nắp đế bàn cầu hơi HA-40 kem nhạt TO1 (SS124#UB1)',
+			},
+			moldId: 'NX35',
+			wattage: 'Small',
+		});
+	}, [hoverData]);
+	React.useEffect(() => {
+		const id = setTimeout(() => {
+			setResData({
+				...monitorData,
+				...configData,
+			});
+		}, 2000);
+		return () => {
+			clearTimeout(id);
+		};
+	}, [configData, monitorData]);
 	return (
 		<React.Fragment>
 			{item.isHaitian ? (
 				<Tippy
 					className="injection-map__map-item-modal"
-					content={<InjectionMoldingMachine injectionMoldingMachineData={data} />}
+					content={<InjectionMoldingMachine injectionMoldingMachineData={resData} />}
 					maxWidth={470}
 				>
 					<Link
+						onMouseEnter={() => {
+							setHoverData(item.title);
+						}}
 						className="injection-map__map-item-inner"
 						to={{
 							pathname: item.url,
@@ -67,7 +119,7 @@ function InjectionMachine({ item, direction }) {
 			) : (
 				<Tippy
 					className="injection-map__map-item-modal"
-					content={<InjectionMoldingMachine injectionMoldingMachineData={data} />}
+					content={<InjectionMoldingMachine injectionMoldingMachineData={resData} />}
 					maxWidth={470}
 				>
 					<div className="injection-map__map-item-inner injection-map__map-item-inner--none-haitian">

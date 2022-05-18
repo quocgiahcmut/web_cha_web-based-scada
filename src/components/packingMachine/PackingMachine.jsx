@@ -9,18 +9,11 @@ PackingMachine.propTypes = {
 	progressSetPoint: PropTypes.number,
 	workingHours: PropTypes.number,
 	errorProducts: PropTypes.number,
-	fixedProducts: PropTypes.number,
 };
 
-function PackingMachine({
-	productId,
-	isRunning,
-	progress,
-	progressSetPoint,
-	workingHours,
-	errorProducts,
-	fixedProducts,
-}) {
+function PackingMachine({ data, monitorData }) {
+	const { product, setpoint } = data;
+	const { errorProduct, completedProduct, isRunning } = monitorData;
 	return (
 		<>
 			<div className="row mb-20">
@@ -175,21 +168,19 @@ function PackingMachine({
 							<tr>
 								<td>Số lượng đóng gói</td>
 								<td>
-									<ProgressBar width="150px" height="15px" percent={(progress / progressSetPoint) * 100} />
+									<ProgressBar width="150px" height="15px" percent={(completedProduct / setpoint) * 100} />
 								</td>
-								<td>{progress} sản phẩm</td>
+								<td>{completedProduct} sản phẩm</td>
 							</tr>
 							<tr>
 								<td>Mã đơn hàng</td>
 								<td></td>
-								<td>{productId}</td>
+								<td>{product.id}</td>
 							</tr>
 							<tr>
-								<td>Tổng lỗi</td>
+								<td>Tổng sản phẩm lỗi</td>
 								<td></td>
-								<td>
-									lỗi: {errorProducts}; sửa: {fixedProducts}
-								</td>
+								<td>{errorProduct}</td>
 							</tr>
 						</tbody>
 					</table>

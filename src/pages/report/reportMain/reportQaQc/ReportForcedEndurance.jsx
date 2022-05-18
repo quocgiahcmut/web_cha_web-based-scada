@@ -166,7 +166,7 @@ function ReportForcedEndurance() {
 								no_drop_bumper: item.result.isIntact === true ? 'Oke' : 'Lỗi',
 								no_spill: item.result.isUnleaked === true ? 'Oke' : 'Lỗi',
 								second_result: item.result.passed === true ? 'Oke' : 'Lỗi',
-								total: item.sampleNumber,
+								total: item.numberOfError,
 								note: item.note,
 								employee: item.tester.lastName + ' ' + item.tester.firstName,
 							});

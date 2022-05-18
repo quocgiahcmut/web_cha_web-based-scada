@@ -169,7 +169,7 @@ function ReportEndurance() {
 								no_drop_bumper: item.seatRingResult.isBumperIntact === true ? 'oke' : 'lỗi',
 								no_spill: item.seatRingResult.isUnleaked === true ? 'oke' : 'lỗi',
 								second_result: item.seatRingResult.passed === true ? 'oke' : 'lỗi',
-								total: item.sampleNumber,
+								total: item.numberOfError,
 								note: item.note,
 								employee: item.tester.lastName + ' ' + item.tester.firstName,
 							});

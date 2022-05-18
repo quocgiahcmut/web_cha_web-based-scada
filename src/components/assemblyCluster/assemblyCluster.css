@@ -1,6 +1,6 @@
 .assemblyCluster__container {
 	width: 100%;
-	height: 100px;
+	height: 100%;
 	border: 5px solid var(--second-color);
 }
 .assemblyCluster__title {
@@ -23,6 +23,7 @@
 	width: 20px;
 	height: 20px;
 	background-color: #ded;
+	border-radius: 50%;
 }
 .assemblyCluster__status--active {
 	background-color: green;

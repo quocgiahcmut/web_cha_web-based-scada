@@ -10,23 +10,24 @@ function InjectionDetail() {
 	// const [connection, setConnection] = useState(null);
 	const [map, setMap] = useState(false);
 	const [injectionMoldingMachineConfiguration, setInjectionMoldingMachineConfiguration] = useState({
-		number: '',
-		name: '',
-		plannedQuantity: 1,
+		id: id,
+		plannedQuantity: 200,
 		cycle: 12,
-		standardOpenTime: 12,
-		productId: '',
-		productName: '',
-		moldId: '',
+		standardOpenTime: 5,
+		product: {
+			id: 'CS3004-TO1',
+			name: 'Nắp đế bàn cầu hơi HA-40 kem nhạt TO1 (SS124#UB1)',
+		},
+		moldId: 'NX35',
 		wattage: 'Small',
 	});
-	const [realTimeData] = useState({
-		state: 'R',
-		cycleTime: 12,
-		openTime: 12,
+	const [monitorData, setMonitorData] = useState({
+		isRunning: true,
+		cycleTime: 7,
+		openTime: 3,
 		counterShot: 0,
 	});
-	const [progress] = useState(0);
+	const [progress, setProgress] = useState(0);
 	// useEffect(() => {
 	// 	const connect = new HubConnectionBuilder()
 	// 		.withUrl(`http://192.168.1.80:8085/websockethub`, {
@@ -96,7 +97,7 @@ function InjectionDetail() {
 			{injectionMoldingMachineConfiguration && (
 				<InjectionDetailComponent
 					injectionMoldingMachineConfiguration={injectionMoldingMachineConfiguration}
-					realTimeData={realTimeData}
+					monitorData={monitorData}
 					progress={progress}
 				/>
 			)}

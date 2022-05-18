@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import axios from 'axios';
 
 const qaQcApi = {
-	REQUEST_URL: 'http://192.168.1.80:8084/api',
+	REQUEST_URL: 'https://localhost:7116/api',
 	getEnduranceReport(startTime, stopTime) {
 		return axios.get(`${this.REQUEST_URL}/SoftCloseTests`, {
 			params: {
@@ -45,7 +45,7 @@ const qaQcApi = {
 		});
 	},
 	getWaterProofReport(startTime, stopTime) {
-		return axios.get('https://localhost:7116/api/WaterProofingTests', {
+		return axios.get(`${this.REQUEST_URL}/WaterProofingTests`, {
 			params: {
 				startTime,
 				stopTime: format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd'),

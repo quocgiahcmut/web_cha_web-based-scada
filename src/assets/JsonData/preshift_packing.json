@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"setpoint": 697,
+		"note": "Không",
+		"product": { "id": "VS040312B-HA1", "name": "Bộ xả paradise KR piston 2 nhấn vuông biển HA3" }
+	},
+	{
+		"id": 2,
+		"setpoint": 669,
+		"note": "Không",
+		"product": { "id": "VS040307B-HA2", "name": "Bộ xả paradise KR piston 2 nhấn vuông biển HA3" }
+	},
+	{
+		"id": 3,
+		"setpoint": 534,
+		"note": "Không",
+		"product": { "id": "VS040312B-HA2", "name": "Bộ xả paradise KR piston 2 nhấn chữ nhật biển HA2" }
+	},
+	{
+		"id": 4,
+		"setpoint": 544,
+		"note": "Không",
+		"product": { "id": "VS040312B-HA2", "name": "Bộ xả paradise KR piston 2 nhấn tam giác biển HA2" }
+	},
+	{
+		"id": 5,
+		"setpoint": 591,
+		"note": "Không",
+		"product": { "id": "VS040312B-HA2", "name": "Bộ xả paradise KR piston 2 nhấn vuông biển HA1" }
+	},
+	{
+		"id": 6,
+		"setpoint": 636,
+		"note": "Không",
+		"product": { "id": "VS040312B-HA2", "name": "Bộ xả paradise KR piston 2 nhấn chữ nhật biển HA1" }
+	}
+]

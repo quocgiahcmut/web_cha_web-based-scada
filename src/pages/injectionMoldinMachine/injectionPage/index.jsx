@@ -10,306 +10,50 @@ import './injectionMoldingMachinePage.css';
 import ReportNavigationButton from '../../../components/reportNavigationButton/ReportNavigationButton';
 import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import { injectionApi } from '../../../api/axios/injectionReport';
-const rawData = [
-	{
-		name: 'AXb15',
-		number: 'M1',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M2',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M3',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M4',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M5',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M6',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'm7',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'm8',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M24',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M25',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M30',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M36',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M24',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M25',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M30',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M36',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M24',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M25',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M30',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M36',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M1',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M2',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M3',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M4',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M5',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M6',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'm7',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'm8',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M24',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-];
 
 function InjectionMoldingMachinePage() {
 	const param = useParams();
 	const history = useHistory();
-	// save data after call API
 	const pageSize = React.useMemo(() => (window.screen.width >= 1280 ? 12 : window.screen.width >= 500 ? 6 : 100), []);
-
+	const [configData, setConfigData] = useState([
+		{
+			name: 'CLF 800T',
+			id: 'L6',
+			wattage: 'large',
+			setpoint: 200,
+			moldId: 'NX35',
+			product: {
+				id: 'CS3004-TO1',
+				name: 'Nắp đế bàn cầu hơi HA-40 kem nhạt TO1 (SS124#UB1)',
+			},
+		},
+		{
+			name: 'JSW J850E-C5',
+			id: 'L10',
+			wattage: 'large',
+			setpoint: 200,
+			moldId: 'NX35',
+			product: {
+				id: 'CS3004-1',
+				name: 'Nắp đế bàn cầu hơi HA-40 kem nhạt TO1 (TO, logo TO, SS124#UB1)',
+			},
+		},
+	]);
 	const [resData, setResData] = useState();
+	const [monitorData, setMonitorData] = useState([
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+		},
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+		},
+	]);
 	// id trang hiện tại => dùng để thực hiện render dữ liệu theo trang
 	const [page, setPage] = useState(+param.page);
 	// số trang cần hiển thị
@@ -328,13 +72,13 @@ function InjectionMoldingMachinePage() {
 			if (wattageFilter.includes(payload)) {
 				setWattageFilter(wattageFilter.filter((item) => item !== payload));
 			} else {
-				setWattageFilter([...wattageFilter, payload]);
+				setWattageFilter((prev) => [...prev, payload]);
 			}
 		} else {
 			if (stateFilter.includes(payload)) {
 				setStateFilter(stateFilter.filter((item) => item !== payload));
 			} else {
-				setStateFilter([...stateFilter, payload]);
+				setStateFilter((prev) => [...prev, payload]);
 			}
 		}
 	};
@@ -358,23 +102,29 @@ function InjectionMoldingMachinePage() {
 			});
 		};
 		fetchData();
-		setResData(rawData);
-	}, []);
+		setResData(
+			configData.map((item, index) => {
+				return {
+					...item,
+					...monitorData[index],
+				};
+			})
+		);
+	}, [monitorData, configData]);
 
 	useEffect(() => {
 		history.push(`/layout/injection/pages/${page}`);
 	}, [page, history]);
 
 	useEffect(() => {
-		const quantityPrepare = { M: 0, R: 0, S: 0 };
-		resData?.forEach((item) => {
-			if (item.state === 'M') quantityPrepare.M++;
-			else if (item.state === 'R') quantityPrepare.R++;
-			else quantityPrepare.S++;
+		const quantityPrepare = { R: 0, S: 0 };
+		monitorData?.forEach((item) => {
+			if (item.isRunning === true) quantityPrepare.R++;
+			else if (item.isRunning === false) quantityPrepare.S++;
+			else quantityPrepare.M++;
 		});
 		setQuantity(quantityPrepare);
-	}, [resData]);
-
+	}, [monitorData]);
 	useEffect(() => {
 		let wattageFilterData, stateFilterData;
 		if (wattageFilter.length !== 0) {
@@ -382,7 +132,7 @@ function InjectionMoldingMachinePage() {
 			setFilterData(wattageFilterData);
 		}
 		if (stateFilter.length !== 0) {
-			stateFilterData = resData.filter((item) => stateFilter.includes(item.state));
+			stateFilterData = resData.filter((item) => stateFilter.includes(item.isRunning));
 			setFilterData(stateFilterData);
 		}
 		if (wattageFilterData && stateFilterData) {

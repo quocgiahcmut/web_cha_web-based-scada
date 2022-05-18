@@ -110,7 +110,6 @@ function QualityControl() {
 							'Green App',
 							'Red App',
 							'Error App',
-
 							'Error Code',
 						],
 					]

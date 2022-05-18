@@ -6,14 +6,13 @@ import { INJECTION_MACHINE_ID } from '../../utils/utils';
 import ReportNavigationButton from '../reportNavigationButton/ReportNavigationButton';
 import { useHistory } from 'react-router-dom';
 
-function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, progress }) {
+function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData, progress }) {
 	const history = useHistory();
-	const subTitle = INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.number)
-		?.subTitle
-		? INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.number)?.subTitle
+	const subTitle = INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.id)?.subTitle
+		? INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.id)?.subTitle
 		: 'HaiTian';
 	const symbolColor =
-		realTimeData?.state === 'R'
+		monitorData?.isRunning === true
 			? {
 					whiteArea: 'white',
 					blueArea: '#4237C1',
@@ -28,18 +27,21 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 					shadow: '#C4C4C4',
 					text: '#C4C4C4',
 			  };
-	const state = realTimeData?.state === 'R' ? 'Đang chạy' : realTimeData?.state === 'S' ? 'Tạm dừng' : 'Bảo trì';
-	const stateClass = realTimeData?.state === 'R' ? 'stateR' : realTimeData?.state === 'S' ? 'stateS' : 'stateM';
-	const badgeType = realTimeData?.state === 'R' ? 'success' : realTimeData?.state === 'S' ? 'danger' : 'primary';
+	const state =
+		monitorData?.isRunning === true ? 'Đang chạy' : monitorData?.isRunning === false ? 'Tạm dừng' : 'Bảo trì';
+	const stateClass =
+		monitorData?.isRunning === true ? 'stateR' : monitorData?.isRunning === false ? 'stateS' : 'stateM';
+	const badgeType =
+		monitorData?.isRunning === true ? 'success' : monitorData?.isRunning === false ? 'danger' : 'primary';
 
 	return (
 		<div className={`injectionDetail__container ${stateClass}`}>
 			<div className="row">
-				<div className="col-1 col-md-2 col-sm-12">
-					<div className="injectionDetail__number">{injectionMoldingMachineConfiguration.number}</div>
+				<div className="col-2 col-md-2 col-sm-12">
+					<div className="injectionDetail__number">{injectionMoldingMachineConfiguration.id}</div>
 					<div className="injectionDetail__name">{subTitle}</div>
 				</div>
-				<div className="col-6 col-md-10 col-sm-12">
+				<div className="col-5 col-md-10 col-sm-12">
 					<div className="injectionDetail__symbol">
 						<svg width="100%" height="100%" viewBox="0 0 270 74" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -109,11 +111,11 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 							</tr>
 							<tr>
 								<td>Mã chi tiết ép</td>
-								<td>{injectionMoldingMachineConfiguration.productId}</td>
+								<td>{injectionMoldingMachineConfiguration.product.id}</td>
 							</tr>
 							<tr>
 								<td>Tên chi tiết ép</td>
-								<td>{injectionMoldingMachineConfiguration.productName}</td>
+								<td>{injectionMoldingMachineConfiguration.product.name}</td>
 							</tr>
 							<tr>
 								<td>Số lượng cần ép</td>
@@ -142,7 +144,7 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 							interval={Math.floor(
 								(injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle / 10) / 6
 							)}
-							value={realTimeData.cycleTime}
+							value={monitorData.cycleTime}
 							backingOutline="#c4c4c4"
 							scaleEndExtent={0.825}
 							scaleStartExtent={0.775}
@@ -173,7 +175,7 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 									injectionMoldingMachineConfiguration.standardOpenTime / 10) /
 									6
 							)}
-							value={realTimeData.openTime}
+							value={monitorData.openTime}
 							backingOutline="#c4c4c4"
 							scaleEndExtent={0.825}
 							scaleStartExtent={0.775}

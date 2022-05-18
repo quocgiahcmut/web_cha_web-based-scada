@@ -19,37 +19,47 @@ function ReportInjectionMoldingSector() {
 		(value) => {
 			dispatch(resetInjectionReportData());
 			setIsLoading(true);
+			// injectionApi
+			// 	.getTemporaryInjectionReport(value.moldingMachineId, value.dateStart, value.dateEnd)
+			// 	.then((res) => {
+			// 		setIsLoading(false);
+			// 		const filteredData = [];
+			// 		if (res.data.items.length === 0) {
+			// 			setHasNothing(true);
+			// 		} else {
+			// 			res.data.items.forEach((item, index) => {
+			// 				filteredData.push({
+			// 					MachineID: item.machine.id,
+			// 					Shift:
+			// 						item.shiftNumber === 0
+			// 							? `Ca 1 ngày ${format(new Date(item.date), 'dd/MM/yyyy')}`
+			// 							: `Ca 2 ngày ${format(new Date(item.date), 'dd/MM/yyyy')}`,
+			// 					MachineReport: item.shots.map((shot) => ({
+			// 						Timestamp: shot.timeStamp,
+			// 						ProductId: item.product.id,
+			// 						ProductName: item.product.name,
+			// 						CycleTime: shot.injectionTime / 1000,
+			// 						OpenTime: shot.openTime / 1000,
+			// 						Mode: item.product.mold.automatic === true ? 0 : 1,
+			// 						MoldID: item.product.moldId,
+			// 						SetCycle: item.product.mold.standardInjectionCycle / 1000,
+			// 						TotalQuantity: item.totalQuantity,
+			// 						Employee: item.employee.lastName + ' ' + item.employee.firstName,
+			// 					})),
+			// 				});
+			// 			});
+			// 			dispatch(setInjectionReportData(filteredData));
+			// 		}
+			// 	})
+			// 	.catch((err) => {
+			// 		setIsLoading(false);
+			// 		setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
+			// 	});
 			injectionApi
-				.getTemporaryInjectionReport(value.moldingMachineId, value.dateStart, value.dateEnd)
+				.getMockarooInjectionReport()
 				.then((res) => {
 					setIsLoading(false);
-					const filteredData = [];
-					if (res.data.items.length === 0) {
-						setHasNothing(true);
-					} else {
-						res.data.items.forEach((item, index) => {
-							filteredData.push({
-								MachineID: item.machine.id,
-								Shift:
-									item.shiftNumber === 0
-										? `Ca 1 ngày ${format(new Date(item.date), 'dd/MM/yyyy')}`
-										: `Ca 2 ngày ${format(new Date(item.date), 'dd/MM/yyyy')}`,
-								MachineReport: item.shots.map((shot) => ({
-									Timestamp: shot.timeStamp,
-									ProductId: item.product.id,
-									ProductName: item.product.name,
-									CycleTime: shot.injectionTime / 1000,
-									OpenTime: shot.openTime / 1000,
-									Mode: item.product.mold.automatic === true ? 0 : 1,
-									MoldID: item.product.moldId,
-									SetCycle: item.product.mold.standardInjectionCycle / 1000,
-									TotalQuantity: item.totalQuantity,
-									Employee: item.employee.lastName + ' ' + item.employee.firstName,
-								})),
-							});
-						});
-						dispatch(setInjectionReportData(filteredData));
-					}
+					dispatch(setInjectionReportData(res.data));
 				})
 				.catch((err) => {
 					setIsLoading(false);

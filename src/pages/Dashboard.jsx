@@ -320,7 +320,7 @@ const Dashboard = () => {
 												color="#3ace3a"
 												icon="bx bx-check-circle"
 												title="Máy đang chạy"
-												count="27"
+												count="0"
 											/>
 										</div>
 										<div className="col-12">
@@ -331,7 +331,7 @@ const Dashboard = () => {
 												color="#ffa82e"
 												icon="bx bx-loader-circle"
 												title="Máy đang dừng"
-												count="27"
+												count="2"
 											/>
 										</div>
 										<div className="col-12">
@@ -342,7 +342,7 @@ const Dashboard = () => {
 												color="#ff4e4e"
 												icon="bx bx-power-off"
 												title="Máy không hoạt động"
-												count="27"
+												count="0"
 											/>
 										</div>
 									</div>

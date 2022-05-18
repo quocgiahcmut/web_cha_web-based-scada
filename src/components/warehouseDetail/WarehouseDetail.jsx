@@ -136,8 +136,9 @@ function WarehouseDetail() {
 		if (data.length > 0) {
 			return data.map((item) => {
 				const { shelfId, rowId, cellId, sliceId, levelId } = item.location;
-				const location = `${shelfId}.${rowId}.${cellId}.${sliceId}.${levelId}`;
-				return { location, quantity: item.actualQuantity };
+				const location = `${shelfId}.${rowId}.${cellId}`;
+				const slice = `${sliceId} - ${levelId}`;
+				return { location, slice, quantity: item.actualQuantity };
 			});
 		}
 	};
@@ -219,7 +220,8 @@ function WarehouseDetail() {
 									{locationData && (
 										<WarehouseTable
 											headers={[
-												{ text: 'Vị trí', key: 'location' },
+												{ text: 'Vị trí trong kho', key: 'location' },
+												{ text: 'Vị trí trong kệ', key: 'slice' },
 												{ text: 'Số lượng', key: 'quantity' },
 											]}
 											body={locationData}

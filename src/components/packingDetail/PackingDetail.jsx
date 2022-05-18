@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { convertHMS, packingEmployees, packingState } from '../../utils/utils';
-import Badge from '../badge/Badge';
+import { packingEmployees } from '../../utils/utils';
+// import Badge from '../badge/Badge';
 import ProgressBar from '../progressBar/ProgressBar';
 import ReportNavigationButton from '../reportNavigationButton/ReportNavigationButton';
 import './packingDetail.css';
@@ -14,10 +14,12 @@ const mockPacking = {
 	totalTime: '00:00:00',
 };
 
-function PackingDetail() {
+function PackingDetail({ data, errorProduct, completedProduct, isRunning }) {
 	const history = useHistory();
+	const { note, setpoint, product } = data;
 	const [productState, setProductState] = React.useState('onWait');
-	const [productStateText, setProductStateText] = React.useState('Đang chờ');
+	// const [productStateText] = React.useState('Đang chờ');
+
 	React.useEffect(() => {
 		switch (mockPacking.state) {
 			case 'running':
@@ -40,29 +42,6 @@ function PackingDetail() {
 				return;
 		}
 	}, [productState]);
-	React.useEffect(() => {
-		switch (productState) {
-			case 'onWait':
-				setProductStateText('Đang chờ');
-				return;
-			case 'onProcess':
-				setProductStateText('Đang thực hiện');
-				return;
-			case 'onFinish':
-				setProductStateText('Hoàn thành');
-				return;
-			case 'onCancel':
-				setProductStateText('Đã hủy');
-				return;
-			case 'onIdle':
-				setProductStateText('Tạm dừng');
-				return;
-			default:
-				setProductStateText('Đang chờ');
-				return;
-		}
-	}, [productState]);
-	const isRunning = true;
 	return (
 		<>
 			<div
@@ -227,62 +206,62 @@ function PackingDetail() {
 							className="row full-width"
 						>
 							<div className="col-12 flex-justify-center">
-								<span className="packing__employee-name">Nhân viên thực hiện: {packingEmployees[0]}</span>
+								<span className="packing__employee-name">
+									Nhân viên thực hiện: {isRunning ? packingEmployees[Math.floor(Math.random() * 3)] : ''}
+								</span>
 							</div>
 							<div className="col-12 flex-justify-center">
-								<span className="packingParamsTitle">Giờ làm việc thực: {convertHMS(21161)}</span>
-								<ProgressBar height="38px" percent={50} />
-							</div>
-							<div className="col-12 flex-justify-center">
-								<span className="packingParamsTitle">Tiến độ sản phẩm hiện tại: 250 sản phẩm</span>
+								<span className="packingParamsTitle">Tiến độ sản phẩm hiện tại: {completedProduct} sản phẩm</span>
 								<ProgressBar height="38px" percent={50} />
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className="row flex-center">
-					<div className="col-12">
+					<div className="col-8">
 						<div className="card">
 							<div className="card__body">
 								<table id="packingDetail">
 									<tbody>
 										<tr>
-											<td>Tên công việc</td>
-											<td>AbXX9181</td>
-											<td>AbXX9181</td>
-											<td>AbXX9181</td>
+											<td>Mã đơn việc</td>
+											<td>{product.id}</td>
+											{/* <td>AbXX9181</td>
+											<td>AbXX9181</td> */}
+										</tr>
+										<tr>
+											<td>Tên đơn hàng</td>
+											<td>{product.name}</td>
+											{/* <td>AbXX9181</td>
+											<td>AbXX9181</td> */}
 										</tr>
 										<tr>
 											<td>Số lượng yêu cầu</td>
-											<td>500</td>
-											<td>500</td>
-											<td>500</td>
+											<td>{setpoint}</td>
 										</tr>
 										<tr>
 											<td>Số lượng thực hiện</td>
-											<td>500</td>
-											<td>500</td>
-											<td>0</td>
+											<td>{completedProduct}</td>
 										</tr>
 										<tr>
 											<td>Ghi chú</td>
-											<td>Không</td>
-											<td>Không</td>
-											<td>Không</td>
+											<td>{note}</td>
 										</tr>
 										<tr>
-											<td>Tầng suất lỗi</td>
-											<td>130.12 sản phẩm / 1 lỗi</td>
-											<td>130.12 sản phẩm / 1 lỗi</td>
-											<td>130.12 sản phẩm / 1 lỗi</td>
+											<td>Sản phẩm đóng gói lỗi</td>
+											<td>{errorProduct}</td>
 										</tr>
 										<tr>
+											<td>Tầng suất lỗi (sản phẩm/1 lỗi)</td>
+											<td>{((errorProduct + completedProduct) / errorProduct).toFixed(2)}</td>
+										</tr>
+										{/* <tr>
 											<td>Thời gian thực hiện</td>
 											<td>2 tiếng 15 phút</td>
 											<td>2 tiếng 15 phút</td>
 											<td>2 Chưa thực hiện</td>
-										</tr>
-										<tr>
+										</tr> */}
+										{/* <tr>
 											<td>Trạng thái</td>
 											<td>
 												<Badge type={packingState[productState]} content={productStateText} />
@@ -293,7 +272,7 @@ function PackingDetail() {
 											<td>
 												<Badge type={packingState[productState]} content={productStateText} />
 											</td>
-										</tr>
+										</tr> */}
 									</tbody>
 								</table>
 							</div>

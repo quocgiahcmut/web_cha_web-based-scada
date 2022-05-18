@@ -261,6 +261,7 @@ function ReportDeformation() {
 		},
 		[deformationOverviewData, deformationReportData, deformationReportDataDate]
 	);
+	console.log(deformationReportData);
 	const onSubmit = React.useCallback(
 		(values) => {
 			dispatch(resetDeformationReportData());
@@ -278,7 +279,7 @@ function ReportDeformation() {
 									filteredData.push({
 										id: index + 1,
 										result: item.status,
-										total: item.numberOfErrors,
+										total: item.numberOfError,
 										note: item.note,
 										employee: item.tester.lastName + ' ' + item.tester.firstName,
 									});
@@ -375,7 +376,7 @@ function ReportDeformation() {
 										weight: (item.load / 1000).toFixed(2),
 										number_of_test: item.testedTimes,
 										result: item.passed === true ? 'Oke' : 'Lỗi',
-										total: item.numberOfErrors,
+										total: item.numberOfError,
 										note: item.note,
 										employee: item.tester.lastName + ' ' + item.tester.firstName,
 									});
