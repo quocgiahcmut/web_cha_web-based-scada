@@ -10,32 +10,57 @@ import './injectionMoldingMachinePage.css';
 import ReportNavigationButton from '../../../components/reportNavigationButton/ReportNavigationButton';
 import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import { injectionApi } from '../../../api/axios/injectionReport';
+import { HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
+import { getInjectionMachineStatus, getTagsData } from '../../../utils/utils';
 
 function InjectionMoldingMachinePage() {
 	const param = useParams();
 	const history = useHistory();
 	const pageSize = React.useMemo(() => (window.screen.width >= 1280 ? 12 : window.screen.width >= 500 ? 6 : 100), []);
+	const [connection, setConnection] = useState(null);
 	const [configData, setConfigData] = useState([
 		{
 			name: 'CLF 800T',
 			id: 'L6',
-			wattage: 'large',
-			setpoint: 200,
-			moldId: 'NX35',
+			wattage: 'Large',
+			plannedQuantity: 200,
+			moldId: '',
 			product: {
-				id: 'CS3004-TO1',
-				name: 'Nắp đế bàn cầu hơi HA-40 kem nhạt TO1 (SS124#UB1)',
+				id: '',
+				name: '',
+			},
+		},
+		{
+			name: 'JM 600-C',
+			id: 'L7',
+			wattage: 'Large',
+			plannedQuantity: 0,
+			moldId: '',
+			product: {
+				id: '',
+				name: '',
+			},
+		},
+		{
+			name: 'HC 800',
+			id: 'L8',
+			wattage: 'Large',
+			plannedQuantity: 0,
+			moldId: '',
+			product: {
+				id: '',
+				name: '',
 			},
 		},
 		{
 			name: 'JSW J850E-C5',
 			id: 'L10',
-			wattage: 'large',
-			setpoint: 200,
-			moldId: 'NX35',
+			wattage: 'Large',
+			plannedQuantity: 0,
+			moldId: '',
 			product: {
-				id: 'CS3004-1',
-				name: 'Nắp đế bàn cầu hơi HA-40 kem nhạt TO1 (TO, logo TO, SS124#UB1)',
+				id: '',
+				name: '',
 			},
 		},
 	]);
@@ -46,12 +71,28 @@ function InjectionMoldingMachinePage() {
 			cycleTime: 0,
 			counterShot: 0,
 			openTime: 0,
+			setCycle: 0,
 		},
 		{
 			isRunning: false,
 			cycleTime: 0,
 			counterShot: 0,
 			openTime: 0,
+			setCycle: 0,
+		},
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+			setCycle: 0,
+		},
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+			setCycle: 0,
 		},
 	]);
 	// id trang hiện tại => dùng để thực hiện render dữ liệu theo trang
@@ -82,26 +123,69 @@ function InjectionMoldingMachinePage() {
 			}
 		}
 	};
-	// {
-	// 	name: 'AXb12',
-	// 	number: 'M4',
-	// 	percent: 15,
-	// 	state: 'M',
-	// 	cycle: '30 giây',
-	// 	openDoorTime: '7 giây',
-	// 	productId: 'EE2003',
-	// 	wattage: 'small',
-	// }
 	useEffect(() => {
-		const fetchData = async () => {
-			const res = await injectionApi.getTemporaryAllPreShifts();
-			return res.data.items.map((item) => {
-				return {
-					name: item,
-				};
-			});
+		const connection = new HubConnectionBuilder()
+			.withUrl('http://10.84.70.80:8085/websockethub', {
+				skipNegotiation: true,
+				transport: HttpTransportType.WebSockets,
+			})
+			.withAutomaticReconnect()
+			.build();
+		connection.start().then(() => {
+			console.log('connected');
+			setConnection(connection);
+		});
+		return () => {
+			connection.stop();
 		};
-		fetchData();
+	}, []);
+	useEffect(() => {
+		let idInterval;
+		if (connection) {
+			idInterval = setInterval(async () => {
+				const rawData = await getTagsData(
+					connection,
+					'imm',
+					['l10'],
+					[['L10.CycleTime', 'L10.CounterShot', 'L10.OpenTime', 'L10.MachineStatus', 'L10.SetCycle']]
+				);
+				setMonitorData((prev) => [
+					{
+						isRunning: false,
+						cycleTime: 0,
+						counterShot: 0,
+						openTime: 0,
+						setCycle: 0,
+					},
+					{
+						isRunning: false,
+						cycleTime: 0,
+						counterShot: 0,
+						openTime: 0,
+						setCycle: 0,
+					},
+					{
+						isRunning: false,
+						cycleTime: 0,
+						counterShot: 0,
+						openTime: 0,
+						setCycle: 0,
+					},
+					{
+						isRunning: getInjectionMachineStatus(rawData.deviceQueryResults[0].tagQueryResults[3].value),
+						cycleTime: rawData.deviceQueryResults[0].tagQueryResults[0].value,
+						openTime: rawData.deviceQueryResults[0].tagQueryResults[2].value,
+						counterShot: rawData.deviceQueryResults[0].tagQueryResults[1].value,
+						setCycle: rawData.deviceQueryResults[0].tagQueryResults[4].value,
+					},
+				]);
+			}, 1500);
+		}
+		return () => {
+			clearInterval(idInterval);
+		};
+	}, [connection]);
+	useEffect(() => {
 		setResData(
 			configData.map((item, index) => {
 				return {
@@ -111,6 +195,36 @@ function InjectionMoldingMachinePage() {
 			})
 		);
 	}, [monitorData, configData]);
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await injectionApi.getPreShiftsByMachine('L10');
+			return res.data.items.map((item) => {
+				return {
+					id: item.machine.id,
+					name: item.machine.model,
+					plannedQuantity: Math.floor(item.cavity * ((12 * 60 * 60) / item.injectionCycle)),
+					product: {
+						id: item.product.id,
+						name: item.product.name,
+					},
+					standardOpenTime: Number(item.product.mold.standardOpenTime.toFixed(0)),
+					moldId: item.product.mold.id,
+					cycle: Number(item.injectionCycle.toFixed(0)),
+					wattage: item.machine.machineType === 0 ? 'Large' : 'Small',
+				};
+			});
+		};
+		fetchData().then((res) => {
+			setConfigData((prev) => {
+				return prev.map((item) => {
+					if (item.id === res[0].id) {
+						item = res[0];
+					}
+					return item;
+				});
+			});
+		});
+	}, []);
 
 	useEffect(() => {
 		history.push(`/layout/injection/pages/${page}`);

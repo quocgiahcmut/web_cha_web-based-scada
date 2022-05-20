@@ -236,9 +236,9 @@ function QualityControl() {
 									'Số lần đóng nắp cài đặt',
 									'Số lần đóng nắp hiện tại',
 								]}
-								params={[['0000', '0000', '0000', '0000']]}
+								params={[['0', '0', '0', '0']]}
 								led={{
-									isRunning: true,
+									isRunning: false,
 									isAlarm: false,
 								}}
 								isDeformation={false}
@@ -301,9 +301,9 @@ function QualityControl() {
 									'Số lần đóng nắp cài đặt',
 									'Số lần đóng nắp hiện tại',
 								]}
-								params={[['0000', '0000', '0000', '0000']]}
+								params={[['0', '0', '0', '0']]}
 								led={{
-									isRunning: true,
+									isRunning: false,
 									isAlarm: false,
 								}}
 								isDeformation={false}
@@ -333,9 +333,9 @@ function QualityControl() {
 									'Thời gian kiểm tra cài đặt',
 									'Thời gian kiểm tra thực',
 								]}
-								params={[['0000', '0000', '0000', '0000']]}
+								params={[['0', '0', '0', '0']]}
 								led={{
-									isRunning: true,
+									isRunning: false,
 									isAlarm: false,
 								}}
 								isWaterProof={true}

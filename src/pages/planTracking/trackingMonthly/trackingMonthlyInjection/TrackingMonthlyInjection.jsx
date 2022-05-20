@@ -11,13 +11,17 @@ function TrackingMonthlyInjection() {
 	const dispatch = useDispatch();
 	const { monthlyInjectionPlanTrackingData } = useSelector((state) => state.planTracking);
 	const [loading, setLoading] = React.useState(false);
+	const [hasNothing, setHasNothing] = React.useState(false);
 	const [error, setError] = React.useState(null);
 	const request = React.useCallback(
 		async (startTime) => {
 			setLoading(true);
 			setError(null);
 			try {
-				const res = await injectionApi.getTemporaryInjectionPlanTracking(startTime, format(Date.now(), 'yyyy-MM-dd'));
+				const res = await injectionApi.getInjectionPlanTracking(startTime, format(Date.now(), 'yyyy-MM-dd'));
+				if (res.data.items.length === 0) {
+					setHasNothing(true);
+				}
 				const filteredData = res.data.items
 					.reduce((acc, cur) => {
 						acc.push({
@@ -85,6 +89,8 @@ function TrackingMonthlyInjection() {
 				<LoadingComponent className="" />
 			) : error ? (
 				<EmptyPlaceholder isError={true} msg={error} />
+			) : hasNothing ? (
+				<EmptyPlaceholder isError={true} msg="Không có dữ liệu trong ngày, vui lòng truy xuất lại" />
 			) : monthlyInjectionPlanTrackingData ? (
 				<div className="card">
 					<div className="card__header">

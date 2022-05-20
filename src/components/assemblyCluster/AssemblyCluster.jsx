@@ -4,7 +4,6 @@ import './assemblyCluster.css';
 // const order = [1, 8, 15, 22, 2, 9, 16, 23, 3, 10, 17, 24, 4, 11, 18, 25, 5, 12, 19, 26, 6, 13, 20, 27, 7, 14, 21, 28];
 const order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28];
 function AssemblyCluster({ data, index, isRunning, currentValue }) {
-	console.log('data', data);
 	const { setpoint, product } = data;
 	return (
 		<>
@@ -30,7 +29,15 @@ function AssemblyCluster({ data, index, isRunning, currentValue }) {
 											<tr>
 												<td>Số lượng lắp ráp</td>
 												<td>
-													<ProgressBar width="150px" height="15px" percent={(currentValue / setpoint) * 100} />
+													<ProgressBar
+														width="150px"
+														height="15px"
+														percent={
+															isNaN(Math.floor((currentValue / setpoint) * 100))
+																? 0
+																: Math.floor((currentValue / setpoint) * 100)
+														}
+													/>
 												</td>
 												<td>{currentValue} sản phẩm</td>
 											</tr>

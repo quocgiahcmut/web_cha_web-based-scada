@@ -15,6 +15,7 @@ import WarehouseReducer from './WarehouseSlice';
 import PlanTrackingReducer from './PlanTrackingSlice';
 import LoginReducer from './LoginSlice';
 import PackingReducer from './PackingReportSlice';
+import InjectionMonitorReducer from './InjectionMonitorSlice';
 const rootReducer = {
 	theme: ThemeReducer,
 	sidebar: SideBarReducer,
@@ -26,6 +27,7 @@ const rootReducer = {
 	planTracking: PlanTrackingReducer,
 	login: LoginReducer,
 	packingReportData: PackingReducer,
+	injectionMonitor: InjectionMonitorReducer,
 };
 
 export default rootReducer;

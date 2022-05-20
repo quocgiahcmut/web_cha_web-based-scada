@@ -1282,7 +1282,24 @@ const getAccessToken = () => {
 	// We should never get here!
 	return false;
 };
-
+const getInjectionMachineStatus = (id) => {
+	switch (id) {
+		case 0:
+			return true;
+		case 1:
+			return false;
+		case 2:
+			return false;
+		case 3:
+			return true;
+		case 4:
+			return true;
+		case 5:
+			return false;
+		default:
+			return false;
+	}
+};
 export const accessToken = getAccessToken();
 
 export {
@@ -1295,6 +1312,7 @@ export {
 	convertMiliseconds,
 	getTagsData,
 	convertDate,
+	getInjectionMachineStatus,
 	REPORT_MENU_LIST,
 	ENDURANCE_COLUMNS,
 	FORCED_ENDURANCE_COLUMNS,

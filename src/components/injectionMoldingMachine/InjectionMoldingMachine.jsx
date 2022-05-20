@@ -42,16 +42,24 @@ function InjectionMoldingMachine({ injectionMoldingMachineData }) {
 							<span>TIẾN ĐỘ</span>
 							<div>
 								<ProgressBar
-									percent={Math.floor(
-										(injectionMoldingMachineData.counterShot / injectionMoldingMachineData.setpoint) * 100
-									)}
+									percent={
+										isNaN(
+											Math.floor(
+												(injectionMoldingMachineData.counterShot / injectionMoldingMachineData.plannedQuantity) * 100
+											)
+										)
+											? 0
+											: Math.floor(
+													(injectionMoldingMachineData.counterShot / injectionMoldingMachineData.plannedQuantity) * 100
+											  )
+									}
 								/>
 							</div>
 						</div>
 					</div>
 					<div className="injectionMoldingMachine__state">
 						<div className={`injectionMoldingMachine__state-type ${typeClass}`}>
-							{injectionMoldingMachineData.isRunning ? 'R' : injectionMoldingMachineData.isRunning ? 'S' : 'M'}
+							{injectionMoldingMachineData.isRunning ? 'R' : 'S'}
 						</div>
 						<div className="injectionMoldingMachine__state-symbol">
 							<svg width="100%" height="100%" viewBox="0 0 270 74" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -12,15 +12,20 @@ function TrackingDailyInjection() {
 	const { dailyInjectionPlanTrackingData } = useSelector((state) => state.planTracking);
 	const [loading, setLoading] = React.useState(false);
 	const [error, setError] = React.useState(null);
+	const [hasNothing, setHasNothing] = React.useState(false);
 	const requestData = React.useCallback(
 		async (startTime, stopTime) => {
 			setLoading(true);
 			injectionApi
-				.getTemporaryInjectionPlanTracking(startTime, stopTime)
+				.getInjectionPlanTracking(startTime, stopTime)
 				.then((res) => {
+					console.log(res.data);
 					setLoading(false);
 					setError(null);
 					const filteredData = [];
+					if (res.data.items.length === 0) {
+						setHasNothing(true);
+					}
 					res.data.items.forEach((item) => {
 						filteredData.push({
 							date: item.date,
@@ -77,6 +82,8 @@ function TrackingDailyInjection() {
 				<LoadingComponent className="" />
 			) : error ? (
 				<EmptyPlaceholder isError={true} msg={error} />
+			) : hasNothing ? (
+				<EmptyPlaceholder isError={true} msg="Không có dữ liệu trong ngày, vui lòng truy xuất lại" />
 			) : dailyInjectionPlanTrackingData ? (
 				<div className="card">
 					<div className="card__header">

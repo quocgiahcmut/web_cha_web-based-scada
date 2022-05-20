@@ -16,7 +16,7 @@ function TrackingDailyPacking() {
 		async (startTime, stopTime) => {
 			setLoading(true);
 			packingApi
-				.getTemporaryPackingPlanTracking(startTime, stopTime)
+				.getPackingPlanTracking(startTime, stopTime)
 				.then((res) => {
 					setLoading(false);
 					setError(null);
@@ -60,7 +60,6 @@ function TrackingDailyPacking() {
 							return acc;
 						}, []);
 					dispatch(setDailyPackingPlanTrackingData(filteredData));
-
 				})
 				.catch((err) => {
 					setLoading(false);

@@ -207,12 +207,12 @@ function PackingDetail({ data, errorProduct, completedProduct, isRunning }) {
 						>
 							<div className="col-12 flex-justify-center">
 								<span className="packing__employee-name">
-									Nhân viên thực hiện: {isRunning ? packingEmployees[Math.floor(Math.random() * 3)] : ''}
+									Nhân viên thực hiện: {isRunning ? packingEmployees[2] : ''}
 								</span>
 							</div>
 							<div className="col-12 flex-justify-center">
 								<span className="packingParamsTitle">Tiến độ sản phẩm hiện tại: {completedProduct} sản phẩm</span>
-								<ProgressBar height="38px" percent={50} />
+								<ProgressBar height="38px" percent={Math.floor((completedProduct / setpoint) * 100)} />
 							</div>
 						</div>
 					</div>
@@ -224,7 +224,7 @@ function PackingDetail({ data, errorProduct, completedProduct, isRunning }) {
 								<table id="packingDetail">
 									<tbody>
 										<tr>
-											<td>Mã đơn việc</td>
+											<td>Mã đơn hàng</td>
 											<td>{product.id}</td>
 											{/* <td>AbXX9181</td>
 											<td>AbXX9181</td> */}
@@ -253,7 +253,11 @@ function PackingDetail({ data, errorProduct, completedProduct, isRunning }) {
 										</tr>
 										<tr>
 											<td>Tầng suất lỗi (sản phẩm/1 lỗi)</td>
-											<td>{((errorProduct + completedProduct) / errorProduct).toFixed(2)}</td>
+											<td>
+												{Number(((errorProduct + completedProduct) / errorProduct).toFixed(2)) === Infinity
+													? 0
+													: ((errorProduct + completedProduct) / errorProduct).toFixed(2)}
+											</td>
 										</tr>
 										{/* <tr>
 											<td>Thời gian thực hiện</td>

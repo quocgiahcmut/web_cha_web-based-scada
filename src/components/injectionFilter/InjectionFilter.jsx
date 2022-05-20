@@ -28,16 +28,16 @@ function InjectionFilter({ handleCheckBtn, wattageFilter, stateFilter }) {
 			<div className={`injectionMoldingMachinePage__filter-wattage ${showWattageFilter ? 'show' : 'hide'}`}>
 				<button
 					type="button"
-					onClick={(e) => handleCheckBtn(e, 'wattage', 'small')}
-					className={`injectionMoldingMachinePage__filter-btn ${wattageFilter.includes('small') && 'btnActive'}`}
+					onClick={(e) => handleCheckBtn(e, 'wattage', 'Small')}
+					className={`injectionMoldingMachinePage__filter-btn ${wattageFilter.includes('Small') && 'btnActive'}`}
 				>
 					<i className="bx bx-check"></i>
 					<span>Máy nhỏ</span>
 				</button>
 				<button
 					type="button"
-					onClick={(e) => handleCheckBtn(e, 'wattage', 'large')}
-					className={`injectionMoldingMachinePage__filter-btn ${wattageFilter.includes('large') && 'btnActive'}`}
+					onClick={(e) => handleCheckBtn(e, 'wattage', 'Large')}
+					className={`injectionMoldingMachinePage__filter-btn ${wattageFilter.includes('Large') && 'btnActive'}`}
 				>
 					<i className="bx bx-check"></i>
 					<span>Máy lớn</span>

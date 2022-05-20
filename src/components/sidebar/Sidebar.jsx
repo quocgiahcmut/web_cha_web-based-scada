@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './sidebar.css';
 
-import logo from '../../assets/images/favicon.png';
+// import logo from '../../assets/images/favicon.png';
 
 import sidebar_items from '../../assets/JsonData/sidebar_routes.json';
 
@@ -79,9 +79,7 @@ function Sidebar(props) {
 				<button type="button" className="sidebar__btn" onClick={() => handleMenuClick()}>
 					<i className="bx bx-x"></i>
 				</button>
-				<div className="sidebar__logo">
-					<img src={logo} alt="logo cong ty" />
-				</div>
+				<div className="sidebar__logo">{/* <img src={logo} alt="logo cong ty" /> */}</div>
 				<div className="sidebar__user">
 					<span className="sidebar__user-name">{user.lastName + ' ' + user.firstName}</span>
 					<span

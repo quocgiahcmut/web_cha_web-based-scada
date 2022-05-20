@@ -24,6 +24,7 @@ import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { ToastContainer, toast } from 'react-toastify';
 import { getTagsData } from '../../../../utils/utils';
 // import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
+// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -293,7 +294,7 @@ function SecondSystem() {
 						setErrorPriority('middle');
 						break;
 					default:
-						setError('Đang test');
+						setError('Kết nối thành công');
 						setErrorPriority('low');
 						break;
 				}

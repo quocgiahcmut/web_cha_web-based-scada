@@ -1,16 +1,16 @@
-import axiosClient from './axiosClient';
 import axios from 'axios';
 import { format } from 'date-fns';
 const packingApi = {
+	REQUEST_URL: 'http://10.84.70.81:8083/api',
 	getMonthlyPackingReport(startTime, stopTime) {
-		return axiosClient.get('/packing', {
+		return axios.get(`${this.REQUEST_URL}/packing`, {
 			params: {
 				startTime,
 				stopTime: format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd'),
 			},
 		});
 	},
-	getTemporaryPackingPlanTracking(startTime, stopTime) {
+	getPackingPlanTracking(startTime, stopTime) {
 		return axios.get('https://my.api.mockaroo.com/plan_tracking_packing.json?key=4ead7de0', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ const packingApi = {
 		});
 	},
 	getAllEmployees() {
-		return axiosClient.get('/api/employees/');
+		return axios.get(`${this.REQUEST_URL}employees/`);
 	},
 };
 

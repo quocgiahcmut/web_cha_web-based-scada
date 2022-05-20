@@ -1,12 +1,14 @@
 // import { IgrRadialGauge } from 'igniteui-react-gauges';
+import { memo } from 'react';
 import ProgressBar from '../progressBar/ProgressBar';
 import Badge from '../badge/Badge';
 import './injectionDetail.css';
 import { INJECTION_MACHINE_ID } from '../../utils/utils';
 import ReportNavigationButton from '../reportNavigationButton/ReportNavigationButton';
 import { useHistory } from 'react-router-dom';
+import { IgrRadialGauge } from 'igniteui-react-gauges';
 
-function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData, progress }) {
+function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) {
 	const history = useHistory();
 	const subTitle = INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.id)?.subTitle
 		? INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.id)?.subTitle
@@ -87,10 +89,19 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData, pr
 					<div className="row" style={{ alignItems: 'center' }}>
 						<div className="injectionDetail__progress">
 							<div>
-								<ProgressBar percent={progress} />
+								<ProgressBar
+									percent={
+										isNaN((monitorData.counterShot / injectionMoldingMachineConfiguration.plannedQuantity) * 100)
+											? 0
+											: (
+													(monitorData.counterShot / injectionMoldingMachineConfiguration.plannedQuantity) *
+													100
+											  ).toFixed(2)
+									}
+								/>
 							</div>
 							<span>
-								Tiến độ: <span>{progress + ' sản phẩm'}</span>
+								Tiến độ: <span>{monitorData.counterShot + ' sản phẩm'}</span>
 							</span>
 						</div>
 					</div>
@@ -133,7 +144,7 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData, pr
 			<div className="row flex-center mb-20">
 				<div className="card col-12 injectionDetail__value">
 					<div>
-						{/* <IgrRadialGauge
+						<IgrRadialGauge
 							id="cycle"
 							width="300px"
 							height="300px"
@@ -153,28 +164,32 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData, pr
 							tickStartExtent={0.675}
 							tickEndExtent={0.75}
 							labelExtent={0.6}
-							labelInterval={10}
+							labelInterval={Math.floor(
+								(injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle / 10) / 6
+							)}
 							font="15px Verdana,Arial"
 							backingOuterExtent={0.9}
 							transitionDuration={500}
-						/> */}
-						<span>Chu kì ép</span>
+						/>
+						<span>Chu kì ép: {monitorData.cycleTime.toFixed(2)}</span>
 					</div>
 					<div>
-						{/* <IgrRadialGauge
+						<IgrRadialGauge
 							id="openTime"
 							width="300px"
 							height="300px"
 							minimumValue={0}
-							maximumValue={Math.floor(
-								injectionMoldingMachineConfiguration.standardOpenTime +
-									injectionMoldingMachineConfiguration.standardOpenTime / 10
-							)}
-							interval={Math.floor(
-								(injectionMoldingMachineConfiguration.standardOpenTime +
-									injectionMoldingMachineConfiguration.standardOpenTime / 10) /
-									6
-							)}
+							// maximumValue={Math.floor(
+							// 	injectionMoldingMachineConfiguration.standardOpenTime +
+							// 		injectionMoldingMachineConfiguration.standardOpenTime / 10
+							// )}
+							maximumValue={50}
+							// interval={Math.floor(
+							// 	(injectionMoldingMachineConfiguration.standardOpenTime +
+							// 		injectionMoldingMachineConfiguration.standardOpenTime / 10) /
+							// 		6
+							// )}
+							interval={5}
 							value={monitorData.openTime}
 							backingOutline="#c4c4c4"
 							scaleEndExtent={0.825}
@@ -184,12 +199,12 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData, pr
 							tickStartExtent={0.675}
 							tickEndExtent={0.75}
 							labelExtent={0.6}
-							labelInterval={2}
+							labelInterval={5}
 							font="15px Verdana,Arial"
 							backingOuterExtent={0.9}
 							transitionDuration={500}
-						/> */}
-						<span>Thời gian mở cửa</span>
+						/>
+						<span>Thời gian mở cửa: {monitorData.openTime.toFixed(2)}</span>
 					</div>
 				</div>
 			</div>
@@ -206,4 +221,4 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData, pr
 	);
 }
 
-export default InjectionDetail;
+export default memo(InjectionDetail);

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import PackingMachine from '../../../components/packingMachine/PackingMachine';
 import { getTagsData } from '../../../utils/utils';
-import preshift_packing from '../../../assets/JsonData/preshift_packing.json';
+// import preshift_packing from '../../../assets/JsonData/preshift_packing.json';
 function PackingPage() {
 	const [connection, setConnection] = React.useState(null);
 	const [monitorData, setMonitorData] = React.useState([
@@ -108,10 +108,92 @@ function PackingPage() {
 			.catch((err) => {
 				console.error(err);
 			});
-		const id = setTimeout(setData(preshift_packing), 5000);
+		const id = setTimeout(() => {
+			setData([
+				{
+					id: 1,
+					setpoint: 0,
+					product: {
+						id: null,
+						name: null,
+					},
+				},
+				{
+					id: 2,
+					setpoint: 669,
+					note: 'Không',
+					product: { id: 'VS040307B-HA2', name: 'Bộ xả paradise KR piston 2 nhấn vuông biển HA3' },
+				},
+				{
+					id: 3,
+					setpoint: 534,
+					note: 'Không',
+					product: { id: 'VS040312B-HA2', name: 'Bộ xả paradise KR piston 2 nhấn chữ nhật biển HA2' },
+				},
+				{
+					id: 4,
+					setpoint: 0,
+					product: {
+						id: null,
+						name: null,
+					},
+				},
+				{
+					id: 5,
+					setpoint: 0,
+					product: {
+						id: null,
+						name: null,
+					},
+				},
+				{
+					id: 6,
+					setpoint: 0,
+					product: {
+						id: null,
+						name: null,
+					},
+				},
+			]);
+		}, 1500);
+		const id2 = setInterval(() => {
+			setMonitorData([
+				{
+					errorProduct: 0,
+					completedProduct: 0,
+					isRunning: false,
+				},
+				{
+					errorProduct: 5,
+					completedProduct: Math.floor(Math.random() * 200),
+					isRunning: true,
+				},
+				{
+					errorProduct: 0,
+					completedProduct: Math.floor(Math.random() * 200),
+					isRunning: true,
+				},
+				{
+					errorProduct: 0,
+					completedProduct: 0,
+					isRunning: false,
+				},
+				{
+					errorProduct: 0,
+					completedProduct: 0,
+					isRunning: false,
+				},
+				{
+					errorProduct: 0,
+					completedProduct: 0,
+					isRunning: false,
+				},
+			]);
+		}, 1000);
 		return () => {
 			connect.stop();
 			clearTimeout(id);
+			clearInterval(id2);
 		};
 	}, []);
 	React.useEffect(() => {

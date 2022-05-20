@@ -1,6 +1,6 @@
 .injection-map__container {
 	width: 100%;
-	height: 175vh;
+	height: 185vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -9,7 +9,7 @@
 
 .injection-map__map {
 	width: 100%;
-	height: 175vh;
+	height: 185vh;
 	border: 2px solid #ddd;
 	border-radius: 10px;
 }
@@ -53,6 +53,10 @@
 	background-color: rgb(0, 154, 100, 0.2);
 	border-top: 8px solid red;
 }
+.injection-map__map-item-inner--running {
+	background-color: rgb(0, 154, 100, 0.2);
+	border-top: 8px solid green;
+}
 
 .injection-map__map-item-inner--horizontal {
 	min-width: 100px;
@@ -66,6 +70,10 @@
 	margin-right: 10px;
 	background-color: rgb(0, 154, 100, 0.2);
 	border-top: 8px solid red;
+}
+.injection-map__map-item-inner--horizontal-running {
+	background-color: rgb(0, 154, 100, 0.2);
+	border-top: 8px solid green;
 }
 
 .injection-map__map-item-title {

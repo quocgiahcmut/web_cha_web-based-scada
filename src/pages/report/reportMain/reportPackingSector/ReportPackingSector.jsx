@@ -25,7 +25,7 @@ function ReportPackingSector() {
 			setIsLoading(true);
 			let filteredData = [];
 			packingApi
-				.getTemporaryPackingPlanTracking(startTime, stopTime)
+				.getPackingPlanTracking(startTime, stopTime)
 				.then((res) => {
 					setIsLoading(false);
 					if (res.status === 200) {

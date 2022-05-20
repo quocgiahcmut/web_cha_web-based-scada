@@ -25,6 +25,7 @@ import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { getTagsData } from '../../../../utils/utils';
 import { ToastContainer, toast } from 'react-toastify';
 // import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
+// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 const StyledTableCell = styled(TableCell)(() => ({
 	[`&.${tableCellClasses.head}`]: {
 		backgroundImage: 'linear-gradient(var(--main-color), var(--second-color));',
@@ -71,7 +72,7 @@ function FirstSystem() {
 	];
 	React.useEffect(() => {
 		const connect = new HubConnectionBuilder()
-			.withUrl(`http://192.168.1.80:8085/websockethub`, {
+			.withUrl(`http://10.84.70.80:8085/websockethub`, {
 				skipNegotiation: true,
 				transport: HttpTransportType.WebSockets,
 			})

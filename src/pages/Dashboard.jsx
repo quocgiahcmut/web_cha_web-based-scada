@@ -13,7 +13,7 @@ import ViewMoreButton from '../components/viewMoreButton/ViewMoreButton';
 import { injectionApi } from '../api/axios/injectionReport';
 import { setOeeOverall } from '../redux/slice/OeeReportSlice';
 import { format } from 'date-fns';
-// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
+import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 // import { IgrRadialGauge, IgrRadialGaugeRange, IgrRadialGaugeModule } from 'igniteui-react-gauges';
 
 // IgrRadialGaugeModule.register();
@@ -63,11 +63,11 @@ const renderAlarmBody = (item, index) => {
 
 const Dashboard = () => {
 	const [packingData] = React.useState({
-		isRunning: false,
-		progress: 10,
-		progressSetPoint: 500,
-		workingHours: 7212,
-		productId: 'EE20202102',
+		isRunning: true,
+		completedProduct: 254,
+		plannedQuantity: 500,
+		errorProduct: 1,
+		productId: 'PAS40-TCO03',
 	});
 	const [qaqcToggleButtonsIndex, setQaqcToggleButtonsIndex] = React.useState(0);
 	const [isDeformation, setIsDeformation] = React.useState(false);
@@ -78,6 +78,7 @@ const Dashboard = () => {
 	]);
 	const [qaqcTableBody, setQaqcTableBody] = React.useState(['10.12', '100', '300']);
 	const [packingToggleButtonsIndex, setPackingToggleButtonsIndex] = React.useState(0);
+	const [numberOfInjectionStatus, setNumberOfInjectionStatus] = React.useState([0, 0, 0]);
 	const onQaqcToggleButtonsIndexChange = (index) => {
 		setQaqcToggleButtonsIndex(index);
 	};
@@ -86,10 +87,11 @@ const Dashboard = () => {
 	};
 	const dispatch = useDispatch();
 	const { oeeOverall, initialOeeDateStart } = useSelector((state) => state.oeeReportData);
+	const { runningMachines } = useSelector((state) => state.injectionMonitor);
 	const onSubmit = React.useCallback(
 		(value) => {
 			injectionApi
-				.getTemporaryOeeStatistics(value)
+				.getOeeStatistics(value)
 				.then((res) => {
 					let totalWorkTime = 0;
 					let totalPartsProducedTime = 0;
@@ -116,7 +118,20 @@ const Dashboard = () => {
 		},
 		[dispatch]
 	);
-
+	React.useEffect(() => {
+		let preNumberOfInjectionStatus = runningMachines.reduce(
+			(acc, cur) => {
+				if (cur.isRunning === true) {
+					acc[0] += 1;
+				} else {
+					acc[1] += 1;
+				}
+				return acc;
+			},
+			[0, 0, 0]
+		);
+		setNumberOfInjectionStatus(preNumberOfInjectionStatus);
+	}, [runningMachines]);
 	React.useEffect(() => {
 		onSubmit(format(new Date(Date.now() - initialOeeDateStart * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'));
 	}, [onSubmit, initialOeeDateStart]);
@@ -184,7 +199,7 @@ const Dashboard = () => {
 									<QaQcTable isDeformation={isDeformation} body={qaqcTableBody} header={qaqcTableHead} />
 								</div>
 								<div className="col-4 full-height flex-center">
-									{/* <IgrRadialGauge
+									<IgrRadialGauge
 										width="100%"
 										height="180px"
 										minimumValue={0}
@@ -210,7 +225,7 @@ const Dashboard = () => {
 										<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
 										<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />
 										<IgrRadialGaugeRange name="range3" startValue={60} endValue={100} brush="green" />
-									</IgrRadialGauge> */}
+									</IgrRadialGauge>
 									<span>Tiến trình: 80%</span>
 								</div>
 							</div>
@@ -241,7 +256,25 @@ const Dashboard = () => {
 							</div>
 							<div className="row full-height">
 								<div className="col-12 full-height flex-center">
-									<PackingMachine width="100%" height="150px" className="mb-15" />
+									<div className="row">
+										<div className="col-2 flex-center">
+											<div
+												title={`${packingData.isRunning ? 'Máy đang vận hành' : 'Máy tạm dừng'}`}
+												style={{
+													backgroundColor: `${
+														packingData.isRunning ? 'var(--main-color-green)' : 'var(--main-color-red)'
+													}`,
+												}}
+												className="classification__state-type-container--detail--dashboard"
+											>
+												{packingData.isRunning ? 'R' : 'S'}
+											</div>
+										</div>
+										<div className="col-10">
+											<PackingMachine width="100%" height="150px" className="mb-15" />
+										</div>
+									</div>
+
 									<table id="packing">
 										<tbody>
 											<tr>
@@ -255,16 +288,23 @@ const Dashboard = () => {
 													<ProgressBar
 														width="150px"
 														height="15px"
-														percent={(packingData.progress / packingData.progressSetPoint) * 100}
+														percent={(packingData.completedProduct / packingData.plannedQuantity) * 100}
 													/>
 												</td>
-												<td>{packingData.progress} sản phẩm</td>
+												<td>{packingData.completedProduct} sản phẩm</td>
 											</tr>
 											<tr>
-												<td>Mã Sản phẩm</td>
+												<td>Tầng suất đóng gói lỗi</td>
 												<td></td>
 												<td>
-													<span className="text-bold">{packingData.productId}</span>
+													<span className="text-bold">
+														{isNaN((packingData.completedProduct + packingData.errorProduct) / packingData.errorProduct)
+															? 0
+															: (
+																	(packingData.completedProduct + packingData.errorProduct) /
+																	packingData.errorProduct
+															  ).toFixed(2)}
+													</span>
 												</td>
 											</tr>
 										</tbody>
@@ -320,7 +360,7 @@ const Dashboard = () => {
 												color="#3ace3a"
 												icon="bx bx-check-circle"
 												title="Máy đang chạy"
-												count="0"
+												count={`${numberOfInjectionStatus[0]}`}
 											/>
 										</div>
 										<div className="col-12">
@@ -331,7 +371,7 @@ const Dashboard = () => {
 												color="#ffa82e"
 												icon="bx bx-loader-circle"
 												title="Máy đang dừng"
-												count="2"
+												count={`${numberOfInjectionStatus[1]}`}
 											/>
 										</div>
 										<div className="col-12">

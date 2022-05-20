@@ -23,7 +23,11 @@ const oeeReportData = createSlice({
 	},
 	reducers: {
 		setOeeOverall: (state, action) => {
-			state.oeeOverall = action.payload;
+			let status = [];
+			action.payload.forEach((item) => {
+				status.push(isNaN(+item) ? 0 : +item);
+			});
+			state.oeeOverall = status;
 		},
 		setOeeTarget: (state, action) => {
 			localStorage.setItem('oeeTarget', action.payload);

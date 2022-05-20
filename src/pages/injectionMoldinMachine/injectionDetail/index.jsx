@@ -3,61 +3,78 @@ import { useParams, useLocation } from 'react-router-dom';
 import InjectionDetailComponent from '../../../components/injectionDetail/InjectionDetail';
 import Breadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import { injectionApi } from '../../../api/axios/injectionReport';
-// import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
+import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
+import { getInjectionMachineStatus, getTagsData } from '../../../utils/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPerInjectionMConfigData, setPerInjectionMonitorData } from '../../../redux/slice/InjectionMonitorSlice';
 function InjectionDetail() {
+	const dispatch = useDispatch();
+	const { perInjectionMonitorData, perInjectionMConfigData } = useSelector((state) => state.injectionMonitor);
 	const { id } = useParams();
 	const { state } = useLocation();
-	// const [connection, setConnection] = useState(null);
+	const [connection, setConnection] = useState(null);
 	const [map, setMap] = useState(false);
-	const [injectionMoldingMachineConfiguration, setInjectionMoldingMachineConfiguration] = useState({
-		id: id,
-		plannedQuantity: 200,
-		cycle: 12,
-		standardOpenTime: 5,
-		product: {
-			id: 'CS3004-TO1',
-			name: 'Nắp đế bàn cầu hơi HA-40 kem nhạt TO1 (SS124#UB1)',
-		},
-		moldId: 'NX35',
-		wattage: 'Small',
-	});
-	const [monitorData, setMonitorData] = useState({
-		isRunning: true,
-		cycleTime: 7,
-		openTime: 3,
-		counterShot: 0,
-	});
-	const [progress, setProgress] = useState(0);
-	// useEffect(() => {
-	// 	const connect = new HubConnectionBuilder()
-	// 		.withUrl(`http://192.168.1.80:8085/websockethub`, {
-	// 			skipNegotiation: true,
-	// 			transport: HttpTransportType.WebSockets,
-	// 		})
-	// 		.withAutomaticReconnect()
-	// 		.build();
-	// 	connect
-	// 		.start()
-	// 		.then(() => {
-	// 			setConnection(connect);
-	// 			connect.on('ReceiveData', (data) => {
-	// 				console.log('data', data);
-	// 			});
-	// 		})
-	// 		.catch((err) => {
-	// 			console.error(err);
-	// 		});
-	// 	setConnection(connect);
-	// 	return () => {
-	// 		connect.stop();
-	// 	};
-	// }, []);
-	// useEffect(() => {
-	// 	console.log(connection.state);
-	// 	if (connection && connection.state) {
-	// 		// Query Real time data here
-	// 	}
-	// }, [connection]);
+	useEffect(() => {
+		const connect = new HubConnectionBuilder()
+			.withUrl(`http://10.84.70.80:8085/websockethub`, {
+				skipNegotiation: true,
+				transport: HttpTransportType.WebSockets,
+			})
+			.withAutomaticReconnect()
+			.build();
+		connect
+			.start()
+			.then(() => {
+				setConnection(connect);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+		return () => {
+			connect.stop();
+		};
+	}, []);
+	useEffect(() => {
+		dispatch(
+			setPerInjectionMConfigData({
+				id: id,
+				plannedQuantity: 1,
+				cycle: 0,
+				standardOpenTime: 0,
+				product: {
+					id: '',
+					name: '',
+				},
+				moldId: '',
+				wattage: '',
+			})
+		);
+	}, [dispatch, id]);
+	useEffect(() => {
+		let idSetInterval;
+		if (connection) {
+			idSetInterval = setInterval(async () => {
+				const rawData = await getTagsData(
+					connection,
+					'imm',
+					[id.toLowerCase()],
+					[[`${id}.CycleTime`, `${id}.OpenTime`, `${id}.CounterShot`, `${id}.SetCycle`, `${id}.MachineStatus`]]
+				);
+				dispatch(
+					setPerInjectionMonitorData({
+						isRunning: getInjectionMachineStatus(rawData.deviceQueryResults[0].tagQueryResults[4].value),
+						cycleTime: rawData.deviceQueryResults[0].tagQueryResults[0].value,
+						openTime: rawData.deviceQueryResults[0].tagQueryResults[1].value,
+						counterShot: rawData.deviceQueryResults[0].tagQueryResults[2].value,
+						setCycle: rawData.deviceQueryResults[0].tagQueryResults[3].value,
+					})
+				);
+			}, 1500);
+		}
+		return () => {
+			clearInterval(idSetInterval);
+		};
+	}, [connection, dispatch, id]);
 	useEffect(() => {
 		if (state !== undefined) {
 			state.map === true ? setMap(true) : setMap(false);
@@ -67,26 +84,27 @@ function InjectionDetail() {
 	}, [state]);
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await injectionApi.getTemporaryPreShiftsByMachine(id);
+			const result = await injectionApi.getPreShiftsByMachine(id);
 			return result.data.items.map((item) => {
 				return {
-					number: item.machine.id,
+					id: item.machine.id,
 					name: item.machine.model,
-					plannedQuantity: item.cavity * ((12 * 60 * 60 * 1000) / item.injectionCycle),
-					productId: item.product.id,
-					standardOpenTime: (item.product.mold.standardOpenTime / 1000).toFixed(0),
-					productName: item.product.name,
+					plannedQuantity: Math.floor(item.cavity * ((12 * 60 * 60) / item.injectionCycle)),
+					product: {
+						id: item.product.id,
+						name: item.product.name,
+					},
+					standardOpenTime: Number(item.product.mold.standardOpenTime.toFixed(0)),
 					moldId: item.product.mold.id,
-					cycle: (item.injectionCycle / 1000).toFixed(0),
+					cycle: Number(item.injectionCycle.toFixed(0)),
 					wattage: item.machine.machineType === 0 ? 'Large' : 'Small',
 				};
 			});
 		};
 		fetchData().then((data) => {
-			setInjectionMoldingMachineConfiguration(data[0]);
+			dispatch(setPerInjectionMConfigData(data[0]));
 		});
-	}, [id]);
-
+	}, [id, dispatch]);
 	return (
 		<>
 			<Breadcrumbs
@@ -94,11 +112,10 @@ function InjectionDetail() {
 				sector="KHU MÁY ÉP"
 				id={id}
 			/>
-			{injectionMoldingMachineConfiguration && (
+			{perInjectionMConfigData && (
 				<InjectionDetailComponent
-					injectionMoldingMachineConfiguration={injectionMoldingMachineConfiguration}
-					monitorData={monitorData}
-					progress={progress}
+					injectionMoldingMachineConfiguration={perInjectionMConfigData}
+					monitorData={perInjectionMonitorData}
 				/>
 			)}
 		</>

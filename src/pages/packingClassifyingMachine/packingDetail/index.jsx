@@ -42,16 +42,27 @@ function PackingDetail() {
 			.catch((err) => {
 				console.error(err);
 			});
-		const timeoutId = setTimeout(setData(preshift_packing[Number(id.split('module')[1] - 1)]), 2000);
+		const timeoutId = setTimeout(() => {
+			setData(preshift_packing[Number(id.split('module')[1] - 1)]);
+		}, 2000);
+		const id2 = setInterval(() => {
+			setMonitorData((prev) => {
+				return {
+					...prev,
+					completedProduct: prev.completedProduct + 1,
+					machineStatus: true,
+				};
+			});
+		}, 1500);
 		return () => {
 			connect.stop();
 			clearTimeout(timeoutId);
+			clearInterval(id2);
 		};
 	}, [id]);
 	React.useEffect(() => {
 		let intervalId;
 		if (connection) {
-			console.log(connection);
 			intervalId = setInterval(async () => {
 				const rawData = await getTagsData(
 					connection,
@@ -70,7 +81,6 @@ function PackingDetail() {
 					completedProduct: rawData.deviceQueryResults[0].tagQueryResults[0].value,
 					machineStatus: rawData.deviceQueryResults[0].tagQueryResults[2].value === 0 ? true : false,
 				});
-				console.log(rawData);
 			}, 1000);
 		}
 		return (_) => clearInterval(intervalId);
