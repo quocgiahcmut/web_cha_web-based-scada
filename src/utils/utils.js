@@ -85,11 +85,11 @@ const PLAN_TRACKING_MENU_LIST = [
 ];
 const MONTHLY_PLAN_TRACKING_MENU_LIST = [
 	{
-		title: 'LỊCH TRÌNH ĐÓNG GÓI',
+		title: 'KHSX ĐÓNG GÓI',
 		url: '/layout/plan-tracking/monthly/packing',
 	},
 	{
-		title: 'LỊCH TRÌNH MÁY ÉP',
+		title: 'KHSX MÁY ÉP',
 		url: '/layout/plan-tracking/monthly/injection',
 	},
 ];

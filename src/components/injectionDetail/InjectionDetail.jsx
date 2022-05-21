@@ -6,7 +6,7 @@ import './injectionDetail.css';
 import { INJECTION_MACHINE_ID } from '../../utils/utils';
 import ReportNavigationButton from '../reportNavigationButton/ReportNavigationButton';
 import { useHistory } from 'react-router-dom';
-import { IgrRadialGauge } from 'igniteui-react-gauges';
+// import { IgrRadialGauge } from 'igniteui-react-gauges';
 
 function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) {
 	const history = useHistory();
@@ -143,8 +143,8 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) 
 
 			<div className="row flex-center mb-20">
 				<div className="card col-12 injectionDetail__value">
-					<div>
-						<IgrRadialGauge
+					<div className="mt-10">
+						{/* <IgrRadialGauge
 							id="cycle"
 							width="300px"
 							height="300px"
@@ -170,11 +170,11 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) 
 							font="15px Verdana,Arial"
 							backingOuterExtent={0.9}
 							transitionDuration={500}
-						/>
+						/> */}
 						<span>Chu kì ép: {monitorData.cycleTime.toFixed(2)}</span>
 					</div>
 					<div>
-						<IgrRadialGauge
+						{/* <IgrRadialGauge
 							id="openTime"
 							width="300px"
 							height="300px"
@@ -203,7 +203,7 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) 
 							font="15px Verdana,Arial"
 							backingOuterExtent={0.9}
 							transitionDuration={500}
-						/>
+						/> */}
 						<span>Thời gian mở cửa: {monitorData.openTime.toFixed(2)}</span>
 					</div>
 				</div>

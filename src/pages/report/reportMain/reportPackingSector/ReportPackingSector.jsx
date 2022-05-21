@@ -11,7 +11,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setPackingReportData } from '../../../../redux/slice/PackingReportSlice';
 import LoadingComponent from '../../../../components/loadingComponent/LoadingComponent';
 import EmptyPlaceHolder from '../../../../components/emptyPlaceholder/EmptyPlaceholder';
-
 const randomColor = ['color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9'];
 
 function ReportPackingSector() {
@@ -25,11 +24,11 @@ function ReportPackingSector() {
 			setIsLoading(true);
 			let filteredData = [];
 			packingApi
-				.getPackingPlanTracking(startTime, stopTime)
+				.getMonthlyPackingReport(startTime, stopTime)
 				.then((res) => {
 					setIsLoading(false);
 					if (res.status === 200) {
-						filteredData = res.data.reduce((acc, cur) => {
+						filteredData = res.data.items.reduce((acc, cur) => {
 							if (acc.find((item) => item.date === cur.date)) {
 								cur.items.forEach((item) => {
 									acc
@@ -37,11 +36,11 @@ function ReportPackingSector() {
 										.items.push({
 											productCode: item.item.id,
 											productName: item.item.name,
-											unit: item.unitOfMeasurement === 0 ? 'Cái' : 'Bộ',
+											unit: '',
 											quantity: item.actualQuantity,
 											note: item.note,
 											employee: cur.employee.lastName + ' ' + cur.employee.firstName,
-											time: (cur.workingTime / 1000).toFixed(2),
+											time: cur.workingTime.toFixed(2),
 										});
 								});
 							} else {
@@ -51,11 +50,10 @@ function ReportPackingSector() {
 										return {
 											productCode: item.item.id,
 											productName: item.item.name,
-											unit: item.unitOfMeasurement === 0 ? 'Cái' : 'Bộ',
 											quantity: item.actualQuantity,
 											note: item.note,
 											employee: cur.employee.lastName + ' ' + cur.employee.firstName,
-											time: (cur.workingTime / 1000).toFixed(2),
+											time: cur.workingTime.toFixed(2),
 										};
 									}),
 								});
@@ -72,7 +70,7 @@ function ReportPackingSector() {
 									date: format(new Date(reportList.date), 'dd/MM/yyyy'),
 									productCode: report.productCode,
 									productName: report.productName,
-									unit: report.unit,
+									unit: '',
 									quantity: report.quantity,
 									employee: report.employee,
 									time: report.time,

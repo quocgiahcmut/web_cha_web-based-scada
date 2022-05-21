@@ -4,7 +4,7 @@ import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import PackingDetailComponent from '../../../components/packingDetail/PackingDetail';
 import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { getTagsData } from '../../../utils/utils';
-import preshift_packing from '../../../assets/JsonData/preshift_packing.json';
+import { packingApi } from '../../../api/axios/packingReport';
 function PackingDetail() {
 	const { id } = useParams();
 	const [data, setData] = React.useState({
@@ -22,6 +22,24 @@ function PackingDetail() {
 		completedProduct: 0,
 		machineStatus: false,
 	});
+	const [employee, setEmployee] = React.useState('N/A');
+	React.useEffect(() => {
+		packingApi
+			.getPreShiftByPackingUnit(`DG${id.split('module')[1]}`)
+			.then((res) => {
+				setData({
+					id: id.split('module')[1],
+					setpoint: res.data.items[0].items[0].plannedQuantity,
+					note: '',
+					product: {
+						id: res.data.items[0].items[0].item,
+						name: res.data.items[0].items[0].item,
+					},
+				});
+				setEmployee(res.data.items[0].employee.firstName + ' ' + res.data.items[0].employee.lastName);
+			})
+			.catch((err) => {});
+	}, [id]);
 	React.useEffect(() => {
 		const connect = new HubConnectionBuilder()
 			.withUrl(`http://10.84.70.80:8085/websockethub`, {
@@ -42,22 +60,8 @@ function PackingDetail() {
 			.catch((err) => {
 				console.error(err);
 			});
-		const timeoutId = setTimeout(() => {
-			setData(preshift_packing[Number(id.split('module')[1] - 1)]);
-		}, 2000);
-		const id2 = setInterval(() => {
-			setMonitorData((prev) => {
-				return {
-					...prev,
-					completedProduct: prev.completedProduct + 1,
-					machineStatus: true,
-				};
-			});
-		}, 1500);
 		return () => {
 			connect.stop();
-			clearTimeout(timeoutId);
-			clearInterval(id2);
 		};
 	}, [id]);
 	React.useEffect(() => {
@@ -93,6 +97,7 @@ function PackingDetail() {
 				id={`CỤM MÁY ${id.split('module')[1]}`}
 			/>
 			<PackingDetailComponent
+				employee={employee}
 				data={data}
 				errorProduct={monitorData.errorProduct}
 				completedProduct={monitorData.completedProduct}

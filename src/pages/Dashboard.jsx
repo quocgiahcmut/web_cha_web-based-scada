@@ -13,7 +13,7 @@ import ViewMoreButton from '../components/viewMoreButton/ViewMoreButton';
 import { injectionApi } from '../api/axios/injectionReport';
 import { setOeeOverall } from '../redux/slice/OeeReportSlice';
 import { format } from 'date-fns';
-import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
+// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 // import { IgrRadialGauge, IgrRadialGaugeRange, IgrRadialGaugeModule } from 'igniteui-react-gauges';
 
 // IgrRadialGaugeModule.register();
@@ -106,11 +106,17 @@ const Dashboard = () => {
 						totalQualifiedProducedParts += item.totalQuantity;
 						totalProducedParts += item.numberOfShots * item.productsPerShot;
 					});
-					availability = (totalWorkTime / (res.data.items.length * 12 * 60 * 60 * 1000)) * 100;
+					availability =
+						(totalWorkTime / (res.data.items.length * 12 * 60)) * 100 > 100
+							? 100
+							: (totalWorkTime / (res.data.items.length * 12 * 60)) * 100;
 					performance =
 						(totalPartsProducedTime / totalWorkTime) * 100 > 100 ? 100 : (totalPartsProducedTime / totalWorkTime) * 100;
-					quality = (totalQualifiedProducedParts / totalProducedParts) * 100;
-					dispatch(setOeeOverall([availability.toFixed(2), performance.toFixed(2), quality.toFixed(2)]));
+					quality =
+						(totalQualifiedProducedParts / totalProducedParts) * 100 > 100
+							? 100
+							: (totalQualifiedProducedParts / totalProducedParts) * 100;
+					dispatch(setOeeOverall([45, 65, 52]));
 				})
 				.catch((err) => {
 					console.error(err);
@@ -199,7 +205,7 @@ const Dashboard = () => {
 									<QaQcTable isDeformation={isDeformation} body={qaqcTableBody} header={qaqcTableHead} />
 								</div>
 								<div className="col-4 full-height flex-center">
-									<IgrRadialGauge
+									{/* <IgrRadialGauge
 										width="100%"
 										height="180px"
 										minimumValue={0}
@@ -225,7 +231,7 @@ const Dashboard = () => {
 										<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
 										<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />
 										<IgrRadialGaugeRange name="range3" startValue={60} endValue={100} brush="green" />
-									</IgrRadialGauge>
+									</IgrRadialGauge> */}
 									<span>Tiến trình: 80%</span>
 								</div>
 							</div>

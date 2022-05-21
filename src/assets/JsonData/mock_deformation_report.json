@@ -1,5 +1,47 @@
-[{"id":1,"weight":80,"number_of_test":79,"result":"Oryx gazella","total":"ok","note":"ok","employee":"Nguyen Van A"},
-{"id":2,"weight":23,"number_of_test":4,"result":"Gyps bengalensis","total":"ok","note":"ok","employee":"Nguyen Van A"},
-{"id":3,"weight":91,"number_of_test":38,"result":"Manouria emys","total":"ok","note":"ok","employee":"Nguyen Van A"},
-{"id":4,"weight":39,"number_of_test":73,"result":"Marmota flaviventris","total":"ok","note":"ok","employee":"Nguyen Van A"},
-{"id":5,"weight":18,"number_of_test":50,"result":"Mustela nigripes","total":"ok","note":"ok","employee":"Nguyen Van A"}]
+[
+	{
+		"id": 1,
+		"weight": 80,
+		"number_of_test": 79,
+		"result": "Oryx gazella",
+		"total": "ok",
+		"note": "ok",
+		"employee": "Nguyen Van A"
+	},
+	{
+		"id": 2,
+		"weight": 23,
+		"number_of_test": 4,
+		"result": "Gyps bengalensis",
+		"total": "ok",
+		"note": "ok",
+		"employee": "Nguyen Van A"
+	},
+	{
+		"id": 3,
+		"weight": 91,
+		"number_of_test": 38,
+		"result": "Manouria emys",
+		"total": "ok",
+		"note": "ok",
+		"employee": "Nguyen Van A"
+	},
+	{
+		"id": 4,
+		"weight": 39,
+		"number_of_test": 73,
+		"result": "Marmota flaviventris",
+		"total": "ok",
+		"note": "ok",
+		"employee": "Nguyen Van A"
+	},
+	{
+		"id": 5,
+		"weight": 18,
+		"number_of_test": 50,
+		"result": "Mustela nigripes",
+		"total": "ok",
+		"note": "ok",
+		"employee": "Nguyen Van A"
+	}
+]

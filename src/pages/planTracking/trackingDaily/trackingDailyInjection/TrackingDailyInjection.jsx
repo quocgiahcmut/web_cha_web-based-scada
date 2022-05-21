@@ -24,7 +24,10 @@ function TrackingDailyInjection() {
 					setError(null);
 					const filteredData = [];
 					if (res.data.items.length === 0) {
+						console.log('Nhảy vô đây');
 						setHasNothing(true);
+					} else {
+						setHasNothing(false);
 					}
 					res.data.items.forEach((item) => {
 						filteredData.push({

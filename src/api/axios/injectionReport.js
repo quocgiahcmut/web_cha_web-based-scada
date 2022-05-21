@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 const injectionApi = {
 	REQUEST_URL: 'http://10.84.70.81:8082/api',
 	getInjectionReport(machineId, startTime, stopTime) {
-		return axios.get(`${this.REQUEST_URL}/shiftreports/machine/${machineId}`, {
+		return axios.get(`${this.REQUEST_URL}/shiftreports`, {
 			headers: {
 				'Content-Type': 'application/json',
 				'Access-Control-Allow-Origin': 'http://localhost:3000/',
@@ -13,7 +13,8 @@ const injectionApi = {
 			},
 			params: {
 				startTime: startTime,
-				stopTime: format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd'),
+				endTime: format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 0), 'yyyy-MM-dd'),
+				machineId,
 			},
 		});
 	},
@@ -27,9 +28,11 @@ const injectionApi = {
 			},
 			params: {
 				startTime,
-				stopTime: stopTime
-					? format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd')
-					: format(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
+				endTime: stopTime
+					? format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 0), 'yyyy-MM-dd')
+					: format(new Date(Date.now() + 0 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
+				page: 1,
+				itemsPerPage: 200,
 			},
 		});
 	},
@@ -43,9 +46,11 @@ const injectionApi = {
 			},
 			params: {
 				startTime,
-				stopTime: stopTime
+				endTime: stopTime
 					? format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd')
-					: format(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
+					: format(new Date(Date.now() + 0 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
+				page: 1,
+				itemsPerPage: 1000,
 			},
 		});
 	},
@@ -59,7 +64,7 @@ const injectionApi = {
 			},
 			params: {
 				// startTime: format(Date.now(), 'yyyy-MM-dd'),
-				// stopTime: format(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
+				// endTime: format(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
 			},
 		});
 	},
@@ -73,7 +78,7 @@ const injectionApi = {
 			},
 			params: {
 				// startTime: format(Date.now(), 'yyyy-MM-dd'),
-				// stopTime: format(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
+				// endTime: format(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
 			},
 		});
 	},

@@ -21,6 +21,8 @@ function TrackingMonthlyInjection() {
 				const res = await injectionApi.getInjectionPlanTracking(startTime, format(Date.now(), 'yyyy-MM-dd'));
 				if (res.data.items.length === 0) {
 					setHasNothing(true);
+				} else {
+					setHasNothing(false);
 				}
 				const filteredData = res.data.items
 					.reduce((acc, cur) => {

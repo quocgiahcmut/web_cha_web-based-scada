@@ -33,8 +33,6 @@ const apexChartConfig = {
 						color: '#2E93fA',
 					},
 				},
-				min: 20,
-				max: 50,
 				labels: {
 					style: {
 						colors: '#2E93fA',
@@ -43,13 +41,11 @@ const apexChartConfig = {
 			},
 			{
 				title: {
-					text: 'Chu kỳ ép cài đặt',
+					text: 'Chu kỳ ép tiêu chuẩn',
 					style: {
 						color: '#00000000',
 					},
 				},
-				min: 20,
-				max: 50,
 				labels: {
 					show: false,
 					style: {
@@ -114,6 +110,10 @@ function ReportInjectionChart({ shift, series, categories, moldId }) {
 											...apexChartConfig.options,
 											xaxis: {
 												categories: categories,
+											},
+											yaxis: {
+												min: Math.floor(Math.min(...series[0].data) * 0.9),
+												max: Math.floor(Math.max(...series[0].data) * 1.1),
 											},
 										}}
 										series={series}

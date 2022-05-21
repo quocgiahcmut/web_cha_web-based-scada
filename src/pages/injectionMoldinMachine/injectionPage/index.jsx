@@ -31,8 +31,8 @@ function InjectionMoldingMachinePage() {
 			},
 		},
 		{
-			name: 'JM 600-C',
-			id: 'L7',
+			id: 'L2',
+			name: 'MAIII 1000',
 			wattage: 'Large',
 			plannedQuantity: 0,
 			moldId: '',
@@ -42,8 +42,19 @@ function InjectionMoldingMachinePage() {
 			},
 		},
 		{
-			name: 'HC 800',
-			id: 'L8',
+			name: 'MAIII 1000',
+			id: 'L5',
+			wattage: 'Large',
+			plannedQuantity: 0,
+			moldId: '',
+			product: {
+				id: '',
+				name: '',
+			},
+		},
+		{
+			id: 'L12',
+			name: 'MAII 700',
 			wattage: 'Large',
 			plannedQuantity: 0,
 			moldId: '',
@@ -66,6 +77,13 @@ function InjectionMoldingMachinePage() {
 	]);
 	const [resData, setResData] = useState();
 	const [monitorData, setMonitorData] = useState([
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+			setCycle: 0,
+		},
 		{
 			isRunning: false,
 			cycleTime: 0,
@@ -150,6 +168,13 @@ function InjectionMoldingMachinePage() {
 					[['L10.CycleTime', 'L10.CounterShot', 'L10.OpenTime', 'L10.MachineStatus', 'L10.SetCycle']]
 				);
 				setMonitorData((prev) => [
+					{
+						isRunning: false,
+						cycleTime: 0,
+						counterShot: 0,
+						openTime: 0,
+						setCycle: 0,
+					},
 					{
 						isRunning: false,
 						cycleTime: 0,

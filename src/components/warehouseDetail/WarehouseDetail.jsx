@@ -117,7 +117,7 @@ function WarehouseDetail() {
 			const dataList = [];
 
 			const dateList = data.map((item) => {
-				const date = format(new Date(item.date), 'dd/MM/yyyy hh:mm:ss');
+				const date = format(new Date(item.date), 'dd/MM/yyyy');
 				quantityList.push(item.afterQuantity);
 				dataList.push({
 					date,
@@ -203,7 +203,7 @@ function WarehouseDetail() {
 												{ text: 'Thời gian', key: 'date' },
 												{ text: 'Xuất kho', key: 'export' },
 												{ text: 'Nhập kho', key: 'import' },
-												{ text: 'Số lượng trong kho', key: 'quantity' },
+												{ text: 'Tồn kho', key: 'quantity' },
 											]}
 											body={stockCardData.dataList}
 										/>

@@ -18,6 +18,7 @@ import {
 	setDeformationReportDataDate,
 	setDeformationOverviewData,
 } from '../../../../redux/slice/QaQcReportSlice';
+// import mocking_data from '../../../../assets/JsonData/mock_rock-test_report.json';
 
 function ReportDeformation() {
 	const [loading, setLoading] = React.useState(false);
@@ -261,7 +262,49 @@ function ReportDeformation() {
 		},
 		[deformationOverviewData, deformationReportData, deformationReportDataDate]
 	);
-	console.log(deformationReportData);
+	// const fetchMockingData = React.useCallback(
+	// 	async (startTime, stopTime) => {
+	// 		setLoading(true);
+	// 		let filteredData = [];
+	// 		setTimeout(() => {
+	// 			setLoading(false);
+	// 			mocking_data[0].samples?.forEach((item, index) => {
+	// 				filteredData.push({
+	// 					id: index + 1,
+	// 					weight: item.load,
+	// 					number_of_test: item.testedTimes,
+	// 					result: item.passed ? 'Đạt' : 'Không đạt',
+	// 					total: item.numberOfError,
+	// 					note: item.note,
+	// 					employee: item.tester.lastName + ' ' + item.tester.firstName,
+	// 				});
+	// 			});
+	// 			dispatch(
+	// 				setDeformationReportDataDate({
+	// 					startTime: format(new Date(mocking_data[0].startDate), 'dd/MM/yyyy'),
+	// 					stopTime: format(new Date(mocking_data[0].endDate), 'dd/MM/yyyy'),
+	// 				})
+	// 			);
+	// 			dispatch(
+	// 				setDeformationOverviewData({
+	// 					purpose:
+	// 						mocking_data[0].testPurpose === 0
+	// 							? 'period'
+	// 							: mocking_data.testPurpose === 1
+	// 							? 'anomaly'
+	// 							: mocking_data.testPurpose === 2
+	// 							? 'newProduct'
+	// 							: 'other',
+	// 					testNote: mocking_data[0].note,
+	// 					productId: mocking_data[0].product.id,
+	// 					productName: mocking_data[0].product.name,
+	// 				})
+	// 			);
+	// 			dispatch(setDeformationReportData(filteredData));
+	// 		}, 1000);
+	// 	},
+	// 	[dispatch]
+	// );
 	const onSubmit = React.useCallback(
 		(values) => {
 			dispatch(resetDeformationReportData());

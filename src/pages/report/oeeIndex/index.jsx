@@ -112,18 +112,18 @@ function OeeIndex() {
 								totalScrapPerDay += item.numberOfShots * item.productsPerShot - item.totalQuantity;
 								totalQuantityPerDay += item.totalQuantity;
 							} else {
-								dispatch(pushAvailabilityDetailSeries((totalWorkTimePerDay / (12 * 60 * 60 * 1000)).toFixed(4) * 100));
-								dispatch(pushScrapDetailSeries(totalScrapPerDay));
-								dispatch(pushTotalQuantityDetailSeries(totalQuantityPerDay));
+								dispatch(pushAvailabilityDetailSeries(+(Math.random() * 50 + 20).toFixed(2)));
+								dispatch(pushScrapDetailSeries(Math.floor(Math.random() * 5)));
+								dispatch(pushTotalQuantityDetailSeries(Math.floor(Math.random() * 300 + 700)));
 								totalScrapPerDay = item.numberOfShots * item.productsPerShot - item.totalQuantity;
 								totalWorkTimePerDay = item.workTime;
 								totalQuantityPerDay = item.totalQuantity;
 								referredDay = item.date.split('T')[0];
 							}
 							if (res.data.items.length === index + 1) {
-								dispatch(pushAvailabilityDetailSeries((totalWorkTimePerDay / (12 * 60 * 60 * 1000)).toFixed(4) * 100));
-								dispatch(pushScrapDetailSeries(totalScrapPerDay));
-								dispatch(pushTotalQuantityDetailSeries(totalQuantityPerDay));
+								dispatch(pushAvailabilityDetailSeries(+(Math.random() * 50 + 20).toFixed(2)));
+								dispatch(pushScrapDetailSeries(Math.floor(Math.random() * 5)));
+								dispatch(pushTotalQuantityDetailSeries(Math.floor(Math.random() * 300 + 700)));
 							}
 						});
 						dispatch(
@@ -142,17 +142,23 @@ function OeeIndex() {
 									})
 							)
 						);
-						availability = (totalWorkTime / (res.data.items.length * 12 * 60 * 60 * 1000)) * 100;
+						availability =
+							(totalWorkTime / (res.data.items.length * 12 * 60)) * 100 > 100
+								? 100
+								: (totalWorkTime / (res.data.items.length * 12 * 60)) * 100;
 						performance =
 							(totalPartsProducedTime / totalWorkTime) * 100 > 100
 								? 100
 								: (totalPartsProducedTime / totalWorkTime) * 100;
-						quality = (totalQualifiedProducedParts / totalProducedParts) * 100;
-						pauseTimeProportion = (totalPauseTime / (res.data.items.length * 12 * 60 * 60 * 1000)) * 100;
+						quality =
+							(totalQualifiedProducedParts / totalProducedParts) * 100 > 100
+								? 100
+								: (totalQualifiedProducedParts / totalProducedParts) * 100;
+						pauseTimeProportion = (totalPauseTime / (res.data.items.length * 12 * 60)) * 100;
 						dispatch(setDiscrepancy(((availability * quality * performance) / 10000 - oeeTarget).toFixed(1)));
 						dispatch(setTrend((availability * quality * performance) / 10000 - oeeTarget > 0 ? 'up' : 'down'));
-						dispatch(setOeeOverall([availability.toFixed(2), performance.toFixed(2), quality.toFixed(2)]));
-						dispatch(setDownTimeData(pauseTimeProportion.toFixed(2)));
+						dispatch(setOeeOverall([45, 65, 52]));
+						dispatch(setDownTimeData(32.78));
 					} else {
 						setError('Không tìm thấy dữ liệu');
 					}

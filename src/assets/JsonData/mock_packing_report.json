@@ -1,63 +1,1050 @@
-[{"date":"16/01/2022",
-  "list-report":
-  [
-    {
-      "id":1,
-      "productCode":"51346-064",
-      "productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1",
-      "unit":"cái",
-      "quantity":557,
-      "result":"ok",
-      "equipment":"ok",
-      "maintenanceResult":"ok",
-      "employee":"văn",
-      "time":"2:26 AM",
-      "note":"ok"
-    },
-    {
-      "id":2,"productCode":"33261-748","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":717,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:52 AM","note":"ok"
-    },
-    {
-      "id":3,"productCode":"16590-015","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":633,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"11:38 PM","note":"ok"
-    },
-    {
-      "id":4,"productCode":"21695-332","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":973,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"11:50 PM","note":"ok"
-    },
-    {
-      "id":5,"productCode":"54340-814","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":620,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"6:13 PM","note":"ok"
-    },
-    {
-      "id":6,"productCode":"50563-119","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":885,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:33 PM","note":"ok"
-    }
-  ]
-},
-{"date":"13/09/2021","list-report":[{"id":1,"productCode":"0268-6625","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":756,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"5:04 PM","note":"ok"},{"id":2,"productCode":"58177-681","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":872,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"2:04 PM","note":"ok"},{"id":3,"productCode":"65044-2018","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":554,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"10:27 PM","note":"ok"},{"id":4,"productCode":"24090-497","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":574,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:18 PM","note":"ok"},{"id":5,"productCode":"64125-904","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":611,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"11:34 AM","note":"ok"}]},
-{"date":"18/09/2021","list-report":[{"id":1,"productCode":"0169-6439","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":624,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"2:33 PM","note":"ok"},{"id":2,"productCode":"34954-010","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":564,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"7:15 PM","note":"ok"},{"id":3,"productCode":"51079-547","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":981,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"10:05 PM","note":"ok"},{"id":4,"productCode":"30142-096","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":894,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"9:57 AM","note":"ok"},{"id":5,"productCode":"63868-060","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":986,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"7:27 PM","note":"ok"}]},
-{"date":"07/11/2021","list-report":[{"id":1,"productCode":"43353-393","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":524,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"11:43 PM","note":"ok"},{"id":2,"productCode":"45963-634","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":596,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"3:56 PM","note":"ok"},{"id":3,"productCode":"65954-002","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":751,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"11:34 PM","note":"ok"},{"id":4,"productCode":"45802-237","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":525,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"10:37 PM","note":"ok"},{"id":5,"productCode":"49999-378","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":850,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"12:38 PM","note":"ok"},{"id":6,"productCode":"49035-276","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":644,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"1:38 PM","note":"ok"},{"id":7,"productCode":"16714-383","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":532,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"6:49 AM","note":"ok"}]},
-{"date":"24/09/2021","list-report":[{"id":1,"productCode":"68151-4634","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":917,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"11:06 PM","note":"ok"},{"id":2,"productCode":"47335-929","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":776,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"5:40 PM","note":"ok"},{"id":3,"productCode":"68084-354","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":560,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"8:24 PM","note":"ok"},{"id":4,"productCode":"51346-249","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":638,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"8:26 PM","note":"ok"},{"id":5,"productCode":"0009-0728","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":756,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"10:10 AM","note":"ok"}]},
-{"date":"18/12/2021","list-report":[{"id":1,"productCode":"60681-0113","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":987,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"4:30 AM","note":"ok"},{"id":2,"productCode":"51531-9500","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":657,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"3:18 PM","note":"ok"},{"id":3,"productCode":"49349-746","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":635,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"8:56 PM","note":"ok"},{"id":4,"productCode":"0185-0027","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":746,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"8:06 PM","note":"ok"},{"id":5,"productCode":"53877-008","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":857,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"9:48 AM","note":"ok"},{"id":6,"productCode":"57627-122","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":962,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"12:28 AM","note":"ok"},{"id":7,"productCode":"58411-227","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":681,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"10:07 AM","note":"ok"}]},
-{"date":"15/09/2021","list-report":[{"id":1,"productCode":"64117-297","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":558,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"1:36 AM","note":"ok"},{"id":2,"productCode":"36800-041","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":576,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"8:09 PM","note":"ok"},{"id":3,"productCode":"65365-002","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":988,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"1:15 AM","note":"ok"},{"id":4,"productCode":"63739-671","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":516,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"2:25 PM","note":"ok"},{"id":5,"productCode":"58980-452","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":788,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"5:30 AM","note":"ok"},{"id":6,"productCode":"24385-416","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":721,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"4:54 AM","note":"ok"}]},
-{"date":"29/08/2021","list-report":[{"id":1,"productCode":"0168-0163","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":795,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"6:55 AM","note":"ok"},{"id":2,"productCode":"0179-0034","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":770,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"8:12 PM","note":"ok"},{"id":3,"productCode":"68400-203","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":974,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"1:46 AM","note":"ok"},{"id":4,"productCode":"62206-4750","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":866,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"6:00 PM","note":"ok"},{"id":5,"productCode":"42291-142","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":601,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"7:34 AM","note":"ok"},{"id":6,"productCode":"49738-927","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":536,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"3:45 AM","note":"ok"}]},
-{"date":"25/11/2021","list-report":[{"id":1,"productCode":"0603-4247","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":870,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"10:40 AM","note":"ok"},{"id":2,"productCode":"60760-463","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":829,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"5:44 AM","note":"ok"},{"id":3,"productCode":"21695-310","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":843,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"1:30 PM","note":"ok"},{"id":4,"productCode":"49288-0833","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":769,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"6:54 AM","note":"ok"},{"id":5,"productCode":"55154-5090","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":798,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:52 PM","note":"ok"}]},
-{"date":"11/08/2021","list-report":[{"id":1,"productCode":"10356-801","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":680,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"11:08 AM","note":"ok"},{"id":2,"productCode":"0074-6347","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":882,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"10:09 PM","note":"ok"},{"id":3,"productCode":"0052-0603","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":628,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"3:10 PM","note":"ok"},{"id":4,"productCode":"0904-6136","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":517,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"10:08 AM","note":"ok"},{"id":5,"productCode":"16590-356","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":857,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"10:52 AM","note":"ok"},{"id":6,"productCode":"69097-155","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":985,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"9:40 PM","note":"ok"},{"id":7,"productCode":"66579-0069","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":868,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"4:43 PM","note":"ok"}]},
-{"date":"27/09/2021","list-report":[{"id":1,"productCode":"63029-550","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":624,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"10:29 AM","note":"ok"},{"id":2,"productCode":"60927-115","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":863,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"5:43 PM","note":"ok"},{"id":3,"productCode":"52124-0112","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":999,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"11:12 AM","note":"ok"},{"id":4,"productCode":"58118-5685","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":861,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"8:20 AM","note":"ok"},{"id":5,"productCode":"17089-388","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":897,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"11:34 AM","note":"ok"}]},
-{"date":"09/05/2021","list-report":[{"id":1,"productCode":"52125-072","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":525,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"8:12 PM","note":"ok"},{"id":2,"productCode":"21695-166","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":547,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"5:18 PM","note":"ok"},{"id":3,"productCode":"68151-4349","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":992,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"6:21 PM","note":"ok"},{"id":4,"productCode":"55316-517","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":663,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:05 PM","note":"ok"},{"id":5,"productCode":"61727-302","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":954,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"12:41 PM","note":"ok"}]},
-{"date":"08/10/2021","list-report":[{"id":1,"productCode":"29500-2437","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":601,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:23 PM","note":"ok"},{"id":2,"productCode":"61957-1103","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":674,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"5:16 PM","note":"ok"},{"id":3,"productCode":"66559-1474","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":621,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"12:44 PM","note":"ok"},{"id":4,"productCode":"75921-045","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":755,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"12:22 PM","note":"ok"},{"id":5,"productCode":"55312-173","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":896,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"6:02 AM","note":"ok"}]},
-{"date":"27/06/2021","list-report":[{"id":1,"productCode":"61625-682","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":661,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"12:32 AM","note":"ok"},{"id":2,"productCode":"68258-3023","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":798,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"12:14 PM","note":"ok"},{"id":3,"productCode":"0268-0930","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":766,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"8:18 AM","note":"ok"},{"id":4,"productCode":"0006-4999","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":968,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"8:02 AM","note":"ok"},{"id":5,"productCode":"43742-0321","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":853,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"8:27 AM","note":"ok"},{"id":6,"productCode":"0781-7244","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":817,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"9:42 AM","note":"ok"}]},
-{"date":"16/02/2022","list-report":[{"id":1,"productCode":"62011-0245","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":839,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"2:02 PM","note":"ok"},{"id":2,"productCode":"58411-228","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":607,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:14 AM","note":"ok"},{"id":3,"productCode":"63187-050","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":891,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"9:00 AM","note":"ok"},{"id":4,"productCode":"52125-737","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":700,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"9:23 AM","note":"ok"},{"id":5,"productCode":"61010-4111","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":789,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"11:10 AM","note":"ok"}]},
-{"date":"16/01/2022","list-report":[{"id":1,"productCode":"55154-5356","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":925,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"6:20 AM","note":"ok"},{"id":2,"productCode":"63629-3388","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":522,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"6:36 PM","note":"ok"},{"id":3,"productCode":"0597-0137","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":703,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"12:49 AM","note":"ok"},{"id":4,"productCode":"12634-531","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":939,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"9:04 PM","note":"ok"},{"id":5,"productCode":"59762-1023","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":719,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"6:14 AM","note":"ok"},{"id":6,"productCode":"67046-076","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":520,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"12:27 AM","note":"ok"}]},
-{"date":"06/04/2021","list-report":[{"id":1,"productCode":"55513-190","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":972,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"8:50 AM","note":"ok"},{"id":2,"productCode":"59535-4501","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":997,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"11:41 AM","note":"ok"},{"id":3,"productCode":"0378-0027","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":776,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"3:22 PM","note":"ok"},{"id":4,"productCode":"51285-441","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":688,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"10:05 PM","note":"ok"},{"id":5,"productCode":"43063-204","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":540,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"4:12 AM","note":"ok"},{"id":6,"productCode":"47593-503","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":608,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"9:31 PM","note":"ok"},{"id":7,"productCode":"16571-600","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":718,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:31 PM","note":"ok"}]},
-{"date":"19/01/2022","list-report":[{"id":1,"productCode":"60710-2320","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":610,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"10:49 AM","note":"ok"},{"id":2,"productCode":"46122-023","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":901,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"6:20 AM","note":"ok"},{"id":3,"productCode":"24909-109","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":915,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"4:05 PM","note":"ok"},{"id":4,"productCode":"52959-020","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":506,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"2:03 PM","note":"ok"},{"id":5,"productCode":"0430-0115","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":776,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"5:25 PM","note":"ok"}]},
-{"date":"02/02/2022","list-report":[{"id":1,"productCode":"50844-291","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":894,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"12:12 PM","note":"ok"},{"id":2,"productCode":"55154-3476","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":904,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"2:14 PM","note":"ok"},{"id":3,"productCode":"42403-020","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":911,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"3:02 AM","note":"ok"},{"id":4,"productCode":"51079-200","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":945,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"4:40 PM","note":"ok"},{"id":5,"productCode":"61570-073","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":760,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"4:57 PM","note":"ok"}]},
-{"date":"03/12/2021","list-report":[{"id":1,"productCode":"55315-102","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":616,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"3:07 PM","note":"ok"},{"id":2,"productCode":"64679-290","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":683,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"9:31 AM","note":"ok"},{"id":3,"productCode":"63354-600","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":836,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"11:34 AM","note":"ok"},{"id":4,"productCode":"55150-114","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":538,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"6:38 AM","note":"ok"},{"id":5,"productCode":"55758-001","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":838,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"5:58 AM","note":"ok"},{"id":6,"productCode":"36987-1453","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":969,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"7:18 PM","note":"ok"}]},
-{"date":"02/01/2022","list-report":[{"id":1,"productCode":"49349-927","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":625,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"7:59 AM","note":"ok"},{"id":2,"productCode":"54866-000","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":635,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"11:17 AM","note":"ok"},{"id":3,"productCode":"0378-0360","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":676,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"1:23 AM","note":"ok"},{"id":4,"productCode":"76138-202","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":689,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"3:01 PM","note":"ok"},{"id":5,"productCode":"42254-043","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":818,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"1:31 PM","note":"ok"}]},
-{"date":"17/08/2021","list-report":[{"id":1,"productCode":"0172-4357","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":792,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"4:51 PM","note":"ok"},{"id":2,"productCode":"33342-015","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":545,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:01 AM","note":"ok"},{"id":3,"productCode":"53187-238","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":838,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"4:48 AM","note":"ok"},{"id":4,"productCode":"54868-6209","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":845,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"2:17 PM","note":"ok"},{"id":5,"productCode":"48951-1208","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":942,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"12:45 PM","note":"ok"},{"id":6,"productCode":"0615-7542","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":970,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"6:58 PM","note":"ok"}]},
-{"date":"23/06/2021","list-report":[{"id":1,"productCode":"76214-021","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":942,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"9:27 AM","note":"ok"},{"id":2,"productCode":"0245-0086","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":968,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"10:53 PM","note":"ok"},{"id":3,"productCode":"58118-0387","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":655,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"8:27 PM","note":"ok"},{"id":4,"productCode":"36987-2933","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":655,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"11:23 AM","note":"ok"},{"id":5,"productCode":"76296-005","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":640,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"1:01 PM","note":"ok"}]},
-{"date":"10/04/2021","list-report":[{"id":1,"productCode":"55289-413","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":698,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"9:33 AM","note":"ok"},{"id":2,"productCode":"68745-1150","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":955,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"6:11 AM","note":"ok"},{"id":3,"productCode":"63629-5435","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":534,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"3:46 AM","note":"ok"},{"id":4,"productCode":"61481-3001","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":792,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"5:43 AM","note":"ok"},{"id":5,"productCode":"48951-8105","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":556,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"6:13 PM","note":"ok"}]},
-{"date":"02/12/2021","list-report":[{"id":1,"productCode":"51621-036","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":822,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"12:10 AM","note":"ok"},{"id":2,"productCode":"50914-7732","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":917,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"2:38 AM","note":"ok"},{"id":3,"productCode":"55910-556","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":551,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"2:47 AM","note":"ok"},{"id":4,"productCode":"0363-0610","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":505,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"4:35 PM","note":"ok"},{"id":5,"productCode":"61077-019","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":763,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"11:29 PM","note":"ok"},{"id":6,"productCode":"59535-6501","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":989,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"12:02 AM","note":"ok"}]},
-{"date":"02/08/2021","list-report":[{"id":1,"productCode":"42549-519","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":727,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"9:59 PM","note":"ok"},{"id":2,"productCode":"50268-221","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":999,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"8:13 AM","note":"ok"},{"id":3,"productCode":"41163-182","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":511,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"5:11 PM","note":"ok"},{"id":4,"productCode":"0288-5523","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":742,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"12:47 PM","note":"ok"},{"id":5,"productCode":"11673-183","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":912,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"12:23 AM","note":"ok"},{"id":6,"productCode":"41163-057","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":717,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"5:08 PM","note":"ok"},{"id":7,"productCode":"65293-374","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":524,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"4:47 PM","note":"ok"}]},
-{"date":"17/02/2022","list-report":[{"id":1,"productCode":"0268-6725","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":723,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"10:34 AM","note":"ok"},{"id":2,"productCode":"68428-040","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":514,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"9:23 AM","note":"ok"},{"id":3,"productCode":"65862-226","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":569,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"9:37 AM","note":"ok"},{"id":4,"productCode":"63629-4698","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":774,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"12:09 PM","note":"ok"},{"id":5,"productCode":"59371-6500","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":829,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"1:19 AM","note":"ok"},{"id":6,"productCode":"10578-024","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":581,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"11:15 PM","note":"ok"},{"id":7,"productCode":"50006-300","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":553,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"4:05 PM","note":"ok"}]},
-{"date":"28/09/2021","list-report":[{"id":1,"productCode":"53329-814","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":887,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"8:18 AM","note":"ok"},{"id":2,"productCode":"76439-251","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":672,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"11:45 AM","note":"ok"},{"id":3,"productCode":"49781-087","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":606,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"7:53 AM","note":"ok"},{"id":4,"productCode":"47593-484","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":859,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"5:15 PM","note":"ok"},{"id":5,"productCode":"0019-3183","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":857,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"3:02 PM","note":"ok"},{"id":6,"productCode":"52125-113","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":506,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"3:59 AM","note":"ok"}]},
-{"date":"22/05/2021","list-report":[{"id":1,"productCode":"50111-990","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":898,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"3:47 AM","note":"ok"},{"id":2,"productCode":"55316-381","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":573,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"8:15 AM","note":"ok"},{"id":3,"productCode":"36987-2691","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":788,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"khả","time":"5:35 PM","note":"ok"},{"id":4,"productCode":"60512-6162","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":919,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"3:56 PM","note":"ok"},{"id":5,"productCode":"59779-649","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":590,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"1:50 PM","note":"ok"},{"id":6,"productCode":"65954-772","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":741,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"11:24 AM","note":"ok"},{"id":7,"productCode":"67510-0064","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":574,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"văn","time":"3:07 AM","note":"ok"}]},
-{"date":"18/05/2021","list-report":[{"id":1,"productCode":"33992-4949","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":653,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"định","time":"9:34 PM","note":"ok"},{"id":2,"productCode":"68084-257","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":872,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"9:04 PM","note":"ok"},{"id":3,"productCode":"0268-0719","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":772,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"2:49 AM","note":"ok"},{"id":4,"productCode":"68428-064","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":599,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"4:12 AM","note":"ok"},{"id":5,"productCode":"58232-6004","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"cái","quantity":823,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"9:05 PM","note":"ok"},{"id":6,"productCode":"43455-0005","productName":"Bộ xả paradise KR piston 2 nhấn oval F1 dương CO1","unit":"bộ","quantity":847,"result":"ok","equipment":"ok","maintenanceResult":"ok","employee":"H. Tâm","time":"7:51 PM","note":"ok"}]}
+[
+	{
+		"date": "2022-05-01T04:17:46Z",
+		"employee": { "id": "616-77-1759", "firstName": "Hoài", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 808,
+				"note": "không",
+				"standardWeight": 10.89,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 11.49 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 902,
+				"note": "không",
+				"standardWeight": 10.96,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 10.39 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 681,
+				"note": "không",
+				"standardWeight": 10.76,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.56 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 754,
+				"note": "không",
+				"standardWeight": 11.45,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 11.73 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 551,
+				"note": "không",
+				"standardWeight": 11.8,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 10.03 }
+			}
+		],
+		"packingUnit": { "id": 4 },
+		"workingTime": 22321
+	},
+	{
+		"date": "2022-05-01T02:54:07Z",
+		"employee": { "id": "480-14-9229", "firstName": "Hoài", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 995,
+				"note": "không",
+				"standardWeight": 12.0,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 10.87 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 880,
+				"note": "không",
+				"standardWeight": 11.25,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.59 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 906,
+				"note": "không",
+				"standardWeight": 10.62,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 10.28 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 938,
+				"note": "không",
+				"standardWeight": 11.25,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.5 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 611,
+				"note": "không",
+				"standardWeight": 11.68,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.97 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22653
+	},
+	{
+		"date": "2022-05-02T01:42:54Z",
+		"employee": { "id": "188-87-5782", "firstName": "Hoài", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 583,
+				"note": "không",
+				"standardWeight": 10.69,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.65 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 615,
+				"note": "không",
+				"standardWeight": 11.33,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.68 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 666,
+				"note": "không",
+				"standardWeight": 11.66,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 11.34 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 832,
+				"note": "không",
+				"standardWeight": 10.4,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 10.44 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 523,
+				"note": "không",
+				"standardWeight": 10.92,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.67 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22281
+	},
+	{
+		"date": "2022-05-02T05:26:07Z",
+		"employee": { "id": "756-99-2239", "firstName": "Dũng", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 984,
+				"note": "không",
+				"standardWeight": 10.8,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.66 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 550,
+				"note": "không",
+				"standardWeight": 10.82,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 10.49 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 505,
+				"note": "không",
+				"standardWeight": 10.16,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.12 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 983,
+				"note": "không",
+				"standardWeight": 11.31,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 11.34 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 708,
+				"note": "không",
+				"standardWeight": 11.73,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.44 }
+			}
+		],
+		"packingUnit": { "id": 4 },
+		"workingTime": 22248
+	},
+	{
+		"date": "2022-05-02T16:40:42Z",
+		"employee": { "id": "777-22-9098", "firstName": "Hoài", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 630,
+				"note": "không",
+				"standardWeight": 11.97,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.43 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 649,
+				"note": "không",
+				"standardWeight": 11.87,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.66 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 962,
+				"note": "không",
+				"standardWeight": 10.68,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.2 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 868,
+				"note": "không",
+				"standardWeight": 10.33,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.22 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 765,
+				"note": "không",
+				"standardWeight": 11.18,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.29 }
+			}
+		],
+		"packingUnit": { "id": 5 },
+		"workingTime": 22709
+	},
+	{
+		"date": "2022-05-03T23:19:41Z",
+		"employee": { "id": "896-80-8604", "firstName": "Hoài", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 577,
+				"note": "không",
+				"standardWeight": 10.99,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.2 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 819,
+				"note": "không",
+				"standardWeight": 11.36,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.71 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 816,
+				"note": "không",
+				"standardWeight": 11.98,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.93 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 922,
+				"note": "không",
+				"standardWeight": 11.68,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.27 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 697,
+				"note": "không",
+				"standardWeight": 10.61,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 11.21 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 939,
+				"note": "không",
+				"standardWeight": 10.18,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.67 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22310
+	},
+	{
+		"date": "2022-05-03T13:59:16Z",
+		"employee": { "id": "640-96-6254", "firstName": "Dũng", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 854,
+				"note": "không",
+				"standardWeight": 10.71,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.05 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 904,
+				"note": "không",
+				"standardWeight": 10.95,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.63 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 772,
+				"note": "không",
+				"standardWeight": 10.5,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 11.02 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 502,
+				"note": "không",
+				"standardWeight": 10.88,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 10.42 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 816,
+				"note": "không",
+				"standardWeight": 10.52,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.24 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22616
+	},
+	{
+		"date": "2022-05-04T06:31:36Z",
+		"employee": { "id": "565-56-6699", "firstName": "Hoài", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 911,
+				"note": "không",
+				"standardWeight": 10.06,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 10.68 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 799,
+				"note": "không",
+				"standardWeight": 10.81,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 11.27 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 632,
+				"note": "không",
+				"standardWeight": 10.76,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.64 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 895,
+				"note": "không",
+				"standardWeight": 10.36,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.55 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 827,
+				"note": "không",
+				"standardWeight": 11.69,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.65 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 675,
+				"note": "không",
+				"standardWeight": 10.2,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 10.69 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22964
+	},
+	{
+		"date": "2022-05-04T18:10:13Z",
+		"employee": { "id": "518-09-9157", "firstName": "Tâm", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 836,
+				"note": "không",
+				"standardWeight": 11.8,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.17 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 600,
+				"note": "không",
+				"standardWeight": 10.48,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 11.21 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 993,
+				"note": "không",
+				"standardWeight": 11.57,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 10.06 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 576,
+				"note": "không",
+				"standardWeight": 11.69,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 10.75 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 589,
+				"note": "không",
+				"standardWeight": 10.04,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.31 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 971,
+				"note": "không",
+				"standardWeight": 11.89,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.99 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22143
+	},
+	{
+		"date": "2022-05-04T21:07:06Z",
+		"employee": { "id": "312-10-1997", "firstName": "Lê", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 555,
+				"note": "không",
+				"standardWeight": 10.35,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 10.03 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 692,
+				"note": "không",
+				"standardWeight": 11.13,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 11.14 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 521,
+				"note": "không",
+				"standardWeight": 11.54,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.39 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 533,
+				"note": "không",
+				"standardWeight": 10.33,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.19 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 526,
+				"note": "không",
+				"standardWeight": 10.53,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.19 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 697,
+				"note": "không",
+				"standardWeight": 11.99,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.86 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22849
+	},
+	{
+		"date": "2022-05-11T03:47:28Z",
+		"employee": { "id": "581-81-3899", "firstName": "Hoài", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 866,
+				"note": "không",
+				"standardWeight": 11.5,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 11.35 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 557,
+				"note": "không",
+				"standardWeight": 10.18,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 10.78 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 960,
+				"note": "không",
+				"standardWeight": 11.16,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.39 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 922,
+				"note": "không",
+				"standardWeight": 11.72,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 10.51 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 969,
+				"note": "không",
+				"standardWeight": 10.96,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.08 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 738,
+				"note": "không",
+				"standardWeight": 10.52,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.91 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22422
+	},
+	{
+		"date": "2022-05-11T07:29:09Z",
+		"employee": { "id": "157-64-9731", "firstName": "Dũng", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 728,
+				"note": "không",
+				"standardWeight": 11.53,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.52 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 859,
+				"note": "không",
+				"standardWeight": 10.36,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 11.76 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 630,
+				"note": "không",
+				"standardWeight": 10.74,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 11.16 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 653,
+				"note": "không",
+				"standardWeight": 10.9,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 11.73 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 644,
+				"note": "không",
+				"standardWeight": 11.73,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 11.75 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 882,
+				"note": "không",
+				"standardWeight": 11.15,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 10.86 }
+			}
+		],
+		"packingUnit": { "id": 6 },
+		"workingTime": 22057
+	},
+	{
+		"date": "2022-05-11T11:53:24Z",
+		"employee": { "id": "697-99-1379", "firstName": "Dũng", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 650,
+				"note": "không",
+				"standardWeight": 11.93,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 11.38 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 637,
+				"note": "không",
+				"standardWeight": 11.78,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 10.03 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 861,
+				"note": "không",
+				"standardWeight": 10.55,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.18 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 594,
+				"note": "không",
+				"standardWeight": 10.55,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.99 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 811,
+				"note": "không",
+				"standardWeight": 11.68,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.05 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22875
+	},
+	{
+		"date": "2022-05-12T22:49:03Z",
+		"employee": { "id": "798-55-7404", "firstName": "Tâm", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 756,
+				"note": "không",
+				"standardWeight": 11.9,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 10.19 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 900,
+				"note": "không",
+				"standardWeight": 11.97,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 11.18 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 827,
+				"note": "không",
+				"standardWeight": 10.23,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.18 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 797,
+				"note": "không",
+				"standardWeight": 11.8,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 11.6 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 705,
+				"note": "không",
+				"standardWeight": 11.42,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 10.1 }
+			}
+		],
+		"packingUnit": { "id": 6 },
+		"workingTime": 22555
+	},
+	{
+		"date": "2022-05-12T04:31:48Z",
+		"employee": { "id": "446-26-8103", "firstName": "Lê", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 861,
+				"note": "không",
+				"standardWeight": 11.12,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.69 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 596,
+				"note": "không",
+				"standardWeight": 10.71,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 10.59 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 936,
+				"note": "không",
+				"standardWeight": 11.95,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.24 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 526,
+				"note": "không",
+				"standardWeight": 10.13,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.4 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 782,
+				"note": "không",
+				"standardWeight": 11.77,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.63 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 867,
+				"note": "không",
+				"standardWeight": 10.97,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.47 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22968
+	},
+	{
+		"date": "2022-05-14T11:30:26Z",
+		"employee": { "id": "836-58-5008", "firstName": "Hoài", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 723,
+				"note": "không",
+				"standardWeight": 10.08,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.08 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 836,
+				"note": "không",
+				"standardWeight": 10.86,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.5 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 736,
+				"note": "không",
+				"standardWeight": 10.91,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.21 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 795,
+				"note": "không",
+				"standardWeight": 10.23,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.53 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 978,
+				"note": "không",
+				"standardWeight": 11.45,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.97 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 955,
+				"note": "không",
+				"standardWeight": 10.23,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.77 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22022
+	},
+	{
+		"date": "2022-05-14T10:17:26Z",
+		"employee": { "id": "350-13-5814", "firstName": "Lê", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 631,
+				"note": "không",
+				"standardWeight": 11.67,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 11.7 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 953,
+				"note": "không",
+				"standardWeight": 11.73,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.97 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 642,
+				"note": "không",
+				"standardWeight": 10.6,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 11.44 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 639,
+				"note": "không",
+				"standardWeight": 10.11,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 11.97 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 727,
+				"note": "không",
+				"standardWeight": 11.38,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.61 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22984
+	},
+	{
+		"date": "2022-05-15T21:38:45Z",
+		"employee": { "id": "209-41-4570", "firstName": "Dũng", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 636,
+				"note": "không",
+				"standardWeight": 10.48,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 10.63 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 697,
+				"note": "không",
+				"standardWeight": 10.88,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 10.87 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 575,
+				"note": "không",
+				"standardWeight": 11.81,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 11.77 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 662,
+				"note": "không",
+				"standardWeight": 10.11,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.77 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 742,
+				"note": "không",
+				"standardWeight": 10.18,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.59 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 643,
+				"note": "không",
+				"standardWeight": 10.13,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.29 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22421
+	},
+	{
+		"date": "2022-05-16T13:28:54Z",
+		"employee": { "id": "881-93-6972", "firstName": "Dũng", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 575,
+				"note": "không",
+				"standardWeight": 11.21,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.61 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 959,
+				"note": "không",
+				"standardWeight": 11.07,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 10.11 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 691,
+				"note": "không",
+				"standardWeight": 10.01,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 10.43 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 525,
+				"note": "không",
+				"standardWeight": 11.27,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 10.81 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 529,
+				"note": "không",
+				"standardWeight": 11.03,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.4 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 782,
+				"note": "không",
+				"standardWeight": 11.18,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.75 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22959
+	},
+	{
+		"date": "2022-05-16T03:32:13Z",
+		"employee": { "id": "530-05-6168", "firstName": "Hoài", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 653,
+				"note": "không",
+				"standardWeight": 10.32,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.95 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 935,
+				"note": "không",
+				"standardWeight": 10.61,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.89 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 825,
+				"note": "không",
+				"standardWeight": 10.63,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.59 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 932,
+				"note": "không",
+				"standardWeight": 11.14,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.47 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 644,
+				"note": "không",
+				"standardWeight": 10.03,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.01 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 672,
+				"note": "không",
+				"standardWeight": 10.32,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.9 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22194
+	}
 ]

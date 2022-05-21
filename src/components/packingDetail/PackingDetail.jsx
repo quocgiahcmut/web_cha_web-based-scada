@@ -1,7 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { packingEmployees } from '../../utils/utils';
-// import Badge from '../badge/Badge';
 import ProgressBar from '../progressBar/ProgressBar';
 import ReportNavigationButton from '../reportNavigationButton/ReportNavigationButton';
 import './packingDetail.css';
@@ -14,7 +12,7 @@ const mockPacking = {
 	totalTime: '00:00:00',
 };
 
-function PackingDetail({ data, errorProduct, completedProduct, isRunning }) {
+function PackingDetail({ employee, data, errorProduct, completedProduct, isRunning }) {
 	const history = useHistory();
 	const { note, setpoint, product } = data;
 	const [productState, setProductState] = React.useState('onWait');
@@ -206,9 +204,7 @@ function PackingDetail({ data, errorProduct, completedProduct, isRunning }) {
 							className="row full-width"
 						>
 							<div className="col-12 flex-justify-center">
-								<span className="packing__employee-name">
-									Nhân viên thực hiện: {isRunning ? packingEmployees[2] : ''}
-								</span>
+								<span className="packing__employee-name">Nhân viên thực hiện: {employee}</span>
 							</div>
 							<div className="col-12 flex-justify-center">
 								<span className="packingParamsTitle">Tiến độ sản phẩm hiện tại: {completedProduct} sản phẩm</span>

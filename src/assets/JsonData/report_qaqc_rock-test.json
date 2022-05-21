@@ -1,122 +1,125 @@
 {
-  "cellValues": [
-    {
-      "cell": "C1",
-      "text": "PHIẾU KIỂM ROCK TEST",
-      "font": { "size": "18", "bold": true, "italic": true }
-    },
-    {
-      "cell": "K1",
-      "text": "Mã tài liệu",
-      "font": { "bold": true, "italic": true }
-    },
-    {
-      "cell": "K2",
-      "text": "Ngày ban hành",
-      "font": { "bold": true, "italic": true }
-    },
-    {
-      "cell": "K3",
-      "text": "Ngày sửa lỗi",
-      "font": { "bold": true, "italic": true }
-    },
-    {
-      "cell": "K4",
-      "text": "Lần sửa lỗi",
-      "font": { "bold": true, "italic": true }
-    },
-    { "cell": "M1", "text": "BM09.QT02.QA.lab", "font": { "size": "10" } },
-    { "cell": "M2", "text": "01/05/21", "font": { "size": "10" } },
-    { "cell": "M3", "text": "01/05/21", "font": { "size": "10" } },
-    { "cell": "M4", "text": "0", "font": { "size": "10" } },
-    { "cell": "A6", "text": "TÊN SẢN PHẨM", "font": { "bold": true } },
-    { "cell": "K6", "text": "MÃ SẢN PHẨM", "font": { "bold": true } },
-    { "cell": "A8", "text": "Ngày bắt đầu", "font": { "size": "12" } },
-    { "cell": "I8", "text": "Ngày kết thúc", "font": { "size": "12" } },
-    {
-      "cell": "F10", "text": "'- Tải trọng 1335N±22N\n- Sau lần 25.000 lần không có hư hỏng, bộ bản lề hoạt động bình thường",
-      "font": {
-        "size":"11"
-      }
-    },
-    { "cell": "A9", "text": "Mục đích kiểm tra",
-      "font":{
-        "bold": "true"
-      }
-    },
-    {
-      "cell": "A10",
-      "text": "Tiêu chuẩn thử nghiệm",
-      "font": { "size": "12", "bold": true }
-    },
-    { "cell": "A12", "text": "Mẫu số" },
-    {
-      "cell": "B12",
-      "text": "Tải trọng",
-      "font": { "size": "12" }
-    },
-    {
-      "cell": "D12",
-      "text": "Số lần thử nghiệm",
-      "font": { "size": "12" }
-    },
-    {
-      "cell": "G12",
-      "text": "Kết quả đánh giá",
-      "font": { "size": "12" }
-    },
-    { "cell": "J12", "text": "Tổng lỗi" },
-    { "cell": "K12", "text": "Nhận xét" },
-    { "cell": "N12", "text": "Nhân viên KT" },
-    {
-      "cell": "A20",
-      "text": "Nhận xét: ",
-      "font": { "size": "12", "bold": true }
-    },
-    {
-      "cell": "A24",
-      "text": "Nhận xét",
-      "font": { "size": "14", "bold": true }
-    },
-    {
-      "cell": "H24",
-      "text": "Phê duyệt",
-      "font": { "size": "14", "bold": true }
-    }
-  ],
-  "cellMergers": [
-    "A1:B4",
-    "C1:J4",
-    "K1:L1",
-    "M1:N1",
-    "K2:L2",
-    "M2:N2",
-    "K3:L3",
-    "M3:N3",
-    "K4:L4",
-    "M4:N4",
-    "A6:C6",
-    "D6:J6",
-    "K6:L6",
-    "M6:N6",
-    "A8:C8",
-    "D8:H8",
-    "I8:J8",
-    "K8:N8",
-    "A9:N9",
-    "A10:D10",
-    "E10:N10",
-    "A20:B20",
-    "A12:A13",
-    "B12:C13",
-    "D12:F13",
-    "G12:I13",
-    "J12:J13",
-    "K12:M13",
-    "N12:N13",
-    "A24:G25",
-    "H24:N25",
-    "A26:G26",
-    "H26:N26"
-  ]
+	"cellValues": [
+		{
+			"cell": "C1",
+			"text": "PHIẾU KIỂM ROCK TEST",
+			"font": { "size": "18", "bold": true, "italic": true }
+		},
+		{
+			"cell": "K1",
+			"text": "Mã tài liệu",
+			"font": { "bold": true, "italic": true }
+		},
+		{
+			"cell": "K2",
+			"text": "Ngày ban hành",
+			"font": { "bold": true, "italic": true }
+		},
+		{
+			"cell": "K3",
+			"text": "Ngày sửa lỗi",
+			"font": { "bold": true, "italic": true }
+		},
+		{
+			"cell": "K4",
+			"text": "Lần sửa lỗi",
+			"font": { "bold": true, "italic": true }
+		},
+		{ "cell": "M1", "text": "BM09.QT02.QA.lab", "font": { "size": "10" } },
+		{ "cell": "M2", "text": "01/05/21", "font": { "size": "10" } },
+		{ "cell": "M3", "text": "01/05/21", "font": { "size": "10" } },
+		{ "cell": "M4", "text": "0", "font": { "size": "10" } },
+		{ "cell": "A6", "text": "TÊN SẢN PHẨM", "font": { "bold": true } },
+		{ "cell": "K6", "text": "MÃ SẢN PHẨM", "font": { "bold": true } },
+		{ "cell": "A8", "text": "Ngày bắt đầu", "font": { "size": "12" } },
+		{ "cell": "I8", "text": "Ngày kết thúc", "font": { "size": "12" } },
+		{
+			"cell": "F10",
+			"text": "'- Tải trọng 1335N±22N\n- Sau lần 25.000 lần không có hư hỏng, bộ bản lề hoạt động bình thường",
+			"font": {
+				"size": "11"
+			}
+		},
+		{
+			"cell": "A9",
+			"text": "Mục đích kiểm tra",
+			"font": {
+				"bold": "true"
+			}
+		},
+		{
+			"cell": "A10",
+			"text": "Tiêu chuẩn thử nghiệm",
+			"font": { "size": "12", "bold": true }
+		},
+		{ "cell": "A12", "text": "Mẫu số" },
+		{
+			"cell": "B12",
+			"text": "Tải trọng",
+			"font": { "size": "12" }
+		},
+		{
+			"cell": "D12",
+			"text": "Số lần thử nghiệm",
+			"font": { "size": "12" }
+		},
+		{
+			"cell": "G12",
+			"text": "Kết quả đánh giá",
+			"font": { "size": "12" }
+		},
+		{ "cell": "J12", "text": "Tổng lỗi" },
+		{ "cell": "K12", "text": "Nhận xét" },
+		{ "cell": "N12", "text": "Nhân viên KT" },
+		{
+			"cell": "A20",
+			"text": "Nhận xét: ",
+			"font": { "size": "12", "bold": true }
+		},
+		{
+			"cell": "A24",
+			"text": "Nhận xét",
+			"font": { "size": "14", "bold": true }
+		},
+		{
+			"cell": "H24",
+			"text": "Phê duyệt",
+			"font": { "size": "14", "bold": true }
+		}
+	],
+	"cellMergers": [
+		"A1:B4",
+		"C1:J4",
+		"K1:L1",
+		"M1:N1",
+		"K2:L2",
+		"M2:N2",
+		"K3:L3",
+		"M3:N3",
+		"K4:L4",
+		"M4:N4",
+		"A6:C6",
+		"D6:J6",
+		"K6:L6",
+		"M6:N6",
+		"A8:C8",
+		"D8:H8",
+		"I8:J8",
+		"K8:N8",
+		"A9:N9",
+		"A10:D10",
+		"E10:N10",
+		"A20:B20",
+		"A12:A13",
+		"B12:C13",
+		"D12:F13",
+		"G12:I13",
+		"J12:J13",
+		"K12:M13",
+		"N12:N13",
+		"A24:G25",
+		"H24:N25",
+		"A26:G26",
+		"H26:N26"
+	]
 }
