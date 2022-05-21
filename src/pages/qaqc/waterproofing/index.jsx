@@ -30,7 +30,7 @@ import { ReactComponent as Auto } from '../../../assets/images/qaqc/auto.svg';
 import { ReactComponent as Manual } from '../../../assets/images/qaqc/manual.svg';
 // import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 import { ReactComponent as Stop } from '../../../assets/images/qaqc/stop.svg';
-import { ReactComponent as WaterProofMachine } from '../../../assets/images/qaqc/waterProof__run.svg';
+import { ReactComponent as WaterProofMachine } from '../../../assets/images/qaqc/waterproof__run.svg';
 import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import ProgressBar from '../../../components/progressBar/ProgressBar';
 import ReportNavigationButton from '../../../components/reportNavigationButton/ReportNavigationButton';
