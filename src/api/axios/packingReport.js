@@ -39,6 +39,8 @@ const packingApi = {
 				packingUnitId,
 				page: 1,
 				itemsPerPage: 1,
+				startTime: format(Date.now(), 'yyyy-MM-dd'),
+				endTime: format(Date.now(), 'yyyy-MM-dd'),
 			},
 		});
 	},
@@ -47,6 +49,8 @@ const packingApi = {
 			params: {
 				page: 1,
 				itemsPerPage: 6,
+				startTime: format(Date.now(), 'yyyy-MM-dd'),
+				endTime: format(Date.now(), 'yyyy-MM-dd'),
 			},
 		});
 	},
