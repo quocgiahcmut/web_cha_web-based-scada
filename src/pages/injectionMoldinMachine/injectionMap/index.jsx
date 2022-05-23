@@ -23,6 +23,7 @@ function InjectionMachine({ connect, isRunning, item, direction }) {
 		cycleTime: 0,
 		counterShot: 0,
 		openTime: 0,
+		setCycle: 0,
 	});
 	const [configData, setConfigData] = React.useState({
 		id: hoverData.title,
@@ -89,6 +90,7 @@ function InjectionMachine({ connect, isRunning, item, direction }) {
 							`${hoverData?.title}.CounterShot`,
 							`${hoverData?.title}.OpenTime`,
 							`${hoverData?.title}.MachineStatus`,
+							`${hoverData?.title}.SetCycle`,
 						],
 					]
 				);
@@ -98,6 +100,7 @@ function InjectionMachine({ connect, isRunning, item, direction }) {
 					cycleTime: rawData.deviceQueryResults[0].tagQueryResults[0].value,
 					counterShot: rawData.deviceQueryResults[0].tagQueryResults[1].value,
 					openTime: rawData.deviceQueryResults[0].tagQueryResults[2].value,
+					setCycle: rawData.deviceQueryResults[0].tagQueryResults[4].value,
 				});
 			}, 1500);
 		}

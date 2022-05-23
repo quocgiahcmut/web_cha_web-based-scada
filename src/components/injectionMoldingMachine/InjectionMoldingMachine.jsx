@@ -109,11 +109,7 @@ function InjectionMoldingMachine({ injectionMoldingMachineData }) {
 							<tbody>
 								<tr>
 									<td>Chu kì ép</td>
-									<td>{injectionMoldingMachineData.cycleTime}</td>
-								</tr>
-								<tr>
-									<td>Thời gian mở cửa</td>
-									<td>{injectionMoldingMachineData.openTime}</td>
+									<td>{injectionMoldingMachineData.setCycle}</td>
 								</tr>
 								<tr>
 									<td>Mã khuôn</td>

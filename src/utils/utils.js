@@ -1285,17 +1285,17 @@ const getAccessToken = () => {
 const getInjectionMachineStatus = (id) => {
 	switch (id) {
 		case 0:
-			return true;
+			return false;
 		case 1:
-			return false;
+			return true;
 		case 2:
-			return false;
+			return true;
 		case 3:
 			return true;
 		case 4:
 			return true;
 		case 5:
-			return false;
+			return true;
 		default:
 			return false;
 	}

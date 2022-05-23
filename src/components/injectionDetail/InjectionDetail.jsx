@@ -134,7 +134,7 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) 
 							</tr>
 							<tr>
 								<td>Chu kỳ ép cài đặt (giây)</td>
-								<td>{injectionMoldingMachineConfiguration.cycle}</td>
+								<td>{monitorData.setCycle}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -150,10 +150,10 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) 
 							height="300px"
 							minimumValue={0}
 							maximumValue={Math.floor(
-								injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle / 10
+								monitorData.setCycle + monitorData.setCycle / 10
 							)}
 							interval={Math.floor(
-								(injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle / 10) / 6
+								(monitorData.setCycle + monitorData.setCycle / 10) / 6
 							)}
 							value={monitorData.cycleTime}
 							backingOutline="#c4c4c4"
@@ -165,7 +165,7 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) 
 							tickEndExtent={0.75}
 							labelExtent={0.6}
 							labelInterval={Math.floor(
-								(injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle / 10) / 6
+								(monitorData.setCycle + monitorData.setCycle / 10) / 6
 							)}
 							font="15px Verdana,Arial"
 							backingOuterExtent={0.9}
