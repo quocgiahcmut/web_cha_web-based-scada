@@ -7,70 +7,92 @@ import ReportPackingFilter from '../../../../components/reportPackingFilter/Repo
 import ReportPackingTable from '../../../../components/reportPackingTable/ReportPackingTable';
 import mocking_packing_report_employee from '../../../../assets/JsonData/mock_packing_report_employee-assessment.json';
 import { packingApi } from '../../../../api/axios/packingReport';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPackingReportData } from '../../../../redux/slice/PackingReportSlice';
+import LoadingComponent from '../../../../components/loadingComponent/LoadingComponent';
+import EmptyPlaceHolder from '../../../../components/emptyPlaceholder/EmptyPlaceholder';
 const randomColor = ['color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9'];
 
 function ReportPackingSector() {
-	const [packingReportData, setPackingReportData] = React.useState([]);
+	const dispatch = useDispatch();
+	const { packingReportData } = useSelector((state) => state.packingReportData);
+	const [isLoading, setIsLoading] = React.useState(false);
+	const [error, setError] = React.useState(null);
 	const [packingEmployeeReportData, setPackingEmployeeReportData] = React.useState([]);
-	React.useEffect(() => {
-		let filteredData = [];
-		(async () => {
-			const res = await packingApi.getTemporaryPackingPlanTracking();
-			console.log(res.data);
-			filteredData = res.data.reduce((acc, cur) => {
-				if (acc.find((item) => item.date === cur.date)) {
-					cur.items.forEach((item) => {
-						acc
-							.find((item) => item.date === cur.date)
-							.items.push({
-								productCode: item.item.id,
-								productName: item.item.name,
-								unit: item.unitOfMeasurement === 0 ? 'Cái' : 'Bộ',
-								quantity: item.actualQuantity,
-								note: item.note,
-								employee: cur.employee.lastName + ' ' + cur.employee.firstName,
-								time: (cur.workingTime / 1000).toFixed(2),
+	const fetchData = React.useCallback(
+		async (startTime, stopTime) => {
+			setIsLoading(true);
+			let filteredData = [];
+			packingApi
+				.getMonthlyPackingReport(startTime, stopTime)
+				.then((res) => {
+					setIsLoading(false);
+					if (res.status === 200) {
+						filteredData = res.data.items.reduce((acc, cur) => {
+							if (acc.find((item) => item.date === cur.date)) {
+								cur.items.forEach((item) => {
+									acc
+										.find((item) => item.date === cur.date)
+										.items.push({
+											productCode: item.item.id,
+											productName: item.item.name,
+											unit: '',
+											quantity: item.actualQuantity,
+											note: item.note,
+											employee: cur.employee.lastName + ' ' + cur.employee.firstName,
+											time: cur.workingTime.toFixed(2),
+										});
+								});
+							} else {
+								acc.push({
+									date: cur.date,
+									items: cur.items.map((item) => {
+										return {
+											productCode: item.item.id,
+											productName: item.item.name,
+											quantity: item.actualQuantity,
+											note: item.note,
+											employee: cur.employee.lastName + ' ' + cur.employee.firstName,
+											time: cur.workingTime.toFixed(2),
+										};
+									}),
+								});
+							}
+							return acc;
+						}, []);
+
+						const dispatchFilteredData = [];
+						filteredData.forEach((reportList, index1) => {
+							reportList.items.forEach((report, index2) => {
+								dispatchFilteredData.push({
+									id: index2 + 1,
+									color: randomColor[index1 % 9],
+									date: format(new Date(reportList.date), 'dd/MM/yyyy'),
+									productCode: report.productCode,
+									productName: report.productName,
+									unit: '',
+									quantity: report.quantity,
+									employee: report.employee,
+									time: report.time,
+									note: report.note,
+								});
 							});
-					});
-				} else {
-					acc.push({
-						date: cur.date,
-						items: cur.items.map((item) => {
-							return {
-								productCode: item.item.id,
-								productName: item.item.name,
-								unit: item.unitOfMeasurement === 0 ? 'Cái' : 'Bộ',
-								quantity: item.actualQuantity,
-								note: item.note,
-								employee: cur.employee.lastName + ' ' + cur.employee.firstName,
-								time: (cur.workingTime / 1000).toFixed(2),
-							};
-						}),
-					});
-				}
-				return acc;
-			}, []);
-			filteredData.forEach((reportList, index1) => {
-				reportList.items.forEach((report, index2) => {
-					setPackingReportData((prevState) => [
-						...prevState,
-						{
-							id: index2 + 1,
-							color: randomColor[index1 % 9],
-							date: reportList.date,
-							productCode: report.productCode,
-							productName: report.productName,
-							unit: report.unit,
-							quantity: report.quantity,
-							employee: report.employee,
-							time: report.time,
-							note: report.note,
-						},
-					]);
+						});
+						dispatch(setPackingReportData(dispatchFilteredData));
+					} else {
+						setError(`Có lỗi xảy ra, vui lòng thử lại\n${res.data.message}`);
+					}
+				})
+				.catch((err) => {
+					setIsLoading(false);
+					setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
 				});
-			});
-		})();
-		mocking_packing_report_employee.forEach((reportList, index1) => {
+		},
+		[dispatch]
+	);
+
+	React.useEffect(() => {
+		mocking_packing_report_employee.forEach((reportList) => {
 			setPackingEmployeeReportData((prevState) => [
 				...prevState,
 				{
@@ -301,20 +323,33 @@ function ReportPackingSector() {
 		},
 		[packingEmployeeReportData, packingReportData]
 	);
-	const onSubmit = React.useCallback((value) => {
-		console.log(value);
-	}, []);
+	const onSubmit = React.useCallback(
+		(value) => {
+			fetchData(value.dateStart, format(Date.now(), 'yyyy-MM-dd'));
+		},
+		[fetchData]
+	);
 	return (
 		<>
 			<ReportPackingFilter exportReport={exportReport} onSubmit={onSubmit} />
-			<ReportPackingTable
-				style={{
-					display: 'none',
-				}}
-				reportData={packingEmployeeReportData}
-				reportHeaders={PACKING_EMPLOYEE_COLUMNS}
-			/>
-			<ReportPackingTable reportData={packingReportData} reportHeaders={PACKING_COLUMNS} />
+			{isLoading ? (
+				<LoadingComponent />
+			) : error ? (
+				<EmptyPlaceHolder isError={true} msg={error} />
+			) : packingReportData.length === 0 ? (
+				<EmptyPlaceHolder msg="Nhấn nút tìm kiếm để truy xuất báo cáo" />
+			) : (
+				<>
+					<ReportPackingTable
+						style={{
+							display: 'none',
+						}}
+						reportData={packingEmployeeReportData}
+						reportHeaders={PACKING_EMPLOYEE_COLUMNS}
+					/>
+					<ReportPackingTable reportData={packingReportData} reportHeaders={PACKING_COLUMNS} />
+				</>
+			)}
 		</>
 	);
 }

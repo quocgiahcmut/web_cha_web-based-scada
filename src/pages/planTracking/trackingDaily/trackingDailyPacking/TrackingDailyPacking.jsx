@@ -5,6 +5,7 @@ import DailyProgressTable from '../../../../components/progressTable/ProgressTab
 import DailyProgressFilter from '../../../../components/dailyProgressFilter/DailyProgressFilter';
 import EmptyPlaceholder from '../../../../components/emptyPlaceholder/EmptyPlaceholder';
 import LoadingComponent from '../../../../components/loadingComponent/LoadingComponent';
+import mock_plan_tracking_packing_daily from '../../../../assets/JsonData/mock-plan-tracking-packing-daily.json';
 import { useSelector, useDispatch } from 'react-redux';
 import { setDailyPackingPlanTrackingData } from '../../../../redux/slice/PlanTrackingSlice';
 function TrackingDailyPacking() {
@@ -16,12 +17,11 @@ function TrackingDailyPacking() {
 		async (startTime, stopTime) => {
 			setLoading(true);
 			packingApi
-				.getTemporaryPackingPlanTracking(startTime, stopTime)
+				.getPackingPlanTracking(startTime, stopTime)
 				.then((res) => {
 					setLoading(false);
 					setError(null);
-					console.log(res.data);
-					const filteredData = res.data
+					const filteredData = mock_plan_tracking_packing_daily
 						.reduce((acc, shift) => {
 							acc.push({
 								date: shift.date,
@@ -61,7 +61,6 @@ function TrackingDailyPacking() {
 							return acc;
 						}, []);
 					dispatch(setDailyPackingPlanTrackingData(filteredData));
-
 				})
 				.catch((err) => {
 					setLoading(false);

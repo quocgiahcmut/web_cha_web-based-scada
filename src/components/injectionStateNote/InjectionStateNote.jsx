@@ -1,9 +1,8 @@
 import './injectionStateNote.css';
 
 function InjectionStateNote({ quantity }) {
-	const states = ['M', 'R', 'S'];
+	const states = ['R', 'S'];
 	const stateTooltips = {
-		M: 'Đang bảo trì',
 		R: 'Đang vận hành',
 		S: 'Đang dừng',
 	};

@@ -1,44 +1,50 @@
-.packingMachine__container{
-  border: 2px solid var(--main-color-green);
-  border-radius: var(--border-radius);
-  padding: 20px 20px;
+.packingMachine__container {
+	border: 2px solid var(--main-color-green);
+	border-radius: var(--border-radius);
+	padding: 20px 20px;
 }
-.classification__state-type-container--detail{
-  padding: 15px 35px;
-  border-radius: 9px;
-  font-weight: bold;
-  font-size: 5rem;
-  text-transform: uppercase;
-  color: var(--txt-white);
-  user-select: none;
-  
+.classification__state-type-container--detail {
+	padding: 15px 35px;
+	border-radius: 9px;
+	font-weight: bold;
+	font-size: 5rem;
+	text-transform: uppercase;
+	color: var(--txt-white);
+	user-select: none;
+}
+.classification__state-type-container--detail--dashboard {
+	padding: 9px 17px;
+	font-size: 1.5rem;
+	user-select: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: var(--txt-white);
+	border-radius: 9px;
+}
+.packingParamsTitle {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: var(--txt-color);
+	margin-bottom: 10px;
 }
 
-.packingParamsTitle{
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--txt-color);
-  margin-bottom: 10px;
-}
-
-#packingDetail > tbody > tr > td{
-  padding: 10px;
-  font-size:1.4rem;
+#packingDetail > tbody > tr > td {
+	padding: 10px;
+	font-size: 1.4rem;
 }
 
 #packingDetail > tbody > tr > td:first-child {
- font-weight: bold;
+	font-weight: bold;
 }
 
-#packingDetail > tbody > tr:last-child > td{
-  border:none;
+#packingDetail > tbody > tr:last-child > td {
+	border: none;
 }
 
 .packing__employee-name {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--txt-color);
-  margin-bottom: 10px;
-  margin-top: 20px;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: var(--txt-color);
+	margin-bottom: 10px;
+	margin-top: 20px;
 }
-

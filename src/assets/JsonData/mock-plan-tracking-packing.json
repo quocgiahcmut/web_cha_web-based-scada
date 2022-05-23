@@ -1,0 +1,936 @@
+[
+	{
+		"event_id": 1,
+		"date": "2022-05-02",
+		"employee": { "id": "259-79-0288", "firstName": "Lê", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 691,
+				"note": "không",
+				"standardWeight": 10.53,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.38 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 821,
+				"note": "không",
+				"standardWeight": 10.5,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.69 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22344
+	},
+	{
+		"event_id": 2,
+		"date": "2022-05-03",
+		"employee": { "id": "614-27-6248", "firstName": "Tâm", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 548,
+				"note": "không",
+				"standardWeight": 10.49,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.47 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 695,
+				"note": "không",
+				"standardWeight": 10.77,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.99 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 539,
+				"note": "không",
+				"standardWeight": 11.79,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.12 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22802
+	},
+	{
+		"event_id": 3,
+		"date": "2022-05-04",
+		"employee": { "id": "564-04-1656", "firstName": "Dũng", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 710,
+				"note": "không",
+				"standardWeight": 11.57,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.01 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 500,
+				"note": "không",
+				"standardWeight": 11.68,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 11.48 }
+			}
+		],
+		"packingUnit": { "id": 6 },
+		"workingTime": 22959
+	},
+	{
+		"event_id": 4,
+		"date": "2022-05-05",
+		"employee": { "id": "389-37-6372", "firstName": "Dũng", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 649,
+				"note": "không",
+				"standardWeight": 10.03,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.45 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 824,
+				"note": "không",
+				"standardWeight": 11.34,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.17 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22002
+	},
+	{
+		"event_id": 5,
+		"date": "2022-05-06",
+		"employee": { "id": "645-59-6753", "firstName": "Dũng", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 755,
+				"note": "không",
+				"standardWeight": 10.52,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 11.72 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 511,
+				"note": "không",
+				"standardWeight": 11.58,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 11.26 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 642,
+				"note": "không",
+				"standardWeight": 11.9,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 11.8 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 946,
+				"note": "không",
+				"standardWeight": 10.31,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.77 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22686
+	},
+	{
+		"event_id": 6,
+		"date": "2022-05-07",
+		"employee": { "id": "289-71-8808", "firstName": "Lê", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 845,
+				"note": "không",
+				"standardWeight": 10.2,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 11.31 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 765,
+				"note": "không",
+				"standardWeight": 11.76,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.55 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 592,
+				"note": "không",
+				"standardWeight": 10.75,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.55 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 844,
+				"note": "không",
+				"standardWeight": 10.66,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 11.32 }
+			}
+		],
+		"packingUnit": { "id": 6 },
+		"workingTime": 22776
+	},
+	{
+		"event_id": 7,
+		"date": "2022-05-08",
+		"employee": { "id": "455-06-8168", "firstName": "Dũng", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 699,
+				"note": "không",
+				"standardWeight": 11.96,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.24 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 533,
+				"note": "không",
+				"standardWeight": 11.86,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.9 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 568,
+				"note": "không",
+				"standardWeight": 11.35,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.03 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22841
+	},
+	{
+		"event_id": 8,
+		"date": "2022-05-09",
+		"employee": { "id": "132-19-1073", "firstName": "Tâm", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 890,
+				"note": "không",
+				"standardWeight": 10.84,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.0 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 610,
+				"note": "không",
+				"standardWeight": 10.16,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 11.99 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 837,
+				"note": "không",
+				"standardWeight": 10.37,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.7 }
+			}
+		],
+		"packingUnit": { "id": 6 },
+		"workingTime": 22890
+	},
+	{
+		"event_id": 9,
+		"date": "2022-05-10",
+		"employee": { "id": "393-05-2637", "firstName": "Hoài", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 824,
+				"note": "không",
+				"standardWeight": 10.34,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.89 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22373
+	},
+	{
+		"event_id": 10,
+		"date": "2022-05-11",
+		"employee": { "id": "352-01-3178", "firstName": "Lê", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 723,
+				"note": "không",
+				"standardWeight": 10.66,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 11.59 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 752,
+				"note": "không",
+				"standardWeight": 11.69,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 10.07 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 653,
+				"note": "không",
+				"standardWeight": 11.94,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 10.21 }
+			}
+		],
+		"packingUnit": { "id": 5 },
+		"workingTime": 22000
+	},
+	{
+		"event_id": 11,
+		"date": "2022-05-12",
+		"employee": { "id": "820-44-3792", "firstName": "Lê", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 836,
+				"note": "không",
+				"standardWeight": 11.5,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 10.97 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 597,
+				"note": "không",
+				"standardWeight": 11.11,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.83 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 779,
+				"note": "không",
+				"standardWeight": 11.48,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.36 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 834,
+				"note": "không",
+				"standardWeight": 11.54,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.22 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22460
+	},
+	{
+		"event_id": 12,
+		"date": "2022-05-13",
+		"employee": { "id": "642-68-9702", "firstName": "Lê", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 558,
+				"note": "không",
+				"standardWeight": 10.8,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 10.85 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 809,
+				"note": "không",
+				"standardWeight": 11.86,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.85 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 752,
+				"note": "không",
+				"standardWeight": 10.51,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.27 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 530,
+				"note": "không",
+				"standardWeight": 11.99,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.81 }
+			}
+		],
+		"packingUnit": { "id": 6 },
+		"workingTime": 22645
+	},
+	{
+		"event_id": 13,
+		"date": "2022-05-14",
+		"employee": { "id": "372-44-4689", "firstName": "Dũng", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 615,
+				"note": "không",
+				"standardWeight": 10.47,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 10.7 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 867,
+				"note": "không",
+				"standardWeight": 11.45,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.49 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22083
+	},
+	{
+		"event_id": 14,
+		"date": "2022-05-15",
+		"employee": { "id": "865-26-6892", "firstName": "Tâm", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 948,
+				"note": "không",
+				"standardWeight": 10.43,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 11.78 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22055
+	},
+	{
+		"event_id": 15,
+		"date": "2022-05-16",
+		"employee": { "id": "299-60-2747", "firstName": "Lê", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 709,
+				"note": "không",
+				"standardWeight": 10.73,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.28 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 911,
+				"note": "không",
+				"standardWeight": 10.43,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.36 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 632,
+				"note": "không",
+				"standardWeight": 11.49,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.86 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 764,
+				"note": "không",
+				"standardWeight": 11.3,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 10.03 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22531
+	},
+	{
+		"event_id": 16,
+		"date": "2022-05-17",
+		"employee": { "id": "374-29-4068", "firstName": "Lê", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 672,
+				"note": "không",
+				"standardWeight": 10.68,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.76 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 675,
+				"note": "không",
+				"standardWeight": 10.48,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.96 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 532,
+				"note": "không",
+				"standardWeight": 11.29,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.93 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 813,
+				"note": "không",
+				"standardWeight": 11.63,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HA4", "standardWeight": 10.96 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22974
+	},
+	{
+		"event_id": 17,
+		"date": "2022-05-18",
+		"employee": { "id": "256-03-4534", "firstName": "Hoài", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 514,
+				"note": "không",
+				"standardWeight": 10.87,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.8 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 510,
+				"note": "không",
+				"standardWeight": 10.53,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 10.94 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22078
+	},
+	{
+		"event_id": 18,
+		"date": "2022-05-19",
+		"employee": { "id": "152-95-2147", "firstName": "Tâm", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 817,
+				"note": "không",
+				"standardWeight": 11.98,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 11.34 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 597,
+				"note": "không",
+				"standardWeight": 10.58,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 10.84 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 949,
+				"note": "không",
+				"standardWeight": 11.08,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 11.46 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22197
+	},
+	{
+		"event_id": 19,
+		"date": "2022-05-20",
+		"employee": { "id": "732-37-7606", "firstName": "Lê", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 825,
+				"note": "không",
+				"standardWeight": 11.44,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.33 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 799,
+				"note": "không",
+				"standardWeight": 10.71,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 10.17 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22929
+	},
+	{
+		"event_id": 20,
+		"date": "2022-05-21",
+		"employee": { "id": "836-26-3598", "firstName": "Tâm", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 590,
+				"note": "không",
+				"standardWeight": 10.01,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.27 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 500,
+				"note": "không",
+				"standardWeight": 10.71,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-02 trắng HA1", "standardWeight": 11.63 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 692,
+				"note": "không",
+				"standardWeight": 10.97,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 11.59 }
+			}
+		],
+		"packingUnit": { "id": 5 },
+		"workingTime": 22979
+	},
+	{
+		"event_id": 21,
+		"date": "2022-05-22",
+		"employee": { "id": "882-67-0194", "firstName": "Hoài", "lastName": "Trịnh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 612,
+				"note": "không",
+				"standardWeight": 10.01,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 10.48 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 780,
+				"note": "không",
+				"standardWeight": 11.3,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 10.4 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 808,
+				"note": "không",
+				"standardWeight": 10.62,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.64 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 683,
+				"note": "không",
+				"standardWeight": 11.43,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.49 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22048
+	},
+	{
+		"event_id": 22,
+		"date": "2022-05-23",
+		"employee": { "id": "450-67-4442", "firstName": "Lê", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 872,
+				"note": "không",
+				"standardWeight": 10.44,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.99 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22400
+	},
+	{
+		"event_id": 23,
+		"date": "2022-05-24",
+		"employee": { "id": "521-73-8912", "firstName": "Tâm", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 672,
+				"note": "không",
+				"standardWeight": 10.2,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA2", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 11.07 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 600,
+				"note": "không",
+				"standardWeight": 11.33,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.29 }
+			}
+		],
+		"packingUnit": { "id": 2 },
+		"workingTime": 22267
+	},
+	{
+		"event_id": 24,
+		"date": "2022-05-25",
+		"employee": { "id": "712-94-8460", "firstName": "Tâm", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 846,
+				"note": "không",
+				"standardWeight": 11.07,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 10.56 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 585,
+				"note": "không",
+				"standardWeight": 10.6,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA4", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.07 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 534,
+				"note": "không",
+				"standardWeight": 10.37,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 11.91 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 995,
+				"note": "không",
+				"standardWeight": 11.05,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 biển TT1", "standardWeight": 11.86 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22823
+	},
+	{
+		"event_id": 25,
+		"date": "2022-05-26",
+		"employee": { "id": "319-64-2603", "firstName": "Dũng", "lastName": "Lê Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 962,
+				"note": "không",
+				"standardWeight": 10.02,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO5", "name": "Nắp bàn cầu HA-03 ngọc HA7", "standardWeight": 11.14 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 645,
+				"note": "không",
+				"standardWeight": 10.54,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 10.54 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 586,
+				"note": "không",
+				"standardWeight": 11.3,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.28 }
+			}
+		],
+		"packingUnit": { "id": 5 },
+		"workingTime": 22506
+	},
+	{
+		"event_id": 26,
+		"date": "2022-05-27",
+		"employee": { "id": "134-83-7623", "firstName": "Dũng", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 628,
+				"note": "không",
+				"standardWeight": 11.16,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.24 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 834,
+				"note": "không",
+				"standardWeight": 11.15,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-02 trắng HA4", "standardWeight": 10.81 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 806,
+				"note": "không",
+				"standardWeight": 10.47,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.46 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22539
+	},
+	{
+		"event_id": 27,
+		"date": "2022-05-28",
+		"employee": { "id": "488-26-1245", "firstName": "Hoài", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 601,
+				"note": "không",
+				"standardWeight": 11.89,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 biển HA6", "standardWeight": 10.08 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 694,
+				"note": "không",
+				"standardWeight": 11.46,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 10.84 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22844
+	},
+	{
+		"event_id": 28,
+		"date": "2022-05-29",
+		"employee": { "id": "112-53-3530", "firstName": "Lê", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 920,
+				"note": "không",
+				"standardWeight": 10.59,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA1", "name": "Nắp bàn cầu HA-03 trắng HA2", "standardWeight": 11.8 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 875,
+				"note": "không",
+				"standardWeight": 10.25,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0201T-HA5", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.56 }
+			}
+		],
+		"packingUnit": { "id": 1 },
+		"workingTime": 22488
+	},
+	{
+		"event_id": 29,
+		"date": "2022-05-30",
+		"employee": { "id": "558-39-9102", "firstName": "Dũng", "lastName": "Đinh Khánh" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 817,
+				"note": "không",
+				"standardWeight": 11.7,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.48 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 774,
+				"note": "không",
+				"standardWeight": 11.28,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-CO2", "name": "Nắp bàn cầu HA-03 ngọc HA6", "standardWeight": 11.51 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 818,
+				"note": "không",
+				"standardWeight": 10.42,
+				"unitOfMeasurement": 1,
+				"item": { "id": "HA0201T-HA3", "name": "Nắp bàn cầu HA-03 trắng HC1", "standardWeight": 11.4 }
+			}
+		],
+		"packingUnit": { "id": 5 },
+		"workingTime": 22609
+	},
+	{
+		"event_id": 30,
+		"date": "2022-05-31",
+		"employee": { "id": "349-95-2855", "firstName": "Lê", "lastName": "Hoài Văn" },
+		"items": [
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 996,
+				"note": "không",
+				"standardWeight": 10.16,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 10.85 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 502,
+				"note": "không",
+				"standardWeight": 11.8,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 trắng TT1", "standardWeight": 11.69 }
+			},
+			{
+				"plannedQuantity": 1000,
+				"actualQuantity": 972,
+				"note": "không",
+				"standardWeight": 11.84,
+				"unitOfMeasurement": 0,
+				"item": { "id": "HA0101T-HA3", "name": "Nắp bàn cầu HA-03 ngọc TT1", "standardWeight": 10.39 }
+			}
+		],
+		"packingUnit": { "id": 3 },
+		"workingTime": 22757
+	}
+]

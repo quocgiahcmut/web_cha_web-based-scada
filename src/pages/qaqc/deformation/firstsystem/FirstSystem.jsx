@@ -25,6 +25,7 @@ import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { getTagsData } from '../../../../utils/utils';
 import { ToastContainer, toast } from 'react-toastify';
 // import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
+// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 const StyledTableCell = styled(TableCell)(() => ({
 	[`&.${tableCellClasses.head}`]: {
 		backgroundImage: 'linear-gradient(var(--main-color), var(--second-color));',
@@ -71,7 +72,7 @@ function FirstSystem() {
 	];
 	React.useEffect(() => {
 		const connect = new HubConnectionBuilder()
-			.withUrl(`http://192.168.1.80:8085/websockethub`, {
+			.withUrl(`http://10.84.70.80:8085/websockethub`, {
 				skipNegotiation: true,
 				transport: HttpTransportType.WebSockets,
 			})
@@ -82,9 +83,7 @@ function FirstSystem() {
 			.then(() => {
 				setConnection(connect);
 				setState('connected');
-				connect.on('ReceiveData', (data) => {
-					console.log('data 2', data);
-				});
+				connect.on('ReceiveData', (data) => {});
 			})
 			.catch((err) => {
 				console.error(err);
@@ -137,20 +136,22 @@ function FirstSystem() {
 					'qaqclab',
 					['plc'],
 					[
-						'Sp Force Cylinder 12',
-						'Sp No Press 12',
-						'Sp Time Hold 12',
-						'Pv Force Cylinder 1',
-						'Pv Force Cylinder 2',
-						'Pv No Press 1',
-						'Pv No Press 2',
-						'Pv Time Hold 1',
-						'Pv Time Hold 2',
-						'Mode App',
-						'Green App',
-						'Red App',
-						'Error App',
-						'Error Code',
+						[
+							'Sp Force Cylinder 12',
+							'Sp No Press 12',
+							'Sp Time Hold 12',
+							'Pv Force Cylinder 1',
+							'Pv Force Cylinder 2',
+							'Pv No Press 1',
+							'Pv No Press 2',
+							'Pv Time Hold 1',
+							'Pv Time Hold 2',
+							'Mode App',
+							'Green App',
+							'Red App',
+							'Error App',
+							'Error Code',
+						],
 					]
 				);
 				dispatch(
@@ -255,7 +256,6 @@ function FirstSystem() {
 						setErrorPriority('low');
 						break;
 				}
-				console.log(deformationMonitorData);
 			}, 1000);
 		}
 		return () => clearInterval(id);
@@ -715,7 +715,7 @@ function FirstSystem() {
 			</div>
 			<div className="row">
 				<div className="col-12 flex-center">
-					<ReportNavigationButton history={history} path="/report/main/qaqc/deformation" />
+					<ReportNavigationButton history={history} path="/layout/report/main/qaqc/deformation" />
 				</div>
 			</div>
 			<ToastContainer

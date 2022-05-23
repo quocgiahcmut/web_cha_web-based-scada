@@ -1,25 +1,29 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { removeAll } from '../../redux/slice/WarehouseSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeAll as removeAllWarehouseData } from '../../redux/slice/WarehouseSlice';
 import WarehouseFilterRow from '../warehouseFilterRow/WarehouseFilterRow';
 import './warehouseOverview.css';
 
-function WarehouseOverview() {
+function WarehouseOverview({ idList }) {
 	const dispatch = useDispatch();
-	const [rows, setRows] = useState([0]);
+	const warehouseData = useSelector((state) => state.warehouse);
+	//if no data on global state return 1 row, else return n row in this data
+	const [rows, setRows] = useState(() => {
+		if (warehouseData.length === 0) {
+			return [0];
+		} else {
+			return [...Array(warehouseData.length + 1).keys()];
+		}
+	});
 	const [filledRows, setFilledRows] = useState([]);
-
-	const mapData = {
-		discharger: ['D1', 'D2', 'D3', 'D4'],
-		lid: ['L1', 'L2', 'L3'],
-	};
 
 	const handleDeleteAllRow = () => {
 		setRows([0]);
 		setFilledRows(['deleted']);
-		dispatch(removeAll());
+		dispatch(removeAllWarehouseData());
 	};
 
+	//increase when a row is filled
 	useEffect(() => {
 		if (filledRows.length === rows.length && filledRows[0] !== 'deleted') {
 			setRows((prev) => [...prev, rows[rows.length - 1] + 1]);
@@ -32,13 +36,11 @@ function WarehouseOverview() {
 				<thead>
 					<tr className="heading-1">
 						<td>Tìm kiếm</td>
-						<td></td>
 						<td>Kết quả</td>
 						<td></td>
 						<td></td>
 					</tr>
 					<tr className="heading-2">
-						<td>Loại sản phẩm</td>
 						<td>Mã sản phẩm</td>
 						<td>Tên sản phẩm</td>
 						<td>Số lượng</td>
@@ -55,9 +57,9 @@ function WarehouseOverview() {
 						<WarehouseFilterRow
 							key={rows}
 							filterId={rows}
-							mapData={mapData}
 							filledRows={filledRows}
 							setFilledRows={setFilledRows}
+							idList={idList}
 						/>
 					))}
 				</tbody>

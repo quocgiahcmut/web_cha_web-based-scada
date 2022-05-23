@@ -153,7 +153,6 @@ function ReportForcedEndurance() {
 				.getForcedEnduranceReport(values.dateStart, values.dateEnd)
 				.then((res) => {
 					setLoading(false);
-					console.log(res.data.items[0]);
 					const filteredData = [];
 					if (res.data.items.length > 0) {
 						res.data.items[0].samples?.forEach((item) => {
@@ -167,7 +166,7 @@ function ReportForcedEndurance() {
 								no_drop_bumper: item.result.isIntact === true ? 'Oke' : 'Lỗi',
 								no_spill: item.result.isUnleaked === true ? 'Oke' : 'Lỗi',
 								second_result: item.result.passed === true ? 'Oke' : 'Lỗi',
-								total: item.sampleNumber,
+								total: item.numberOfError,
 								note: item.note,
 								employee: item.tester.lastName + ' ' + item.tester.firstName,
 							});

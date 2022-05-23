@@ -3,7 +3,7 @@ import { Field } from 'formik';
 import { Label } from 'reactstrap';
 
 function Input(props) {
-	const { placeholder, disable, label, name, list, onChange, onClick, ...rest } = props;
+	const { placeholder, disable, label, name, list, onChange, onKeyDown, ...rest } = props;
 	return (
 		<div className="form-control">
 			<Label for={name}>{label}</Label>
@@ -17,7 +17,7 @@ function Input(props) {
 							type="text"
 							placeholder={placeholder}
 							onChange={onChange}
-							onClick={onClick}
+							onKeyDown={onKeyDown}
 							{...field}
 						/>
 					);

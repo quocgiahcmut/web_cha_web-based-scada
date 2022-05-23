@@ -30,7 +30,7 @@ import { ReactComponent as Auto } from '../../../assets/images/qaqc/auto.svg';
 import { ReactComponent as Manual } from '../../../assets/images/qaqc/manual.svg';
 // import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 import { ReactComponent as Stop } from '../../../assets/images/qaqc/stop.svg';
-import { ReactComponent as WaterProofMachine } from '../../../assets/images/qaqc/waterProof__run.svg';
+import { ReactComponent as WaterProofMachine } from '../../../assets/images/qaqc/waterproof__run.svg';
 import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import ProgressBar from '../../../components/progressBar/ProgressBar';
 import ReportNavigationButton from '../../../components/reportNavigationButton/ReportNavigationButton';
@@ -234,6 +234,7 @@ function WaterProofing() {
 									fontBrush="Black"
 									backingShape="Fitted"
 									backingBrush="#ededed"
+									transitionDuration={500}
 								>
 									<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
 									<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />
@@ -261,7 +262,7 @@ function WaterProofing() {
 			</div>
 			<div className="row">
 				<div className="col-12 flex-center">
-					<ReportNavigationButton history={history} path="/report/main/qaqc/water-proof" />
+					<ReportNavigationButton history={history} path="/layout/report/main/qaqc/water-proof" />
 				</div>
 			</div>
 		</>

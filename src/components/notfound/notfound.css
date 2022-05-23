@@ -1,5 +1,7 @@
 .notfound__container {
   display: flex;
+  height:100vh;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   background-color: #fafafa;

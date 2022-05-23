@@ -10,11 +10,10 @@ import { ReactComponent as PackingMachine } from '../assets/images/packingClassi
 import QaQcTable from '../components/qaqcDashboardTable/QaqcDashboardTable';
 import ProgressBar from '../components/progressBar/ProgressBar';
 import ViewMoreButton from '../components/viewMoreButton/ViewMoreButton';
-import { convertHMS } from '../utils/utils';
 import { injectionApi } from '../api/axios/injectionReport';
 import { setOeeOverall } from '../redux/slice/OeeReportSlice';
 import { format } from 'date-fns';
-
+// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 // import { IgrRadialGauge, IgrRadialGaugeRange, IgrRadialGaugeModule } from 'igniteui-react-gauges';
 
 // IgrRadialGaugeModule.register();
@@ -23,24 +22,23 @@ const packingButtonList = ['Cụm 1', 'Cụm 2', 'Cụm 3', 'Cụm 4', 'Cụm 5'
 const latestAlarmData = {
 	body: [
 		{
-			title: 'lorem ipsum',
+			title: 'Hoàn thành quy trình',
 			priority: 'low',
 		},
 
-		{ title: 'lorem ipsum', priority: 'high' },
-		{ title: 'lorem ipsum', priority: 'high' },
-		{ title: 'lorem ipsum', priority: 'high' },
-		{ title: 'lorem ipsum', priority: 'high' },
+		{ title: 'Lỗi kẹt xi lanh 2', priority: 'high' },
+		{ title: 'Mất kết nối trong ca', priority: 'high' },
+		{ title: 'Xi lanh không đủ lực', priority: 'high' },
 		{
-			title: 'lorem ipsum',
+			title: 'Hoàn thành quy trình',
 			priority: 'low',
 		},
-		{ title: 'lorem ipsum', priority: 'middle' },
+		{ title: 'Máy trong chế độ tạm dừng', priority: 'middle' },
 		{
-			title: 'lorem ipsum',
+			title: 'Hoàn thành quy trình',
 			priority: 'low',
 		},
-		{ title: 'lorem ipsum', priority: 'high' },
+		{ title: 'Lỗi kẹt xi lanh 2', priority: 'high' },
 	],
 };
 
@@ -62,16 +60,14 @@ const renderAlarmBody = (item, index) => {
 };
 
 //-------------------------------------
-const workingHoursSetPoint = 28800;
 
 const Dashboard = () => {
-	// const themeReducer = useSelector((state) => state.theme.mode);
 	const [packingData] = React.useState({
-		isRunning: false,
-		progress: 10,
-		progressSetPoint: 500,
-		workingHours: 7212,
-		productId: 'EE20202102',
+		isRunning: true,
+		completedProduct: 254,
+		plannedQuantity: 500,
+		errorProduct: 1,
+		productId: 'PAS40-TCO03',
 	});
 	const [qaqcToggleButtonsIndex, setQaqcToggleButtonsIndex] = React.useState(0);
 	const [isDeformation, setIsDeformation] = React.useState(false);
@@ -80,8 +76,9 @@ const Dashboard = () => {
 		'Thời gian chờ nắp mở',
 		'Số lần thực hiện',
 	]);
-	const [qaqcTableBody, setQaqcTableBody] = React.useState(['1', '2', '3']);
+	const [qaqcTableBody, setQaqcTableBody] = React.useState(['10.12', '100', '300']);
 	const [packingToggleButtonsIndex, setPackingToggleButtonsIndex] = React.useState(0);
+	const [numberOfInjectionStatus, setNumberOfInjectionStatus] = React.useState([0, 0, 0]);
 	const onQaqcToggleButtonsIndexChange = (index) => {
 		setQaqcToggleButtonsIndex(index);
 	};
@@ -90,10 +87,11 @@ const Dashboard = () => {
 	};
 	const dispatch = useDispatch();
 	const { oeeOverall, initialOeeDateStart } = useSelector((state) => state.oeeReportData);
+	const { runningMachines } = useSelector((state) => state.injectionMonitor);
 	const onSubmit = React.useCallback(
 		(value) => {
 			injectionApi
-				.getTemporaryOeeStatistics(value)
+				.getOeeStatistics(value)
 				.then((res) => {
 					let totalWorkTime = 0;
 					let totalPartsProducedTime = 0;
@@ -108,11 +106,17 @@ const Dashboard = () => {
 						totalQualifiedProducedParts += item.totalQuantity;
 						totalProducedParts += item.numberOfShots * item.productsPerShot;
 					});
-					availability = (totalWorkTime / (res.data.items.length * 12 * 60 * 60 * 1000)) * 100;
+					availability =
+						(totalWorkTime / (res.data.items.length * 12 * 60)) * 100 > 100
+							? 100
+							: (totalWorkTime / (res.data.items.length * 12 * 60)) * 100;
 					performance =
 						(totalPartsProducedTime / totalWorkTime) * 100 > 100 ? 100 : (totalPartsProducedTime / totalWorkTime) * 100;
-					quality = (totalQualifiedProducedParts / totalProducedParts) * 100;
-					dispatch(setOeeOverall([availability.toFixed(2), performance.toFixed(2), quality.toFixed(2)]));
+					quality =
+						(totalQualifiedProducedParts / totalProducedParts) * 100 > 100
+							? 100
+							: (totalQualifiedProducedParts / totalProducedParts) * 100;
+					dispatch(setOeeOverall([45, 65, 52]));
 				})
 				.catch((err) => {
 					console.error(err);
@@ -120,7 +124,20 @@ const Dashboard = () => {
 		},
 		[dispatch]
 	);
-
+	React.useEffect(() => {
+		let preNumberOfInjectionStatus = runningMachines.reduce(
+			(acc, cur) => {
+				if (cur.isRunning === true) {
+					acc[0] += 1;
+				} else {
+					acc[1] += 1;
+				}
+				return acc;
+			},
+			[0, 0, 0]
+		);
+		setNumberOfInjectionStatus(preNumberOfInjectionStatus);
+	}, [runningMachines]);
 	React.useEffect(() => {
 		onSubmit(format(new Date(Date.now() - initialOeeDateStart * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'));
 	}, [onSubmit, initialOeeDateStart]);
@@ -128,27 +145,27 @@ const Dashboard = () => {
 		switch (qaqcToggleButtonsIndex) {
 			case 0:
 				setQaqcTableHead(['Thời gian chờ nắp đóng', 'Thời gian chờ nắp mở', 'Số lần thực hiện']);
-				setQaqcTableBody(['1', '2', '3']);
+				setQaqcTableBody(['10.12', '100', '300']);
 				setIsDeformation(false);
 				// setIsWaterProof(false);
 				break;
 			case 1:
 				setQaqcTableHead(['Thời gian dừng lên', 'Thời gian dừng xuống', 'Số lần thực hiện']);
-				setQaqcTableBody(['1', '2', '3']);
+				setQaqcTableBody(['10.12', '100', '300']);
 				setIsDeformation(false);
 				// setIsWaterProof(false);
 				break;
 			case 2:
 				setQaqcTableHead(['Nhiệt độ cài đặt', 'Thời gian kiểm tra cài đặt']);
-				setQaqcTableBody(['1', '2']);
+				setQaqcTableBody(['10.12', '100']);
 				setIsDeformation(false);
 				// setIsWaterProof(true);
 				break;
 			case 3:
 				setQaqcTableHead([' ', 'Lực nén cài đặt', 'Thời gian giữ', 'Số lần cài đặt']);
 				setQaqcTableBody([
-					['Hệ 1', '1', '2', '3'],
-					['Hệ 2', '1', '2', '3'],
+					['Hệ 1', '10.12', '100', '300'],
+					['Hệ 2', '10.12', '100', '300'],
 				]);
 				setIsDeformation(true);
 				// setIsWaterProof(false);
@@ -169,7 +186,7 @@ const Dashboard = () => {
 									<h3>PHÒNG QA/QC THIẾT BỊ</h3>
 								</div>
 								<div className="col-2 flex-left">
-									<ViewMoreButton link="/qaqc" />
+									<ViewMoreButton link="/layout/qaqc" />
 								</div>
 							</div>
 						</div>
@@ -209,12 +226,13 @@ const Dashboard = () => {
 										backingShape="Fitted"
 										backingBrush="#ededed"
 										backingStrokeThickness={5}
+										transitionDuration={500}
 									>
 										<IgrRadialGaugeRange name="range1" startValue={0} endValue={40} brush="red" />
 										<IgrRadialGaugeRange name="range2" startValue={40} endValue={60} brush="yellow" />
 										<IgrRadialGaugeRange name="range3" startValue={60} endValue={100} brush="green" />
 									</IgrRadialGauge> */}
-									<span>Tiến trình: Data go here</span>
+									<span>Tiến trình: 80%</span>
 								</div>
 							</div>
 						</div>
@@ -228,7 +246,7 @@ const Dashboard = () => {
 									<h3>KHU VỰC ĐÓNG GÓI</h3>
 								</div>
 								<div className="col-3 flex-left">
-									<ViewMoreButton link="/packing" />
+									<ViewMoreButton link="/layout/packing" />
 								</div>
 							</div>
 						</div>
@@ -244,37 +262,55 @@ const Dashboard = () => {
 							</div>
 							<div className="row full-height">
 								<div className="col-12 full-height flex-center">
-									<PackingMachine width="100%" height="150px" className="mb-15" />
+									<div className="row">
+										<div className="col-2 flex-center">
+											<div
+												title={`${packingData.isRunning ? 'Máy đang vận hành' : 'Máy tạm dừng'}`}
+												style={{
+													backgroundColor: `${
+														packingData.isRunning ? 'var(--main-color-green)' : 'var(--main-color-red)'
+													}`,
+												}}
+												className="classification__state-type-container--detail--dashboard"
+											>
+												{packingData.isRunning ? 'R' : 'S'}
+											</div>
+										</div>
+										<div className="col-10">
+											<PackingMachine width="100%" height="150px" className="mb-15" />
+										</div>
+									</div>
+
 									<table id="packing">
 										<tbody>
+											<tr>
+												<td>Mã đơn hàng</td>
+												<td></td>
+												<td>{packingData.productId}</td>
+											</tr>
 											<tr>
 												<td>Số lượng đóng gói</td>
 												<td>
 													<ProgressBar
 														width="150px"
 														height="15px"
-														percent={(packingData.progress / packingData.progressSetPoint) * 100}
+														percent={(packingData.completedProduct / packingData.plannedQuantity) * 100}
 													/>
 												</td>
-												<td>{packingData.progress} sản phẩm</td>
+												<td>{packingData.completedProduct} sản phẩm</td>
 											</tr>
 											<tr>
-												<td>Giờ làm việc</td>
-												<td>
-													<ProgressBar
-														width="150px"
-														height="15px"
-														percent={(packingData.workingHours / workingHoursSetPoint) * 100}
-													/>
-												</td>
-
-												<td>{convertHMS(packingData.workingHours)}</td>
-											</tr>
-											<tr>
-												<td>Mã Sản phẩm</td>
+												<td>Tầng suất đóng gói lỗi</td>
 												<td></td>
 												<td>
-													<span className="text-bold">{packingData.productId}</span>
+													<span className="text-bold">
+														{isNaN((packingData.completedProduct + packingData.errorProduct) / packingData.errorProduct)
+															? 0
+															: (
+																	(packingData.completedProduct + packingData.errorProduct) /
+																	packingData.errorProduct
+															  ).toFixed(2)}
+													</span>
 												</td>
 											</tr>
 										</tbody>
@@ -292,7 +328,7 @@ const Dashboard = () => {
 						<div className="card__body">
 							<div className="row">
 								<div className="col-12">
-									<Link to="/warning">
+									<Link to="/layout/warning">
 										<Table
 											headData={latestAlarmData.head}
 											bodyData={latestAlarmData.body.slice(0, 6)}
@@ -314,7 +350,7 @@ const Dashboard = () => {
 									<h3>KHU VỰC MÁY ÉP</h3>
 								</div>
 								<div className="col-3 flex-left">
-									<ViewMoreButton link="/injection/pages/1" />
+									<ViewMoreButton link="/layout/injection/pages/1" />
 								</div>
 							</div>
 						</div>
@@ -330,7 +366,7 @@ const Dashboard = () => {
 												color="#3ace3a"
 												icon="bx bx-check-circle"
 												title="Máy đang chạy"
-												count="27"
+												count={`${numberOfInjectionStatus[0]}`}
 											/>
 										</div>
 										<div className="col-12">
@@ -341,7 +377,7 @@ const Dashboard = () => {
 												color="#ffa82e"
 												icon="bx bx-loader-circle"
 												title="Máy đang dừng"
-												count="27"
+												count={`${numberOfInjectionStatus[1]}`}
 											/>
 										</div>
 										<div className="col-12">
@@ -352,7 +388,7 @@ const Dashboard = () => {
 												color="#ff4e4e"
 												icon="bx bx-power-off"
 												title="Máy không hoạt động"
-												count="27"
+												count="0"
 											/>
 										</div>
 									</div>
@@ -385,7 +421,7 @@ const Dashboard = () => {
 						<div className="card__body">
 							<div className="row">
 								<div className="col-6">
-									<Link to="/report/oee">
+									<Link to="/layout/report/oee">
 										<StatusCard
 											hover={true}
 											tooltip="Availability"
@@ -397,7 +433,7 @@ const Dashboard = () => {
 									</Link>
 								</div>
 								<div className="col-6">
-									<Link to="/report/oee">
+									<Link to="/layout/report/oee">
 										<StatusCard
 											hover={true}
 											tooltip="Performance"
@@ -411,7 +447,7 @@ const Dashboard = () => {
 							</div>
 							<div className="row">
 								<div className="col-6">
-									<Link to="/report/oee">
+									<Link to="/layout/report/oee">
 										<StatusCard
 											hover={true}
 											tooltip="Quality"
@@ -423,7 +459,7 @@ const Dashboard = () => {
 									</Link>
 								</div>
 								<div className="col-6">
-									<Link to="/report/oee">
+									<Link to="/layout/report/oee">
 										<StatusCard
 											hover={true}
 											tooltip="OEE index"

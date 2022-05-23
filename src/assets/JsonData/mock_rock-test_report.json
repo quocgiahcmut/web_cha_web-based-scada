@@ -1,0 +1,56 @@
+[
+	{
+		"startDate": "2022-11-09T04:10:45Z",
+		"endDate": "2022-10-15T09:10:36Z",
+		"product": { "id": "HA0101T-HA2", "name": "Nắp bàn cầu HA-02 trắng HA1" },
+		"testPurpose": 4,
+		"note": "Sản phẩm mới vênh nắp",
+		"samples": [
+			{
+				"event_id": 1,
+				"load": 1335,
+				"testedTimes": 5000,
+				"passed": true,
+				"numberOfError": 0,
+				"note": "Không lỗi",
+				"tester": { "employeeId": "281-96-0094", "firstName": "Thanh", "lastName": "Đào Quang" }
+			},
+			{
+				"event_id": 2,
+				"load": 1330,
+				"testedTimes": 10000,
+				"passed": true,
+				"numberOfError": 0,
+				"note": "Không lỗi",
+				"tester": { "employeeId": "429-22-7140", "firstName": "Thanh", "lastName": "Đào Quang" }
+			},
+			{
+				"event_id": 3,
+				"load": 1330,
+				"testedTimes": 15000,
+				"passed": true,
+				"numberOfError": 0,
+				"note": "Không lỗi",
+				"tester": { "employeeId": "642-51-0457", "firstName": "Thanh", "lastName": "Đào Quang" }
+			},
+			{
+				"event_id": 4,
+				"load": 1335,
+				"testedTimes": 20000,
+				"passed": true,
+				"numberOfError": 0,
+				"note": "Không lỗi",
+				"tester": { "employeeId": "878-18-7442", "firstName": "Thanh", "lastName": "Đào Quang" }
+			},
+			{
+				"event_id": 5,
+				"load": 1330,
+				"testedTimes": 25000,
+				"passed": true,
+				"numberOfError": 0,
+				"note": "Không lỗi",
+				"tester": { "employeeId": "355-23-7673", "firstName": "Thanh", "lastName": "Đào Quang" }
+			}
+		]
+	}
+]

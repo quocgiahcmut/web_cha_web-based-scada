@@ -58,7 +58,7 @@ function OeeSearchBar({ onSubmit }) {
 										<Form id="oee__filter">
 											<FormikControl control="date" name="dateStart" label="Ngày bắt đầu" />
 											<FormikControl control="date" name="dateEnd" label="Ngày kết thúc" />
-											<button type="submit" className="btn btn-primary">
+											<button type="submit" className="customized-btn btn-primary">
 												Tìm kiếm
 											</button>
 										</Form>

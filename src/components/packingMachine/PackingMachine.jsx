@@ -2,7 +2,6 @@ import React from 'react';
 import './packingMachine.css';
 import ProgressBar from '../progressBar/ProgressBar';
 import PropTypes from 'prop-types';
-import { convertHMS } from '../../utils/utils';
 
 PackingMachine.propTypes = {
 	isRunning: PropTypes.bool,
@@ -10,18 +9,11 @@ PackingMachine.propTypes = {
 	progressSetPoint: PropTypes.number,
 	workingHours: PropTypes.number,
 	errorProducts: PropTypes.number,
-	fixedProducts: PropTypes.number,
 };
 
-function PackingMachine({
-	isRunning,
-	progress,
-	progressSetPoint,
-	workingHours,
-	errorProducts,
-	fixedProducts,
-}) {
-	const workingHoursSetPoint = 28800;
+function PackingMachine({ data, monitorData }) {
+	const { product, setpoint } = data;
+	const { errorProduct, completedProduct, isRunning } = monitorData;
 	return (
 		<>
 			<div className="row mb-20">
@@ -176,24 +168,19 @@ function PackingMachine({
 							<tr>
 								<td>Số lượng đóng gói</td>
 								<td>
-									<ProgressBar width="150px" height="15px" percent={(progress / progressSetPoint) * 100} />
+									<ProgressBar width="150px" height="15px" percent={(completedProduct / setpoint) * 100} />
 								</td>
-								<td>{progress} sản phẩm</td>
+								<td>{completedProduct} sản phẩm</td>
 							</tr>
 							<tr>
-								<td>Giờ làm việc</td>
-								<td>
-									<ProgressBar width="150px" height="15px" percent={(workingHours / workingHoursSetPoint) * 100} />
-								</td>
-
-								<td>{convertHMS(workingHours)}</td>
-							</tr>
-							<tr>
-								<td>Tổng lỗi</td>
+								<td>Mã đơn hàng</td>
 								<td></td>
-								<td>
-									lỗi: {errorProducts}; sửa: {fixedProducts}
-								</td>
+								<td>{product.id}</td>
+							</tr>
+							<tr>
+								<td>Tổng sản phẩm lỗi</td>
+								<td></td>
+								<td>{errorProduct}</td>
 							</tr>
 						</tbody>
 					</table>

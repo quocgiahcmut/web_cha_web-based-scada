@@ -38,7 +38,7 @@
 }
 
 .sidebar__logo {
-  height: 150px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,4 +185,25 @@ i>span>i{
 }
 .sidebar__item--sub-container{
   padding: 10px 35px;
+}
+
+.sidebar__item--logout{
+  cursor: pointer;
+}
+.sidebar__user{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;  
+  flex-direction: column;
+  margin-bottom: 10px;
+  margin: 0 10px 10px 10px;
+  box-shadow: var(--box-shadow);
+  border-radius: 7px;
+  color: #FFF;
+  background-color: #395b79;
+  font-size: 1.2rem;
+}
+.sidebar__user > span {
+  padding: 5px;
 }

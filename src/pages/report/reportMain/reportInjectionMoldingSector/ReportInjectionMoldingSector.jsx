@@ -20,13 +20,14 @@ function ReportInjectionMoldingSector() {
 			dispatch(resetInjectionReportData());
 			setIsLoading(true);
 			injectionApi
-				.getTemporaryInjectionReport(value.moldingMachineId, value.dateStart, value.dateEnd)
+				.getInjectionReport(value.moldingMachineId, value.dateStart, value.dateEnd)
 				.then((res) => {
 					setIsLoading(false);
 					const filteredData = [];
 					if (res.data.items.length === 0) {
 						setHasNothing(true);
 					} else {
+						setHasNothing(true);
 						res.data.items.forEach((item, index) => {
 							filteredData.push({
 								MachineID: item.machine.id,
@@ -38,11 +39,11 @@ function ReportInjectionMoldingSector() {
 									Timestamp: shot.timeStamp,
 									ProductId: item.product.id,
 									ProductName: item.product.name,
-									CycleTime: shot.injectionTime / 1000,
-									OpenTime: shot.openTime / 1000,
+									CycleTime: shot.injectionTime,
+									OpenTime: shot.openTime,
 									Mode: item.product.mold.automatic === true ? 0 : 1,
-									MoldID: item.product.moldId,
-									SetCycle: item.product.mold.standardInjectionCycle / 1000,
+									MoldId: item.product.mold.id,
+									SetCycle: item.product.mold.standardInjectionCycle,
 									TotalQuantity: item.totalQuantity,
 									Employee: item.employee.lastName + ' ' + item.employee.firstName,
 								})),
@@ -55,6 +56,16 @@ function ReportInjectionMoldingSector() {
 					setIsLoading(false);
 					setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
 				});
+			// injectionApi
+			// 	.getInjectionReport()
+			// 	.then((res) => {
+			// 		setIsLoading(false);
+			// 		dispatch(setInjectionReportData(res.data));
+			// 	})
+			// 	.catch((err) => {
+			// 		setIsLoading(false);
+			// 		setError(`Có lỗi xảy ra, vui lòng thử lại\n${err}`);
+			// 	});
 		},
 		[dispatch]
 	);
@@ -82,7 +93,7 @@ function ReportInjectionMoldingSector() {
 														productId: cur.ProductId,
 														productName: cur.ProductName,
 														employee: cur.Employee,
-														moldId: cur.MoldID,
+														moldId: cur.MoldId,
 														setCycle: cur.SetCycle,
 														totalQuantity: cur.TotalQuantity,
 														shift: cur.Shift,

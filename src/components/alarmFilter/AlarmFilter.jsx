@@ -41,7 +41,7 @@ function AlarmFilter({ onSubmit }) {
 			{ value: 'qaqc', key: 'Phòng QA/QC thiết bị' },
 			{ value: 'packing', key: 'Khu vực đóng gói' },
 			{ value: 'injection', key: 'Khu vực máy ép' },
-			{ value: 'warehouse', key: 'Kho vận' },
+			{ value: 'assembly', key: 'Khu vực lắp ráp' },
 		];
 	}, []);
 	const PRIORITY_OPTIONS = React.useMemo(() => {
@@ -83,7 +83,7 @@ function AlarmFilter({ onSubmit }) {
 					<FormikControl control="input" name="error_code" label="Mã lỗi" />
 					<FormikControl control="checkbox" name="error_sector" label="Khu vực" options={SECTOR_OPTIONS} />
 					<FormikControl control="checkbox" name="priority" label="Độ ưu tiên" options={PRIORITY_OPTIONS} />
-					<button type="submit" className="btn btn-primary">
+					<button type="submit" className="customized-btn btn-primary">
 						Tìm kiếm
 					</button>
 					<div className="alarm-error-msg__container">

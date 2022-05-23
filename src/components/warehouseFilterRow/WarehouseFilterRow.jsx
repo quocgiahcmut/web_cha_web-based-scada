@@ -3,28 +3,17 @@ import { useEffect, useMemo, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FormikControl from '../formControl/FormControl';
+import { warehouseApi } from '../../api/warehouse/warehouseApi';
 import { setData } from '../../redux/slice/WarehouseSlice';
 import './warehouseFilterRow.css';
 
-function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
-	//-------------fake api-------
-	const fakeData = useMemo(() => {
-		return [
-			{ id: 'L1', name: 'Nắp bàn cầu đóng êm H2', quantity: 200, note: 'Không' },
-			{ id: 'L2', name: 'Nắp bàn cầu đóng êm H30', quantity: 300, note: 'Không' },
-			{ id: 'L3', name: 'Nắp bàn cầu đóng êm M2', quantity: 100, note: 'Không' },
-			{ id: 'D1', name: 'Bộ xả D1', quantity: 250, note: 'Không' },
-			{ id: 'D2', name: 'Bộ xả D2', quantity: 134, note: 'Không' },
-			{ id: 'D3', name: 'Bộ xả D3', quantity: 200, note: 'Không' },
-			{ id: 'D4', name: 'Bộ xả D4', quantity: 16, note: 'Không' },
-		];
-	}, []);
-	//--------------------------------
+function WarehouseFilter({ filterId, filledRows, setFilledRows, idList }) {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const [ids, setIds] = useState();
 	const [canClick, setCanClick] = useState(false);
 	const warehouseData = useSelector((state) => state.warehouse);
+	const [fieldData, setFieldData] = useState();
+
 	const restoreData = useMemo(() => {
 		const rowData = warehouseData[filterId];
 		if (rowData) {
@@ -36,34 +25,29 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 
 	const formik = useFormik({
 		initialValues: {
-			type: restoreData.type ?? 'discharger',
 			id: restoreData.id ?? '',
 			name: restoreData.name ?? '',
 			quantity: restoreData.quantity ?? '',
 		},
 	});
 	const { values, handleChange, setFieldValue } = formik;
-	const { type, id, name, quantity } = values;
-	useEffect(() => {
-		if (type === 'discharger' || type === 'lid') {
-			setIds(mapData[type].map((id) => id));
-		}
-	}, [type, mapData]);
+	const { id, name, quantity } = values;
 
 	const showDetail = () => {
-		history.push('/warehouse/' + id);
+		history.push('/layout/warehouse/' + id);
 	};
 
 	useEffect(() => {
+		//set empty value after delete all row
 		if (filledRows[0] === 'deleted') {
 			setFieldValue('id', '');
 			setFieldValue('name', '');
 			setFieldValue('quantity', '');
+			setFieldData(null);
 			setFilledRows([]);
-		} else if (mapData[type].includes(id) && filledRows[0] !== 'deleted') {
-			const fielData = fakeData.filter((item) => item.id === id)[0];
-			setFieldValue('name', fielData.name);
-			setFieldValue('quantity', fielData.quantity);
+		} else if (fieldData) {
+			setFieldValue('name', fieldData.name);
+			setFieldValue('quantity', fieldData.quantity);
 			if (!filledRows.includes(filterId)) {
 				setFilledRows([...filledRows, filterId]);
 			}
@@ -71,56 +55,49 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 			dispatch(
 				setData({
 					index: filterId,
-					type,
 					id,
 					name,
 					quantity,
 				})
 			);
-
-			setCanClick(true);
-		} else if (id) {
+		} else if (idList.length > 0 && id && !idList.includes(id)) {
 			setFieldValue('name', 'Sản phẩm không tồn tại');
 			setFieldValue('quantity', 'Không xác định');
 			if (filledRows.includes(filterId)) {
 				setFilledRows(filledRows.filter((rowId) => rowId !== filterId));
 			}
-			setCanClick(false);
+		}
+	}, [id, filledRows, dispatch, filterId, name, quantity, setFieldValue, setFilledRows, fieldData, idList]);
+
+	useEffect(() => {
+		if (id && idList.includes(id)) {
+			setCanClick(true);
 		} else {
 			setCanClick(false);
 		}
-	}, [id, type, filledRows, dispatch, fakeData, filterId, mapData, name, quantity, setFieldValue, setFilledRows]);
+	}, [id, idList, setCanClick]);
+
+	useEffect(() => {
+		if (idList.includes(id)) {
+			Promise.all([warehouseApi.getProductById(id), warehouseApi.getStockCardById(id)])
+				.then((res) => {
+					setFieldData({
+						name: res[0].name,
+						quantity: res[1][0].afterQuantity,
+					});
+				})
+				.catch((error) => console.log(error));
+		}
+	}, [id, idList]);
 
 	return (
 		<FormikProvider value={formik}>
 			<tr className="warehouseFilterRow__container">
 				<td>
-					<FormikControl
-						control="select"
-						name="type"
-						value={type}
-						onChange={handleChange}
-						options={[
-							{ key: 'Bộ xả', value: 'discharger' },
-							{ key: 'Nắp bàn cầu', value: 'lid' },
-						]}
-						onClick={(e) => e.stopPropagation()}
-					/>
-				</td>
-
-				<td>
-					<FormikControl
-						control="input"
-						list={`list${filterId}`}
-						name="id"
-						value={id}
-						onChange={handleChange}
-						onClick={(e) => e.stopPropagation()}
-					/>
-
-					{ids && (
+					<FormikControl control="input" name="id" value={id} onChange={handleChange} list={`list${filterId}`} />
+					{idList && (
 						<datalist id={`list${filterId}`}>
-							{ids.map((id) => (
+							{idList.map((id) => (
 								<option key={id} value={id}>
 									{id}
 								</option>
@@ -137,7 +114,7 @@ function WarehouseFilter({ filterId, mapData, filledRows, setFilledRows }) {
 					<FormikControl name="quantity" control="input" value={quantity} disable />
 				</td>
 				<td>
-					<button onClick={showDetail} disabled={!canClick} className="btn">
+					<button onClick={showDetail} disabled={!canClick} className="customized-btn">
 						Xem chi tiết
 					</button>
 				</td>

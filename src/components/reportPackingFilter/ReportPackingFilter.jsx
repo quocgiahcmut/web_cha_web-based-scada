@@ -11,8 +11,9 @@ const validationSchema = Yup.object({
 });
 function ReportPackingFilter({ exportReport, onSubmit }) {
 	const initialDateStart = () => {
-		const today = new Date();
-		return format(today, 'yyyy-MM-dd');
+		var date = new Date();
+		var firstDay = format(new Date(date.getFullYear(), date.getMonth(), 1), 'yyyy-MM-dd');
+		return firstDay;
 	};
 
 	const handleSubmit = (event) => {
@@ -42,7 +43,7 @@ function ReportPackingFilter({ exportReport, onSubmit }) {
 									<div className="col-12">
 										<Form id="packing-report__filter">
 											<FormControl label="Ngày bắt đầu" name="dateStart" control="date" />
-											<button type="submit" className="btn btn-primary">
+											<button type="submit" className="customized-btn btn-primary">
 												Tìm kiếm
 											</button>
 										</Form>

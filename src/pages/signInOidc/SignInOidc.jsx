@@ -9,7 +9,7 @@ function SignInOidc() {
 			history.push('/');
 		}
 	}, [history, userData]);
-	return <h1>Authenticating...</h1>;
+	return <h2>Authenticating...</h2>;
 }
 
 export default SignInOidc;

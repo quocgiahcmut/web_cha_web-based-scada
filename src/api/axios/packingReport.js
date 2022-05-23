@@ -1,17 +1,19 @@
-import axiosClient from './axiosClient';
 import axios from 'axios';
 import { format } from 'date-fns';
 const packingApi = {
+	REQUEST_URL: 'http://10.84.70.81:8083/api',
 	getMonthlyPackingReport(startTime, stopTime) {
-		return axiosClient.get('/packing', {
+		return axios.get(`${this.REQUEST_URL}/shifts`, {
 			params: {
 				startTime,
-				stopTime: format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd'),
+				endTime: format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd'),
+				page: 1,
+				itemsPerPage: 100,
 			},
 		});
 	},
-	getTemporaryPackingPlanTracking(startTime, stopTime) {
-		return axios.get('https://my.api.mockaroo.com/plan_tracking_packing.json?key=4ead7de0', {
+	getPackingPlanTracking(startTime, stopTime) {
+		return axios.get(`${this.REQUEST_URL}/shifts`, {
 			headers: {
 				'Content-Type': 'application/json',
 				'Access-Control-Allow-Origin': 'http://localhost:3000/',
@@ -20,9 +22,35 @@ const packingApi = {
 			},
 			params: {
 				startTime,
-				stopTime: stopTime
+				endTime: stopTime
 					? format(new Date(stopTime).setDate(new Date(stopTime).getDate() + 1), 'yyyy-MM-dd')
 					: format(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
+				page: 1,
+				itemsPerPage: 100,
+			},
+		});
+	},
+	getAllEmployees() {
+		return axios.get(`${this.REQUEST_URL}/employees`);
+	},
+	getPreShiftByPackingUnit(packingUnitId) {
+		return axios.get(`${this.REQUEST_URL}/shifts/preshifts`, {
+			params: {
+				packingUnitId,
+				page: 1,
+				itemsPerPage: 1,
+				startTime: format(Date.now(), 'yyyy-MM-dd'),
+				endTime: format(Date.now(), 'yyyy-MM-dd'),
+			},
+		});
+	},
+	getAllPreShifts() {
+		return axios.get(`${this.REQUEST_URL}/shifts/preshifts`, {
+			params: {
+				page: 1,
+				itemsPerPage: 6,
+				startTime: format(Date.now(), 'yyyy-MM-dd'),
+				endTime: format(Date.now(), 'yyyy-MM-dd'),
 			},
 		});
 	},

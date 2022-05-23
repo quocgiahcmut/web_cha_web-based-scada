@@ -18,7 +18,7 @@ function TrackingMonthlyPacking() {
 			setLoading(true);
 			setError(null);
 			try {
-				const res = await packingApi.getTemporaryPackingPlanTracking(startTime, format(Date.now(), 'yyyy-MM-dd'));
+				const res = await packingApi.getPackingPlanTracking(startTime, format(Date.now(), 'yyyy-MM-dd'));
 				const filteredData = res.data
 					.reduce((acc, shift) => {
 						acc.push({

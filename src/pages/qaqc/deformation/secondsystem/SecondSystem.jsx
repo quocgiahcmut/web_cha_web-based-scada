@@ -24,6 +24,7 @@ import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { ToastContainer, toast } from 'react-toastify';
 import { getTagsData } from '../../../../utils/utils';
 // import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
+// import { IgrRadialGauge, IgrRadialGaugeRange } from 'igniteui-react-gauges';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -130,9 +131,7 @@ function SecondSystem() {
 			.then(() => {
 				setConnection(connect);
 				setState('connected');
-				connect.on('ReceiveData', (data) => {
-					console.log('data 2', data);
-				});
+				connect.on('ReceiveData', (data) => {});
 			})
 			.catch((err) => {
 				console.error(err);
@@ -184,17 +183,19 @@ function SecondSystem() {
 					'qaqclab',
 					['plc'],
 					[
-						'Sp Force Cyliner 3',
-						'Sp No Press 3',
-						'Sp Time Hold 3',
-						'Pv Force Cylinder 3',
-						'Pv No Press 3',
-						'Pv Time Hold 3',
-						'Mode App',
-						'Green App',
-						'Red App',
-						'Error App',
-						'Error Code',
+						[
+							'Sp Force Cylinder 3',
+							'Sp No Press 3',
+							'Sp Time Hold 3',
+							'Pv Force Cylinder 3',
+							'Pv No Press 3',
+							'Pv Time Hold 3',
+							'Mode App',
+							'Green App',
+							'Red App',
+							'Error App',
+							'Error Code',
+						],
 					]
 				);
 				dispatch(
@@ -210,7 +211,6 @@ function SecondSystem() {
 						pvNoPress2: rawData.deviceQueryResults[0].tagQueryResults[4].value,
 					})
 				);
-				console.log(deformationMonitorData);
 				setMachineState(
 					deformationMonitorData.isRunning && deformationMonitorData.mode === true
 						? 'manual'
@@ -294,7 +294,7 @@ function SecondSystem() {
 						setErrorPriority('middle');
 						break;
 					default:
-						setError('Đang test');
+						setError('Kết nối thành công');
 						setErrorPriority('low');
 						break;
 				}
@@ -636,7 +636,7 @@ function SecondSystem() {
 			</div>
 			<div className="row">
 				<div className="col-12 flex-center">
-					<ReportNavigationButton history={history} path="/report/main/qaqc/deformation" />
+					<ReportNavigationButton history={history} path="/layout/report/main/qaqc/deformation" />
 				</div>
 			</div>
 			<ToastContainer

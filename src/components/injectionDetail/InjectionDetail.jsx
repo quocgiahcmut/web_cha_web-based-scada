@@ -1,48 +1,20 @@
 // import { IgrRadialGauge } from 'igniteui-react-gauges';
+import { memo } from 'react';
 import ProgressBar from '../progressBar/ProgressBar';
 import Badge from '../badge/Badge';
 import './injectionDetail.css';
 import { INJECTION_MACHINE_ID } from '../../utils/utils';
-import {
-	Chart,
-	ArcElement,
-	Tooltip,
-	Legend,
-	CategoryScale,
-	BarElement,
-	LinearScale,
-	Title,
-	LineElement,
-	PointElement,
-} from 'chart.js';
-
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import ReportNavigationButton from '../reportNavigationButton/ReportNavigationButton';
 import { useHistory } from 'react-router-dom';
-Chart.defaults.set('plugins.datalabels', {
-	color: 'black',
-});
-Chart.register(
-	ArcElement,
-	Tooltip,
-	Legend,
-	ChartDataLabels,
-	CategoryScale,
-	BarElement,
-	LinearScale,
-	Title,
-	LineElement,
-	PointElement
-);
+// import { IgrRadialGauge } from 'igniteui-react-gauges';
 
-function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, progress }) {
+function InjectionDetail({ injectionMoldingMachineConfiguration, monitorData }) {
 	const history = useHistory();
-	const subTitle = INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.number)
-		?.subTitle
-		? INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.number)?.subTitle
+	const subTitle = INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.id)?.subTitle
+		? INJECTION_MACHINE_ID.find((item) => item.title === injectionMoldingMachineConfiguration.id)?.subTitle
 		: 'HaiTian';
 	const symbolColor =
-		realTimeData?.state === 'R'
+		monitorData?.isRunning === true
 			? {
 					whiteArea: 'white',
 					blueArea: '#4237C1',
@@ -57,18 +29,21 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 					shadow: '#C4C4C4',
 					text: '#C4C4C4',
 			  };
-	const state = realTimeData?.state === 'R' ? 'Đang chạy' : realTimeData?.state === 'S' ? 'Tạm dừng' : 'Bảo trì';
-	const stateClass = realTimeData?.state === 'R' ? 'stateR' : realTimeData?.state === 'S' ? 'stateS' : 'stateM';
-	const badgeType = realTimeData?.state === 'R' ? 'success' : realTimeData?.state === 'S' ? 'danger' : 'primary';
+	const state =
+		monitorData?.isRunning === true ? 'Đang chạy' : monitorData?.isRunning === false ? 'Tạm dừng' : 'Bảo trì';
+	const stateClass =
+		monitorData?.isRunning === true ? 'stateR' : monitorData?.isRunning === false ? 'stateS' : 'stateM';
+	const badgeType =
+		monitorData?.isRunning === true ? 'success' : monitorData?.isRunning === false ? 'danger' : 'primary';
 
 	return (
 		<div className={`injectionDetail__container ${stateClass}`}>
 			<div className="row">
-				<div className="col-1 col-md-2 col-sm-12">
-					<div className="injectionDetail__number">{injectionMoldingMachineConfiguration.number}</div>
+				<div className="col-2 col-md-2 col-sm-12">
+					<div className="injectionDetail__number">{injectionMoldingMachineConfiguration.id}</div>
 					<div className="injectionDetail__name">{subTitle}</div>
 				</div>
-				<div className="col-6 col-md-10 col-sm-12">
+				<div className="col-5 col-md-10 col-sm-12">
 					<div className="injectionDetail__symbol">
 						<svg width="100%" height="100%" viewBox="0 0 270 74" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -114,10 +89,19 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 					<div className="row" style={{ alignItems: 'center' }}>
 						<div className="injectionDetail__progress">
 							<div>
-								<ProgressBar percent={progress} />
+								<ProgressBar
+									percent={
+										isNaN((monitorData.counterShot / injectionMoldingMachineConfiguration.plannedQuantity) * 100)
+											? 0
+											: (
+													(monitorData.counterShot / injectionMoldingMachineConfiguration.plannedQuantity) *
+													100
+											  ).toFixed(2)
+									}
+								/>
 							</div>
 							<span>
-								Tiến độ: <span>{progress + ' sản phẩm'}</span>
+								Tiến độ: <span>{monitorData.counterShot + ' sản phẩm'}</span>
 							</span>
 						</div>
 					</div>
@@ -138,11 +122,11 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 							</tr>
 							<tr>
 								<td>Mã chi tiết ép</td>
-								<td>{injectionMoldingMachineConfiguration.productId}</td>
+								<td>{injectionMoldingMachineConfiguration.product.id}</td>
 							</tr>
 							<tr>
 								<td>Tên chi tiết ép</td>
-								<td>{injectionMoldingMachineConfiguration.productName}</td>
+								<td>{injectionMoldingMachineConfiguration.product.name}</td>
 							</tr>
 							<tr>
 								<td>Số lượng cần ép</td>
@@ -150,7 +134,7 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 							</tr>
 							<tr>
 								<td>Chu kỳ ép cài đặt (giây)</td>
-								<td>{injectionMoldingMachineConfiguration.cycle}</td>
+								<td>{monitorData.setCycle}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -159,61 +143,76 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 
 			<div className="row flex-center mb-20">
 				<div className="card col-12 injectionDetail__value">
-					<div>
+					<div className="mt-10">
 						{/* <IgrRadialGauge
-									id="cycle"
-									width="300px"
-									height="300px"
-									minimumValue={0}
-									maximumValue={Math.floor(injectionMoldingMachineConfiguration.cycle + injectionMoldingMachineConfiguration.cycle/10)}
-									interval={Math.floor((injectionMoldingMachineConfiguration.cycle+ injectionMoldingMachineConfiguration.cycle / 10)/6)}
-									value={realTimeData.cycleTime}
-									backingOutline="#c4c4c4"
-									scaleEndExtent={0.825}
-									scaleStartExtent={0.775}
-									minorTickStartExtent={0.7}
-									minorTickEndExtent={0.75}
-									tickStartExtent={0.675}
-									tickEndExtent={0.75}
-									labelExtent={0.6}
-									labelInterval={10}
-									font="15px Verdana,Arial"
-									backingOuterExtent={0.9}
-									transitionDuration={500}
-								/> */}
-						<span>Chu kì ép</span>
+							id="cycle"
+							width="300px"
+							height="300px"
+							minimumValue={0}
+							maximumValue={Math.floor(
+								monitorData.setCycle + monitorData.setCycle / 10
+							)}
+							interval={Math.floor(
+								(monitorData.setCycle + monitorData.setCycle / 10) / 6
+							)}
+							value={monitorData.cycleTime}
+							backingOutline="#c4c4c4"
+							scaleEndExtent={0.825}
+							scaleStartExtent={0.775}
+							minorTickStartExtent={0.7}
+							minorTickEndExtent={0.75}
+							tickStartExtent={0.675}
+							tickEndExtent={0.75}
+							labelExtent={0.6}
+							labelInterval={Math.floor(
+								(monitorData.setCycle + monitorData.setCycle / 10) / 6
+							)}
+							font="15px Verdana,Arial"
+							backingOuterExtent={0.9}
+							transitionDuration={500}
+						/> */}
+						<span>Chu kì ép: {monitorData.cycleTime.toFixed(2)}</span>
 					</div>
 					<div>
 						{/* <IgrRadialGauge
-									id="openTime"
-									width="300px"
-									height="300px"
-									minimumValue={0}
-									maximumValue={Math.floor(injectionMoldingMachineConfiguration.standardOpenTime + injectionMoldingMachineConfiguration.standardOpenTime/10)}
-									interval={Math.floor((injectionMoldingMachineConfiguration.standardOpenTime+ injectionMoldingMachineConfiguration.standardOpenTime / 10)/6)}
-									value={realTimeData.openTime}
-									backingOutline="#c4c4c4"
-									scaleEndExtent={0.825}
-									scaleStartExtent={0.775}
-									minorTickStartExtent={0.7}
-									minorTickEndExtent={0.75}
-									tickStartExtent={0.675}
-									tickEndExtent={0.75}
-									labelExtent={0.6}
-									labelInterval={10}
-									font="15px Verdana,Arial"
-									backingOuterExtent={0.9}
-									transitionDuration={500}
-								/> */}
-						<span>Thời gian mở cửa</span>
+							id="openTime"
+							width="300px"
+							height="300px"
+							minimumValue={0}
+							// maximumValue={Math.floor(
+							// 	injectionMoldingMachineConfiguration.standardOpenTime +
+							// 		injectionMoldingMachineConfiguration.standardOpenTime / 10
+							// )}
+							maximumValue={50}
+							// interval={Math.floor(
+							// 	(injectionMoldingMachineConfiguration.standardOpenTime +
+							// 		injectionMoldingMachineConfiguration.standardOpenTime / 10) /
+							// 		6
+							// )}
+							interval={5}
+							value={monitorData.openTime}
+							backingOutline="#c4c4c4"
+							scaleEndExtent={0.825}
+							scaleStartExtent={0.775}
+							minorTickStartExtent={0.7}
+							minorTickEndExtent={0.75}
+							tickStartExtent={0.675}
+							tickEndExtent={0.75}
+							labelExtent={0.6}
+							labelInterval={5}
+							font="15px Verdana,Arial"
+							backingOuterExtent={0.9}
+							transitionDuration={500}
+						/> */}
+						<span>Thời gian mở cửa: {monitorData.openTime.toFixed(2)}</span>
 					</div>
 				</div>
 			</div>
 			<div className="row">
 				<div className="col-12 flex-horizontal-center">
-					<ReportNavigationButton history={history} path="/report/main/injection" />
+					<ReportNavigationButton history={history} path="/layout/report/main/injection" />
 					<div className="mr-40"></div>
-					<ReportNavigationButton history={history} path="/report/oee">
+					<ReportNavigationButton history={history} path="/layout/report/oee">
 						CHỈ SỐ OEE
 					</ReportNavigationButton>
 				</div>
@@ -222,4 +221,4 @@ function InjectionDetail({ injectionMoldingMachineConfiguration, realTimeData, p
 	);
 }
 
-export default InjectionDetail;
+export default memo(InjectionDetail);

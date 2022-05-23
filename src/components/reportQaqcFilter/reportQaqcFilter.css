@@ -75,7 +75,7 @@ select:focus {
   transition: border-color ease-in-out .15s;
 }
 
-.btn {
+.customized-btn {
   height: 40px;
   border-radius: 5px;
   border: 1px solid var(--main-color-gray);
@@ -87,7 +87,7 @@ select:focus {
   margin: 10px 0 0 0;
   cursor: pointer;
 }
-.btn .btn-primary {
+.customized-btn .btn-primary {
   background-color: var(--main-color-green);
   color: var(--txt-white);
 }

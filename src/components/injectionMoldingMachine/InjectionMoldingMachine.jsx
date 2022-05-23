@@ -5,7 +5,7 @@ import './injectionMoldingMachine.css';
 
 function InjectionMoldingMachine({ injectionMoldingMachineData }) {
 	const symbolColor =
-		injectionMoldingMachineData?.state === 'R'
+		injectionMoldingMachineData?.isRunning === true
 			? {
 					whiteArea: 'white',
 					blueArea: '#4237C1',
@@ -21,9 +21,13 @@ function InjectionMoldingMachine({ injectionMoldingMachineData }) {
 					text: '#C4C4C4',
 			  };
 	const typeClass =
-		injectionMoldingMachineData?.state === 'R' ? 'R' : injectionMoldingMachineData?.state === 'S' ? 'S' : 'M';
+		injectionMoldingMachineData?.isRunning === true
+			? 'R'
+			: injectionMoldingMachineData?.isRunning === false
+			? 'S'
+			: 'M';
 	const history = useHistory();
-	const handleShowDetail = () => history.push(`/injection/${injectionMoldingMachineData?.number}`);
+	const handleShowDetail = () => history.push(`/layout/injection/${injectionMoldingMachineData?.id}`);
 
 	return (
 		<div className="col-sm-12 col-md-6 col-3" onClick={handleShowDetail}>
@@ -31,19 +35,31 @@ function InjectionMoldingMachine({ injectionMoldingMachineData }) {
 				<>
 					<div className="injectionMoldingMachine__heading">
 						<div>
-							<div className="injectionMoldingMachine__heading-number">{injectionMoldingMachineData.number}</div>
+							<div className="injectionMoldingMachine__heading-number">{injectionMoldingMachineData.id}</div>
 							<div className="injectionMoldingMachine__heading-name">{injectionMoldingMachineData.name}</div>
 						</div>
 						<div className="injectionMoldingMachine__heading-progress">
 							<span>TIẾN ĐỘ</span>
 							<div>
-								<ProgressBar percent={injectionMoldingMachineData.percent} />
+								<ProgressBar
+									percent={
+										isNaN(
+											Math.floor(
+												(injectionMoldingMachineData.counterShot / injectionMoldingMachineData.plannedQuantity) * 100
+											)
+										)
+											? 0
+											: Math.floor(
+													(injectionMoldingMachineData.counterShot / injectionMoldingMachineData.plannedQuantity) * 100
+											  )
+									}
+								/>
 							</div>
 						</div>
 					</div>
 					<div className="injectionMoldingMachine__state">
 						<div className={`injectionMoldingMachine__state-type ${typeClass}`}>
-							{injectionMoldingMachineData.state}
+							{injectionMoldingMachineData.isRunning ? 'R' : 'S'}
 						</div>
 						<div className="injectionMoldingMachine__state-symbol">
 							<svg width="100%" height="100%" viewBox="0 0 270 74" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,23 +109,19 @@ function InjectionMoldingMachine({ injectionMoldingMachineData }) {
 							<tbody>
 								<tr>
 									<td>Chu kì ép</td>
-									<td>{injectionMoldingMachineData.cycle}</td>
-								</tr>
-								<tr>
-									<td>Thời gian mở cửa</td>
-									<td>{injectionMoldingMachineData.openDoorTime}</td>
+									<td>{injectionMoldingMachineData.setCycle}</td>
 								</tr>
 								<tr>
 									<td>Mã khuôn</td>
-									<td>{injectionMoldingMachineData.productId}</td>
+									<td>{injectionMoldingMachineData.moldId}</td>
 								</tr>
 								<tr>
 									<td>Mã sản phẩm ép</td>
-									<td>{injectionMoldingMachineData.productId}</td>
+									<td>{injectionMoldingMachineData.product.id}</td>
 								</tr>
 								<tr>
 									<td>Tên sản phẩm</td>
-									<td>{injectionMoldingMachineData.productId}</td>
+									<td>{injectionMoldingMachineData.product.name}</td>
 								</tr>
 							</tbody>
 						</table>

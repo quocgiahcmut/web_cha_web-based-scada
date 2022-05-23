@@ -10,306 +10,109 @@ import './injectionMoldingMachinePage.css';
 import ReportNavigationButton from '../../../components/reportNavigationButton/ReportNavigationButton';
 import CustomizedBreadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 import { injectionApi } from '../../../api/axios/injectionReport';
-const rawData = [
-	{
-		name: 'AXb15',
-		number: 'M1',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M2',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M3',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M4',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M5',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M6',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'm7',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'm8',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M24',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M25',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M30',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M36',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M24',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M25',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M30',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M36',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M24',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M25',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M30',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M36',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M1',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M2',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M3',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'M4',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M5',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M6',
-		percent: 50,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'm7',
-		percent: 78,
-		state: 'S',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'large',
-	},
-	{
-		name: 'AXb12',
-		number: 'm8',
-		percent: 15,
-		state: 'M',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-	{
-		name: 'AXb12',
-		number: 'M24',
-		percent: 30,
-		state: 'R',
-		cycle: '30 giây',
-		openDoorTime: '7 giây',
-		productId: 'EE2003',
-		wattage: 'small',
-	},
-];
+import { HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
+import { getInjectionMachineStatus, getTagsData } from '../../../utils/utils';
 
 function InjectionMoldingMachinePage() {
 	const param = useParams();
 	const history = useHistory();
-	// save data after call API
 	const pageSize = React.useMemo(() => (window.screen.width >= 1280 ? 12 : window.screen.width >= 500 ? 6 : 100), []);
-
+	const [connection, setConnection] = useState(null);
+	const [configData, setConfigData] = useState([
+		{
+			name: 'CLF 800T',
+			id: 'L6',
+			wattage: 'Large',
+			plannedQuantity: 200,
+			moldId: '',
+			product: {
+				id: '',
+				name: '',
+			},
+		},
+		{
+			id: 'L7',
+			name: 'JM 600-C',
+			wattage: 'Large',
+			plannedQuantity: 0,
+			moldId: '',
+			product: {
+				id: '',
+				name: '',
+			},
+		},
+		{
+			name: 'HC 800',
+			id: 'L8',
+			wattage: 'Large',
+			plannedQuantity: 0,
+			moldId: '',
+			product: {
+				id: '',
+				name: '',
+			},
+		},
+		{
+			id: 'L9',
+			name: 'JSW 850EII',
+			wattage: 'Large',
+			plannedQuantity: 0,
+			moldId: '',
+			product: {
+				id: '',
+				name: '',
+			},
+		},
+		{
+			name: 'JSW J850E-C5',
+			id: 'L10',
+			wattage: 'Large',
+			plannedQuantity: 0,
+			moldId: '',
+			product: {
+				id: '',
+				name: '',
+			},
+		},
+	]);
 	const [resData, setResData] = useState();
+	const [monitorData, setMonitorData] = useState([
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+			setCycle: 0,
+		},
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+			setCycle: 0,
+		},
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+			setCycle: 0,
+		},
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+			setCycle: 0,
+		},
+		{
+			isRunning: false,
+			cycleTime: 0,
+			counterShot: 0,
+			openTime: 0,
+			setCycle: 0,
+		},
+	]);
 	// id trang hiện tại => dùng để thực hiện render dữ liệu theo trang
 	const [page, setPage] = useState(+param.page);
 	// số trang cần hiển thị
@@ -322,61 +125,151 @@ function InjectionMoldingMachinePage() {
 	const [filterData, setFilterData] = useState();
 	// dữ liệu hiển thị theo trang lấy từ filterData
 	const [pageData, setPageData] = useState();
-
 	const handleCheckBtn = (e, state, payload) => {
 		e.stopPropagation();
 		if (state === 'wattage') {
 			if (wattageFilter.includes(payload)) {
 				setWattageFilter(wattageFilter.filter((item) => item !== payload));
 			} else {
-				setWattageFilter([...wattageFilter, payload]);
+				setWattageFilter((prev) => [...prev, payload]);
 			}
 		} else {
 			if (stateFilter.includes(payload)) {
 				setStateFilter(stateFilter.filter((item) => item !== payload));
 			} else {
-				setStateFilter([...stateFilter, payload]);
+				setStateFilter((prev) => [...prev, payload]);
 			}
 		}
 	};
-	// {
-	// 	name: 'AXb12',
-	// 	number: 'M4',
-	// 	percent: 15,
-	// 	state: 'M',
-	// 	cycle: '30 giây',
-	// 	openDoorTime: '7 giây',
-	// 	productId: 'EE2003',
-	// 	wattage: 'small',
-	// }
+	useEffect(() => {
+		const connection = new HubConnectionBuilder()
+			.withUrl('http://10.84.70.80:8085/websockethub', {
+				skipNegotiation: true,
+				transport: HttpTransportType.WebSockets,
+			})
+			.withAutomaticReconnect()
+			.build();
+		connection.start().then(() => {
+			console.log('connected');
+			setConnection(connection);
+		});
+		return () => {
+			connection.stop();
+		};
+	}, []);
+	useEffect(() => {
+		let idInterval;
+		if (connection) {
+			idInterval = setInterval(async () => {
+				const rawData = await getTagsData(
+					connection,
+					'imm',
+					['l10', 'l6', 'l7', 'l8', 'l9'],
+					[
+						['L10.CycleTime', 'L10.CounterShot', 'L10.OpenTime', 'L10.MachineStatus', 'L10.SetCycle'],
+						['L6.CycleTime', 'L6.CounterShot', 'L6.OpenTime', 'L6.MachineStatus', 'L6.SetCycle'],
+						['L7.CycleTime', 'L7.CounterShot', 'L7.OpenTime', 'L7.MachineStatus', 'L7.SetCycle'],
+						['L8.CycleTime', 'L8.CounterShot', 'L8.OpenTime', 'L8.MachineStatus', 'L8.SetCycle'],
+						['L9.CycleTime', 'L9.CounterShot', 'L9.OpenTime', 'L9.MachineStatus', 'L9.SetCycle'],
+					]
+				);
+				setMonitorData((prev) => [
+					{
+						isRunning: getInjectionMachineStatus(rawData.deviceQueryResults[1].tagQueryResults[3].value),
+						cycleTime: rawData.deviceQueryResults[1].tagQueryResults[0].value,
+						openTime: rawData.deviceQueryResults[1].tagQueryResults[2].value,
+						counterShot: rawData.deviceQueryResults[1].tagQueryResults[1].value,
+						setCycle: rawData.deviceQueryResults[1].tagQueryResults[4].value,
+					},
+					{
+						isRunning: getInjectionMachineStatus(rawData.deviceQueryResults[2].tagQueryResults[3].value),
+						cycleTime: rawData.deviceQueryResults[2].tagQueryResults[0].value,
+						openTime: rawData.deviceQueryResults[2].tagQueryResults[2].value,
+						counterShot: rawData.deviceQueryResults[2].tagQueryResults[1].value,
+						setCycle: rawData.deviceQueryResults[2].tagQueryResults[4].value,
+					},
+					{
+						isRunning: getInjectionMachineStatus(rawData.deviceQueryResults[3].tagQueryResults[3].value),
+						cycleTime: rawData.deviceQueryResults[3].tagQueryResults[0].value,
+						openTime: rawData.deviceQueryResults[3].tagQueryResults[2].value,
+						counterShot: rawData.deviceQueryResults[3].tagQueryResults[1].value,
+						setCycle: rawData.deviceQueryResults[3].tagQueryResults[4].value,
+					},
+					{
+						isRunning: getInjectionMachineStatus(rawData.deviceQueryResults[4].tagQueryResults[3].value),
+						cycleTime: rawData.deviceQueryResults[4].tagQueryResults[0].value,
+						openTime: rawData.deviceQueryResults[4].tagQueryResults[2].value,
+						counterShot: rawData.deviceQueryResults[4].tagQueryResults[1].value,
+						setCycle: rawData.deviceQueryResults[4].tagQueryResults[4].value,
+					},
+					{
+						isRunning: getInjectionMachineStatus(rawData.deviceQueryResults[0].tagQueryResults[3].value),
+						cycleTime: rawData.deviceQueryResults[0].tagQueryResults[0].value,
+						openTime: rawData.deviceQueryResults[0].tagQueryResults[2].value,
+						counterShot: rawData.deviceQueryResults[0].tagQueryResults[1].value,
+						setCycle: rawData.deviceQueryResults[0].tagQueryResults[4].value,
+					},
+				]);
+			}, 1500);
+		}
+		return () => {
+			clearInterval(idInterval);
+		};
+	}, [connection]);
+	useEffect(() => {
+		setResData(
+			configData.map((item, index) => {
+				return {
+					...item,
+					...monitorData[index],
+				};
+			})
+		);
+	}, [monitorData, configData]);
 	useEffect(() => {
 		const fetchData = async () => {
-			const res = await injectionApi.getTemporaryAllPreShifts();
-			console.log(res.data.items);
+			const res = await injectionApi.getPreShiftsByMachine('L10');
 			return res.data.items.map((item) => {
 				return {
-					name: item,
+					id: item.machine.id,
+					name: item.machine.model,
+					plannedQuantity: Math.floor(item.cavity * ((12 * 60 * 60) / item.injectionCycle)),
+					product: {
+						id: item.product.id,
+						name: item.product.name,
+					},
+					standardOpenTime: Number(item.product.mold.standardOpenTime.toFixed(0)),
+					moldId: item.product.mold.id,
+					cycle: Number(item.injectionCycle.toFixed(0)),
+					wattage: item.machine.machineType === 0 ? 'Large' : 'Small',
 				};
 			});
 		};
-		fetchData();
-		setResData(rawData);
+		fetchData().then((res) => {
+			setConfigData((prev) => {
+				return prev.map((item) => {
+					if (item.id === res[0].id) {
+						item = res[0];
+					}
+					return item;
+				});
+			});
+		});
 	}, []);
 
 	useEffect(() => {
-		history.push(`/injection/pages/${page}`);
+		history.push(`/layout/injection/pages/${page}`);
 	}, [page, history]);
 
 	useEffect(() => {
-		const quantityPrepare = { M: 0, R: 0, S: 0 };
-		resData?.forEach((item) => {
-			if (item.state === 'M') quantityPrepare.M++;
-			else if (item.state === 'R') quantityPrepare.R++;
-			else quantityPrepare.S++;
+		const quantityPrepare = { R: 0, S: 0 };
+		monitorData?.forEach((item) => {
+			if (item.isRunning === true) quantityPrepare.R++;
+			else if (item.isRunning === false) quantityPrepare.S++;
+			else quantityPrepare.M++;
 		});
 		setQuantity(quantityPrepare);
-	}, [resData]);
-
+	}, [monitorData]);
 	useEffect(() => {
 		let wattageFilterData, stateFilterData;
 		if (wattageFilter.length !== 0) {
@@ -384,7 +277,7 @@ function InjectionMoldingMachinePage() {
 			setFilterData(wattageFilterData);
 		}
 		if (stateFilter.length !== 0) {
-			stateFilterData = resData.filter((item) => stateFilter.includes(item.state));
+			stateFilterData = resData.filter((item) => stateFilter.includes(item.isRunning));
 			setFilterData(stateFilterData);
 		}
 		if (wattageFilterData && stateFilterData) {
@@ -393,7 +286,7 @@ function InjectionMoldingMachinePage() {
 		if (!(wattageFilterData || stateFilterData)) {
 			setFilterData(resData);
 		}
-		history.push('/injection/pages/1');
+		history.push('/layout/injection/pages/1');
 		setPage(1);
 	}, [wattageFilter, stateFilter, resData, history]);
 
@@ -460,14 +353,14 @@ function InjectionMoldingMachinePage() {
 			</div>
 			<div className="row mb-10">
 				<div className="col-12 flex-center">
-					<ReportNavigationButton history={history} path="/injection/map">
+					<ReportNavigationButton history={history} path="/layout/injection/map">
 						DẠNG BẢN ĐỒ
 					</ReportNavigationButton>
 				</div>
 			</div>
 			<div className="row">
 				<div className="col-12 flex-center">
-					<ReportNavigationButton history={history} path="/report/main/injection" />
+					<ReportNavigationButton history={history} path="/layout/report/main/injection" />
 				</div>
 			</div>
 		</div>

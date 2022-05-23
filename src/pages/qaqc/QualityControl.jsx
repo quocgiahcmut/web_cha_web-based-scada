@@ -9,7 +9,7 @@ import { ReactComponent as StoppedEndurance } from '../../assets/images/qaqc/end
 import { ReactComponent as RunEndurance } from '../../assets/images/qaqc/endurance__run.svg';
 
 import { ReactComponent as StoppedWaterProof } from '../../assets/images/qaqc/waterProof__stop.svg';
-import { ReactComponent as RunWaterProof } from '../../assets/images/qaqc/waterProof__run.svg';
+import { ReactComponent as RunWaterProof } from '../../assets/images/qaqc/waterproof__run.svg';
 
 import { ReactComponent as StoppedDeformation } from '../../assets/images/qaqc/deformation__stop.svg';
 import { ReactComponent as RunDeformation } from '../../assets/images/qaqc/deformation__run.svg';
@@ -99,18 +99,19 @@ function QualityControl() {
 					'qaqclab',
 					['plc'],
 					[
-						'Sp Force Cyliner 3',
-						'Sp No Press 3',
-						'Sp Time Hold 3',
-						'Sp Force Cylinder 12',
-						'Sp No Press 12',
-						'Sp Time Hold 12',
-						'Mode App',
-						'Green App',
-						'Red App',
-						'Error App',
-
-						'Error Code',
+						[
+							'Sp Force Cyliner 3',
+							'Sp No Press 3',
+							'Sp Time Hold 3',
+							'Sp Force Cylinder 12',
+							'Sp No Press 12',
+							'Sp Time Hold 12',
+							'Mode App',
+							'Green App',
+							'Red App',
+							'Error App',
+							'Error Code',
+						],
 					]
 				);
 				dispatch(
@@ -126,7 +127,6 @@ function QualityControl() {
 						isAlarm: rawData.deviceQueryResults[0].tagQueryResults[8].value,
 					})
 				);
-				console.log(deformationMonitorData);
 				setDeformation(deformationMonitorData.isRunning ? 'deformation__run' : 'deformation__stop');
 				switch (rawData.deviceQueryResults[0].tagQueryResults[10].value) {
 					case 0:
@@ -236,9 +236,9 @@ function QualityControl() {
 									'Số lần đóng nắp cài đặt',
 									'Số lần đóng nắp hiện tại',
 								]}
-								params={[['0000', '0000', '0000', '0000']]}
+								params={[['0', '0', '0', '0']]}
 								led={{
-									isRunning: true,
+									isRunning: false,
 									isAlarm: false,
 								}}
 								isDeformation={false}
@@ -301,9 +301,9 @@ function QualityControl() {
 									'Số lần đóng nắp cài đặt',
 									'Số lần đóng nắp hiện tại',
 								]}
-								params={[['0000', '0000', '0000', '0000']]}
+								params={[['0', '0', '0', '0']]}
 								led={{
-									isRunning: true,
+									isRunning: false,
 									isAlarm: false,
 								}}
 								isDeformation={false}
@@ -333,9 +333,9 @@ function QualityControl() {
 									'Thời gian kiểm tra cài đặt',
 									'Thời gian kiểm tra thực',
 								]}
-								params={[['0000', '0000', '0000', '0000']]}
+								params={[['0', '0', '0', '0']]}
 								led={{
-									isRunning: true,
+									isRunning: false,
 									isAlarm: false,
 								}}
 								isWaterProof={true}
